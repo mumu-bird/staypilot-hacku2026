@@ -4,7 +4,7 @@
 
 **这是运行中的仿真系统。酒店、评论、价格、订单、资金与退款均为测试数据，图片仅为氛围示意。没有连接真实酒店或支付网络。**
 
-交付材料：[3 分钟实际网页演示](https://github.com/mumu-bird/staypilot-hacku2026/releases/download/v1.0.0/demo-3min.webm)、[可编辑 Pitch Deck](docs/pitch-deck.pptx)、[验收对应表](docs/acceptance.md)、[同市场操作路线对照](docs/benchmark.md)。视频通过 Release 提供，源码仓库保留录制脚本。
+交付材料：[3 分钟实际网页演示](docs/demo-3min.webm)、[可编辑 Pitch Deck](docs/pitch-deck.pptx)、[验收对应表](docs/acceptance.md)、[同市场操作路线对照](docs/benchmark.md)。公开视频采用压缩版本，完整交付包保留高画质录制。
 
 ![实际浏览与预订后的智能体控制台](docs/screenshots/decision-console.png)
 
