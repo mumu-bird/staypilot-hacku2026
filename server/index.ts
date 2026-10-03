@@ -6,6 +6,7 @@ import { createServer as createViteServer } from 'vite';
 import { Engine } from './engine.ts';
 import { BrowserAgent } from './browser-agent.ts';
 import { interpretPreference, modelConfigured } from './model.ts';
+import {findMapPlaces,mapRoutes,amapConfigured} from './amap.ts';
 import { RealAgent } from './real-agent.ts';
 import { fliggyEvidence,reviewAssessment } from './fliggy-evidence.ts';
 import { providerStatus,discoverBookingTools } from './providers.ts';
@@ -53,6 +54,8 @@ const server=http.createServer(async(req,res)=>{
       if(req.method==='POST'){
         if(req.headers.origin){const requestOrigin=new URL(req.headers.origin);if(requestOrigin.host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'跨站写入被拒绝'},403);return;}}
         const payload=await body(req);
+        if(path==='/api/live/amap/places'){json(res,await findMapPlaces(payload));return;}
+        if(path==='/api/live/amap/routes'){json(res,await mapRoutes(payload));return;}
         if(path==='/api/live/fliggy/search'){json(res,await realSession(sid).search(payload));return;}
         if(path==='/api/live/fliggy/monitor'){json(res,payload.enabled?await realSession(sid).startMonitor(payload):realSession(sid).stopMonitor());return;}
         if(path==='/api/live/fliggy/book'){json(res,realSession(sid).blockBooking(),403);return;}
@@ -78,6 +81,7 @@ const server=http.createServer(async(req,res)=>{
         if(path==='/api/cancel'){json(res,engine.cancel(payload));return;}
         json(res,{error:'接口不存在'},404);return;
       }
+      if(path==='/api/live/integrations'){json(res,{model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},realBooking:false});return;}
       if(path==='/api/state'){json(res,{...engine.getState(),modelConfigured:modelConfigured()});return;}
       if(path==='/api/live/fliggy/state'){json(res,realSession(sid).state());return;}
       if(path==='/api/live/providers'){json(res,providerStatus());return;}
@@ -109,5 +113,5 @@ setInterval(()=>{
   }
 },1000).unref();
 server.listen(port,host,()=>console.log(`StayPilot ready: http://${host}:${port}`));
-async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();await vite?.close();server.close();}
+async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();await vite?.close();server.close();server.closeAllConnections();}
 process.on('SIGTERM',()=>void shutdown());process.on('SIGINT',()=>void shutdown());

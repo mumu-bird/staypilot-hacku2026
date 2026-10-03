@@ -4,7 +4,7 @@
 
 **主交易演示使用仿真酒店、评论、订单、测试资金与退款；图片为氛围示意。另有独立的飞猪真实只读页面，已经调用官方 FlyAI 搜索并核验一个酒店的网页证据。真实订单与支付未启用。**
 
-开发与评审依据见 [比赛开发手册](docs/competition-development-handbook.md)。控制台默认进入六步流程：行程计划 → 取舍与授权 → 初筛与评论 → 三平台比价 → 预订或阻断 → 订后监控。每步对应独立界面，状态来自运行阶段、候选证据、排序记录及订单，不以任意浏览次数冒充全部完成。
+开发与评审依据见 [比赛开发手册](docs/competition-development-handbook.md)。个人订酒店流程的最新实现及真实模型、高德验证见 [流程更新说明](docs/personal-workflow-update.md)。控制台默认进入六步流程：行程计划 → 取舍与授权 → 初筛与评论 → 三平台比价 → 预订或阻断 → 订后监控。每步对应独立界面，状态来自运行阶段、候选证据、排序记录及订单，不以任意浏览次数冒充全部完成。
 
 最新交付材料：[3 分钟实际网页演示](docs/demo-3min.webm)、[可编辑 Pitch Deck v2](docs/pitch-deck-v2.pptx)、[验收对应表](docs/acceptance.md)、[同市场操作路线对照](docs/benchmark.md)。视频包含六步界面、测试交易与真实飞猪只读查询；前一版 Deck 保留作历史材料。
 
@@ -68,10 +68,13 @@ Booking 官方 MCP 工具发现连接器已编写，等待 Managed Affiliate 凭
 复制 `.env.example` 为 `.env`，填入支持 Chat Completions JSON 格式的服务：
 
 ```dotenv
-LLM_BASE_URL=https://api.openai.com/v1
-LLM_API_KEY=你的密钥
-LLM_MODEL=你的模型名称
+LLM_BASE_URL=https://api.stepfun.com/step_plan/v1
+LLM_API_KEY=你的服务端密钥
+LLM_MODEL=step-3.5-flash
+AMAP_WEB_SERVICE_KEY=你的高德Web服务密钥
 ```
+
+本次已实际验证Step Plan的模型列表、偏好提取及评论原文分析。高德地址解析、POI查找、步行和公共交通规划也已实际验证；真实验证页先确认两个位置，再显示路线与换乘，当前路线不保证未来入住日班次。其他支持Chat Completions JSON的服务仍可通过LLM_*配置。
 
 重启后可调用偏好提取与模型辅助评论分析。模型输出必须经过字段、类别及原文摘录校验，付款权限由确定性后端执行。未配置模型时显示「规则驱动」，完整仿真流程仍可使用。密钥仅在服务端读取，不进入前端、日志或代码仓库。
 
@@ -84,7 +87,7 @@ npm run test:e2e
 npm run test:deadline
 ```
 
-场景包括跨平台比价与换订、税费超额、售罄、截止无解、取消失败、退款延迟／失败及评论越权指令。32 项单元测试、9 项实际仿真网页浏览器验收与 6 项截止边界集成核验通过。结果见 `docs/browser-verification.json` 与 `docs/deadline-verification.json`。
+场景包括跨平台比价与换订、税费超额、售罄、截止无解、取消失败、退款延迟／失败及评论越权指令。38 项单元测试、9 项实际仿真网页浏览器验收与 6 项截止边界集成核验通过。结果见 `docs/browser-verification.json` 与 `docs/deadline-verification.json`。
 
 服务运行时执行 `npm run benchmark` 可重现传统操作路线与智能体的同市场对照。`docs/benchmark.md` 明确记录步骤、自动化执行耗时、资金与订单成本；传统路线为浏览器自动化回放，耗时不能作为真实人工用户实验结论。
 

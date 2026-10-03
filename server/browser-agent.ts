@@ -6,6 +6,7 @@ import { Engine } from './engine.ts';
 import type { Evaluation, Hotel, Platform, Quote, Review, TradeResult } from '../shared/types.ts';
 import { money, PLATFORM_LABELS } from '../shared/types.ts';
 import { reviewEvidence } from './model.ts';
+import {compareCandidates,newnessYear,shortlist} from '../shared/workflow.ts';
 
 export class BrowserAgent {
   private browser:Browser|null=null;
@@ -93,25 +94,25 @@ export class BrowserAgent {
         const cards=await page.locator('[data-hotel-id][data-quote]').evaluateAll(nodes=>nodes.map(el=>({hotel:JSON.parse(el.getAttribute('data-hotel')!),quote:JSON.parse(el.getAttribute('data-quote')!)}))) as {hotel:Hotel;quote:Quote}[];
         await this.snapshot(page,'browse',`浏览${PLATFORM_LABELS[platform]}`,`已从当前网页筛选并观察${cards.length}个报价，评分保留平台原始尺度。`,{platform,hotelIds:cards.map(c=>c.hotel.id)});
         // Evaluate every visible listing, then read the strongest five and the current hotel in depth.
-        const feasible=(c:Evaluation)=>c.quote.inventory>0&&c.hotel.openingYear!==null&&(c.quote.cancellation!=='nonrefundable'||state.mandate.allowNonrefundable)&&c.quote.totalCents<=state.mandate.budgetCents;
+        const feasible=(c:Evaluation)=>c.quote.inventory>0&&newnessYear(c.hotel,state.mandate)!==null&&state.mandate.requiredAmenities.every(a=>c.hotel.amenities.includes(a))&&(c.quote.cancellation!=='nonrefundable'||state.mandate.allowNonrefundable)&&c.quote.totalCents<=state.mandate.budgetCents;
         const initial=cards.map(c=>this.engine.evaluate(c.quote,[])).sort((a,b)=>Number(feasible(b))-Number(feasible(a))||a.tier-b.tier||a.quote.totalCents-b.quote.totalCents);
         const active=this.engine.lastOrder();
         const picks=[...initial.slice(0,5),...initial.filter(c=>c.hotel.id===active?.hotelId)].filter((c,i,a)=>a.findIndex(v=>v.hotel.id===c.hotel.id)===i);
         if(platform==='a')this.engine.log('intent','平台 A 初步意向清单','按首选档位与已见含税价格初筛；评论尚未读完，不能凭列表直接购买。',{hotelIds:picks.map(c=>c.hotel.id),mandateVersion:state.mandate.version});
         const local:Evaluation[]=[];
         for(const c of picks){this.check();local.push(await this.readDetail(page,platform,c.hotel.id));}
-        if(!local.some(c=>c.eligible)){
+        if(local.filter(c=>c.eligible).length<4){
           for(const c of initial.filter(c=>feasible(c)&&!picks.some(p=>p.hotel.id===c.hotel.id))){
             this.check();local.push(await this.readDetail(page,platform,c.hotel.id));
-            if(local.filter(c=>c.eligible).length>=3)break;
+            if(local.filter(c=>c.eligible).length>=4)break;
           }
         }
         candidates.push(...local);this.engine.setCandidates(candidates);
       }
       this.engine.setAgent({phase:'evaluating'});
-      const sorted=candidates.sort((a,b)=>Number(b.eligible)-Number(a.eligible)||a.tier-b.tier||a.risk-b.risk||a.quote.totalCents-b.quote.totalCents||a.hotel.walkMinutes-b.hotel.walkMinutes);
+      const sorted=candidates.sort(compareCandidates);
       this.engine.setCandidates(sorted);
-      this.engine.log('decision','跨平台候选排序','先核验住宿底线，再按降级档位、个人差评风险、含税总价和通勤排序；不合格报价保留淘汰依据。',{candidates:sorted.map(c=>({hotel:c.hotel.name,platform:c.quote.platform,totalCents:c.quote.totalCents,tier:c.tier,risk:c.risk,eligible:c.eligible,reasons:c.reasons,conflicts:c.conflicts}))});
+      this.engine.log('decision','跨平台候选排序','先核验住宿底线，再按降级档位、个人差评风险、含税总价和通勤排序；不合格报价保留淘汰依据。',{shortlist:shortlist(sorted).map(c=>({hotelId:c.hotel.id,platform:c.quote.platform,role:c.hotel.id===shortlist(sorted)[0]?.hotel.id?'首选':'备选',matchScore:c.matchScore})),candidates:sorted.map(c=>({hotel:c.hotel.name,platform:c.quote.platform,totalCents:c.quote.totalCents,tier:c.tier,risk:c.risk,eligible:c.eligible,reasons:c.reasons,conflicts:c.conflicts}))});
       const current=this.engine.getState(), active=this.engine.lastOrder();
       if(current.mandate.revoked||!current.mandate.confirmed||current.clock.now>=current.mandate.expiresAt){this.engine.log('blocked','授权失效','停止新增购买，保留已有住宿。');return;}
       if(!active){
@@ -121,7 +122,7 @@ export class BrowserAgent {
           const result=await this.checkout(page,candidate); if(result.ok){booked=true;break;}
           if(['authorization_required','authorization_expired','authorization_version'].includes(result.code||''))break;
         }
-        if(!booked)this.engine.log('waiting','暂无可自动预订方案','继续监控；预算与硬底线保持原授权范围。');
+        if(!booked){this.engine.log('waiting','暂无可自动预订方案','继续监控；预算与硬底线保持原授权范围。');if(!sorted.some(c=>c.eligible))this.engine.publishAlternatives();}
       }else{
         if(active.quote.cancellation==='nonrefundable'||!active.quote.cancelUntil||current.clock.now>=active.quote.cancelUntil-3600000||current.clock.now>=current.mandate.optimizeUntil){
           this.engine.setAgent({monitoring:false});this.engine.log('locked','住宿已锁定','不可取消、取消窗口不足或优化期限已到，停止换订。');return;

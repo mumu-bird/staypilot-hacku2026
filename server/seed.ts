@@ -14,7 +14,7 @@ export function defaultMandate(): Mandate {
     destination: '杭州西湖 · 湖滨银泰', checkIn: '2026-11-06', checkOut: '2026-11-08', guests: 2, rooms: 1,
     roomType: '高级大床房', budgetCents: 100_000, peakCents: 100_000,
     firstDeadline: BASE_TIME + 3 * HOUR, optimizeUntil: BASE_TIME + 24 * HOUR, expiresAt: BASE_TIME + 24 * HOUR,
-    allowNonrefundable: false, windowPreference: 'required', walkMax: 15, metroMax: 35, minScore: 4.6, floorScore: 4.1, openingMin: 2023,
+    allowNonrefundable: false, windowPreference: 'required', walkMax: 15, metroMax: 35, minScore: 4.6, floorScore: 4.1, openingMin: 2023, newnessBasis:'opening', requiredAmenities:[], preferredAmenities:[],
     downgradeOrder: ['distance', 'opening', 'rating'], forbiddenIssues: ['hygiene', 'noise', 'smell'],
     issueWeights: {hygiene: 5, noise: 5, smell: 4, maintenance: 3, service: 2, breakfast: 0},
     minSavingsCents: 5_000, minSavingsPercent: 5};

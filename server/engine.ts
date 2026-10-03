@@ -3,6 +3,7 @@ import type { Alternative, AuditEvent, BookingRequest, CancelRequest, Evaluation
 import { ISSUE_LABELS, PLATFORM_LABELS, money } from '../shared/types.ts';
 import { BASE_TIME, HOUR, MINUTE, SCENARIOS, defaultMandate, makeQuote, seedHotels, seedReviews } from './seed.ts';
 import { SQLiteStore } from './store.ts';
+import {newnessYear,matchScore,compareCandidates} from '../shared/workflow.ts';
 
 interface Checkpoint {state: State; revision: number; quotes: Record<string,Quote>; outcomes: Record<string,{fingerprint:string; result:TradeResult}>; cancellationFailureUsed:boolean;}
 const copy = <T>(value:T):T => structuredClone(value);
@@ -19,7 +20,7 @@ export class Engine {
  constructor(dbPath: string) {
    this.store = new SQLiteStore(dbPath);
    const saved = this.store.read<Checkpoint>();
-   if (saved) {this.state=saved.state; this.revision=saved.revision; this.quotes=saved.quotes; this.outcomes=saved.outcomes; this.cancellationFailureUsed=saved.cancellationFailureUsed; this.state.agent.running=false; this.state.clock.running=false;this.state.mandate.windowPreference??='required';const catalog=seedHotels();for(const h of this.state.hotels)h.hasWindow??=catalog.find(s=>s.id===h.id)?.hasWindow??null;for(const q of Object.values(this.quotes))q.hasWindow??=this.state.hotels.find(h=>h.id===q.hotelId)?.hasWindow??null;}
+   if (saved) {this.state=saved.state; this.revision=saved.revision; this.quotes=saved.quotes; this.outcomes=saved.outcomes; this.cancellationFailureUsed=saved.cancellationFailureUsed; this.state.agent.running=false; this.state.clock.running=false;this.state.mandate.windowPreference??='required';this.state.mandate.newnessBasis??='opening';this.state.mandate.requiredAmenities??=[];this.state.mandate.preferredAmenities??=[];const catalog=seedHotels();for(const h of this.state.hotels)h.hasWindow??=catalog.find(s=>s.id===h.id)?.hasWindow??null;for(const q of Object.values(this.quotes))q.hasWindow??=this.state.hotels.find(h=>h.id===q.hotelId)?.hasWindow??null;}
    else {this.state=this.initial('baseline'); this.log('system','仿真市场已准备','20 家酒店、3 家独立平台、测试资金和订单已就绪。请确认授权后启动智能体。');}
  }
 
@@ -104,7 +105,10 @@ export class Engine {
    if(m.windowPreference==='required'&&quote.hasWindow!==true)conflicts.push(quote.hasWindow===false?'无窗房违反有窗硬底线':'窗型信息缺失，无法确认有窗底线');
    if(m.windowPreference==='preferred'&&quote.hasWindow==null)conflicts.push('窗型信息缺失，不能自行推定有窗或已获无窗授权');
    if(hotel.capacity*m.rooms<m.guests) conflicts.push('房型容量不足');
-   if(hotel.openingYear===null) conflicts.push('开业年份缺失；翻新年份不能代替开业年份');
+   const relevantYear=newnessYear(hotel,m);
+   if(relevantYear===null) conflicts.push(m.newnessBasis==='opening'?'开业年份缺失；翻新年份不能代替开业年份':m.newnessBasis==='renovation'?'翻新年份缺失，不能推定满足新旧要求':'开业及翻新年份均缺失，不能推定满足新旧要求');
+   for(const amenity of m.requiredAmenities)if(!hotel.amenities.includes(amenity))conflicts.push(`必须设施「${amenity}」缺少网页确认，不能降级`);
+   if(m.preferredAmenities.length)reasons.push(`设施偏好：${m.preferredAmenities.map(a=>`${a} ${hotel.amenities.includes(a)?'已确认':'未确认'}`).join('；')}`);
    if(quote.cancellation==='nonrefundable'&&!m.allowNonrefundable) conflicts.push('不可取消报价未获自动购买授权');
    if(quote.cancellation==='free_until'&&(quote.cancelUntil===null||quote.cancelUntil<=this.state.clock.now)) conflicts.push('免费取消窗口已过期');
    if(quote.totalCents+this.state.wallet.realizedCostCents>m.budgetCents) conflicts.push(`含税总价 ${money(quote.totalCents)} 加累计不可退费用超出预算 ${money(m.budgetCents)}`);
@@ -112,18 +116,19 @@ export class Engine {
    let relaxDistance=false,relaxOpening=false,relaxRating=false,relaxWindow=false;
    let tier=m.downgradeOrder.length+1;
    const fits=()=> (relaxDistance?(hotel.walkMinutes<=m.walkMax||(hotel.metroDirect&&hotel.metroMinutes<=m.metroMax)):hotel.walkMinutes<=m.walkMax)
-     && (relaxOpening||hotel.openingYear!==null&&hotel.openingYear>=m.openingMin)
+     && (relaxOpening||relevantYear!==null&&relevantYear>=m.openingMin)
      && score >= (relaxRating?m.floorScore:m.minScore)
      && (m.windowPreference!=='preferred'||quote.hasWindow===true||relaxWindow);
    if(fits())tier=0;
    else for(let i=0;i<m.downgradeOrder.length;i++) {const step=m.downgradeOrder[i];if(step==='distance')relaxDistance=true;if(step==='opening')relaxOpening=true;if(step==='rating')relaxRating=true;if(step==='window')relaxWindow=true;if(fits()){tier=i+1;break;}}
-   if(tier>m.downgradeOrder.length) conflicts.push('已用尽授权降级顺序，距离、开业年份、评分或窗型仍不满足最低条件');
+   if(tier>m.downgradeOrder.length) conflicts.push('已用尽授权降级顺序，距离、新旧年份、评分或窗型仍不满足最低条件');
    reasons.unshift(`${PLATFORM_LABELS[quote.platform]}评分 ${quote.score}/${quote.scoreMax}，平台总计 ${quote.reviewCount} 条；本次实际读取 ${evidence.length} 条`,
      `含税 ${money(quote.totalCents)}（税费 ${money(quote.taxCents)}），步行 ${hotel.walkMinutes} 分钟 / 地铁 ${hotel.metroMinutes} 分钟${hotel.metroDirect?'直达':'需换乘'}`,
      `开业 ${hotel.openingYear??'未知'}${hotel.renovatedYear?`，翻新 ${hotel.renovatedYear}（分别核验）`:''}；${quote.hasWindow===true?'有窗':quote.hasWindow===false?'无窗':'窗型未知'}；${quote.cancellation==='nonrefundable'?'不可取消':'限时免费取消'}`);
-   if(tier>0&&tier<=m.downgradeOrder.length)reasons.push(`使用第 ${tier} 档授权：${m.downgradeOrder.slice(0,tier).map(s=>({distance:'地铁直达',opening:'不限开业年份',rating:'允许低评分但问题可接受',window:'有窗优先 → 可接受无窗'})[s]).join(' → ')}`);
+   if(tier>0&&tier<=m.downgradeOrder.length)reasons.push(`使用第 ${tier} 档授权：${m.downgradeOrder.slice(0,tier).map(s=>({distance:'地铁直达',opening:'不限所选开业/翻新年份',rating:'允许低评分但问题可接受',window:'有窗优先 → 可接受无窗'})[s]).join(' → ')}`);
    if(tier===0)reasons.push('无需降级，符合全部首选条件');
-   return copy({quote,hotel,eligible:conflicts.length===0,tier,risk:Number(risk.toFixed(6)),reasons,conflicts,evidence});
+   const evaluation={quote,hotel,eligible:conflicts.length===0,tier,risk:Number(risk.toFixed(6)),reasons,conflicts,evidence};
+   return copy({...evaluation,matchScore:matchScore(evaluation,m)});
  }
 
  updateMandate(patch:Partial<Mandate>,confirm=false):State {
@@ -145,6 +150,8 @@ export class Engine {
    if(m.downgradeOrder.length>4||new Set(m.downgradeOrder).size!==m.downgradeOrder.length||m.downgradeOrder.some(s=>!['distance','opening','rating','window'].includes(s)))throw new Error('降级顺序不能重复');
    if(m.forbiddenIssues.some(issue=>!(issue in ISSUE_LABELS))||Object.values(m.issueWeights).some(w=>!Number.isFinite(w)||w<0||w>10))throw new Error('评论底线或权重不合法');
    if(!['required','preferred','any'].includes(m.windowPreference))throw new Error('窗型授权无效');
+   if(!['opening','renovation','either'].includes(m.newnessBasis))throw new Error('开业与翻新口径无效');
+   for(const items of [m.requiredAmenities,m.preferredAmenities])if(!Array.isArray(items)||items.length>20||items.some(a=>typeof a!=='string'||!a.trim()||a.length>40)||new Set(items).size!==items.length)throw new Error('设施要求须为不重复的有效名称，最多20项');
    if(typeof m.destination!=='string'||!m.destination.trim()||typeof m.roomType!=='string'||!m.roomType.trim()||typeof m.allowNonrefundable!=='boolean')throw new Error('目的地、房型或不可取消权限不合法');
  }
  revoke():State {
@@ -268,29 +275,47 @@ export class Engine {
  }
 
  publishAlternatives():Alternative[] {
-   if(this.state.clock.now<this.state.mandate.firstDeadline)return [];
+   if(this.lastOrder())return [];
    this.deadlineAlternatives(true);return copy(this.state.alternatives);
  }
+ private alternativeChanges(item:Evaluation,expired:boolean):string[] {
+   const m=this.state.mandate,q=item.quote,h=item.hotel,changes:string[]=[];
+   const total=q.totalCents+this.state.wallet.realizedCostCents;
+   if(total>m.budgetCents)changes.push(`预算需增加 ${money(total-m.budgetCents)} 至 ${money(total)}`);
+   if(item.tier>m.downgradeOrder.length){
+     if(h.walkMinutes>m.walkMax&&!m.downgradeOrder.includes('distance')&&h.metroDirect&&h.metroMinutes<=m.metroMax)changes.push(`位置改为地铁直达 ${h.metroMinutes} 分钟`);
+     else if(h.walkMinutes>m.walkMax&&(!h.metroDirect||h.metroMinutes>m.metroMax))changes.push(`步行上限由 ${m.walkMax} 调整至 ${h.walkMinutes} 分钟`);
+     const year=newnessYear(h,m);
+     if(year!==null&&year<m.openingMin&&!m.downgradeOrder.includes('opening'))changes.push(`所选年份要求由 ${m.openingMin} 调整至 ${year}`);
+     const score=q.score/q.scoreMax*5;
+     if(score<m.minScore&&!m.downgradeOrder.includes('rating'))changes.push(`期望评分调整至 ${score.toFixed(1)} / 5；个人评论底线保留`);
+     if(m.windowPreference==='preferred'&&q.hasWindow===false&&!m.downgradeOrder.includes('window'))changes.push('有窗优先改为可接受无窗，需单独确认');
+   }
+   changes.push(expired?'首次预订截止需延后并重新确认授权':'条件变更须重新确认授权，当前不会自动执行');
+   if(q.expiresAt<=this.state.clock.now)changes.push('已观察报价过期，须重新浏览核验价格和库存');
+   return changes;
+ }
  private deadlineAlternatives(force=false):void {
-   if(!force&&(this.state.alternatives.length||this.state.events.some(event=>event.type==='deadline'&&(event.data as {mandateVersion?:number}|undefined)?.mandateVersion===this.state.mandate.version)))return;
+   const expired=this.state.clock.now>=this.state.mandate.firstDeadline;
+   if(!force&&this.state.events.some(event=>event.type==='deadline'&&(event.data as {mandateVersion?:number}|undefined)?.mandateVersion===this.state.mandate.version))return;
    // Alternatives are grounded exclusively in pages actually observed by this session's browser agent.
    const observed=this.state.candidates.filter(item=>item.evidence.length>0);
    const candidates=observed.map(item=>this.evaluate(item.quote,item.evidence));
    const byHotel=new Map<string,Evaluation>();
    for(const item of candidates){
      const q=item.quote,m=this.state.mandate;
-     if(item.hotel.openingYear===null||item.hotel.capacity*q.rooms<q.guests||item.evidence.some(r=>r.issues.some(i=>m.forbiddenIssues.includes(i)))
+     if(newnessYear(item.hotel,m)===null||m.requiredAmenities.some(a=>!item.hotel.amenities.includes(a))||item.hotel.capacity*q.rooms<q.guests||item.evidence.some(r=>r.issues.some(i=>m.forbiddenIssues.includes(i)))
        ||q.checkIn!==m.checkIn||q.checkOut!==m.checkOut||q.guests!==m.guests||q.rooms!==m.rooms||q.roomType!==m.roomType
        ||m.windowPreference==='required'&&q.hasWindow!==true||m.windowPreference==='preferred'&&q.hasWindow==null
-       ||q.inventory<q.rooms||q.cancellation==='nonrefundable'&&!m.allowNonrefundable
+       ||q.score/q.scoreMax*5<m.floorScore||q.inventory<q.rooms||q.cancellation==='nonrefundable'&&!m.allowNonrefundable
        ||q.cancellation==='free_until'&&(q.cancelUntil===null||q.cancelUntil<=this.state.clock.now))continue;
      const old=byHotel.get(item.hotel.id);if(!old||q.totalCents<old.quote.totalCents)byHotel.set(item.hotel.id,item);
    }
-   const ranked=[...byHotel.values()].sort((a,b)=>a.tier-b.tier||a.risk-b.risk||a.quote.totalCents-b.quote.totalCents);
+   const ranked=[...byHotel.values()].sort(compareCandidates);
    this.state.alternatives=ranked.slice(0,3).map(item=>({hotelId:item.hotel.id,hotelName:item.hotel.name,platform:item.quote.platform,totalCents:item.quote.totalCents,
-     changes:[...(item.quote.totalCents>this.state.mandate.budgetCents?[`预算需增加 ${money(item.quote.totalCents-this.state.mandate.budgetCents)} 至 ${money(item.quote.totalCents)}`]:[]),...(item.tier>this.state.mandate.downgradeOrder.length?['需另行放宽距离、评分、开业年份或窗型限制']:[]),'首次预订截止需延后并重新确认授权',...(item.quote.expiresAt<=this.state.clock.now?['已观察报价过期，须重新浏览平台核验价格和库存']:[])],
+     changes:this.alternativeChanges(item,expired),
      reasons:[`个人差评风险 ${item.risk.toFixed(2)}；步行 ${item.hotel.walkMinutes} 分钟`,`评分 ${item.quote.score}/${item.quote.scoreMax}，开业 ${item.hotel.openingYear}；${item.quote.cancellation==='nonrefundable'?'不可取消':'限时免费取消'}`,`依据已读取网页和 ${item.evidence.length} 条评论；观察时间 ${new Date(item.quote.observedAt).toISOString()}`]}));
-   this.state.agent.monitoring=false;this.state.agent.phase=this.state.alternatives.length?'截止仍无解，等待新的授权':'截止仍无解，网页观察不足';
-   this.log('deadline','首次截止已到，未自动购买',this.state.alternatives.length?'停止购买并提供最多三套条件组合。任何超出原授权的条件都需要重新确认。':'尚未浏览足够酒店详情和评论，不能给出可靠条件组合。需要重新设定截止时间并观察网页。',{alternatives:this.state.alternatives,mandateVersion:this.state.mandate.version});
+   if(expired){this.state.agent.monitoring=false;this.state.agent.phase=this.state.alternatives.length?'截止仍无解，等待新的授权':'截止仍无解，网页观察不足';}
+   this.log(expired?'deadline':'alternatives',expired?'首次截止已到，未自动购买':'本轮无解，提供待确认的条件组合',this.state.alternatives.length?'提供最多三套待确认条件组合，未改变预算或底线。任何超出原授权的条件都需要重新确认。':`已读候选不能保留当前硬底线，或网页证据仍不足，未生成可靠条件组合。${expired?'首次截止已到，停止购买；继续决策须设新截止并确认授权。':'保持原授权，继续观察；不会自行调整底线。'}`,{alternatives:this.state.alternatives,mandateVersion:this.state.mandate.version});
  }
 }
