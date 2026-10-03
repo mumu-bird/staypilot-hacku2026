@@ -1,0 +1,101 @@
+import http from 'node:http';
+import { randomBytes, createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { resolve, extname } from 'node:path';
+import { createServer as createViteServer } from 'vite';
+import { Engine } from './engine.ts';
+import { BrowserAgent } from './browser-agent.ts';
+import { interpretPreference, modelConfigured } from './model.ts';
+import type { Platform } from '../shared/types.ts';
+
+const port=Number(process.env.PORT||4173),host=process.env.HOST||'127.0.0.1';
+const origin=`http://127.0.0.1:${port}`;
+mkdirSync('data',{recursive:true});
+const sessions=new Map<string,{engine:Engine;agent:BrowserAgent}>();
+const scenarios=[
+  {id:'baseline',label:'比价与换订',description:'三个平台不同取消条款，30分钟后竞品降价。'},
+  {id:'tax_spike',label:'结算税费超额',description:'展示价格在预算内，结算复核税费后阻断。'},
+  {id:'sold_out',label:'库存售罄',description:'意向报价下单前售罄，保留证据并重新筛选。'},
+  {id:'no_solution',label:'截止无解',description:'所有可行报价超出预算，输出条件组合。'},
+  {id:'cancel_failure',label:'旧单取消失败',description:'换订后旧订单取消失败，尝试补偿取消新单。'},
+  {id:'refund_delay',label:'退款延迟',description:'取消后延迟到账，占款期间禁止重复换订。'},
+  {id:'refund_failure',label:'退款失败',description:'退款失败冻结进一步交易，保留订单和资金记录。'},
+  {id:'prompt_injection',label:'评论恶意指令',description:'评论包含越权指令，资金与授权规则仍生效。'},
+];
+const vite=process.env.NODE_ENV==='production'?null:await createViteServer({server:{middlewareMode:true},appType:'spa'});
+function advance(engine:Engine,minutes:number){const s=engine.getState();const finalAt=s.mandate.firstDeadline-60000;const target=s.clock.now+minutes*60000;if(s.agent.monitoring&&!engine.lastOrder()&&s.clock.now<finalAt&&target>=finalAt){engine.tick((finalAt-s.clock.now)/60000);engine.log('deadline_guard','抵达最后核验节点','先执行截止前的最后一轮网页核验，结束后再继续推进仿真时间。');}else engine.tick(minutes);}
+function shouldRun(engine:Engine){const s=engine.getState();const finalAt=s.mandate.firstDeadline-60000;return s.agent.monitoring&&(s.clock.now>=(s.agent.nextRunAt||0)||(!engine.lastOrder()&&s.clock.now>=finalAt&&(s.agent.lastRunAt===null||s.agent.lastRunAt<finalAt)));}
+function json(res:http.ServerResponse,value:unknown,status=200){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));}
+async function body(req:http.IncomingMessage){let text='';for await(const chunk of req){text+=chunk;if(text.length>65536)throw new Error('请求内容过大');}return text?JSON.parse(text):{};}
+function session(req:http.IncomingMessage,res:http.ServerResponse){
+  let sid=/staypilot_session=([a-f0-9]{32})/.exec(req.headers.cookie||'')?.[1];
+  if(!sid){sid=randomBytes(16).toString('hex');res.setHeader('Set-Cookie',`staypilot_session=${sid}; Path=/; HttpOnly; SameSite=Lax`);}
+  let current=sessions.get(sid);
+  if(!current){const engine=new Engine(resolve('data',`${sid}.sqlite`));engine.setAgent({running:false});current={engine,agent:new BrowserAgent(engine,origin,sid)};sessions.set(sid,current);}
+  return {sid,...current};
+}
+const mime:Record<string,string>={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.jpg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.webm':'video/webm','.json':'application/json'};
+const server=http.createServer(async(req,res)=>{
+  try{
+    const url=new URL(req.url||'/',origin),path=url.pathname;
+    if(path.startsWith('/api/')||path.startsWith('/evidence/')){
+      const {sid,engine,agent}=session(req,res);
+      if(path.startsWith('/evidence/')){
+        if(!path.startsWith(`/evidence/${sid}/`)){json(res,{error:'页面证据属于其他演示会话。'},403);return;}
+        const file=resolve('public',`.${path}`);if(!file.startsWith(resolve('public/evidence',sid)+'/')||!existsSync(file)){json(res,{error:'证据不存在'},404);return;}
+        res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));return;
+      }
+      if(req.method==='POST'){
+        if(req.headers.origin){const requestOrigin=new URL(req.headers.origin);if(requestOrigin.host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'跨站写入被拒绝'},403);return;}}
+        const payload=await body(req);
+        if(path==='/api/mandate'){if(agent.busy){json(res,{error:'浏览任务运行中，请等待本轮结束后修改授权。'},409);return;}json(res,engine.updateMandate(payload.patch||{},Boolean(payload.confirm)));return;}
+        if(path==='/api/mandate/interpret'){json(res,await interpretPreference(String(payload.text||''),engine.getState().mandate));return;}
+        if(path==='/api/revoke'){engine.revoke();await agent.stop();json(res,engine.getState());return;}
+        if(path==='/api/wallet'){engine.addFunds(Number(payload.amountCents));json(res,engine.getState());return;}
+        if(path==='/api/clock'){
+          if(agent.busy&&payload.minutes!==undefined){json(res,{error:'网页决策运行中，仿真时钟暂缓。请待本轮完成再单步推进。'},409);return;}
+          if(payload.minutes!==undefined)advance(engine,Number(payload.minutes));
+          if(payload.running!==undefined)engine.setClock(Boolean(payload.running),payload.speed);
+          else if(payload.speed!==undefined)engine.setClock(engine.getState().clock.running,Number(payload.speed));
+          const s=engine.getState();
+          if(!agent.busy&&shouldRun(engine))void agent.run();
+          json(res,engine.getState());return;
+        }
+        if(path==='/api/reset'){if(agent.busy){json(res,{error:'浏览任务运行中，结束后才能重置。'},409);return;}if(!scenarios.some(s=>s.id===payload.scenario)){json(res,{error:'未知场景'},400);return;}engine.reset(payload.scenario);json(res,engine.getState());return;}
+        if(path==='/api/agent/run'){if(agent.busy){json(res,{error:'本轮浏览仍在运行'},409);return;}void agent.run();json(res,{ok:true});return;}
+        if(path==='/api/agent/monitor'){const s=engine.getState();if(payload.enabled&&(!s.mandate.confirmed||s.mandate.revoked||s.clock.now>=s.mandate.expiresAt)){json(res,{error:'先确认未到期的授权单才能持续监控。'},400);return;}engine.setAgent({monitoring:Boolean(payload.enabled)});if(payload.enabled&&!agent.busy)void agent.run();if(!payload.enabled)await agent.stop();json(res,engine.getState());return;}
+        if(path==='/api/agent/mode'){if(payload.mode==='model'&&!modelConfigured()){json(res,{error:'尚未配置模型。当前可完整使用规则驱动模式；配置LLM_API_KEY、LLM_MODEL后再启用。'},400);return;}engine.setAgent({mode:payload.mode==='model'?'model':'deterministic'});json(res,engine.getState());return;}
+        if(path==='/api/book'){json(res,engine.book(payload));return;}
+        if(path==='/api/cancel'){json(res,engine.cancel(payload));return;}
+        json(res,{error:'接口不存在'},404);return;
+      }
+      if(path==='/api/state'){json(res,{...engine.getState(),modelConfigured:modelConfigured()});return;}
+      if(path==='/api/scenarios'){json(res,scenarios);return;}
+      const listing=/^\/api\/platform\/([abc])\/hotels$/.exec(path);
+      if(listing){json(res,engine.list(listing[1] as Platform,{minScore:url.searchParams.has('minScore')?Number(url.searchParams.get('minScore')):undefined,maxPrice:url.searchParams.has('maxPrice')?Math.round(Number(url.searchParams.get('maxPrice'))*100):undefined,query:url.searchParams.get('query')||undefined}));return;}
+      const detail=/^\/api\/platform\/([abc])\/hotel\/([^/]+)$/.exec(path);
+      if(detail){const value=engine.detail(detail[1] as Platform,detail[2]);if(!value){json(res,{error:'酒店不存在'},404);return;}json(res,value);return;}
+      if(path==='/api/audit/export'){
+        const events=engine.getState().events;let previous='0'.repeat(64);let verified=true;
+        for(const event of events){const {hash,...record}=event;if(record.previousHash!==previous||createHash('sha256').update(JSON.stringify(record)).digest('hex')!==hash)verified=false;previous=hash;}
+        res.setHeader('Content-Disposition','attachment; filename="staypilot-audit.json"');json(res,{source:'模拟商户与测试资金，非真实酒店成交',exportedAt:new Date().toISOString(),hashChainVerified:verified,...engine.getState()});return;
+      }
+      json(res,{error:'接口不存在'},404);return;
+    }
+    if(vite){vite.middlewares(req,res,()=>{res.statusCode=404;res.end('Not found');});return;}
+    const target=resolve('dist',`.${path}`);const safe=target.startsWith(resolve('dist')+'/')&&existsSync(target)&&extname(target);
+    const file=safe?target:resolve('dist/index.html');res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));
+  }catch(error){json(res,{error:error instanceof Error?error.message:'请求失败'},400);}
+});
+let lastTick=Date.now();
+setInterval(()=>{
+  const elapsed=Date.now()-lastTick;lastTick=Date.now();
+  for(const {engine,agent} of sessions.values()){
+    const state=engine.getState();if(state.clock.running&&!agent.busy)advance(engine,elapsed*state.clock.speed/60000);
+    const fresh=engine.getState();
+    if(!agent.busy&&shouldRun(engine))void agent.run();
+  }
+},1000).unref();
+server.listen(port,host,()=>console.log(`StayPilot ready: http://${host}:${port}`));
+async function shutdown(){for(const {agent} of sessions.values())await agent.stop();await vite?.close();server.close();}
+process.on('SIGTERM',()=>void shutdown());process.on('SIGINT',()=>void shutdown());

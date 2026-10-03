@@ -1,0 +1,148 @@
+{
+  "startedAt": "2026-10-03T10:42:44.649Z",
+  "executedAt": "2026-10-03T10:43:10.476Z",
+  "origin": "http://127.0.0.1:4173",
+  "environment": "独立测试会话；BrowserAgent实际操作Chrome网页；酒店、评论与资金均为仿真数据",
+  "sessionFingerprint": "c42ce19bea12",
+  "passed": true,
+  "checks": [
+    {
+      "name": "独立截止无解会话完成初轮真实网页浏览，无越权订单",
+      "result": "passed",
+      "detail": {
+        "scenario": "no_solution",
+        "candidateQuotes": 15,
+        "observedPages": 3,
+        "budgetCents": 100000
+      }
+    },
+    {
+      "name": "manual advance跨过截止时先钳到截止前1分钟，并生成deadline_guard",
+      "result": "passed",
+      "detail": {
+        "requestedMinutes": 210,
+        "clampedAt": "2026-10-03T03:59:00.000Z",
+        "deadline": "2026-10-03T04:00:00.000Z"
+      }
+    },
+    {
+      "name": "最后一轮BrowserAgent观察完成，三平台截图与评论证据均来自截止前1分钟",
+      "result": "passed",
+      "detail": {
+        "pages": 3,
+        "hotelReviewReads": 15,
+        "observedAt": "2026-10-03T03:59:00.000Z",
+        "screenshots": [
+          "/evidence/<isolated-test-session>/1791024179252-ffcc118f.jpg",
+          "/evidence/<isolated-test-session>/1791024183091-8b6d3190.jpg",
+          "/evidence/<isolated-test-session>/1791024186923-2b9d433b.jpg"
+        ]
+      }
+    },
+    {
+      "name": "抵达截止立即停止购买，并输出最多三套有最终网页评论依据的条件组合",
+      "result": "passed",
+      "detail": {
+        "alternatives": [
+          {
+            "hotelId": "h03",
+            "hotelName": "云栖湖滨酒店",
+            "platform": "b",
+            "totalCents": 161500,
+            "changes": [
+              "预算需增加 ¥615 至 ¥1,615",
+              "首次预订截止需延后并重新确认授权"
+            ],
+            "reviewIds": [
+              "b-h03-review-1",
+              "b-h03-review-2",
+              "b-h03-review-3",
+              "b-h03-review-4",
+              "b-h03-review-5",
+              "b-h03-review-6",
+              "b-h03-review-7",
+              "b-h03-review-8"
+            ],
+            "reviewEventSequence": 32
+          },
+          {
+            "hotelId": "h01",
+            "hotelName": "湖畔时光酒店",
+            "platform": "a",
+            "totalCents": 182000,
+            "changes": [
+              "预算需增加 ¥820 至 ¥1,820",
+              "首次预订截止需延后并重新确认授权"
+            ],
+            "reviewIds": [
+              "a-h01-review-1",
+              "a-h01-review-2",
+              "a-h01-review-3",
+              "a-h01-review-4",
+              "a-h01-review-5",
+              "a-h01-review-6",
+              "a-h01-review-7",
+              "a-h01-review-8"
+            ],
+            "reviewEventSequence": 29
+          },
+          {
+            "hotelId": "h05",
+            "hotelName": "柳岸精品酒店",
+            "platform": "a",
+            "totalCents": 197000,
+            "changes": [
+              "预算需增加 ¥970 至 ¥1,970",
+              "首次预订截止需延后并重新确认授权"
+            ],
+            "reviewIds": [
+              "a-h05-review-1",
+              "a-h05-review-2",
+              "a-h05-review-3",
+              "a-h05-review-4",
+              "a-h05-review-5",
+              "a-h05-review-6",
+              "a-h05-review-7",
+              "a-h05-review-8"
+            ],
+            "reviewEventSequence": 30
+          }
+        ],
+        "wallet": {
+          "initialCents": 100000,
+          "availableCents": 100000,
+          "exposureCents": 0,
+          "realizedCostCents": 0,
+          "refundPendingCents": 0
+        },
+        "monitoring": false
+      }
+    },
+    {
+      "name": "截止后继续推进不重启观察；直接下单也被服务端deadline规则阻止",
+      "result": "passed",
+      "detail": {
+        "clock": "2026-10-03T04:30:00.000Z",
+        "code": "deadline",
+        "reason": "首次预订截止已过，停止自动购买",
+        "walletUnchanged": true
+      }
+    },
+    {
+      "name": "完整审计哈希链由导出接口与测试独立重算双重验证",
+      "result": "passed",
+      "detail": {
+        "eventCount": 46,
+        "hashChainVerified": true,
+        "finalHash": "5e8eea21b607a041c551441ed4e4d7c5543d4114b0527da084c08635b0314ee2",
+        "deadlineGuardEvents": [
+          {
+            "sequence": 24,
+            "time": 1790999940000,
+            "title": "抵达最后核验节点"
+          }
+        ]
+      }
+    }
+  ]
+}

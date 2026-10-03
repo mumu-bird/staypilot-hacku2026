@@ -1,0 +1,10 @@
+node_modules
+data
+.cache
+.env
+.git
+dist
+public/evidence
+docs/pitch-build
+docs/pitch-preview
+docs/pitch-output

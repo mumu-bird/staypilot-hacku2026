@@ -1,0 +1,481 @@
+{
+  "executedAt": "2026-10-03T10:41:31.150Z",
+  "scenario": "baseline",
+  "origin": "http://127.0.0.1:4173",
+  "source": "同一确定性种子市场；虚构酒店、种子评论和测试资金",
+  "comparisonMethod": "两个隔离访客会话，相同授权、初始资金¥1000、住宿预算¥1000、占款上限¥1000、仿真时刻09:00→09:30→09:45。传统路线固定3家意向酒店跨3平台检查；智能体自行筛选并阅读至少5家/平台。",
+  "operationDefinition": "一次平台搜索、一次酒店详情与评论读取、一次结算核验、一次付款提交、一次取消提交分别计为一个操作。传统路线脚本在执行时记录；智能体取对应真实浏览审计事件。操作数不等于鼠标点击数或人的认知步骤数。",
+  "timingLimitations": "实际耗时为Chrome浏览器自动化执行墙钟耗时，包括页面加载、脚本调度及浏览器流程；不是实际人类受试者耗时。传统回放复用一个浏览器，智能体每轮隔离启动浏览器。30/15仿真分钟通过时钟单步推进，不包含真实等待。禁止据此宣称节省了多少真实用户时间。",
+  "routes": [
+    {
+      "route": "traditional_replay",
+      "label": "传统人工操作路径的浏览器自动化回放",
+      "operations": [
+        {
+          "sequence": 1,
+          "kind": "browse",
+          "label": "栖途旅行 搜索高评分住宿",
+          "wallTimeOffsetMs": 1530
+        },
+        {
+          "sequence": 2,
+          "kind": "review",
+          "label": "栖途旅行 查看 湖畔时光酒店 及 8 条评论",
+          "wallTimeOffsetMs": 2172
+        },
+        {
+          "sequence": 3,
+          "kind": "review",
+          "label": "栖途旅行 查看 云栖湖滨酒店 及 8 条评论",
+          "wallTimeOffsetMs": 2771
+        },
+        {
+          "sequence": 4,
+          "kind": "review",
+          "label": "栖途旅行 查看 柳岸精品酒店 及 8 条评论",
+          "wallTimeOffsetMs": 3370
+        },
+        {
+          "sequence": 5,
+          "kind": "browse",
+          "label": "住好 Staywell 搜索高评分住宿",
+          "wallTimeOffsetMs": 4094
+        },
+        {
+          "sequence": 6,
+          "kind": "review",
+          "label": "住好 Staywell 查看 湖畔时光酒店 及 8 条评论",
+          "wallTimeOffsetMs": 4706
+        },
+        {
+          "sequence": 7,
+          "kind": "review",
+          "label": "住好 Staywell 查看 云栖湖滨酒店 及 8 条评论",
+          "wallTimeOffsetMs": 5312
+        },
+        {
+          "sequence": 8,
+          "kind": "review",
+          "label": "住好 Staywell 查看 柳岸精品酒店 及 8 条评论",
+          "wallTimeOffsetMs": 5907
+        },
+        {
+          "sequence": 9,
+          "kind": "browse",
+          "label": "泊客精选 搜索高评分住宿",
+          "wallTimeOffsetMs": 6627
+        },
+        {
+          "sequence": 10,
+          "kind": "review",
+          "label": "泊客精选 查看 湖畔时光酒店 及 8 条评论",
+          "wallTimeOffsetMs": 7240
+        },
+        {
+          "sequence": 11,
+          "kind": "review",
+          "label": "泊客精选 查看 云栖湖滨酒店 及 8 条评论",
+          "wallTimeOffsetMs": 7825
+        },
+        {
+          "sequence": 12,
+          "kind": "review",
+          "label": "泊客精选 查看 柳岸精品酒店 及 8 条评论",
+          "wallTimeOffsetMs": 8418
+        },
+        {
+          "sequence": 13,
+          "kind": "checkout",
+          "label": "核验 湖畔时光酒店 当前结算条款与含税价格",
+          "wallTimeOffsetMs": 8986
+        },
+        {
+          "sequence": 14,
+          "kind": "browser_booked",
+          "label": "提交 湖畔时光酒店 付款：成功",
+          "wallTimeOffsetMs": 9050
+        },
+        {
+          "sequence": 15,
+          "kind": "browse",
+          "label": "栖途旅行 搜索高评分住宿",
+          "wallTimeOffsetMs": 9760
+        },
+        {
+          "sequence": 16,
+          "kind": "review",
+          "label": "栖途旅行 查看 湖畔时光酒店 及 8 条评论",
+          "wallTimeOffsetMs": 10376
+        },
+        {
+          "sequence": 17,
+          "kind": "review",
+          "label": "栖途旅行 查看 云栖湖滨酒店 及 8 条评论",
+          "wallTimeOffsetMs": 10968
+        },
+        {
+          "sequence": 18,
+          "kind": "review",
+          "label": "栖途旅行 查看 柳岸精品酒店 及 8 条评论",
+          "wallTimeOffsetMs": 11560
+        },
+        {
+          "sequence": 19,
+          "kind": "browse",
+          "label": "住好 Staywell 搜索高评分住宿",
+          "wallTimeOffsetMs": 12260
+        },
+        {
+          "sequence": 20,
+          "kind": "review",
+          "label": "住好 Staywell 查看 湖畔时光酒店 及 8 条评论",
+          "wallTimeOffsetMs": 12878
+        },
+        {
+          "sequence": 21,
+          "kind": "review",
+          "label": "住好 Staywell 查看 云栖湖滨酒店 及 8 条评论",
+          "wallTimeOffsetMs": 13484
+        },
+        {
+          "sequence": 22,
+          "kind": "review",
+          "label": "住好 Staywell 查看 柳岸精品酒店 及 8 条评论",
+          "wallTimeOffsetMs": 14309
+        },
+        {
+          "sequence": 23,
+          "kind": "browse",
+          "label": "泊客精选 搜索高评分住宿",
+          "wallTimeOffsetMs": 15026
+        },
+        {
+          "sequence": 24,
+          "kind": "review",
+          "label": "泊客精选 查看 湖畔时光酒店 及 8 条评论",
+          "wallTimeOffsetMs": 15636
+        },
+        {
+          "sequence": 25,
+          "kind": "review",
+          "label": "泊客精选 查看 云栖湖滨酒店 及 8 条评论",
+          "wallTimeOffsetMs": 16234
+        },
+        {
+          "sequence": 26,
+          "kind": "review",
+          "label": "泊客精选 查看 柳岸精品酒店 及 8 条评论",
+          "wallTimeOffsetMs": 16835
+        },
+        {
+          "sequence": 27,
+          "kind": "checkout",
+          "label": "核验 云栖湖滨酒店 当前结算条款与含税价格",
+          "wallTimeOffsetMs": 17408
+        },
+        {
+          "sequence": 28,
+          "kind": "browser_booked",
+          "label": "提交 云栖湖滨酒店 付款：成功",
+          "wallTimeOffsetMs": 17521
+        },
+        {
+          "sequence": 29,
+          "kind": "browser_cancel",
+          "label": "取消原酒店 湖畔时光酒店，申请全额退款",
+          "wallTimeOffsetMs": 18168
+        }
+      ],
+      "operationCount": 29,
+      "initialBookingMs": 9050,
+      "optimizationMs": 9113,
+      "activeExecutionMs": 18163,
+      "initialCostCents": 45500,
+      "finalCostCents": 31500,
+      "savingsCents": 14000,
+      "peakExposureCents": 77000,
+      "finalAvailableCents": 68500,
+      "simulationElapsedMinutes": 45,
+      "orderIds": [
+        "ord-01f8abcc",
+        "ord-5e4dc593"
+      ],
+      "auditEventCount": 7,
+      "observedReviewCount": 144
+    },
+    {
+      "route": "autonomous_agent",
+      "label": "智能体实际 Playwright 执行",
+      "operations": [
+        {
+          "sequence": 1,
+          "kind": "browse",
+          "label": "浏览栖途旅行",
+          "wallTimeOffsetMs": 0
+        },
+        {
+          "sequence": 2,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 586
+        },
+        {
+          "sequence": 3,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 1174
+        },
+        {
+          "sequence": 4,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 1768
+        },
+        {
+          "sequence": 5,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 2361
+        },
+        {
+          "sequence": 6,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 2950
+        },
+        {
+          "sequence": 7,
+          "kind": "browse",
+          "label": "浏览住好 Staywell",
+          "wallTimeOffsetMs": 3780
+        },
+        {
+          "sequence": 8,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 4374
+        },
+        {
+          "sequence": 9,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 4973
+        },
+        {
+          "sequence": 10,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 5571
+        },
+        {
+          "sequence": 11,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 6164
+        },
+        {
+          "sequence": 12,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 6750
+        },
+        {
+          "sequence": 13,
+          "kind": "browse",
+          "label": "浏览泊客精选",
+          "wallTimeOffsetMs": 7635
+        },
+        {
+          "sequence": 14,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 8240
+        },
+        {
+          "sequence": 15,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 8822
+        },
+        {
+          "sequence": 16,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 9416
+        },
+        {
+          "sequence": 17,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 9996
+        },
+        {
+          "sequence": 18,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 10573
+        },
+        {
+          "sequence": 19,
+          "kind": "checkout",
+          "label": "复核结算价格与取消条款",
+          "wallTimeOffsetMs": 11163
+        },
+        {
+          "sequence": 20,
+          "kind": "browser_booked",
+          "label": "网页预订已确认",
+          "wallTimeOffsetMs": 11318
+        },
+        {
+          "sequence": 21,
+          "kind": "browse",
+          "label": "浏览栖途旅行",
+          "wallTimeOffsetMs": 13038
+        },
+        {
+          "sequence": 22,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 13627
+        },
+        {
+          "sequence": 23,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 14204
+        },
+        {
+          "sequence": 24,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 14813
+        },
+        {
+          "sequence": 25,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 15409
+        },
+        {
+          "sequence": 26,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 16003
+        },
+        {
+          "sequence": 27,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 16610
+        },
+        {
+          "sequence": 28,
+          "kind": "browse",
+          "label": "浏览住好 Staywell",
+          "wallTimeOffsetMs": 17464
+        },
+        {
+          "sequence": 29,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 18062
+        },
+        {
+          "sequence": 30,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 18680
+        },
+        {
+          "sequence": 31,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 19278
+        },
+        {
+          "sequence": 32,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 19875
+        },
+        {
+          "sequence": 33,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 20475
+        },
+        {
+          "sequence": 34,
+          "kind": "browse",
+          "label": "浏览泊客精选",
+          "wallTimeOffsetMs": 21366
+        },
+        {
+          "sequence": 35,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 21960
+        },
+        {
+          "sequence": 36,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 22563
+        },
+        {
+          "sequence": 37,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 23166
+        },
+        {
+          "sequence": 38,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 23775
+        },
+        {
+          "sequence": 39,
+          "kind": "review",
+          "label": "读取酒店与评论",
+          "wallTimeOffsetMs": 24381
+        },
+        {
+          "sequence": 40,
+          "kind": "checkout",
+          "label": "复核结算价格与取消条款",
+          "wallTimeOffsetMs": 24999
+        },
+        {
+          "sequence": 41,
+          "kind": "browser_booked",
+          "label": "网页预订已确认",
+          "wallTimeOffsetMs": 25159
+        },
+        {
+          "sequence": 42,
+          "kind": "browser_cancel",
+          "label": "取消原订单并申请退款",
+          "wallTimeOffsetMs": 25827
+        }
+      ],
+      "operationCount": 42,
+      "initialBookingMs": 12941,
+      "optimizationMs": 14621,
+      "activeExecutionMs": 27562,
+      "initialCostCents": 45500,
+      "finalCostCents": 31500,
+      "savingsCents": 14000,
+      "peakExposureCents": 77000,
+      "finalAvailableCents": 68500,
+      "simulationElapsedMinutes": 45,
+      "orderIds": [
+        "ord-17dbfc6e",
+        "ord-fdf5cd13"
+      ],
+      "auditEventCount": 52,
+      "observedReviewCount": 248
+    }
+  ]
+}

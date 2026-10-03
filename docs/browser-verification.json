@@ -1,0 +1,56 @@
+{
+  "executedAt": "2026-10-03T10:26:28.023Z",
+  "environment": "真实Chrome网页操作；虚构酒店与测试资金",
+  "checks": [
+    {
+      "name": "实际浏览三平台、读取评论并自动订到可取消房",
+      "result": "passed",
+      "detail": {
+        "hotel": "湖畔时光酒店",
+        "totalCents": 45500,
+        "browsePages": 3
+      }
+    },
+    {
+      "name": "浏览器先新订再取消旧单，退款期间真实占款",
+      "result": "passed",
+      "detail": {
+        "paidCents": 77000,
+        "availableCents": 23000
+      }
+    },
+    {
+      "name": "退款实际到账才释放余额",
+      "result": "passed",
+      "detail": {
+        "finalCostCents": 31500,
+        "savingsCents": 14000
+      }
+    },
+    {
+      "name": "完整审计日志哈希链验证",
+      "result": "passed"
+    },
+    {
+      "name": "三个独立平台页面均展示20家酒店，页面无运行异常",
+      "result": "passed"
+    },
+    {
+      "name": "真实结算页税费超预算被阻止，钱包未扣款",
+      "result": "passed",
+      "detail": "含税总价 ¥1,555 加累计不可退费用超出预算 ¥1,000"
+    },
+    {
+      "name": "撤销授权后网页下单被阻止",
+      "result": "passed"
+    },
+    {
+      "name": "单独授权不可取消房后可支付，随后停止换订",
+      "result": "passed"
+    },
+    {
+      "name": "手机视口无横向溢出",
+      "result": "passed"
+    }
+  ]
+}
