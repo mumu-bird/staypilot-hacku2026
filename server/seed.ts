@@ -14,7 +14,7 @@ export function defaultMandate(): Mandate {
     destination: '杭州西湖 · 湖滨银泰', checkIn: '2026-11-06', checkOut: '2026-11-08', guests: 2, rooms: 1,
     roomType: '高级大床房', budgetCents: 100_000, peakCents: 100_000,
     firstDeadline: BASE_TIME + 3 * HOUR, optimizeUntil: BASE_TIME + 24 * HOUR, expiresAt: BASE_TIME + 24 * HOUR,
-    allowNonrefundable: false, walkMax: 15, metroMax: 35, minScore: 4.6, floorScore: 4.1, openingMin: 2023,
+    allowNonrefundable: false, windowPreference: 'required', walkMax: 15, metroMax: 35, minScore: 4.6, floorScore: 4.1, openingMin: 2023,
     downgradeOrder: ['distance', 'opening', 'rating'], forbiddenIssues: ['hygiene', 'noise', 'smell'],
     issueWeights: {hygiene: 5, noise: 5, smell: 4, maintenance: 3, service: 2, breakfast: 0},
     minSavingsCents: 5_000, minSavingsPercent: 5};
@@ -48,7 +48,7 @@ const HOTEL_IMAGES = ['/assets/hotel-room.jpg','/assets/hotel-modern.jpg','/asse
 export function seedHotels(): Hotel[] {
  return HOTEL_ROWS.map((row, i) => ({id: row[0], name: row[1], address: `杭州市${i < 5 ? '上城区湖滨路' : '拱墅区城市路'}${18 + i * 7}号`,
    district: i < 5 ? '西湖湖滨' : '杭州城区', openingYear: row[2], renovatedYear: row[3], walkMinutes: row[4], metroMinutes: row[5], metroDirect: row[6],
-   capacity: 2, roomType: '高级大床房', breakfast: true, image: HOTEL_IMAGES[i % HOTEL_IMAGES.length], description: row[7], amenities: ['免费 Wi-Fi','独立卫浴','24 小时前台', ...(i % 3 === 0 ? ['自助洗衣'] : ['行李寄存'])]}));
+   hasWindow: i === 2 || i % 4 !== 2, capacity: 2, roomType: '高级大床房', breakfast: true, image: HOTEL_IMAGES[i % HOTEL_IMAGES.length], description: row[7], amenities: ['免费 Wi-Fi','独立卫浴','24 小时前台', ...(i % 3 === 0 ? ['自助洗衣'] : ['行李寄存'])]}));
 }
 
 const RATES = [45500, 36800, 58000, 41800, 67000, 38500, 33200, 34900, 30800, 34500, 92000, 72000, 28800, 36000, 49000, 31500, 34800, 26500, 43500, 39900];
@@ -85,7 +85,7 @@ export function makeQuote(platform: Platform, hotel: Hotel, now: number, scenari
  const normalizedScore = Math.min(4.9, Math.max(3.8, SCORES[index] + (platform === 'b' && index % 3 === 0 ? -0.05 : 0)));
  const inventory = scenario === 'sold_out' && now >= BASE_TIME + 30 * MINUTE && hotel.id === 'h03' ? 0 : (index % 4) + 1;
  return {id: `${platform}-${hotel.id}-v${revision}`, platform, hotelId: hotel.id, checkIn: mandate.checkIn, checkOut: mandate.checkOut,
-   guests: mandate.guests, rooms: mandate.rooms, roomType: hotel.roomType, breakfast: hotel.breakfast,
+   guests: mandate.guests, rooms: mandate.rooms, roomType: hotel.roomType, breakfast: hotel.breakfast, hasWindow: hotel.hasWindow,
    score: Number((normalizedScore * (platform === 'b' ? 2 : 1)).toFixed(1)), scoreMax: platform === 'b' ? 10 : 5,
    reviewCount: 80 + index * 23 + (platform === 'a' ? 65 : platform === 'b' ? 32 : 0),
    baseCents: total - Math.round(total * 0.06), taxCents: tax, totalCents: total - Math.round(total * 0.06) + tax,

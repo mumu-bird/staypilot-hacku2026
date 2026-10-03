@@ -6,12 +6,17 @@ import { createServer as createViteServer } from 'vite';
 import { Engine } from './engine.ts';
 import { BrowserAgent } from './browser-agent.ts';
 import { interpretPreference, modelConfigured } from './model.ts';
+import { RealAgent } from './real-agent.ts';
+import { fliggyEvidence,reviewAssessment } from './fliggy-evidence.ts';
+import { providerStatus,discoverBookingTools } from './providers.ts';
 import type { Platform } from '../shared/types.ts';
 
 const port=Number(process.env.PORT||4173),host=process.env.HOST||'127.0.0.1';
 const origin=`http://127.0.0.1:${port}`;
 mkdirSync('data',{recursive:true});
 const sessions=new Map<string,{engine:Engine;agent:BrowserAgent}>();
+const realSessions=new Map<string,RealAgent>();
+function realSession(sid:string){let agent=realSessions.get(sid);if(!agent){agent=new RealAgent(sid);realSessions.set(sid,agent);}return agent;}
 const scenarios=[
   {id:'baseline',label:'比价与换订',description:'三个平台不同取消条款，30分钟后竞品降价。'},
   {id:'tax_spike',label:'结算税费超额',description:'展示价格在预算内，结算复核税费后阻断。'},
@@ -48,6 +53,10 @@ const server=http.createServer(async(req,res)=>{
       if(req.method==='POST'){
         if(req.headers.origin){const requestOrigin=new URL(req.headers.origin);if(requestOrigin.host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'跨站写入被拒绝'},403);return;}}
         const payload=await body(req);
+        if(path==='/api/live/fliggy/search'){json(res,await realSession(sid).search(payload));return;}
+        if(path==='/api/live/fliggy/monitor'){json(res,payload.enabled?await realSession(sid).startMonitor(payload):realSession(sid).stopMonitor());return;}
+        if(path==='/api/live/fliggy/book'){json(res,realSession(sid).blockBooking(),403);return;}
+        if(path==='/api/live/booking/discover'){json(res,await discoverBookingTools());return;}
         if(path==='/api/mandate'){if(agent.busy){json(res,{error:'浏览任务运行中，请等待本轮结束后修改授权。'},409);return;}json(res,engine.updateMandate(payload.patch||{},Boolean(payload.confirm)));return;}
         if(path==='/api/mandate/interpret'){json(res,await interpretPreference(String(payload.text||''),engine.getState().mandate));return;}
         if(path==='/api/revoke'){engine.revoke();await agent.stop();json(res,engine.getState());return;}
@@ -70,6 +79,9 @@ const server=http.createServer(async(req,res)=>{
         json(res,{error:'接口不存在'},404);return;
       }
       if(path==='/api/state'){json(res,{...engine.getState(),modelConfigured:modelConfigured()});return;}
+      if(path==='/api/live/fliggy/state'){json(res,realSession(sid).state());return;}
+      if(path==='/api/live/providers'){json(res,providerStatus());return;}
+      if(path==='/api/live/fliggy/evidence/72547102'){json(res,{evidence:fliggyEvidence,assessment:reviewAssessment(url.searchParams.get('profile')==='flexible'?'flexible':'sensitive')});return;}
       if(path==='/api/scenarios'){json(res,scenarios);return;}
       const listing=/^\/api\/platform\/([abc])\/hotels$/.exec(path);
       if(listing){json(res,engine.list(listing[1] as Platform,{minScore:url.searchParams.has('minScore')?Number(url.searchParams.get('minScore')):undefined,maxPrice:url.searchParams.has('maxPrice')?Math.round(Number(url.searchParams.get('maxPrice'))*100):undefined,query:url.searchParams.get('query')||undefined}));return;}
@@ -97,5 +109,5 @@ setInterval(()=>{
   }
 },1000).unref();
 server.listen(port,host,()=>console.log(`StayPilot ready: http://${host}:${port}`));
-async function shutdown(){for(const {agent} of sessions.values())await agent.stop();await vite?.close();server.close();}
+async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();await vite?.close();server.close();}
 process.on('SIGTERM',()=>void shutdown());process.on('SIGINT',()=>void shutdown());

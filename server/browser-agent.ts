@@ -37,7 +37,7 @@ export class BrowserAgent {
     return evaluation;
   }
   private async checkout(page:Page,c:Evaluation,replacementFor?:string):Promise<TradeResult>{
-    this.check();
+    this.check();this.engine.setAgent({phase:'booking'});
     const link=`${this.origin}/platform/${c.quote.platform}/checkout/${c.hotel.id}${replacementFor?`?replacementFor=${replacementFor}`:''}`;
     await page.goto(link,{waitUntil:'networkidle'});
     await page.locator('[data-checkout-quote]').waitFor();
@@ -70,7 +70,7 @@ export class BrowserAgent {
     const ledgerFrozen=this.engine.hasLedgerFreeze();
     if(ledgerFrozen){this.busy=false;this.engine.setAgent({monitoring:false});this.engine.log('blocked','交易冻结，需先核对订单','存在未解决的取消、退款或多订单状态，不能用重启任务清除。');return;}
     if(!this.engine.lastOrder()&&state.clock.now>=state.mandate.firstDeadline){this.engine.publishAlternatives();this.busy=false;return;}
-    this.engine.setAgent({running:true,phase:'打开三个平台，读取当前市场',...(state.wallet.refundPendingCents===0?{error:null}:{})});
+    this.engine.setAgent({running:true,phase:'screening',...(state.wallet.refundPendingCents===0?{error:null}:{})});
     if(state.clock.running)this.engine.log('clock_guard','浏览期间暂缓仿真时钟','网页交易执行期间暂缓自动推进，结束后恢复设置的速度；避免加速回放越过最后核验窗口。');
     let page:Page|undefined;
     let pendingReplacement:{newOrderId:string;newPlatform:Platform;oldOrderId:string}|null=null;
@@ -83,6 +83,7 @@ export class BrowserAgent {
       page=await this.context.newPage();
       const candidates:Evaluation[]=[];
       for(const platform of ['a','b','c'] as Platform[]){
+        this.engine.setAgent({phase:platform==='a'?'screening':'comparing'});
         this.check();
         await page.goto(`${this.origin}/platform/${platform}`,{waitUntil:'networkidle'});
         await page.locator('[data-hotel-id]').first().waitFor();
@@ -96,6 +97,7 @@ export class BrowserAgent {
         const initial=cards.map(c=>this.engine.evaluate(c.quote,[])).sort((a,b)=>Number(feasible(b))-Number(feasible(a))||a.tier-b.tier||a.quote.totalCents-b.quote.totalCents);
         const active=this.engine.lastOrder();
         const picks=[...initial.slice(0,5),...initial.filter(c=>c.hotel.id===active?.hotelId)].filter((c,i,a)=>a.findIndex(v=>v.hotel.id===c.hotel.id)===i);
+        if(platform==='a')this.engine.log('intent','平台 A 初步意向清单','按首选档位与已见含税价格初筛；评论尚未读完，不能凭列表直接购买。',{hotelIds:picks.map(c=>c.hotel.id),mandateVersion:state.mandate.version});
         const local:Evaluation[]=[];
         for(const c of picks){this.check();local.push(await this.readDetail(page,platform,c.hotel.id));}
         if(!local.some(c=>c.eligible)){
@@ -104,8 +106,9 @@ export class BrowserAgent {
             if(local.filter(c=>c.eligible).length>=3)break;
           }
         }
-        candidates.push(...local);
+        candidates.push(...local);this.engine.setCandidates(candidates);
       }
+      this.engine.setAgent({phase:'evaluating'});
       const sorted=candidates.sort((a,b)=>Number(b.eligible)-Number(a.eligible)||a.tier-b.tier||a.risk-b.risk||a.quote.totalCents-b.quote.totalCents||a.hotel.walkMinutes-b.hotel.walkMinutes);
       this.engine.setCandidates(sorted);
       this.engine.log('decision','跨平台候选排序','先核验住宿底线，再按降级档位、个人差评风险、含税总价和通勤排序；不合格报价保留淘汰依据。',{candidates:sorted.map(c=>({hotel:c.hotel.name,platform:c.quote.platform,totalCents:c.quote.totalCents,tier:c.tier,risk:c.risk,eligible:c.eligible,reasons:c.reasons,conflicts:c.conflicts}))});
@@ -154,7 +157,7 @@ export class BrowserAgent {
       if(page)try{await this.snapshot(page,'error_page','异常页面证据',message);}catch{}
     }finally{
       await this.context?.close().catch(()=>{}); await this.browser?.close().catch(()=>{});this.context=null;this.browser=null;this.busy=false;
-      const current=this.engine.getState();this.engine.setAgent({running:false,phase:current.agent.error?'需要查看异常记录':'本轮完成，监控当前市场',lastRunAt:current.clock.now,nextRunAt:current.clock.now+30*60000});
+      const current=this.engine.getState();this.engine.setAgent({running:false,phase:current.agent.error?'frozen':current.agent.monitoring?'monitoring':'complete',lastRunAt:current.clock.now,nextRunAt:current.clock.now+30*60000});
     }
   }
 }

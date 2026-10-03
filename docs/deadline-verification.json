@@ -1,9 +1,9 @@
 {
-  "startedAt": "2026-10-03T10:42:44.649Z",
-  "executedAt": "2026-10-03T10:43:10.476Z",
+  "startedAt": "2026-10-03T19:33:47.177Z",
+  "executedAt": "2026-10-03T19:34:19.051Z",
   "origin": "http://127.0.0.1:4173",
   "environment": "独立测试会话；BrowserAgent实际操作Chrome网页；酒店、评论与资金均为仿真数据",
-  "sessionFingerprint": "c42ce19bea12",
+  "sessionFingerprint": "1ec1938cc013",
   "passed": true,
   "checks": [
     {
@@ -33,9 +33,9 @@
         "hotelReviewReads": 15,
         "observedAt": "2026-10-03T03:59:00.000Z",
         "screenshots": [
-          "/evidence/<isolated-test-session>/1791024179252-ffcc118f.jpg",
-          "/evidence/<isolated-test-session>/1791024183091-8b6d3190.jpg",
-          "/evidence/<isolated-test-session>/1791024186923-2b9d433b.jpg"
+          "/evidence/<isolated-test-session>/1791056048331-a300c066.jpg",
+          "/evidence/<isolated-test-session>/1791056051991-4268dc0a.jpg",
+          "/evidence/<isolated-test-session>/1791056055673-a380acf5.jpg"
         ]
       }
     },
@@ -63,7 +63,7 @@
               "b-h03-review-7",
               "b-h03-review-8"
             ],
-            "reviewEventSequence": 32
+            "reviewEventSequence": 34
           },
           {
             "hotelId": "h01",
@@ -84,7 +84,7 @@
               "a-h01-review-7",
               "a-h01-review-8"
             ],
-            "reviewEventSequence": 29
+            "reviewEventSequence": 31
           },
           {
             "hotelId": "h05",
@@ -105,7 +105,7 @@
               "a-h05-review-7",
               "a-h05-review-8"
             ],
-            "reviewEventSequence": 30
+            "reviewEventSequence": 32
           }
         ],
         "wallet": {
@@ -132,12 +132,12 @@
       "name": "完整审计哈希链由导出接口与测试独立重算双重验证",
       "result": "passed",
       "detail": {
-        "eventCount": 46,
+        "eventCount": 48,
         "hashChainVerified": true,
-        "finalHash": "5e8eea21b607a041c551441ed4e4d7c5543d4114b0527da084c08635b0314ee2",
+        "finalHash": "5fbd88692365df08abc8b79ff3e5e27d21cbdd7de05cfc7b60f30234eba9c50f",
         "deadlineGuardEvents": [
           {
-            "sequence": 24,
+            "sequence": 25,
             "time": 1790999940000,
             "title": "抵达最后核验节点"
           }

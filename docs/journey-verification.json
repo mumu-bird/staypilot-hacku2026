@@ -1,0 +1,29 @@
+{
+  "verifiedOn": "2026-10-04",
+  "timezone": "Asia/Shanghai",
+  "method": "实际Codex浏览器交互；独立127.0.0.1测试会话，不是源代码推断",
+  "transactionEnvironment": "本机三平台仿真，测试资金",
+  "steps": [
+    {"action":"保存行程，下一步","observed":"保存草稿后进入取舍与授权，尚未授予自动交易权限"},
+    {"action":"选择有窗优先并将无窗加入降级顺序，勾选明确授权","observed":"生成已确认授权v3，进入初筛与评论"},
+    {"action":"开始自动选酒店","observed":"网页读取三个平台，15份候选报价；平台A湖畔时光订单确认455元"},
+    {"action":"打开第四步三平台比价","observed":"平台A455元可取消，平台B470元，平台C430元不可取消且未授权被排除；可展开24条跨平台评论证据"},
+    {"action":"第六步启用订后监控","observed":"当前市场没有达到换订门槛，保留住宿"},
+    {"action":"推进30仿真分钟","observed":"平台B云栖湖滨315元新单确认，旧单取消；退款未到账，占款770元、余额230元、待退款455元"},
+    {"action":"停止持续监控，再推进30仿真分钟","observed":"原单退款455元实际到账，余额685元、占款315元、待退款0元；当前住宿保留"}
+  ],
+  "screenshots": ["screenshots/journey-comparison.jpg", "screenshots/journey-monitor.jpg"],
+  "independentRealValidation": {
+    "provider":"FlyAI",
+    "destination":"杭州西湖附近",
+    "checkIn":"2026-11-06",
+    "checkOut":"2026-11-08",
+    "monitorDeadline":"2026-10-04T08:21:00+08:00",
+    "snapshotCountAtObservation":5,
+    "latestObservedAt":"2026-10-04T04:01:59+08:00",
+    "hotelCount":8,
+    "orderCreated":false,
+    "screenshots":["screenshots/fliggy-live.jpg", "screenshots/fliggy-monitor.jpg"],
+    "limitation":"真实搜索价与历史网页评论独立展示；最终报价、房型人数税费和订单退款权限尚未验证。电脑与服务运行是监控前提。"
+  }
+}

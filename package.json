@@ -1,1 +1,34 @@
-{"name":"staypilot-hotel-agent","version":"1.0.0","private":true,"type":"module","engines":{"node":">=24"},"scripts":{"dev":"node --env-file-if-exists=.env --experimental-strip-types server/index.ts","build":"tsc --noEmit && vite build","start":"NODE_ENV=production node --env-file-if-exists=.env --experimental-strip-types server/index.ts","test":"node --experimental-strip-types --test tests/*.test.ts","test:e2e":"node --experimental-strip-types tests/e2e.ts","test:deadline":"node --experimental-strip-types tests/deadline.e2e.ts","benchmark":"node --experimental-strip-types scripts/benchmark.ts","record:demo":"node --experimental-strip-types scripts/record-demo.ts"},"dependencies":{"react":"^19.2.0","react-dom":"^19.2.0","vite":"^7.1.0","typescript":"^5.9.0","@types/react":"^19.2.0","@types/react-dom":"^19.2.0","@types/node":"^24.0.0","playwright":"^1.56.0"}}
+{
+  "name": "staypilot-hotel-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --experimental-strip-types server/index.ts",
+    "build": "tsc --noEmit && vite build",
+    "start": "NODE_ENV=production node --env-file-if-exists=.env --experimental-strip-types server/index.ts",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:e2e": "node --experimental-strip-types tests/e2e.ts",
+    "test:deadline": "node --experimental-strip-types tests/deadline.e2e.ts",
+    "benchmark": "node --experimental-strip-types scripts/benchmark.ts",
+    "record:demo": "node --experimental-strip-types scripts/record-demo.ts",
+    "mcp": "node --env-file-if-exists=.env --experimental-strip-types server/real-mcp.ts",
+    "test:mcp": "node --experimental-strip-types tests/real-mcp.e2e.ts"
+  },
+  "dependencies": {
+    "@fly-ai/flyai-cli": "1.0.16",
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "playwright": "^1.56.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0",
+    "zod": "^4.6.5"
+  }
+}
