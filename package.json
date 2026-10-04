@@ -16,7 +16,8 @@
     "benchmark": "node --experimental-strip-types scripts/benchmark.ts",
     "record:demo": "node --experimental-strip-types scripts/record-demo.ts",
     "mcp": "node --env-file-if-exists=.env --experimental-strip-types server/real-mcp.ts",
-    "test:mcp": "node --experimental-strip-types tests/real-mcp.e2e.ts"
+    "test:mcp": "node --experimental-strip-types tests/real-mcp.e2e.ts",
+    "test:rollinggo": "node --experimental-strip-types tests/rollinggo-mcp.e2e.ts"
   },
   "dependencies": {
     "@fly-ai/flyai-cli": "1.0.16",

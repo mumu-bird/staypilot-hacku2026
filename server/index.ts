@@ -10,6 +10,7 @@ import {findMapPlaces,mapRoutes,amapConfigured} from './amap.ts';
 import { RealAgent } from './real-agent.ts';
 import { fliggyEvidence,reviewAssessment } from './fliggy-evidence.ts';
 import { providerStatus,discoverBookingTools } from './providers.ts';
+import {RollinggoAgent,rollinggoConfigured} from './rollinggo.ts';
 import type { Platform } from '../shared/types.ts';
 
 const port=Number(process.env.PORT||4173),host=process.env.HOST||'127.0.0.1';
@@ -17,6 +18,8 @@ const origin=`http://127.0.0.1:${port}`;
 mkdirSync('data',{recursive:true});
 const sessions=new Map<string,{engine:Engine;agent:BrowserAgent}>();
 const realSessions=new Map<string,RealAgent>();
+const rollinggoSessions=new Map<string,RollinggoAgent>();
+function rollinggoSession(sid:string){let agent=rollinggoSessions.get(sid);if(!agent){agent=new RollinggoAgent(sid);rollinggoSessions.set(sid,agent);}return agent;}
 function realSession(sid:string){let agent=realSessions.get(sid);if(!agent){agent=new RealAgent(sid);realSessions.set(sid,agent);}return agent;}
 const scenarios=[
   {id:'baseline',label:'比价与换订',description:'三个平台不同取消条款，30分钟后竞品降价。'},
@@ -54,6 +57,11 @@ const server=http.createServer(async(req,res)=>{
       if(req.method==='POST'){
         if(req.headers.origin){const requestOrigin=new URL(req.headers.origin);if(requestOrigin.host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'跨站写入被拒绝'},403);return;}}
         const payload=await body(req);
+        if(path==='/api/live/rollinggo/discover'){json(res,await rollinggoSession(sid).discover());return;}
+        if(path==='/api/live/rollinggo/search'){json(res,await rollinggoSession(sid).search(payload));return;}
+        if(path==='/api/live/rollinggo/detail'){json(res,await rollinggoSession(sid).detail(payload));return;}
+        if(path==='/api/live/rollinggo/tags'){json(res,await rollinggoSession(sid).tags());return;}
+        if(path==='/api/live/rollinggo/book'){json(res,rollinggoSession(sid).blockBooking(),403);return;}
         if(path==='/api/live/amap/places'){json(res,await findMapPlaces(payload));return;}
         if(path==='/api/live/amap/routes'){json(res,await mapRoutes(payload));return;}
         if(path==='/api/live/fliggy/search'){json(res,await realSession(sid).search(payload));return;}
@@ -81,7 +89,8 @@ const server=http.createServer(async(req,res)=>{
         if(path==='/api/cancel'){json(res,engine.cancel(payload));return;}
         json(res,{error:'接口不存在'},404);return;
       }
-      if(path==='/api/live/integrations'){json(res,{model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},realBooking:false});return;}
+      if(path==='/api/live/integrations'){json(res,{model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},rollinggo:{configured:rollinggoConfigured()},realBooking:false});return;}
+      if(path==='/api/live/rollinggo/state'){json(res,rollinggoSession(sid).state());return;}
       if(path==='/api/state'){json(res,{...engine.getState(),modelConfigured:modelConfigured()});return;}
       if(path==='/api/live/fliggy/state'){json(res,realSession(sid).state());return;}
       if(path==='/api/live/providers'){json(res,providerStatus());return;}
@@ -113,5 +122,5 @@ setInterval(()=>{
   }
 },1000).unref();
 server.listen(port,host,()=>console.log(`StayPilot ready: http://${host}:${port}`));
-async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();await vite?.close();server.close();server.closeAllConnections();}
+async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();for(const agent of rollinggoSessions.values())agent.close();await vite?.close();server.close();server.closeAllConnections();}
 process.on('SIGTERM',()=>void shutdown());process.on('SIGINT',()=>void shutdown());

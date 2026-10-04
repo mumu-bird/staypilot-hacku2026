@@ -1,0 +1,65 @@
+{
+  "verifiedAt": "2026-10-04T03:09:01.490Z",
+  "provider": "RollingGo MCP",
+  "transport": "Streamable HTTP via StayPilot stdio MCP",
+  "query": {
+    "provider": "rollinggo",
+    "destination": "杭州",
+    "poi": "西湖",
+    "checkIn": "2026-11-06",
+    "checkOut": "2026-11-08",
+    "adultCount": 2,
+    "roomCount": 1,
+    "childCount": 0,
+    "size": 5
+  },
+  "tools": [
+    "search_hotels",
+    "get_hotel_details",
+    "get_live_price",
+    "book_hotel"
+  ],
+  "hotelCount": 5,
+  "selectedForVerification": {
+    "hotelId": 499437,
+    "name": "浙江大学圆正·西溪宾馆",
+    "nightlyDisplayPrice": 352,
+    "currency": "CNY"
+  },
+  "roomCount": 3,
+  "roomObservations": [
+    {
+      "roomName": "豪华双床房",
+      "averagePrice": 352,
+      "estimatedStayPrice": 704,
+      "currency": "CNY",
+      "mealType": "不含早餐",
+      "mealAmount": 0,
+      "cancelPolicy": "免费取消截止至酒店当地时间 2026-11-04 18:00:00",
+      "cancelUntil": "2026-11-04T18:00:00+08:00"
+    },
+    {
+      "roomName": "亲子房",
+      "averagePrice": 383,
+      "estimatedStayPrice": 766,
+      "currency": "CNY",
+      "mealType": "不含早餐",
+      "mealAmount": 0,
+      "cancelPolicy": "免费取消截止至酒店当地时间 2026-11-04 18:00:00",
+      "cancelUntil": "2026-11-04T18:00:00+08:00"
+    },
+    {
+      "roomName": "豪华行政房",
+      "averagePrice": 612,
+      "estimatedStayPrice": 1224,
+      "currency": "CNY",
+      "mealType": "不含早餐",
+      "mealAmount": 0,
+      "cancelPolicy": "免费取消截止至酒店当地时间 2026-11-04 18:00:00",
+      "cancelUntil": "2026-11-04T18:00:00+08:00"
+    }
+  ],
+  "taxInclusiveTotalVerified": false,
+  "invalidOccupancyBlocked": true,
+  "orderCreated": false
+}

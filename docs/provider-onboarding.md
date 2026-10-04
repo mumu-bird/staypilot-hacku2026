@@ -9,7 +9,7 @@
 | 1 | 飞猪 FlyAI | 向现有平台联系人确认房型库存、含税报价、取消退款、订单查询/创建、评论原文权限；是否有不付款的沙箱订单 | 现有搜索密钥已足够；新增业务权限的文档与凭证另行配置 | 已真实查询 8 家酒店；网页核验 1 家酒店；自动真实交易禁止 |
 | 2 | Booking.com | Managed Affiliate Partner、Demand API 与官方 MCP 开通；确认搜索、订单及沙箱范围 | Affiliate ID、Demand API Key | 官方 MCP 发现连接器已写，缺凭证，尚未认证联调 |
 | 3 | Expedia | Rapid 合作伙伴审批；开发沙箱及测试预订能力 | API Key、Shared Secret | 已核验官方流程；尚未编写酒店业务适配器 |
-| 备选 | RollingGo 酒店 MCP | 参考 PDF 对应服务；当前官方仓库提供 Key 申请及 OAuth 深度交易模式，须确认是否支持沙箱 | RollingGo 专属 Key；不得复用 FlyAI Key | 匿名 initialize 返回 401，尚未鉴权或查询 |
+| 已接通只读 | RollingGo 酒店 MCP | 已用专属凭证核验；进一步向平台确认订单、取消、退款与沙箱开通方式 | 专属Key已配置，当前只读无需再登录 | 鉴权成功，3工具、5酒店、3房型；清单无交易工具 |
 | 备选 | Agoda | Demand 合作账号；根据模式确认是否包含 Book/取消能力 | 平台颁发的对应接入凭证、文档及权限说明 | 尚未接入 |
 
 普通酒店消费者账号登录不等于开发者/合作伙伴业务权限。不要发送密码、验证码或支付信息；新增 API 凭证填写本机 `.env`，不要放进截图、报告或 Git。更新后需要重启服务器，重启会停止当前监控。
@@ -34,9 +34,9 @@ Amadeus 官网当前公告自助门户已于 7 月 17 日停用，现为 Enterpr
 
 运行 `npm run mcp` 启动本机 stdio MCP；运行 `npm run test:mcp` 做实际 FlyAI 查询与协议冒烟测试。后者会调用真实搜索接口，应配置现有 FlyAI 密钥。
 
-- `search_hotels`：调用官方 FlyAI 搜索并保存观察。
-- `get_hotel_details`：返回已浏览核验且标注日期的酒店证据。目前只有汉庭黄龙文三路样例；其他酒店返回信息不足。
-- `get_live_price`：重新获取搜索价，始终标注不是已核验的成交报价。
+- `search_hotels`：默认FlyAI；`provider: "rollinggo"`调用RollingGo搜索并保存观察。
+- `get_hotel_details`：飞猪返回汉庭黄龙文三路历史证据；RollingGo带日期、人数及整数酒店ID查询真实房型，缺失评论不生成。
+- `get_live_price`：飞猪重查搜索价；RollingGo重查房型均价和取消政策。税费缺失时均不能作为成交报价。
 - `book_hotel`：当前实际返回阻断，不创建订单。不是可用的真实预订接口。
 
 Booking 官方连接器只发现工具及其 schema，不转发交易；无合作凭证时明确失败，不用模拟结果冒充成功。
@@ -73,4 +73,6 @@ Booking 官方连接器只发现工具及其 schema，不转发交易；无合�
 
 生产构建通过，32 项单元测试、9项仿真网页验收及6项截止边界核验通过；统一 MCP 实际初始化、发现 4 个工具、返回 8 家真实酒店、读取 10 条历史评论证据、阻止下单并拒绝未知酒店证据。网页已实际启用监控并显示 8 家新查询结果；点击交易边界验证后显示服务端阻断理由。未创建真实订单或付款；公开交付只包含代码及脱敏说明，不包含密钥、本机数据库或原始接口响应。
 
-参考 PDF 对应的 [RollingGo 官方开源仓库](https://github.com/RollingGo-AI/rollinggo-hotel-mcp) 当前指向 https://mcp.rollinggo.cn/mcp，并链接 [Key 申请入口](https://travelportal-partner-center.dida.com/)；实际申请深链以官方仓库“点击申请”为准。已匿名 POST initialize 探测 HTTP 401。未运行教程的安装脚本，未提交账号申请，未鉴权成功；订单和退款能力需按开通账号的 schema 验证。飞猪仍是主数据源。
+参考PDF对应的 [RollingGo 官方仓库](https://github.com/RollingGo-AI/rollinggo-hotel-mcp)指向 https://mcp.rollinggo.cn/mcp。此前匿名探测401，现已用用户提供的专属Key鉴权成功，实际发现searchHotels、getHotelDetail、getHotelSearchTags，并完成5酒店、3房型查询。清单没有交易工具；只读不需额外消费者登录，真实成交仍需平台能力与用户购买授权。未安装教程脚本，未代用户申请账号。详见 [实测报告](rollinggo-real-verification.md)，飞猪仍为主数据源。
+
+用户提出的Jev已核验为TypeSafe决策模型，需要另行申请TypeSafe账号及模型API Key，现有服务Key不能复用。尚未调用，分工及接入方式见 [设计说明](jev-decision-design.md)。

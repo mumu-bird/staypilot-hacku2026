@@ -2,7 +2,7 @@
 
 三个独立酒店商户网页与一个智能体控制台。智能体实际操作网页读取酒店、评论和当前报价，再在用户确认的预算与条件内预订；可退款时继续比较竞品并先订新、后退旧。
 
-**主交易演示使用仿真酒店、评论、订单、测试资金与退款；图片为氛围示意。另有独立的飞猪真实只读页面，已经调用官方 FlyAI 搜索并核验一个酒店的网页证据。真实订单与支付未启用。**
+**主交易演示使用仿真酒店、评论、订单、测试资金与退款；图片为氛围示意。另有独立的飞猪与RollingGo真实只读页面，已调用FlyAI搜索、浏览一个酒店的评论，并通过RollingGo MCP核验房型与取消条款。真实订单与支付未启用。**
 
 开发与评审依据见 [比赛开发手册](docs/competition-development-handbook.md)。个人订酒店流程的最新实现及真实模型、高德验证见 [流程更新说明](docs/personal-workflow-update.md)。控制台默认进入六步流程：行程计划 → 取舍与授权 → 初筛与评论 → 三平台比价 → 预订或阻断 → 订后监控。每步对应独立界面，状态来自运行阶段、候选证据、排序记录及订单，不以任意浏览次数冒充全部完成。
 
@@ -55,7 +55,11 @@ npm start
 
 `npm run mcp` 提供本机 stdio 工具 `search_hotels`、`get_hotel_details`、`get_live_price`、`book_hotel`。最后一个仅演示阻断，不是成交接口。`npm run test:mcp` 会进行一次真实查询并核验协议，需要配置 FlyAI 凭证。
 
-Booking 官方 MCP 工具发现连接器已编写，等待 Managed Affiliate 凭证；Expedia、Agoda 尚未实现业务适配器。参考 PDF 中的 RollingGo 已做匿名连接探测，401；仍需对应 Key，不能用 FlyAI Key 代替。详细申请事项见 [接入清单](docs/provider-onboarding.md)，真实验证见 [实测报告](docs/flyai-real-verification.md)。本机密钥放在被 Git 忽略的 `.env`，不要写入截图或命令参数。
+Booking 官方 MCP 工具发现连接器已编写，等待 Managed Affiliate 凭证；Expedia、Agoda 尚未实现业务适配器。RollingGo现已使用专属凭证完成鉴权，发现3个只读工具，搜索5家酒店并核验3个房型；当前清单没有交易接口。详细申请事项见 [接入清单](docs/provider-onboarding.md)，飞猪验证见 [实测报告](docs/flyai-real-verification.md)。本机密钥只保存在被Git忽略的 `.env`。
+
+打开 http://localhost:4173/live/rollinggo 可查询房型平均每晚价、餐食、窗型与免费取消截止。暂算住宿价不冒充含税成交价，酒店星级不冒充住客评分。传入 `provider: "rollinggo"`可经现有4个统一MCP工具选择此数据源；运行 `npm run test:rollinggo`做实际联调，见 [RollingGo实测](docs/rollinggo-real-verification.md)。此页手动查询并持久化历史，未自动启动新监控。
+
+用户提出的Jev适用位置与所需TypeSafe凭证已整理为 [决策模块设计](docs/jev-decision-design.md)，尚未调用或接通Jev。
 
 ## 资金与失败保护
 
