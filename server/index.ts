@@ -11,6 +11,7 @@ import { RealAgent } from './real-agent.ts';
 import { fliggyEvidence,reviewAssessment } from './fliggy-evidence.ts';
 import { providerStatus,discoverBookingTools } from './providers.ts';
 import {RollinggoAgent,rollinggoConfigured} from './rollinggo.ts';
+import {typesafeConfigured,typeSafeHttp} from './typesafe.ts';
 import type { Platform } from '../shared/types.ts';
 
 const port=Number(process.env.PORT||4173),host=process.env.HOST||'127.0.0.1';
@@ -57,6 +58,8 @@ const server=http.createServer(async(req,res)=>{
       if(req.method==='POST'){
         if(req.headers.origin){const requestOrigin=new URL(req.headers.origin);if(requestOrigin.host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'跨站写入被拒绝'},403);return;}}
         const payload=await body(req);
+        if(path==='/api/live/jev/assess'){json(res,await rollinggoSession(sid).assess(payload));return;}
+        if(path==='/api/live/jev/models'){json(res,await typeSafeHttp('/v1/models'));return;}
         if(path==='/api/live/rollinggo/discover'){json(res,await rollinggoSession(sid).discover());return;}
         if(path==='/api/live/rollinggo/search'){json(res,await rollinggoSession(sid).search(payload));return;}
         if(path==='/api/live/rollinggo/detail'){json(res,await rollinggoSession(sid).detail(payload));return;}
@@ -89,7 +92,7 @@ const server=http.createServer(async(req,res)=>{
         if(path==='/api/cancel'){json(res,engine.cancel(payload));return;}
         json(res,{error:'接口不存在'},404);return;
       }
-      if(path==='/api/live/integrations'){json(res,{model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},rollinggo:{configured:rollinggoConfigured()},realBooking:false});return;}
+      if(path==='/api/live/integrations'){json(res,{model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},rollinggo:{configured:rollinggoConfigured()},jev:{configured:typesafeConfigured(),model:process.env.TYPESAFE_MODEL||'jev-latest'},realBooking:false});return;}
       if(path==='/api/live/rollinggo/state'){json(res,rollinggoSession(sid).state());return;}
       if(path==='/api/state'){json(res,{...engine.getState(),modelConfigured:modelConfigured()});return;}
       if(path==='/api/live/fliggy/state'){json(res,realSession(sid).state());return;}

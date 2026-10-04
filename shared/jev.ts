@@ -1,0 +1,3 @@
+export const JEV_ACTION_LABELS={inspect_rooms:'重新核验房型与取消条款',inspect_reviews:'补查与个人底线有关的评论',inspect_commute:'确认位置并核验通勤',request_missing_source:'取得缺失的商户证据或接口'};
+export type JevChoice={type:'choice';choice:string;confidence:number;probabilities:Record<string,number>};
+export type JevAssessment={source:'TypeSafe Jev';observedAt:string;model:string;elapsedMs:number;usage:{input_tokens:number;output_tokens:number};evidenceKey:string;focus:string;selectedHotelId:number;selectedHotelName:string;sourceObservedAt:string;candidateLabels:Record<string,string>;answers:{candidate_to_inspect:JevChoice;next_evidence_action:JevChoice};request:{state:unknown;questions:unknown};advisoryOnly:true;transactionEnabled:false;actionExecuted:false};

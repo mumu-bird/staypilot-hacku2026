@@ -59,7 +59,7 @@ Booking 官方 MCP 工具发现连接器已编写，等待 Managed Affiliate 凭
 
 打开 http://localhost:4173/live/rollinggo 可查询房型平均每晚价、餐食、窗型与免费取消截止。暂算住宿价不冒充含税成交价，酒店星级不冒充住客评分。传入 `provider: "rollinggo"`可经现有4个统一MCP工具选择此数据源；运行 `npm run test:rollinggo`做实际联调，见 [RollingGo实测](docs/rollinggo-real-verification.md)。此页手动查询并持久化历史，未自动启动新监控。
 
-用户提出的Jev适用位置与所需TypeSafe凭证已整理为 [决策模块设计](docs/jev-decision-design.md)，尚未调用或接通Jev。
+TypeSafe技能已安装并应用，Jev已在RollingGo页接通：一次请求分别判断候选核验优先级和当前酒店下一项证据，展示概率、观察时间与输入。已用真实历史酒店观察调用 `jev-latest`，返回 `jev-1.13.0`；建议不执行购买，也不修改预算或取消权限。服务端配置 `TYPESAFE_API_KEY` 和 `TYPESAFE_MODEL=jev-latest`，见 [设计与实测](docs/jev-decision-design.md)。
 
 ## 资金与失败保护
 

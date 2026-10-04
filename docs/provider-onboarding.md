@@ -75,4 +75,4 @@ Booking 官方连接器只发现工具及其 schema，不转发交易；无合�
 
 参考PDF对应的 [RollingGo 官方仓库](https://github.com/RollingGo-AI/rollinggo-hotel-mcp)指向 https://mcp.rollinggo.cn/mcp。此前匿名探测401，现已用用户提供的专属Key鉴权成功，实际发现searchHotels、getHotelDetail、getHotelSearchTags，并完成5酒店、3房型查询。清单没有交易工具；只读不需额外消费者登录，真实成交仍需平台能力与用户购买授权。未安装教程脚本，未代用户申请账号。详见 [实测报告](rollinggo-real-verification.md)，飞猪仍为主数据源。
 
-用户提出的Jev已核验为TypeSafe决策模型，需要另行申请TypeSafe账号及模型API Key，现有服务Key不能复用。尚未调用，分工及接入方式见 [设计说明](jev-decision-design.md)。
+用户已提供独立TypeSafe凭证，技能已安装并应用，鉴权和真实Jev判断已通过。RollingGo页面提供候选与下一步证据核验建议，不执行购买；无需再登录消费者账号。50项单元测试及构建通过，分工、概率边界和实测记录见 [设计与实测](jev-decision-design.md)。真实订单、取消、退款接口仍按上述平台清单申请。

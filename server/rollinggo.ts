@@ -4,6 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {validateFlyaiQuery} from './flyai.ts';
+import {assessJev,jevEvidenceKey} from './typesafe.ts';
 import type {RollinggoQuery,RollinggoFilter,RollinggoSearch,RollinggoDetail,RollinggoDiscovery,RollinggoState,RollinggoRoom} from '../shared/rollinggo.ts';
 
 const endpoint='https://mcp.rollinggo.cn/mcp';
@@ -112,9 +113,10 @@ export class RollinggoAgent{
   return this.run('detail',async()=>normalizeRollinggoDetail(await this.gateway.call('getHotelDetail',{hotelId,dateParam:{checkInDate:query.checkIn,checkOutDate:query.checkOut},occupancyParam:{adultCount:query.adultCount,roomCount:1,childCount:0,childAgeDetails:[]},...(Object.keys(filter).length?{filter}:{})}),query,hotelId,filter));
  }
  async tags(){return this.run('tags',async()=>{const p=await this.gateway.call('getHotelSearchTags',{});if(!Array.isArray(p.tags))throw new Error('搜索标签格式无效');return {source:'RollingGo MCP',observedAt:new Date().toISOString(),tags:p.tags.map(v=>({name:text(obj(v).name),category:text(obj(v).category)})),transactionEnabled:false};});}
+ async assess(input:ObjectValue){return this.run('jev',async()=>{const snapshot=this.state(),result=await assessJev(snapshot,input);if(this.closed||result.evidenceKey!==jevEvidenceKey(this.state()))throw new Error('观察已变化或会话关闭，拒绝采用旧判断');return result;});}
  state():RollinggoState{
   const rows=(kind:string,limit:number)=>(this.db.prepare('SELECT payload FROM observations WHERE kind=? ORDER BY id DESC LIMIT ?').all(kind,limit) as {payload:string}[]).map(r=>JSON.parse(r.payload));
-  return {searches:rows('search',20),details:rows('detail',20),discovery:rows('discovery',1)[0]??null,events:this.db.prepare('SELECT at,action,reason FROM events ORDER BY id DESC LIMIT 50').all() as RollinggoState['events'],transactionEnabled:false};
+  const state:RollinggoState={searches:rows('search',20),details:rows('detail',20),discovery:rows('discovery',1)[0]??null,events:this.db.prepare('SELECT at,action,reason FROM events ORDER BY id DESC LIMIT 50').all() as RollinggoState['events'],transactionEnabled:false,jevAssessments:rows('jev',20)};state.jevEvidenceKey=jevEvidenceKey(state);return state;
  }
  blockBooking(){const reasons=['此示例行程只授权查询和规则验证','当前 MCP 工具清单未核验下单、取消、退款能力','缺少最终含税成交报价与完整购买授权'];this.log('真实下单阻断',reasons.join('；'));return {ok:false,transactionEnabled:false,orderCreated:false,reasons};}
  close(){if(this.closed)return;this.closed=true;this.db.close();}
