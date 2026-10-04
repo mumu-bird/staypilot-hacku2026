@@ -6,7 +6,7 @@
 
 开发与评审依据见 [比赛开发手册](docs/competition-development-handbook.md)。个人订酒店流程的最新实现及真实模型、高德验证见 [流程更新说明](docs/personal-workflow-update.md)。控制台默认进入六步流程：行程计划 → 取舍与授权 → 初筛与评论 → 三平台比价 → 预订或阻断 → 订后监控。每步对应独立界面，状态来自运行阶段、候选证据、排序记录及订单，不以任意浏览次数冒充全部完成。
 
-最新交付材料：[3 分钟实际网页演示](docs/demo-3min.webm)、[可编辑 Pitch Deck v2](docs/pitch-deck-v2.pptx)、[验收对应表](docs/acceptance.md)、[同市场操作路线对照](docs/benchmark.md)。视频包含六步界面、测试交易与真实飞猪只读查询；前一版 Deck 保留作历史材料。
+最新交付材料：[3 分钟实际网页演示](docs/demo-3min.webm)、[可编辑 Pitch Deck v2](docs/pitch-deck-v2.pptx)、[繁體中文完整項目海報 PDF](docs/poster/staypilot-project-poster-zh-Hant.pdf)、[海報高清 PNG](docs/poster/staypilot-project-poster-zh-Hant.png)、[可編輯海報 HTML](docs/poster/staypilot-project-poster-zh-Hant.html)、[验收对应表](docs/acceptance.md)、[同市场操作路线对照](docs/benchmark.md)。视频包含六步界面、测试交易与真实飞猪只读查询；前一版 Deck 保留作历史材料。
 
 ![六步流程与实际跨平台比较](docs/screenshots/journey-comparison.jpg)
 
