@@ -1,3 +1,4 @@
+import {serializeWorkflowDraft,workflowDraftKey} from '../shared/workflow-draft.ts';
 import {seedSavedWorkflowFixtures} from './seed-workflow-fixtures.ts';
 import {attachXinqiaoAdditionalAnalysis} from '../server/additional-review-source.ts';
 import {attachReviewAnalysis} from '../server/review-analysis-binding.ts';
@@ -378,6 +379,19 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  let writes=0;const track=(request:any)=>{if(request.method()==='POST'&&request.url().includes('/api/live/workflow/'))writes++;};page.on('request',track);
  await page.getByRole('button',{name:'Review limits before confirming changes',exact:true}).click();assert.equal(await page.getByLabel('Total budget including tax (CNY)',{exact:true}).inputValue(),originalBudget);assert.equal(writes,0);page.off('request',track);await page.unroute('**/api/live/workflow/state');
  pass('条件组合可直接返回偏好确认，预算不自动改变且不发送授权请求；合成导航案例，无商户调用');
+}
+{
+ const fixture=JSON.parse(readFileSync('docs/cases/live-two-review-workflow-20261008.json','utf8')),fresh=new Date().toISOString();fixture.evidenceAsOf=fresh;
+ const option=fixture.tradeoffs.options.find((o:any)=>o.status==='within_bounds');assert(option);const hotel=fixture.candidates.find((d:any)=>d.candidate.key===option.candidateKey).candidate,room=hotel.rooms.find((r:any)=>r.ratePlanId===option.ratePlanId);
+ hotel.name=option.hotelName='Controlled browser fixture hotel';hotel.route.observedAt=fresh;room.sourceObservedAt=fresh;room.cancellationStatus='free_until';room.cancelUntil=new Date(Date.now()+3600000).toISOString();option.offer={...option.offer,cancellationStatus:'free_until',cancelUntil:room.cancelUntil};
+ const selection={id:'controlled-brief-selection',runId:fixture.id,optionId:option.id,evidenceHash:fixture.tradeoffs.evidenceHash,policyVersion:fixture.tradeoffs.policyVersion,hotelName:option.hotelName,roomName:option.roomName,selectedAt:fresh,purpose:'inspection_only',transactionEnabled:false},view=()=>({running:false,stage:'Controlled handoff download',latest:fixture,selection,selectionValid:true,monitor:{enabled:false,checks:0}});
+ const draft=serializeWorkflowDraft(fixture.query,fixture.policy);assert(draft);await page.evaluate(({key,value})=>localStorage.setItem(key,value),{key:workflowDraftKey,value:draft});
+ await page.route('**/api/live/workflow/state',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(view())}));await page.route('**/api/live/workflow/authorize',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(view())}));
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(1).click();await page.getByLabel('Authorize API / MCP queries and rule checks only. No real purchase authorization.',{exact:true}).check();await page.getByRole('button',{name:'Confirm read-only consent & continue',exact:true}).click();await page.locator('.journey-steps button').nth(4).click();
+ const downloadEvent=page.waitForEvent('download');await page.getByRole('button',{name:'Save merchant verification brief',exact:true}).click();const downloaded=await downloadEvent;await downloaded.saveAs('docs/cases/merchant-brief-browser-fixture.txt');const brief=readFileSync('docs/cases/merchant-brief-browser-fixture.txt','utf8');assert(brief.includes('not an order'));assert(brief.includes('Controlled browser fixture hotel'));assert(brief.includes(option.ratePlanId));assert(brief.includes(room.sourceObservedAt));assert(brief.includes((fixture.policy.budgetCents/100).toFixed(2)));for(const gap of option.gaps)assert(brief.includes(gap));
+ fixture.evidenceAsOf=new Date(Date.now()-16*60000).toISOString();await page.waitForTimeout(2200);assert.equal(await page.getByRole('button',{name:'Save merchant verification brief',exact:true}).count(),0);
+ await page.unroute('**/api/live/workflow/state');await page.unroute('**/api/live/workflow/authorize');
+ pass('选中方案核验清单实际下载包含房型、原观察和预算限制，过期后入口撤下；控制页面和模拟授权，无真实成交');
 }
 assert.deepEqual(errors,[]);await context.close();await browser.close();
 writeFileSync(resolve('docs/browser-verification.json'),JSON.stringify({executedAt:new Date().toISOString(),environment:'真实Chrome网页操作；虚构酒店与测试资金',checks},null,2));

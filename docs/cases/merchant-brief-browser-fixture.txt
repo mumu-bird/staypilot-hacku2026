@@ -1,0 +1,31 @@
+StayPilot merchant verification brief (not an order)
+This transfers a provisional option only, not bookability, a completed booking or purchase authority.
+Export time: 2026-10-08T18:01:47.976Z
+Run / option: 08640d0d-024c-4f30-ab3b-8aedc6a39428 / option_59648bbe155c73e583a3
+Hotel / platform: Controlled browser fixture hotel / RollingGo MCP
+Address: 安定门内大街方家胡同46号创意园
+Stay conditions: 2026-10-09 -> 2026-10-10; 2 adults; 1 room; 0 children
+Room / rate-plan ID: 时光大床房（怀旧小人书+佰草集洗护） / i9cpUfM3rwY-ht6XFGe2kDw
+Bed / meal: 1 大床 / 不含早餐
+Room observed at: 2026-10-08T18:01:46.902Z
+Display estimate / original budget ceiling: CNY 364.00 / CNY 600.00
+Observed cancellation deadline (verify with merchant): 2026-10-08T19:01:46.902Z
+Personal priorities: Prefer restful sleep and hygiene; do not increase the 600 CNY ceiling.
+Explicitly unacceptable review issues: none specified
+Required facilities / window requirement: none specified / preferred
+Cancellation and commute limits: free cancellation required; walk 20 min; direct metro 40 min
+Verify: tax-inclusive total and all mandatory charges, inventory, full cancellation fees and refund rules, and matching dates, guests, room, bed and meals.
+Original hard requirements and review preferences remain applicable; merchant handoff does not relax them.
+Evidence gaps:
+- Final taxes, mandatory charges and quote validity remain unverified.
+- Exterior window not verified.
+- Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.
+- The issue-bearing review is highly rated; issue classification is independent of its star rating.
+- Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.
+- Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.
+- Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.
+- Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.
+- Review mention needs verification: noise; review 1937862417 dated 2026-05-06. Uncertainty does not establish absence.
+- Inventory requires confirmation.
+Merchant detail link: https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE
+This saved brief does not update automatically. Refresh evidence before acting.
