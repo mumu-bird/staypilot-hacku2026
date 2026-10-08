@@ -19,6 +19,14 @@ async function api<T>(path:string,payload?:unknown):Promise<T>{
 const state=()=>api<State>('/api/state');
 const pass=(name:string,detail?:unknown)=>{checks.push({name,result:'passed',detail});console.log(`PASS ${name}`);};
 async function agentRun(){await api('/api/agent/run',{});const started=Date.now();while(Date.now()-started<180000){const s=await state();if(!s.agent.running){assert.equal(s.agent.error,null,s.agent.error||'');return s;}await new Promise(r=>setTimeout(r,500));}throw new Error('Browser agent timeout');}
+{
+ const response=await fetch(origin+'/');assert.equal(response.status,200);assert.equal(response.headers.get('cache-control'),'no-store');
+ const html=await response.text(),asset=html.match(/src="(\/assets\/[^"]+\.js)"/)?.[1];assert(asset);
+ const script=await fetch(origin+asset);assert.equal(script.status,200);assert.match(script.headers.get('cache-control')??'',/immutable/);assert.match(script.headers.get('content-type')??'',/javascript/);
+ for(const path of ['/assets/missing-release.js','/missing-image.png']){const missing=await fetch(origin+path);assert.equal(missing.status,404);assert.equal(missing.headers.get('cache-control'),'no-store');}
+ const workflow=await fetch(origin+'/live/workflow');assert.equal(workflow.status,200);assert.equal(workflow.headers.get('cache-control'),'no-store');
+ pass('生产页面不缓存旧版本，版本化脚本可缓存，缺失资源明确404；实际本地HTTP核验，无商户调用');
+}
 mkdirSync('docs/screenshots',{recursive:true});
 if(process.env.TEST_SEED_SAVED_CASES==='1')console.log('Test-only saved observation sessions seeded: '+seedSavedWorkflowFixtures());
 await state();await api('/api/reset',{scenario:'baseline'});await api('/api/mandate',{patch:{},confirm:true});

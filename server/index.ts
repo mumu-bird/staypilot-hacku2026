@@ -137,7 +137,10 @@ const server=http.createServer(async(req,res)=>{
     }
     if(vite){vite.middlewares(req,res,()=>{res.statusCode=404;res.end('Not found');});return;}
     const target=resolve('dist',`.${path}`);const safe=target.startsWith(resolve('dist')+'/')&&existsSync(target)&&extname(target);
-    const file=safe?target:resolve('dist/index.html');const contents=readFileSync(file);res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(contents);
+    if(!safe&&(path.startsWith('/assets/')||extname(path))){json(res,{error:'Not found'},404);return;}
+    const file=safe?target:resolve('dist/index.html');const contents=readFileSync(file);
+    const cache=extname(file)==='.html'?'no-store':path.startsWith('/assets/')&&/-[A-Za-z0-9_-]{8,}\.(?:js|css)$/.test(path)?'public, max-age=31536000, immutable':'no-cache';
+    res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream','Cache-Control':cache});res.end(contents);
   }catch(error){json(res,{error:error instanceof Error?error.message:'请求失败'},error instanceof RequestInputError?error.status:400);}
 });
 server.requestTimeout=30000;server.headersTimeout=15000;server.maxHeadersCount=100;
