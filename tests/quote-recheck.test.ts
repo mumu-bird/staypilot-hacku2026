@@ -140,3 +140,12 @@ test('invalid merchant amounts cannot produce a successful recheck or price-drop
  const db=new DatabaseSync(join(dir,'case.sqlite'));db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify({id:'amounts',mode:'live',query:{...original.query,checkIn:'2099-10-09',checkOut:'2099-10-10'},policy:defaultWorkflowPolicy,candidates:[{candidate}]}));db.close();
  try{for(const price of [-10,NaN,Infinity,Number.MAX_VALUE]){amount=price;const result=await flow.recheck({runId:'amounts',candidateKey:candidate.key,ratePlanId:room.ratePlanId});assert.equal(result.status,'failed');assert.equal(result.deltaCents,null);assert.equal(result.transactionEnabled,false);}}finally{flow.close();rmSync(dir,{recursive:true,force:true});}
 });
+test('legacy successful-status rows with invalid amounts do not poison the last usable comparison baseline',async()=>{
+ const dir=mkdtempSync(join(tmpdir(),'legacy-money-')),original=recordedCandidates(),candidate=original.candidates[0],room=candidate.rooms[0];const unused=async():Promise<any>=>{throw Error('unused');};
+ const flow=new LiveWorkflow('case',{flySearch:unused,rollingSearch:unused,places:unused,routes:unused,jev:unused,rollingDetail:async():Promise<any>=>({hotelId:Number(candidate.hotelId),name:candidate.name,observedAt:new Date().toISOString(),rooms:[{...room,estimatedStayPrice:290}]})},dir);
+ const run={id:'legacy',mode:'live',query:{...original.query,checkIn:'2099-10-09',checkOut:'2099-10-10'},policy:defaultWorkflowPolicy,candidates:[{candidate}]},db=new DatabaseSync(join(dir,'case.sqlite'));db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(run));
+ const common={runId:run.id,candidateKey:candidate.key,ratePlanId:room.ratePlanId,status:'unchanged'};
+ db.prepare('INSERT INTO rechecks(payload) VALUES(?)').run(JSON.stringify({...common,id:'last-valid',after:{...room,estimatedStayPrice:300}}));
+ for(const price of [-10,'300',Number.MAX_VALUE])db.prepare('INSERT INTO rechecks(payload) VALUES(?)').run(JSON.stringify({...common,id:'legacy-'+String(price),after:{...room,estimatedStayPrice:price}}));db.close();
+ try{const result=await flow.recheck({runId:run.id,candidateKey:candidate.key,ratePlanId:room.ratePlanId});assert.equal(result.status,'price_changed');assert.equal(result.before.estimatedStayPrice,300);assert.equal(result.deltaCents,-1000);assert.deepEqual(result.baseline,{kind:'recheck',recheckId:'last-valid',skippedAttempts:3});assert.equal(flow.recheckHistory({runId:run.id}).length,5);}finally{flow.close();rmSync(dir,{recursive:true,force:true});}
+});
