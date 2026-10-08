@@ -225,9 +225,14 @@ export class LiveWorkflow{
  const parsed=parseWorkflowInput({mode:'live',query:original.query,policy:original.policy,queryOnly:true,useJev:false});this.assertQueryConsent(parsed.query,parsed.policy);const startedAt=new Date().toISOString();
  this.running=true;this.stage='刷新这家酒店的房型与路线';
  try{
+ candidate.errors=[];candidate.route=null;candidate.position=undefined;candidate.mapIdentityEvidence=undefined;
+ try{
  const detail=await this.deps.rollingDetail({...parsed.query,hotelId:Number(candidate.hotelId),filter:{}});
  if(!detailMatchesHotel(candidate,detail))throw new Error('酒店身份出现冲突，未采用房型');
- candidate.rooms=toRooms(detail);candidate.roomQuery=roomQueryEvidence(detail);candidate.detailUrl=detail.detailUrl??candidate.detailUrl;candidate.errors=[];candidate.route=null;candidate.position=undefined;candidate.mapIdentityEvidence=undefined;
+ candidate.rooms=toRooms(detail);candidate.roomQuery=roomQueryEvidence(detail);candidate.detailUrl=detail.detailUrl??candidate.detailUrl;
+ }catch{
+ candidate.rooms=[];candidate.roomQuery={status:'failed',observedAt:new Date().toISOString(),filter:{},count:null};candidate.errors.push('本轮房型核验未完成或酒店身份无法确认，未沿用旧房型判断');
+ }
  try{const [hotels,destinations]=await Promise.all([findIdentityBoundHotelPlace(parsed.query.destination,candidate.name,candidate.address,this.deps.places,Date.now),this.deps.places({city:parsed.query.destination,query:parsed.query.poi})]);const hotel=hotels.selected,destination=selectExactPlace(destinations.places,parsed.query.poi);candidate.mapIdentityEvidence=hotel?undefined:{status:'unverified',observations:hotels.observations};if(!hotel||!destination||!inspectionObservationCurrent(destinations.observedAt,Date.now())||!inspectionObservationCurrent(hotels.observedAt,Date.now()))throw new Error('地址未唯一匹配');const distance=straightDistanceMeters(hotel.location,destination.location);if(distance!==null)candidate.position={observedAt:hotels.observedAt,straightDistanceMeters:distance,withinInitialRadius:distance<=(parsed.query.searchRadiusMeters??2000)};candidate.route=await this.deps.routes({origin:hotel.location,destination:destination.location,city:parsed.query.destination,confirmed:true});}catch{candidate.errors.push('本轮路线核验未完成，未沿用旧路线判断');}
  const asOf=new Date().toISOString(),candidates=[candidate],tradeoffs=await evaluateTradeoffs(candidates,parsed.policy,asOf,parsed.query.adultCount,this.deps.jev,parsed.mode==='live'?Date.now:undefined),decisions=rankCandidates(candidates,parsed.policy,asOf,parsed.query.adultCount);
  const trace=structuredClone(original.trace),record={at:new Date().toISOString(),action:'定向刷新酒店',reason:`仅刷新${candidate.name}房型与路线；旧报价留在原记录，评论保留原观察时间；不计算不同报价的节省。`,previousHash:trace.at(-1)?.hash??'0'.repeat(64)};trace.push({...record,hash:createHash('sha256').update(JSON.stringify(record)).digest('hex')});

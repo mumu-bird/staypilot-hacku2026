@@ -149,3 +149,18 @@ test('legacy successful-status rows with invalid amounts do not poison the last 
  for(const price of [-10,'300',Number.MAX_VALUE])db.prepare('INSERT INTO rechecks(payload) VALUES(?)').run(JSON.stringify({...common,id:'legacy-'+String(price),after:{...room,estimatedStayPrice:price}}));db.close();
  try{const result=await flow.recheck({runId:run.id,candidateKey:candidate.key,ratePlanId:room.ratePlanId});assert.equal(result.status,'price_changed');assert.equal(result.before.estimatedStayPrice,300);assert.equal(result.deltaCents,-1000);assert.deepEqual(result.baseline,{kind:'recheck',recheckId:'last-valid',skippedAttempts:3});assert.equal(flow.recheckHistory({runId:run.id}).length,5);}finally{flow.close();rmSync(dir,{recursive:true,force:true});}
 });
+
+test('targeted room failure still attempts map recovery and stores explicit partial evidence without copying old rooms',async()=>{
+ const dir=mkdtempSync(join(tmpdir(),'partial-refresh-')),original=recordedCandidates(),candidate=original.candidates[0];
+ const query={...original.query,checkIn:new Date(Date.now()+7*86400000).toISOString().slice(0,10),checkOut:new Date(Date.now()+8*86400000).toISOString().slice(0,10)};
+ let placeCalls=0,recoverMap=false;const unsupported=async():Promise<any>=>{throw new Error('unused');};
+ const flow=new LiveWorkflow('one',{flySearch:unsupported,rollingSearch:unsupported,jev:unsupported,routes:async(routeInput:any)=>({...candidate.route!,origin:routeInput.origin,destination:routeInput.destination,observedAt:new Date().toISOString()}),rollingDetail:async()=>{throw new Error('private-upstream-marker');},places:async(placeInput:any):Promise<any>=>{placeCalls++;if(!recoverMap)throw new Error('private-map-marker');const destination=placeInput.query===query.poi;return {observedAt:new Date().toISOString(),places:[{id:destination?'destination':'hotel',name:destination?query.poi:candidate.name,address:destination?query.poi:candidate.address,location:destination?'116.417296,39.947239':'116.418,39.944',city:query.destination,source:'poi'}]};}},dir);
+ const hash='a'.repeat(64),run={id:'old',mode:'live',query,policy:defaultWorkflowPolicy,candidates:[{candidate}],trace:[],evidenceHash:hash};const db=new DatabaseSync(join(dir,'one.sqlite'));db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(run));db.close();
+ try{
+ const refreshed=await flow.refreshCandidate({runId:run.id,candidateKey:candidate.key,evidenceHash:hash});const current=refreshed.candidates[0].candidate;
+ assert(placeCalls>=2);assert.equal(current.roomQuery?.status,'failed');assert.equal(current.roomQuery?.count,null);assert.deepEqual(current.rooms,[]);assert.equal(current.route,null);assert.equal(current.errors.length,2);assert(!JSON.stringify(refreshed).includes('private-'));assert.equal(refreshed.transactionEnabled,false);assert.deepEqual(flow.history()[1].candidates[0].candidate.rooms,candidate.rooms);
+ recoverMap=true;
+ const partial=await flow.refreshCandidate({runId:refreshed.id,candidateKey:candidate.key,evidenceHash:refreshed.evidenceHash});
+ assert(partial.candidates[0].candidate.route);assert.equal(partial.candidates[0].candidate.roomQuery?.status,'failed');assert.equal(partial.candidates[0].candidate.errors.length,1);assert.deepEqual(partial.candidates[0].candidate.rooms,[]);
+ }finally{flow.close();rmSync(dir,{recursive:true,force:true});}
+});
