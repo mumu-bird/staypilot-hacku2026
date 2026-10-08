@@ -138,11 +138,11 @@ export function recordedCandidates():{query:RollinggoQuery;asOf:string;candidate
 }
 export function conditionAlternatives(rows:CandidateDecision[],policy:WorkflowPolicy,asOf:string=new Date().toISOString(),adults:number=2):WorkflowResult['alternatives']{
  const out:WorkflowResult['alternatives']=[];
- for(const d of rows){if(d.reasons.some(reason=>!reason.includes('通勤')))continue;const routes=d.candidate.route;if(!routes)continue;const price=displayPriceCents(d.representativeRoom?.estimatedStayPrice);if(price!==null&&price<=policy.budgetCents){
+ for(const d of rows){if(d.reasons.some(reason=>!reason.includes('通勤')))continue;const routes=d.candidate.route,room=d.representativeRoom;if(!routes||!room||!inspectionObservationCurrent(routes.observedAt,Date.parse(asOf))||!inspectionObservationCurrent(room.sourceObservedAt,Date.parse(asOf)))continue;const checked=buildTradeoffOptions([{...d.candidate,rooms:[room]}],policy,asOf,adults)[0];if(!checked||checked.hardViolations.length)continue;const remaining=[...new Set([...d.gaps,...checked.gaps])];const price=displayPriceCents(room.estimatedStayPrice);if(price!==null&&price<=policy.budgetCents){
  const bus=routes.transits.find(t=>t.lines.length===1&&!t.lines[0].metro&&t.classification==='公交路线'&&t.minutes<=policy.metroMinutes);
  const metro=routes.transits.filter(t=>t.metroDirect).sort((a,b)=>a.minutes-b.minutes)[0];
- if(d.reasons.some(x=>x.includes('通勤'))&&bus)out.push({hotel:d.candidate.name,change:`保持预算，增加公交直达${bus.minutes}分钟的授权范围`,remaining:d.gaps});
- else if(d.reasons.some(x=>x.includes('通勤'))&&metro)out.push({hotel:d.candidate.name,change:`保持预算，地铁直达上限改为至少${metro.minutes}分钟`,remaining:d.gaps});
+ if(d.reasons.some(x=>x.includes('通勤'))&&bus)out.push({hotel:d.candidate.name,change:`保持预算，增加公交直达${bus.minutes}分钟的授权范围`,remaining});
+ else if(d.reasons.some(x=>x.includes('通勤'))&&metro)out.push({hotel:d.candidate.name,change:`保持预算，地铁直达上限改为至少${metro.minutes}分钟`,remaining});
  }}
 
  const estimates=buildTradeoffOptions(rows.map(d=>d.candidate),policy,asOf,adults);

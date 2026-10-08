@@ -70,7 +70,7 @@ test('no comments stays unknown; duplicate text is not counted twice; injected i
  h.reviews=null;assert.equal(assessCandidate(h,p,asOf).risk,null);
 });
 test('alternatives are bounded, require new confirmation, and do not rewrite requirements',()=>{
- const {candidates,asOf}=original(),p=policy(),before=JSON.stringify(p),alternatives=conditionAlternatives(rankCandidates(candidates,p,asOf),p);
+ const {candidates,asOf}=original(),p=policy(),before=JSON.stringify(p),alternatives=conditionAlternatives(rankCandidates(candidates,p,asOf),p,asOf);
  assert(alternatives.length<=3);assert(alternatives.every(a=>candidates.some(c=>c.name===a.hotel)));assert(alternatives.some(a=>a.change.includes('公交直达38')));assert(alternatives.some(a=>a.change.includes('62分钟')));assert.equal(JSON.stringify(p),before);assert(alternatives.every(a=>a.remaining.length>0));
 });
 test('read-only input cannot grant buying, reuse a different-trip replay or pass invalid weights',()=>{
