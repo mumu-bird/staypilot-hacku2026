@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {inspectionBrief} from '../shared/inspection-brief.ts';
+import type {WorkflowResult} from '../shared/live-workflow.ts';
+import type {InspectionSelection} from '../shared/tradeoffs.ts';
+const result=JSON.parse(readFileSync('docs/cases/live-two-review-workflow-20261008.json','utf8')) as WorkflowResult;
+const option=result.tradeoffs!.options.find(o=>o.status==='within_bounds')!;
+const selection:InspectionSelection={id:'brief-test',runId:result.id,optionId:option.id,evidenceHash:result.tradeoffs!.evidenceHash,policyVersion:result.tradeoffs!.policyVersion,hotelName:option.hotelName,roomName:option.roomName,selectedAt:result.completedAt,purpose:'inspection_only',transactionEnabled:false};
+const context={selectionValid:true,authorized:true,conditionsMatched:true,busy:false,now:Date.parse(result.completedAt)};
+test('verification brief preserves exact selected evidence and limits without claiming an order',()=>{const before=JSON.stringify(result),brief=inspectionBrief(result,selection,context)!;assert(brief.includes('not an order'));assert(brief.includes(option.hotelName));assert(brief.includes(option.ratePlanId));assert(brief.includes('original budget ceiling'));for(const gap of option.gaps)assert(brief.includes(gap));assert.equal(JSON.stringify(result),before);assert(inspectionBrief(result,selection,context,'zh')!.includes('不是订单'));});
+test('no brief is issued for stale or invalidated selection, changed conditions or withdrawn consent',()=>{for(const change of [{selectionValid:false},{authorized:false},{conditionsMatched:false},{busy:true},{now:context.now+16*60000}])assert.equal(inspectionBrief(result,selection,{...context,...change}),null);assert.equal(inspectionBrief(result,{...selection,evidenceHash:'other'},context),null);});
