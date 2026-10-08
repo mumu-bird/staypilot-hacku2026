@@ -1,3 +1,4 @@
+import {displayPriceCents} from '../shared/display-money.ts';
 import {excludedNearbyNames,nearbyRetryAt} from '../shared/nearby-discovery.ts';
 import type {findNearbyHotelLeads} from './amap.ts';
 import {roomQueryEvidence} from '../shared/room-query-evidence.ts';
@@ -99,7 +100,7 @@ export function assessCandidate(candidate:WorkflowCandidate,policy:WorkflowPolic
  for(const limitation of reviews?.sampleLimitations??[])gaps.push(limitation);
  for(const analysis of [reviews?.modelAnalysis,...candidate.additionalReviewAnalyses??[]].filter(Boolean))for(const row of analysis?.mentions??[])for(const issue of row.issues){gaps.push(`模型识别评论问题提及：${labels[issue]}（评论${row.id}，${row.date}）；需核验原文与房型影响`);if(policy.unacceptable.includes(issue))reasons.push(`模型识别用户不可接受的问题：${labels[issue]}（评论${row.id}）；核验前不推荐该酒店`);}
  for(const analysis of [reviews?.modelAnalysis,...candidate.additionalReviewAnalyses??[]].filter(Boolean))for(const row of analysis?.uncertain??[])for(const issue of row.issues)gaps.push(`评论语义待核验：${labels[issue]}（评论${row.id}，${row.date}）；不能视为问题已排除`);
- const finiteRooms=candidate.rooms.filter(r=>r.currency==='CNY'&&r.estimatedStayPrice!==null&&Number.isFinite(r.estimatedStayPrice)&&r.estimatedStayPrice>=0);
+ const finiteRooms=candidate.rooms.filter(r=>r.currency==='CNY'&&displayPriceCents(r.estimatedStayPrice)!==null);
  const suitable=finiteRooms.filter(r=>(r.maxOccupancy===null||r.maxOccupancy>=adultCount)&&(!policy.requireCancelable||(r.cancellationStatus==='free_until'&&zonedTimestamp(r.cancelUntil)!==null&&zonedTimestamp(r.cancelUntil)!>Date.parse(asOf)))&&(policy.window!=='required'||r.windowType==='external'));
  const budgetRooms=suitable.filter(r=>Math.round(r.estimatedStayPrice!*100)<=policy.budgetCents);
  const room=(budgetRooms.length?budgetRooms:suitable).sort((a,b)=>{
@@ -307,8 +308,8 @@ export class LiveWorkflow{
  if(!after){result.status='not_found';result.reason='本次返回中没有找到原报价ID；不自动替换为其他房型。';}
  else{result.after=after;result.afterObservedAt=after.sourceObservedAt;
  if(compareRoomTerms(baseline)!==compareRoomTerms(after)){result.status='terms_changed';result.reason=baseline.ratePlanName==null&&after.ratePlanName!=null?'报价方案名称为本轮新增证据，旧记录不足以确认条款相同；不计算节省。':'房型或方案条款已变化；不按价格差额宣称节省。';}
- else if(baseline.currency!=='CNY'||baseline.estimatedStayPrice===null||after.estimatedStayPrice===null){result.status='failed';result.reason='缺少同口径人民币价格，无法判断价格变化。';}
- else{result.deltaCents=Math.round(after.estimatedStayPrice*100)-Math.round(baseline.estimatedStayPrice*100);result.status=result.deltaCents===0?'unchanged':'price_changed';result.reason='同一报价ID及房型条款复核；只比较展示估价，最终税费与库存仍需核验。';}
+ else if(baseline.currency!=='CNY'||displayPriceCents(baseline.estimatedStayPrice)===null||displayPriceCents(after.estimatedStayPrice)===null){result.status='failed';result.reason='缺少同口径人民币价格，无法判断价格变化。';}
+ else{result.deltaCents=displayPriceCents(after.estimatedStayPrice)!-displayPriceCents(baseline.estimatedStayPrice)!;result.status=result.deltaCents===0?'unchanged':'price_changed';result.reason='同一报价ID及房型条款复核；只比较展示估价，最终税费与库存仍需核验。';}
  }
  }catch{}finally{this.running=false;this.stage='定向核验完成';}
  if(this.closed)throw new Error('会话已关闭');this.db.prepare('INSERT INTO rechecks(payload) VALUES(?)').run(JSON.stringify(result));return result;

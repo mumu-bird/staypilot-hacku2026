@@ -11,7 +11,7 @@ test('inspection selection checks scope, latest versions and freshness, persists
  const db=new DatabaseSync(join(dir,'case.sqlite'));
  const hash='a'.repeat(64),version='b'.repeat(64);
  const option={id:'one',candidateKey:'rollinggo:one',ratePlanId:'rate',hotelName:'Unit-test hotel',roomName:'Unit-test room',status:'within_bounds',hardViolations:[],minutes:20,priceCents:50000};
- const room={ratePlanId:'rate',sourceObservedAt:new Date().toISOString(),cancellationStatus:'free_until',cancelUntil:new Date(Date.now()+3600000).toISOString()};
+ const room={ratePlanId:'rate',currency:'CNY',estimatedStayPrice:500,sourceObservedAt:new Date().toISOString(),cancellationStatus:'free_until',cancelUntil:new Date(Date.now()+3600000).toISOString()};
  const run={id:'run',mode:'live',policy:{budgetCents:60000,requireCancelable:true},candidates:[{candidate:{key:option.candidateKey,rooms:[room],route:{observedAt:new Date().toISOString()}}}],evidenceAsOf:new Date().toISOString(),tradeoffs:{evidenceHash:hash,policyVersion:version,options:[option]}};
  const save=()=>db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(run));save();
  const request={runId:'run',optionId:'one',evidenceHash:hash,policyVersion:version};

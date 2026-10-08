@@ -29,3 +29,7 @@ test('stale, future, missing or unzoned route evidence cannot be renewed by a fr
   assert.equal(inspectionHandoffOption(copy,selection,context),null);
  }
 });
+test('inspection handoff requires a valid CNY room price equal to the chosen option amount',()=>{
+ for(const value of [-10,NaN,Infinity,Number.MAX_VALUE,option.priceCents!/100+1]){const copy=structuredClone(result),room=copy.candidates.find(d=>d.candidate.key===option.candidateKey)!.candidate.rooms.find(r=>r.ratePlanId===option.ratePlanId)!;room.estimatedStayPrice=value;assert.equal(inspectionHandoffOption(copy,selection,context),null);}
+ const copy=structuredClone(result);copy.candidates.find(d=>d.candidate.key===option.candidateKey)!.candidate.rooms.find(r=>r.ratePlanId===option.ratePlanId)!.currency='USD';assert.equal(inspectionHandoffOption(copy,selection,context),null);
+});
