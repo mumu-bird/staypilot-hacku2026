@@ -1,6 +1,9 @@
 /** User-facing guidance only; never changes server state or retries a transaction. */
 export function workflowErrorMessage(message:unknown):{zh:string;en:string} {
  const text=typeof message==='string'?message:'';
+ if(/服务中断，监控未自动恢复/.test(text))return {zh:'服务中断后监控已停止。请核验当前行程、重新确认查询授权，再手动开启监控。',en:'Monitoring stopped after a service interruption. Check the current trip, confirm query consent again and restart monitoring manually.'};
+ if(/免费取消窗口/.test(text))return {zh:'免费取消窗口已结束或无法确认，报价监控已停止。请刷新酒店并重新核验取消条款。',en:'The free cancellation window ended or could not be verified. Quote monitoring stopped; refresh the hotel and verify its cancellation terms.'};
+ if(/入住日期或查询条件已失效/.test(text))return {zh:'行程条件已失效，监控已停止。请更新入住日期与偏好，重新确认后开启监控。',en:'Trip conditions are no longer valid and monitoring stopped. Update the stay dates and preferences, confirm again and restart monitoring.'};
  if(/尚未确认只读查询授权|只读查询授权已撤销|只读授权范围/.test(text))return {zh:'只读查询授权尚未确认、已撤销或条件已改变。请回到偏好与授权页面重新确认后继续。',en:'Read-only query consent is missing, was withdrawn or its conditions changed. Return to preferences and authorization to confirm again.'};
  if(/选中报价已变化或复核失败/.test(text))return {zh:'选中报价已变化或本轮复核失败。请先刷新这家酒店、重新评估并选择方案，再启动监控。',en:'The selected quote changed or its recheck failed. Refresh this hotel, reassess and select an option before restarting monitoring.'};
  if(/未配置酒店查询服务/.test(text))return {zh:'实时酒店服务尚未配置。请配置服务端FlyAI或RollingGo凭证；历史回放仍可使用，但不是实时查询。',en:'Live hotel services are not configured. Configure server-side FlyAI or RollingGo credentials. Historical replay remains available, but is not a live search.'};

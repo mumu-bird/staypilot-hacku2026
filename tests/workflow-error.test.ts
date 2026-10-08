@@ -12,3 +12,11 @@ test('workflow errors give actionable bilingual guidance without exposing raw re
  const unknown=workflowErrorMessage('upstream stack trace with private response');
  assert(!unknown.en.includes('private'));assert.match(unknown.en,/retry manually/);
 });
+
+test('monitor recovery guidance explains interruption and cancellation in both languages without claiming automatic recovery',()=>{
+ const interrupted=workflowErrorMessage('服务中断，监控未自动恢复；请核验当前行程后重新开启。');
+ assert.match(interrupted.en,/confirm query consent again/);assert.match(interrupted.en,/manually/);
+ assert.match(workflowErrorMessage('免费取消窗口已结束或无法确认，停止该报价监控；请重新核验。').en,/verify its cancellation terms/);
+ assert.match(workflowErrorMessage('本轮核验期间免费取消窗口已结束，停止该报价监控；请重新核验。').en,/monitoring stopped/);
+ assert.match(workflowErrorMessage('入住日期或查询条件已失效，监控已停止；请更新行程。').en,/Update the stay dates/);
+});
