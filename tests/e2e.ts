@@ -216,12 +216,13 @@ if(existsSync('docs/cases/live-independent-hotel-discovery-20261008.json')){
 if(existsSync('docs/cases/live-projected-inspection-model-check-20261008.json')){
  const actual=JSON.parse(readFileSync('docs/cases/live-independent-hotel-discovery-20261008.json','utf8')),model=JSON.parse(readFileSync('docs/cases/live-projected-inspection-model-check-20261008.json','utf8'));
  const fixed=actual.candidates.find((d:any)=>d.candidate.key!==model.answers.candidate.choice).candidate;
- actual.jev={model:model.model,observedAt:model.completedAt,answers:model.answers,evidenceHash:actual.evidenceHash,selectedForAction:fixed.key};
+ actual.jev={model:model.model,observedAt:model.completedAt,answers:model.answers,evidenceHash:actual.evidenceHash,selectedForAction:fixed.key};actual.evidenceAsOf=new Date().toISOString();actual.jev.observedAt=actual.evidenceAsOf;
  await page.route('**/api/live/workflow/state',route=>route.fulfill({json:{running:false,stage:'Synthetic task-binding rendering fixture over actual evidence',latest:actual,monitor:{enabled:false,checks:0},selection:null,selectionValid:false,rechecks:[]}}));
  await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();
  const advice=page.locator('section').filter({has:page.getByRole('heading',{name:'Jev: next inspection advice',exact:true})});await advice.getByText(/candidate choice is uncertain/).waitFor();assert((await advice.innerText()).includes('This task applies specifically to: '+fixed.name));assert((await advice.innerText()).includes('Model option probability'));
+ actual.evidenceAsOf=new Date(Date.now()-16*60000).toISOString();await page.reload({waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();await advice.getByText(/This is historical advice/).waitFor();assert.equal(await advice.getByRole('link',{name:'Open the corresponding platform to verify',exact:true}).count(),0);
  delete actual.jev.selectedForAction;await page.reload({waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();await page.getByText(/task’s hotel is unconfirmed in this record/).waitFor();
- pass('低置信度核验建议保留备选；独立任务明确对应酒店，旧记录缺少目标时不猜测；绑定关系为渲染仿真');await page.unroute('**/api/live/workflow/state');
+ pass('低置信度核验建议保留备选；独立任务明确对应酒店，旧记录缺少目标时不猜测；绑定与新时间为渲染仿真，过期后撤下操作入口');await page.unroute('**/api/live/workflow/state');
 }
 if(existsSync('docs/cases/live-integrated-batched-workflow-20261008.json')){
  const actual=JSON.parse(readFileSync('docs/cases/live-integrated-batched-workflow-20261008.json','utf8'));let sid:string|undefined;
@@ -231,7 +232,7 @@ if(existsSync('docs/cases/live-integrated-batched-workflow-20261008.json')){
  const advice=page.locator('section').filter({has:page.getByRole('heading',{name:'Jev: next inspection advice',exact:true})});await advice.getByText(/candidate choice is uncertain/).waitFor();
  const fixed=actual.candidates.find((d:any)=>d.candidate.key===actual.jev.selectedForAction).candidate;assert((await advice.innerText()).includes('This task applies specifically to: '+fixed.name));
  assert((await advice.innerText()).includes('Verify final price, inventory and cancellation'));
- assert.equal(await advice.getByRole('link',{name:'Open the corresponding platform to verify',exact:true}).getAttribute('href'),fixed.detailUrl);assert((await advice.innerText()).includes(actual.query.checkIn));assert((await advice.innerText()).includes('Total budget ceiling'));assert((await advice.innerText()).includes('cannot obtain a final checkout quote'));
+ await advice.getByText(/This is historical advice/).waitFor();assert.equal(await advice.getByRole('link',{name:'Open the corresponding platform to verify',exact:true}).count(),0);
  const choices=page.getByRole('button',{name:'Select for further verification'});assert((await choices.count())>0);for(let i=0;i<await choices.count();i++)assert(await choices.nth(i).isDisabled());
  await page.getByText('Route evidence is stale or its time is unverified. Refresh this hotel before selecting it.',{exact:true}).first().waitFor();
  const analyses=actual.candidates.flatMap((d:any)=>[d.candidate.reviews?.modelAnalysis,...d.candidate.additionalReviewAnalyses??[]]).filter(Boolean);assert.equal(analyses.length,2);assert(analyses.every((a:any)=>Date.parse(a.sourceObservedAt)>=Date.parse(actual.startedAt)&&a.sampleCount===15&&a.model==='jev-1.13.0'));
