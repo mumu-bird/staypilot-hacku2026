@@ -1,3 +1,4 @@
+import {sessionCookie,sessionIdFromCookie} from './session-cookie.ts';
 import {readiness} from './readiness.ts';
 import {isPrivatePagePath} from './private-path.ts';
 import {readJsonBody,RequestInputError,maxJsonBodyBytes} from './http-input.ts';
@@ -20,6 +21,8 @@ import type { Platform } from '../shared/types.ts';
 
 const port=Number(process.env.PORT||4173),host=process.env.HOST||'127.0.0.1';
 const origin=`http://127.0.0.1:${port}`;
+// Validate configured deployment origin before accepting requests.
+sessionCookie('0'.repeat(32),process.env.PUBLIC_ORIGIN);
 mkdirSync('data',{recursive:true});
 const sessions=new Map<string,{engine:Engine;agent:BrowserAgent}>();
 const realSessions=new Map<string,RealAgent>();
@@ -44,8 +47,8 @@ function shouldRun(engine:Engine){const s=engine.getState();const finalAt=s.mand
 function json(res:http.ServerResponse,value:unknown,status=200){if(res.headersSent||res.writableEnded){res.destroy();return;}const encoded=JSON.stringify(value);res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(encoded);}
 async function body(req:http.IncomingMessage):Promise<any>{if(Number(req.headers['content-length'])>maxJsonBodyBytes)throw new RequestInputError('请求内容过大，请缩短输入后重试。',413);return readJsonBody(req);}
 function session(req:http.IncomingMessage,res:http.ServerResponse){
-  let sid=/staypilot_session=([a-f0-9]{32})/.exec(req.headers.cookie||'')?.[1];
-  if(!sid){sid=randomBytes(16).toString('hex');res.setHeader('Set-Cookie',`staypilot_session=${sid}; Path=/; HttpOnly; SameSite=Lax`);}
+  let sid=sessionIdFromCookie(req.headers.cookie);
+  if(!sid){sid=randomBytes(16).toString('hex');res.setHeader('Set-Cookie',sessionCookie(sid,process.env.PUBLIC_ORIGIN));}
   let current=sessions.get(sid);
   if(!current){const engine=new Engine(resolve('data',`${sid}.sqlite`));engine.setAgent({running:false});current={engine,agent:new BrowserAgent(engine,origin,sid)};sessions.set(sid,current);}
   return {sid,...current};
