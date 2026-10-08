@@ -24,7 +24,7 @@ export function validateRollinggoQuery(input:ObjectValue):RollinggoQuery{
  const nights=(Date.parse(base.checkOut)-Date.parse(base.checkIn))/86400000;
  if(nights>28)throw new Error('RollingGo 首版最多查询28晚');
  if((input.roomCount??1)!==1||(input.childCount??0)!==0)throw new Error('首版仅支持1间房、无儿童；不能忽略人数条件');
- return {...base,adultCount:integer('adultCount',2,1,4),size:integer('size',5,1,20),roomCount:1,childCount:0};
+ return {...base,adultCount:integer('adultCount',2,1,4),size:integer('size',5,1,20),roomCount:1,childCount:0,...(input.searchRadiusMeters!==undefined?{searchRadiusMeters:integer('searchRadiusMeters',2000,500,50000)}:{})};
 }
 export function validateRollinggoFilter(input:unknown):RollinggoFilter{
  const v=obj(input),out:RollinggoFilter={};
@@ -46,10 +46,14 @@ export function normalizeRollinggoSearch(payload:ObjectValue,query:RollinggoQuer
   return {id,name:text(h.name)||'名称未提供',address:text(h.address)||'地址未提供',starRating:number(h.starRating),reviewScore:null,nightlyPrice:p.hasPrice===true?price(p.lowestPrice):null,currency:text(p.currency),priceMessage:text(p.message),amenities:strings(h.hotelAmenities),tags:strings(h.tags),image:safeUrl(h.imageUrl,true),detailUrl:safeUrl(h.bookingUrl)};
  })};
 }
-// Only mainland-China requests use this adapter. Do not infer a timezone for another country.
+// Only explicitly mapped cities use UTC+8. Other destinations require timezone evidence.
 function cancelTime(policy:string|null,query:RollinggoQuery){
- const match=policy?.match(/免费取消截止至酒店当地时间 (\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2})/);
- if(!match||query.destination!=='杭州')return null;
+ const matches=[...(policy??'').matchAll(/免费取消截止至酒店当地时间 (\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2})/g)];
+ if(!matches.length||!['杭州','杭州市','北京','北京市'].includes(query.destination))return null;
+ if(new Set(matches.map(m=>m[1]+' '+m[2])).size!==1)return null;
+ const match=matches[0];
+ // A conflicting blanket restriction before the recognized deadline is not a verified free window.
+ if(/不可取消|不可退款|不予退款/.test((policy??'').slice(0,match.index)))return null;
  const date=`${match[1]}T${match[2]}+08:00`,parsed=Date.parse(date);
  return Number.isFinite(parsed)&&new Date(parsed+8*3600000).toISOString().slice(0,19)===`${match[1]}T${match[2]}`?date:null;
 }
@@ -65,13 +69,15 @@ function filterRoom(r:RollinggoRoom,f:RollinggoFilter){
 export function normalizeRollinggoDetail(p:ObjectValue,query:RollinggoQuery,hotelId:number,filter:RollinggoFilter={}):RollinggoDetail{
  if(p.success!==true||p.hotelId!==hotelId||p.checkIn!==query.checkIn||p.checkOut!==query.checkOut||!Array.isArray(p.roomRatePlans))throw new Error('酒店或日期与请求不一致，拒绝使用该报价');
  const nights=(Date.parse(query.checkOut)-Date.parse(query.checkIn))/86400000;
- const rooms=p.roomRatePlans.map(value=>{
+ const normalized=p.roomRatePlans.map(value=>{
   const r=obj(value),info=obj(r.roomInfo),averagePrice=price(r.averagePrice),cancelPolicy=text(r.cancelPolicy),cancelable=boolean(r.cancelable),until=cancelTime(cancelPolicy,query);
   // A false flag alone does not specify a nonrefundable fee schedule. Require original wording.
   const cancellationStatus=cancelable===true&&until?'free_until':cancelable===false&&/不可取消|不可退款|不予退款/.test(cancelPolicy||'')?'nonrefundable':'unknown';
-  return {ratePlanId:text(r.ratePlanId)||'',roomName:text(r.roomName)||'房型未提供',bedType:text(r.bedTypeDescription),averagePrice,estimatedStayPrice:averagePrice===null?null:Math.round(averagePrice*nights*100)/100,currency:text(r.currency),mealAmount:number(r.mealAmount),mealType:text(r.mealTypeStr),onRequest:boolean(r.isOnRequest),cancelable,cancelPolicy,cancelUntil:until,cancellationStatus,hasWindow:boolean(info.hasWindow),maxOccupancy:number(info.maxOccupancy),size:text(info.size),missingFields:['含税总价、税费与到店费用明细','报价有效期及成交前库存复核','取消截止后的费用及退款到账规则',...(cancellationStatus==='unknown'?['可核验的取消条款与时区']:[])]} satisfies RollinggoRoom;
- }).filter(r=>filterRoom(r,filter));
- return {source:'RollingGo MCP',observedAt:new Date().toISOString(),query,filter,hotelId,name:text(p.name)||'名称未提供',detailUrl:safeUrl(p.bookingUrl),rooms,transactionEnabled:false,bookableQuote:false,missingFields:commonMissing};
+  return {ratePlanId:text(r.ratePlanId)||'',ratePlanName:text(r.ratePlanName),roomName:text(r.roomName)||'房型未提供',bedType:text(r.bedTypeDescription),averagePrice,estimatedStayPrice:averagePrice===null?null:Math.round(averagePrice*nights*100)/100,currency:text(r.currency),mealAmount:number(r.mealAmount),mealType:text(r.mealTypeStr),onRequest:boolean(r.isOnRequest),cancelable,cancelPolicy,cancelUntil:until,cancellationStatus,hasWindow:boolean(info.hasWindow),maxOccupancy:number(info.maxOccupancy),size:text(info.size),missingFields:['含税总价、税费与到店费用明细','报价有效期及成交前库存复核','取消截止后的费用及退款到账规则',...(cancellationStatus==='unknown'?['可核验的取消条款与时区']:[])]} satisfies RollinggoRoom;
+ });
+ const rooms=normalized.filter(r=>filterRoom(r,filter));
+ const filterDiagnostics={received:normalized.length,excluded:normalized.length-rooms.length,unknownCancellationExcluded:filter.cancelPolicy?normalized.filter(r=>r.cancellationStatus==='unknown').length:0};
+ return {source:'RollingGo MCP',observedAt:new Date().toISOString(),query,filter,filterDiagnostics,hotelId,name:text(p.name)||'名称未提供',detailUrl:safeUrl(p.bookingUrl),rooms,transactionEnabled:false,bookableQuote:false,missingFields:commonMissing};
 }
 export type RollinggoGateway={discover:()=>Promise<RollinggoDiscovery>;call:(name:string,args:ObjectValue)=>Promise<ObjectValue>};
 export class RollinggoClient implements RollinggoGateway{
@@ -108,9 +114,24 @@ export class RollinggoAgent{
  async discover(){return this.run('discovery',()=>this.gateway.discover());}
  async search(input:ObjectValue){const query=validateRollinggoQuery(input);return this.run('search',async()=>normalizeRollinggoSearch(await this.gateway.call('searchHotels',{
   originQuery:`${query.destination}${query.poi}附近酒店，${query.checkIn}至${query.checkOut}，每间${query.adultCount}成人，1间房，无儿童。只查询，不预订。`,place:query.poi?`${query.poi} ${query.destination}`:`${query.destination} 中国`,placeType:query.poi?'景点':'城市',checkInParam:{checkInDate:query.checkIn,stayNights:(Date.parse(query.checkOut)-Date.parse(query.checkIn))/86400000,adultCount:query.adultCount},size:query.size,
+  ...(query.poi?{filterOptions:{distanceInMeter:query.searchRadiusMeters??2000}}:{}),hotelTags:{requiredTags:[],preferredBrands:[]},
  }),query));}
  async detail(input:ObjectValue){const query=validateRollinggoQuery(input),hotelId=input.hotelId,filter=validateRollinggoFilter(input.filter);if(typeof hotelId!=='number'||!Number.isSafeInteger(hotelId)||hotelId<=0||hotelId>2147483647)throw new Error('需要有效的 RollingGo 酒店 ID');
   return this.run('detail',async()=>normalizeRollinggoDetail(await this.gateway.call('getHotelDetail',{hotelId,dateParam:{checkInDate:query.checkIn,checkOutDate:query.checkOut},occupancyParam:{adultCount:query.adultCount,roomCount:1,childCount:0,childAgeDetails:[]},...(Object.keys(filter).length?{filter}:{})}),query,hotelId,filter));
+ }
+ async detailByName(input:ObjectValue):Promise<RollinggoDetail>{
+ const query=validateRollinggoQuery(input),name=input.name,filter=validateRollinggoFilter(input.filter);
+ if(typeof name!=='string'||name.trim().length<2||name.length>160)throw new Error('需要具体酒店名称');
+ const canonical=(v:string)=>v.replace(/[\s（）()·|｜]/g,'').toLowerCase();
+ return this.run('detail',async()=>{
+ const payload=await this.gateway.call('getHotelDetail',{name,dateParam:{checkInDate:query.checkIn,checkOutDate:query.checkOut},occupancyParam:{adultCount:query.adultCount,roomCount:1,childCount:0,childAgeDetails:[]},...(Object.keys(filter).length?{filter}:{})});
+ const id=number(payload.hotelId),resolvedName=text(payload.name);
+ if(id===null||!Number.isSafeInteger(id)||id<=0||!resolvedName||canonical(resolvedName)!==canonical(name))throw new Error('平台返回酒店身份与请求不一致，未关联房型');
+ const detail=normalizeRollinggoDetail(payload,query,id,filter);
+ const listing=normalizeRollinggoSearch(await this.gateway.call('searchHotels',{originQuery:`核验具体酒店身份：${name}，${query.destination}。只查询不预订。`,place:name,placeType:'酒店',checkInParam:{checkInDate:query.checkIn,stayNights:(Date.parse(query.checkOut)-Date.parse(query.checkIn))/86400000,adultCount:query.adultCount},size:5,hotelTags:{requiredTags:[],preferredBrands:[]}}),query);
+ const hotel=listing.hotels.find(h=>h.id===id&&canonical(h.name)===canonical(name));
+ return {...detail,identity:{hotelId:id,name:resolvedName,address:hotel?.address??null,amenities:hotel?.amenities??[],observedAt:listing.observedAt,verified:!!hotel&&hotel.address!=='地址未提供'}};
+ });
  }
  async tags(){return this.run('tags',async()=>{const p=await this.gateway.call('getHotelSearchTags',{});if(!Array.isArray(p.tags))throw new Error('搜索标签格式无效');return {source:'RollingGo MCP',observedAt:new Date().toISOString(),tags:p.tags.map(v=>({name:text(obj(v).name),category:text(obj(v).category)})),transactionEnabled:false};});}
  async assess(input:ObjectValue){return this.run('jev',async()=>{const snapshot=this.state(),result=await assessJev(snapshot,input);if(this.closed||result.evidenceKey!==jevEvidenceKey(this.state()))throw new Error('观察已变化或会话关闭，拒绝采用旧判断');return result;});}

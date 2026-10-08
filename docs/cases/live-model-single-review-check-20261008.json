@@ -1,0 +1,59 @@
+{
+  "startedAt": "2026-10-08T13:07:23.208Z",
+  "completedAt": "2026-10-08T13:07:31.986Z",
+  "scope": "Live model inference on one saved actual review; not a fresh review-page query or hotel recommendation",
+  "status": "succeeded",
+  "analysis": {
+    "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+    "sourceObservedAt": "2026-10-08T09:58:54.843Z",
+    "analyzedAt": "2026-10-08T13:07:31.986Z",
+    "hotel": {
+      "id": "1181544",
+      "name": "時光漫步酒店（北京雍和宮店）",
+      "address": "安定門內大街方家衚衕46號創意園, 東城區, 北京, 100007"
+    },
+    "sourceRating": {
+      "score": 9.5,
+      "scale": 10,
+      "totalCount": 1434
+    },
+    "evidenceHash": "ab1a72b738982b2ac9c7cb98142ae4a2d3c43b48ac2ae54dd3730d611d2be7d4",
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 2236,
+      "output_tokens": 136
+    },
+    "thresholds": {
+      "issue": 0.8,
+      "absent": 0.2
+    },
+    "coverage": "visible_page_only",
+    "rows": [
+      {
+        "id": "2126670605",
+        "publishedAt": "2026-10-05",
+        "stayMonth": "2026-10",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "ff09ad0b49d8046789243e5003b549eab245c9da89a29da6762583ec2fc20ff8",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.02,
+          "hygiene": 0.02,
+          "smell": 0.04,
+          "maintenance": 0.03,
+          "service": 0.02,
+          "space": 0.02,
+          "security": 0.02
+        }
+      }
+    ],
+    "limitations": [
+      "Model probabilities describe whether a source text mentions an issue, not hotel issue frequency or severity.",
+      "Thresholds are initial classification settings and need calibration; uncertain labels require verification.",
+      "Visible-page samples do not establish complete negative-review coverage."
+    ],
+    "transactionEnabled": false
+  }
+}

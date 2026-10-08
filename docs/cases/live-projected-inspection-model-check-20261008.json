@@ -1,0 +1,439 @@
+{
+  "startedAt": "2026-10-08T13:15:42.057Z",
+  "completedAt": "2026-10-08T13:15:43.636Z",
+  "scope": "Live model task planning on saved real evidence; no new merchant query or purchase recommendation",
+  "status": "succeeded",
+  "sourceRunId": "f47a72be-a639-40a3-bc7e-a5526c79dd7c",
+  "model": "jev-1.13.0",
+  "answers": {
+    "candidate": {
+      "type": "choice",
+      "choice": "fliggy:12633667",
+      "confidence": 0.27,
+      "probabilities": {
+        "fliggy:12633667": 0.45,
+        "none": 0.08,
+        "rollinggo:43565": 0.34,
+        "fliggy:77243002": 0.13
+      }
+    },
+    "next_action": {
+      "type": "choice",
+      "choice": "quote",
+      "confidence": 0.6,
+      "probabilities": {
+        "window": 0.01,
+        "reviews": 0.1,
+        "none": 0.03,
+        "quote": 0.68,
+        "commute": 0.18
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 4289,
+    "output_tokens": 137
+  },
+  "state": {
+    "policy": {
+      "budgetCents": 60000,
+      "idealBudgetCents": 50000,
+      "priorities": "Prefer restful sleep and hygiene; do not increase the 600 CNY ceiling.",
+      "walkMinutes": 20,
+      "metroMinutes": 40,
+      "allowMetro": true,
+      "window": "preferred",
+      "requireCancelable": true,
+      "weights": {
+        "noise": 3,
+        "hygiene": 3,
+        "smell": 1,
+        "maintenance": 1,
+        "service": 1,
+        "space": 1,
+        "security": 3
+      },
+      "unacceptable": []
+    },
+    "purpose": "Read-only task planning on SAVED source observations. Source timestamps are old; do not claim current price/stock. No permissions change or purchase.",
+    "evidence_as_of": "2026-10-08T12:53:28.642Z",
+    "candidates": [
+      {
+        "key": "fliggy:12633667",
+        "name": "时光漫步酒店（北京雍和宫店）",
+        "address": "安定门内大街方家胡同46号创意园，与雍和宫、南锣古巷相邻",
+        "source": "飞猪 FlyAI",
+        "searchObservedAt": "2026-10-08T12:52:08.995Z",
+        "room": null,
+        "commute": {
+          "tier": 0,
+          "minutes": 12,
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T12:52:15.712Z",
+          "walking": {
+            "minutes": 12,
+            "meters": 894
+          },
+          "directMetro": [],
+          "warnings": []
+        },
+        "reviews": null,
+        "semanticReviewSources": [],
+        "targetedReviewMetric": {
+          "value": null,
+          "rows": [
+            {
+              "issue": "noise",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 3,
+              "contribution": 0
+            },
+            {
+              "issue": "hygiene",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 3,
+              "contribution": 0
+            },
+            {
+              "issue": "smell",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "maintenance",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "service",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "space",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "security",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 3,
+              "contribution": 0
+            }
+          ],
+          "interpretation": "Personal weighted targeted sample only; not population prevalence. Semantic sources stay separate."
+        },
+        "gaps": [
+          "评论原文、日期、评分与样本不足",
+          "未取得绑定人数、日期、餐食、取消条款的房型",
+          "最终含税总价、到店费用、报价有效期及库存复核未完成",
+          "真实订单、取消、退款接口与购买授权未验证"
+        ],
+        "reasons": [],
+        "errors": [],
+        "bookable": false
+      },
+      {
+        "key": "fliggy:77243002",
+        "name": "华侨夜泊君亭酒店(北京雍和宫北新桥地铁站店）",
+        "address": "北京市东城区北新桥三条5号",
+        "source": "飞猪 FlyAI",
+        "searchObservedAt": "2026-10-08T12:52:08.995Z",
+        "room": null,
+        "commute": {
+          "tier": 0,
+          "minutes": 15,
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T12:52:20.127Z",
+          "walking": {
+            "minutes": 15,
+            "meters": 1071
+          },
+          "directMetro": [],
+          "warnings": []
+        },
+        "reviews": null,
+        "semanticReviewSources": [],
+        "targetedReviewMetric": {
+          "value": null,
+          "rows": [
+            {
+              "issue": "noise",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 3,
+              "contribution": 0
+            },
+            {
+              "issue": "hygiene",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 3,
+              "contribution": 0
+            },
+            {
+              "issue": "smell",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "maintenance",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "service",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "space",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "security",
+              "count": 0,
+              "sampleSize": 0,
+              "weight": 3,
+              "contribution": 0
+            }
+          ],
+          "interpretation": "Personal weighted targeted sample only; not population prevalence. Semantic sources stay separate."
+        },
+        "gaps": [
+          "评论原文、日期、评分与样本不足",
+          "未取得绑定人数、日期、餐食、取消条款的房型",
+          "最终含税总价、到店费用、报价有效期及库存复核未完成",
+          "真实订单、取消、退款接口与购买授权未验证",
+          "另一平台地址不同，保留为独立候选；未关联报价或沿用本平台路线。"
+        ],
+        "reasons": [],
+        "errors": [
+          "另一平台地址不同，保留为独立候选；未关联报价或沿用本平台路线。"
+        ],
+        "bookable": false
+      },
+      {
+        "key": "rollinggo:43565",
+        "name": "北京新侨饭店",
+        "address": "崇文门西大街1号",
+        "source": "RollingGo MCP",
+        "searchObservedAt": "2026-10-08T12:52:03.222Z",
+        "room": null,
+        "commute": {
+          "tier": 1,
+          "minutes": 36,
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T12:52:26.736Z",
+          "walking": {
+            "minutes": 71,
+            "meters": 5315
+          },
+          "directMetro": [
+            {
+              "minutes": 36,
+              "lines": [
+                "地铁5号线(宋家庄--天通苑北)"
+              ]
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": {
+          "sourceUrl": "https://hotel.fliggy.com/hotel_detail2.htm?shid=10004405&checkIn=2026-10-09&checkOut=2026-10-10",
+          "observedAt": "2026-10-04T04:42:55.700Z",
+          "rating": {
+            "score": 4.8,
+            "scale": 5,
+            "observedAt": "2026-10-04T04:42:55.700Z",
+            "source": "curated_record"
+          },
+          "openingYear": null,
+          "renovationYear": null,
+          "negativeSample": [
+            {
+              "date": "2026-10-02",
+              "issues": [
+                "hygiene",
+                "maintenance",
+                "service"
+              ]
+            },
+            {
+              "date": "2026-09-04",
+              "issues": [
+                "hygiene",
+                "smell",
+                "maintenance"
+              ]
+            },
+            {
+              "date": "2026-08-03",
+              "issues": [
+                "noise",
+                "maintenance",
+                "service"
+              ]
+            },
+            {
+              "date": "2026-06-20",
+              "issues": [
+                "noise",
+                "service"
+              ]
+            }
+          ],
+          "positiveSampleCount": 1,
+          "sampleLimitations": []
+        },
+        "semanticReviewSources": [
+          {
+            "model": "jev-1.13.0",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-374787/novotel-beijing-xinqiao/review.html",
+            "sourceObservedAt": "2026-10-08T10:31:39.206Z",
+            "analyzedAt": "2026-10-08T10:31:42.393Z",
+            "evidenceHash": "48d26c1b9bfc28db714957d109a4c89305cc5378c567813372f145339adc3099",
+            "sampleCount": 15,
+            "sourceRating": {
+              "score": 9.1,
+              "scale": 10,
+              "totalCount": 10597
+            },
+            "coverage": "visible_page_only",
+            "mentions": [
+              {
+                "id": "2127627773",
+                "date": "2026-10-05",
+                "issues": [
+                  "noise"
+                ]
+              },
+              {
+                "id": "2118798839",
+                "date": "2026-09-28",
+                "issues": [
+                  "noise",
+                  "maintenance",
+                  "service"
+                ]
+              }
+            ],
+            "uncertain": [
+              {
+                "id": "2132751205",
+                "date": "2026-10-08",
+                "issues": [
+                  "maintenance"
+                ]
+              },
+              {
+                "id": "2105196607",
+                "date": "2026-09-16",
+                "issues": [
+                  "maintenance"
+                ]
+              }
+            ]
+          }
+        ],
+        "targetedReviewMetric": {
+          "value": 4.75,
+          "rows": [
+            {
+              "issue": "noise",
+              "count": 2,
+              "sampleSize": 4,
+              "weight": 3,
+              "contribution": 1.5
+            },
+            {
+              "issue": "hygiene",
+              "count": 2,
+              "sampleSize": 4,
+              "weight": 3,
+              "contribution": 1.5
+            },
+            {
+              "issue": "smell",
+              "count": 1,
+              "sampleSize": 4,
+              "weight": 1,
+              "contribution": 0.25
+            },
+            {
+              "issue": "maintenance",
+              "count": 3,
+              "sampleSize": 4,
+              "weight": 1,
+              "contribution": 0.75
+            },
+            {
+              "issue": "service",
+              "count": 3,
+              "sampleSize": 4,
+              "weight": 1,
+              "contribution": 0.75
+            },
+            {
+              "issue": "space",
+              "count": 0,
+              "sampleSize": 4,
+              "weight": 1,
+              "contribution": 0
+            },
+            {
+              "issue": "security",
+              "count": 0,
+              "sampleSize": 4,
+              "weight": 3,
+              "contribution": 0
+            }
+          ],
+          "interpretation": "Personal weighted targeted sample only; not population prevalence. Semantic sources stay separate."
+        },
+        "gaps": [
+          "超出初筛半径；平台距离筛选未获验证，须按明确通勤权限判断",
+          "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+          "模型识别评论问题提及：隔音（评论2127627773，2026-10-05）；需核验原文与房型影响",
+          "模型识别评论问题提及：隔音（评论2118798839，2026-09-28）；需核验原文与房型影响",
+          "模型识别评论问题提及：维护（评论2118798839，2026-09-28）；需核验原文与房型影响",
+          "模型识别评论问题提及：服务（评论2118798839，2026-09-28）；需核验原文与房型影响",
+          "评论语义待核验：维护（评论2132751205，2026-10-08）；不能视为问题已排除",
+          "评论语义待核验：维护（评论2105196607，2026-09-16）；不能视为问题已排除",
+          "未取得绑定人数、日期、餐食、取消条款的房型",
+          "高重要度评论问题需核验具体房型或整改证据",
+          "最终含税总价、到店费用、报价有效期及库存复核未完成",
+          "真实订单、取消、退款接口与购买授权未验证",
+          "第二平台评论刷新未完成；保留原观察时间，不视为问题已排除。"
+        ],
+        "reasons": [],
+        "errors": [
+          "第二平台评论刷新未完成；保留原观察时间，不视为问题已排除。"
+        ],
+        "bookable": false
+      }
+    ],
+    "selected_for_action": "fliggy:12633667"
+  },
+  "transactionEnabled": false
+}

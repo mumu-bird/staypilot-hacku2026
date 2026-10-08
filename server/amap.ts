@@ -1,6 +1,14 @@
 import {z} from 'zod';
+import {straightDistanceMeters} from '../shared/distance.ts';
 import type {MapPlace,MapRoutes,TransitLine} from '../shared/amap.ts';
 const cache=new Map<string,{at:number;value:unknown}>();
+// Serialize request starts across sessions so parallel hotel lookups do not burst the account quota.
+let requestGate:Promise<void>=Promise.resolve(),lastRequestAt=0;
+async function requestSlot(){
+ const previous=requestGate;let release!:()=>void;requestGate=new Promise<void>(resolve=>{release=resolve;});
+ await previous;try{const wait=Math.max(0,550-(Date.now()-lastRequestAt));if(wait)await new Promise(resolve=>setTimeout(resolve,wait));lastRequestAt=Date.now();}finally{release();}
+}
+
 export const amapConfigured=()=>Boolean(process.env.AMAP_WEB_SERVICE_KEY);
 async function amap(path:string,params:Record<string,string>):Promise<any>{
  if(!amapConfigured())throw new Error('未配置高德 Web 服务密钥，请在服务端配置。');
@@ -8,6 +16,7 @@ async function amap(path:string,params:Record<string,string>):Promise<any>{
  if(hit&&Date.now()-hit.at<15*60000)return structuredClone(hit.value);
  const url=new URL('https://restapi.amap.com'+path);url.search=new URLSearchParams({...params,key:process.env.AMAP_WEB_SERVICE_KEY!}).toString();
  let response:Response;
+ await requestSlot();
  try{response=await fetch(url,{signal:AbortSignal.timeout(20000)});}catch{throw new Error('高德服务暂未响应，请稍后重试；没有获得路线结果。');}
  if(!response.ok)throw new Error(`高德服务返回 HTTP ${response.status}`);
  let value:any;try{value=await response.json();}catch{throw new Error('高德返回格式无效');}
@@ -49,6 +58,21 @@ export function parseTransit(raw:unknown):MapRoutes['transits'] {
  }).slice(0,3);
 }
 const coordinate=z.string().regex(/^-?\d+(?:\.\d{1,6})?,-?\d+(?:\.\d{1,6})?$/).refine(v=>{const [x,y]=v.split(',').map(Number);return x>=-180&&x<=180&&y>=-90&&y<=90;},'坐标超出有效范围');
+const nearbySchema=z.object({location:coordinate,city:z.string().trim().min(1).max(60),radius:z.number().int().min(100).max(50000).default(2000)}).strict();
+export function normalizeNearbyHotelLeads(value:any,input:unknown){
+ const query=nearbySchema.parse(input),seen=new Set<string>();
+ const places=(Array.isArray(value?.pois)?value.pois:[]).flatMap((p:any)=>{
+  if(typeof p?.id!=='string'||!p.id||seen.has(p.id)||typeof p.name!=='string'||!p.name.trim()||!coordinate.safeParse(p.location).success)return [];
+  const distance=straightDistanceMeters(query.location,p.location);if(distance===null||distance>query.radius)return [];
+  seen.add(p.id);return [{id:'poi-'+p.id,name:p.name,address:typeof p.address==='string'?p.address:'地址未提供',location:p.location,city:typeof p.cityname==='string'?p.cityname:query.city,source:'poi' as const,straightDistanceMeters:distance}];
+ }).sort((a:any,b:any)=>a.straightDistanceMeters-b.straightDistanceMeters).slice(0,10);
+ return {source:'高德地图 Web 服务',observedAt:typeof value?._observedAt==='string'?value._observedAt:null,query,keyword:'酒店',places,discoveryOnly:true as const,limitations:['Map keyword leads are not verified merchant hotels or bookable offers.','Straight-line proximity does not establish walking or metro time.','Bounded keyword results do not cover every nearby hotel.']};
+}
+export async function findNearbyHotelLeads(input:unknown){
+ const query=nearbySchema.parse(input);
+ const raw=await amap('/v3/place/around',{location:query.location,city:query.city,radius:String(query.radius),keywords:'酒店',offset:'10',page:'1',extensions:'base'});
+ return normalizeNearbyHotelLeads(raw,query);
+}
 const routeSchema=z.object({origin:coordinate,destination:coordinate,city:z.string().trim().min(1).max(60),confirmed:z.literal(true)});
 export async function mapRoutes(input:unknown):Promise<MapRoutes>{
  const parsed=routeSchema.safeParse(input);if(!parsed.success)throw new Error('请先选择并确认两个有效的地图位置，再核验通勤。');const {origin,destination,city}=parsed.data;

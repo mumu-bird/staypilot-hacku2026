@@ -1,0 +1,30 @@
+{
+  "executedAt": "2026-10-08T12:29:49.555Z",
+  "sourceRunId": "e8396d31-e0c0-41d3-9147-813b51088f1f",
+  "results": [
+    {
+      "hotel": "北京草园宾馆",
+      "address": "东直门北小街草园胡同29号。",
+      "requests": 2,
+      "observedAt": "2026-10-08T12:29:44.667Z",
+      "matched": false,
+      "place": null
+    },
+    {
+      "hotel": "格林豪泰北京东城区北新桥地铁站簋街智选酒店",
+      "address": "北京市东城区雍和宫大街北新桥头条56号",
+      "requests": 2,
+      "observedAt": "2026-10-08T12:29:46.886Z",
+      "matched": false,
+      "place": null
+    },
+    {
+      "hotel": "如家商旅(金标)-北京东直门雍和宫簋街店",
+      "address": "北京北京东城区东直门内北小街草园胡同10号",
+      "requests": 2,
+      "observedAt": "2026-10-08T12:29:49.067Z",
+      "matched": false,
+      "place": null
+    }
+  ]
+}

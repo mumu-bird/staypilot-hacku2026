@@ -1,0 +1,83 @@
+{
+  "executedAt": "2026-10-04T05:07:14.059Z",
+  "reusedObservations": true,
+  "realObservationCompletedAt": "2026-10-04T05:03:29.214Z",
+  "jevObservationCompletedAt": "2026-10-04T05:02:43.544Z",
+  "scope": "真实只读评估＋独立仿真酒店测试资金交易；没有真实付款",
+  "realCase": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "adultCount": 2,
+    "roomCount": 1,
+    "childCount": 0,
+    "size": 10
+  },
+  "simulationScenario": "baseline/tax_spike 原仿真杭州目录，非北京真实酒店",
+  "checks": [
+    {
+      "name": "静态文件读取失败返回错误而不崩溃，后续会话接口仍可用",
+      "result": "passed"
+    },
+    {
+      "name": "历史真实证据自动汇总、规则评估、条件组合、Jev真实调用与独立哈希核验",
+      "result": "passed",
+      "detail": {
+        "model": "jev-1.13.0",
+        "candidates": 3,
+        "alternatives": 3
+      }
+    },
+    {
+      "name": "实时双源查询、地图核验、房型检查与自动规则评估",
+      "result": "passed",
+      "detail": {
+        "candidates": 12,
+        "maps": 7,
+        "roomHotels": 3,
+        "errors": [],
+        "elapsedMs": 45661
+      }
+    },
+    {
+      "name": "两个真实购买入口实际阻断，钱包与订单未变",
+      "result": "passed"
+    },
+    {
+      "name": "仿真网页自主初筛、评论、跨平台比较、结算与确认订单",
+      "result": "passed",
+      "detail": {
+        "totalCents": 45500,
+        "platform": "a"
+      }
+    },
+    {
+      "name": "先订新后退旧，退款未到账期间保留真实测试占款",
+      "result": "passed",
+      "detail": {
+        "exposureCents": 77000,
+        "availableCents": 23000
+      }
+    },
+    {
+      "name": "退款到账释放余额，最终住宿成本315元",
+      "result": "passed",
+      "detail": {
+        "realizedCostCents": 0,
+        "exposureCents": 31500
+      }
+    },
+    {
+      "name": "交易审计哈希链核验",
+      "result": "passed"
+    },
+    {
+      "name": "仿真税费超额的1555元结算报价被服务端实际阻断，订单和钱包不变",
+      "result": "passed",
+      "detail": {
+        "reason": "含税总价 ¥1,555 加累计不可退费用超出预算 ¥1,000"
+      }
+    }
+  ]
+}

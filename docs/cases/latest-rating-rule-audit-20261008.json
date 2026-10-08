@@ -1,0 +1,18 @@
+{
+  "kind": "local_saved_evidence_reevaluation",
+  "sourceRunId": "84e65759-cef8-4363-9157-5c006f4d907e",
+  "ratingFloor": 4.72,
+  "oldScore": "9.4",
+  "newPageScore": {
+    "score": 9.5,
+    "scale": 10,
+    "totalCount": 1434
+  },
+  "observedAt": "2026-10-08T10:25:25.366Z",
+  "candidateRatingRejected": false,
+  "optionsRatingRejected": false,
+  "facts": [
+    "Rating used for screening: 9.5/10; observed 2026-10-08T10:25:25.366Z; page_observation."
+  ],
+  "transactionEnabled": false
+}

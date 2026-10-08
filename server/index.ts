@@ -1,3 +1,5 @@
+import {isPrivatePagePath} from './private-path.ts';
+import {readJsonBody,RequestInputError,maxJsonBodyBytes} from './http-input.ts';
 import http from 'node:http';
 import { randomBytes, createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
@@ -6,12 +8,13 @@ import { createServer as createViteServer } from 'vite';
 import { Engine } from './engine.ts';
 import { BrowserAgent } from './browser-agent.ts';
 import { interpretPreference, modelConfigured } from './model.ts';
-import {findMapPlaces,mapRoutes,amapConfigured} from './amap.ts';
+import {findNearbyHotelLeads,findMapPlaces,mapRoutes,amapConfigured} from './amap.ts';
 import { RealAgent } from './real-agent.ts';
 import { fliggyEvidence,reviewAssessment } from './fliggy-evidence.ts';
 import { providerStatus,discoverBookingTools } from './providers.ts';
 import {RollinggoAgent,rollinggoConfigured} from './rollinggo.ts';
 import {typesafeConfigured,typeSafeHttp} from './typesafe.ts';
+import {LiveWorkflow} from './live-workflow.ts';
 import type { Platform } from '../shared/types.ts';
 
 const port=Number(process.env.PORT||4173),host=process.env.HOST||'127.0.0.1';
@@ -20,6 +23,8 @@ mkdirSync('data',{recursive:true});
 const sessions=new Map<string,{engine:Engine;agent:BrowserAgent}>();
 const realSessions=new Map<string,RealAgent>();
 const rollinggoSessions=new Map<string,RollinggoAgent>();
+const workflowSessions=new Map<string,LiveWorkflow>();
+function workflowSession(sid:string){let flow=workflowSessions.get(sid);if(!flow){flow=new LiveWorkflow(sid,{requireQueryConsent:true,nearbyHotels:findNearbyHotelLeads,flySearch:input=>realSession(sid).search(input),rollingSearch:input=>rollinggoSession(sid).search(input),rollingDetail:input=>rollinggoSession(sid).detail(input),rollingLookup:input=>rollinggoSession(sid).detailByName(input),places:findMapPlaces,routes:mapRoutes,jev:typeSafeHttp});workflowSessions.set(sid,flow);}return flow;}
 function rollinggoSession(sid:string){let agent=rollinggoSessions.get(sid);if(!agent){agent=new RollinggoAgent(sid);rollinggoSessions.set(sid,agent);}return agent;}
 function realSession(sid:string){let agent=realSessions.get(sid);if(!agent){agent=new RealAgent(sid);realSessions.set(sid,agent);}return agent;}
 const scenarios=[
@@ -35,8 +40,8 @@ const scenarios=[
 const vite=process.env.NODE_ENV==='production'?null:await createViteServer({server:{middlewareMode:true},appType:'spa'});
 function advance(engine:Engine,minutes:number){const s=engine.getState();const finalAt=s.mandate.firstDeadline-60000;const target=s.clock.now+minutes*60000;if(s.agent.monitoring&&!engine.lastOrder()&&s.clock.now<finalAt&&target>=finalAt){engine.tick((finalAt-s.clock.now)/60000);engine.log('deadline_guard','抵达最后核验节点','先执行截止前的最后一轮网页核验，结束后再继续推进仿真时间。');}else engine.tick(minutes);}
 function shouldRun(engine:Engine){const s=engine.getState();const finalAt=s.mandate.firstDeadline-60000;return s.agent.monitoring&&(s.clock.now>=(s.agent.nextRunAt||0)||(!engine.lastOrder()&&s.clock.now>=finalAt&&(s.agent.lastRunAt===null||s.agent.lastRunAt<finalAt)));}
-function json(res:http.ServerResponse,value:unknown,status=200){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));}
-async function body(req:http.IncomingMessage){let text='';for await(const chunk of req){text+=chunk;if(text.length>65536)throw new Error('请求内容过大');}return text?JSON.parse(text):{};}
+function json(res:http.ServerResponse,value:unknown,status=200){if(res.headersSent||res.writableEnded){res.destroy();return;}const encoded=JSON.stringify(value);res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(encoded);}
+async function body(req:http.IncomingMessage):Promise<any>{if(Number(req.headers['content-length'])>maxJsonBodyBytes)throw new RequestInputError('请求内容过大，请缩短输入后重试。',413);return readJsonBody(req);}
 function session(req:http.IncomingMessage,res:http.ServerResponse){
   let sid=/staypilot_session=([a-f0-9]{32})/.exec(req.headers.cookie||'')?.[1];
   if(!sid){sid=randomBytes(16).toString('hex');res.setHeader('Set-Cookie',`staypilot_session=${sid}; Path=/; HttpOnly; SameSite=Lax`);}
@@ -48,16 +53,27 @@ const mime:Record<string,string>={'.html':'text/html; charset=utf-8','.js':'text
 const server=http.createServer(async(req,res)=>{
   try{
     const url=new URL(req.url||'/',origin),path=url.pathname;
+    if(isPrivatePagePath(path)){json(res,{error:'Not found'},404);return;}
+    if(path==='/api/health'&&req.method==='GET'){json(res,{status:'ok',checkedAt:new Date().toISOString(),realTransactionEnabled:false});return;}
     if(path.startsWith('/api/')||path.startsWith('/evidence/')){
       const {sid,engine,agent}=session(req,res);
       if(path.startsWith('/evidence/')){
         if(!path.startsWith(`/evidence/${sid}/`)){json(res,{error:'页面证据属于其他演示会话。'},403);return;}
         const file=resolve('public',`.${path}`);if(!file.startsWith(resolve('public/evidence',sid)+'/')||!existsSync(file)){json(res,{error:'证据不存在'},404);return;}
-        res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));return;
+        const contents=readFileSync(file);res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(contents);return;
       }
       if(req.method==='POST'){
         if(req.headers.origin){const requestOrigin=new URL(req.headers.origin);if(requestOrigin.host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'跨站写入被拒绝'},403);return;}}
         const payload=await body(req);
+        if(path==='/api/live/workflow/authorize'){json(res,workflowSession(sid).authorizeQueries(payload));return;}
+        if(path==='/api/live/workflow/expand'){json(res,await workflowSession(sid).expandNearby(payload));return;}
+        if(path==='/api/live/workflow/refresh'){json(res,await workflowSession(sid).refreshCandidate(payload));return;}
+        if(path==='/api/live/workflow/select'){json(res,workflowSession(sid).selectInspection(payload));return;}
+        if(path==='/api/live/workflow/reevaluate'){json(res,await workflowSession(sid).reevaluate(payload));return;}
+        if(path==='/api/live/workflow/recheck'){json(res,await workflowSession(sid).recheck(payload));return;}
+        if(path==='/api/live/workflow/run'){if(payload.mode==='live'&&!process.env.FLYAI_API_KEY?.trim()&&!process.env.ROLLINGGO_API_KEY?.trim()){json(res,{error:'尚未配置酒店查询服务，请配置FlyAI或RollingGo服务端凭证；可继续使用明确标注的历史回放。'},503);return;}if(workflowSession(sid).state().running){json(res,{error:'本会话核验正在运行，请等待结束。'},409);return;}json(res,await workflowSession(sid).run(payload));return;}
+        if(path==='/api/live/workflow/revoke'){json(res,workflowSession(sid).stopMonitor('consent_revoked'));return;}
+        if(path==='/api/live/workflow/monitor'){if(payload.enabled===false){json(res,workflowSession(sid).stopMonitor());return;}const {enabled,...input}=payload;if(enabled!==true)throw new Error('请明确开启或停止监控');if(!process.env.FLYAI_API_KEY?.trim()&&!process.env.ROLLINGGO_API_KEY?.trim()){json(res,{error:'尚未配置酒店查询服务，不能启动实时监控。'},503);return;}json(res,await workflowSession(sid).startMonitor(input));return;}
         if(path==='/api/live/jev/assess'){json(res,await rollinggoSession(sid).assess(payload));return;}
         if(path==='/api/live/jev/models'){json(res,await typeSafeHttp('/v1/models'));return;}
         if(path==='/api/live/rollinggo/discover'){json(res,await rollinggoSession(sid).discover());return;}
@@ -93,6 +109,9 @@ const server=http.createServer(async(req,res)=>{
         json(res,{error:'接口不存在'},404);return;
       }
       if(path==='/api/live/integrations'){json(res,{model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},rollinggo:{configured:rollinggoConfigured()},jev:{configured:typesafeConfigured(),model:process.env.TYPESAFE_MODEL||'jev-latest'},realBooking:false});return;}
+      if(path==='/api/live/workflow/runs'){const runId=url.searchParams.get('runId');const flow=workflowSession(sid);const run=runId?flow.savedRun(runId):null;json(res,runId?(run?[run]:[]):flow.history());return;}
+      if(path==='/api/live/workflow/rechecks'){const runId=url.searchParams.get('runId');json(res,workflowSession(sid).recheckHistory({runId,...(url.searchParams.has('candidateKey')?{candidateKey:url.searchParams.get('candidateKey')}:{}),...(url.searchParams.has('ratePlanId')?{ratePlanId:url.searchParams.get('ratePlanId')}:{} )}));return;}
+      if(path==='/api/live/workflow/state'){json(res,workflowSession(sid).state());return;}
       if(path==='/api/live/rollinggo/state'){json(res,rollinggoSession(sid).state());return;}
       if(path==='/api/state'){json(res,{...engine.getState(),modelConfigured:modelConfigured()});return;}
       if(path==='/api/live/fliggy/state'){json(res,realSession(sid).state());return;}
@@ -112,9 +131,10 @@ const server=http.createServer(async(req,res)=>{
     }
     if(vite){vite.middlewares(req,res,()=>{res.statusCode=404;res.end('Not found');});return;}
     const target=resolve('dist',`.${path}`);const safe=target.startsWith(resolve('dist')+'/')&&existsSync(target)&&extname(target);
-    const file=safe?target:resolve('dist/index.html');res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));
-  }catch(error){json(res,{error:error instanceof Error?error.message:'请求失败'},400);}
+    const file=safe?target:resolve('dist/index.html');const contents=readFileSync(file);res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(contents);
+  }catch(error){json(res,{error:error instanceof Error?error.message:'请求失败'},error instanceof RequestInputError?error.status:400);}
 });
+server.requestTimeout=30000;server.headersTimeout=15000;server.maxHeadersCount=100;
 let lastTick=Date.now();
 setInterval(()=>{
   const elapsed=Date.now()-lastTick;lastTick=Date.now();
@@ -125,5 +145,5 @@ setInterval(()=>{
   }
 },1000).unref();
 server.listen(port,host,()=>console.log(`StayPilot ready: http://${host}:${port}`));
-async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();for(const agent of rollinggoSessions.values())agent.close();await vite?.close();server.close();server.closeAllConnections();}
+async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();for(const agent of rollinggoSessions.values())agent.close();for(const flow of workflowSessions.values())flow.close();await vite?.close();server.close();server.closeAllConnections();}
 process.on('SIGTERM',()=>void shutdown());process.on('SIGINT',()=>void shutdown());

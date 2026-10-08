@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-08T16:41:22.345Z",
+  "scope": "Actual local reads of saved merchant rechecks; no new provider request",
+  "runId": "91f131ea-dc65-4990-a842-693d97411824",
+  "ownIds": [
+    "4248c046-abb1-4d49-a32d-f35016fb7d58",
+    "ba3809b4-f74d-490a-b8f4-6c480d4b34a8"
+  ],
+  "statuses": [
+    "price_changed",
+    "not_found"
+  ],
+  "otherSessionCount": 0
+}

@@ -1,0 +1,18 @@
+{
+  "startedAt": "2026-10-08T14:23:06.867Z",
+  "completedAt": "2026-10-08T14:23:09.675Z",
+  "hotelId": 43565,
+  "name": "北京新侨饭店",
+  "rooms": 85,
+  "explicitlyNotFreeCancelable": 85,
+  "underBudget": 6,
+  "lowestDisplayEstimate": 481,
+  "verifiedFreeCancelable": 0,
+  "transactionEnabled": false,
+  "bookableQuote": false,
+  "limitations": [
+    "Display estimates do not establish final charges or confirmed inventory.",
+    "No free cancellation established; explicit cancelable=false violates current required-free-cancel policy.",
+    "85 returned plans do not represent all merchant offers."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "startedAt": "2026-10-08T14:26:44.210Z",
+  "completedAt": "2026-10-08T14:26:45.921Z",
+  "result": {
+    "source": "RollingGo MCP",
+    "observedAt": "2026-10-08T14:26:45.918Z",
+    "query": {
+      "destination": "北京",
+      "poi": "雍和宫",
+      "checkIn": "2026-10-09",
+      "checkOut": "2026-10-10",
+      "adultCount": 2,
+      "size": 10,
+      "roomCount": 1,
+      "childCount": 0
+    },
+    "filter": {
+      "cancelPolicy": "CANCELABLE"
+    },
+    "hotelId": 43565,
+    "name": "北京新侨饭店",
+    "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=43565&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+    "rooms": [],
+    "transactionEnabled": false,
+    "bookableQuote": false,
+    "missingFields": [
+      "评论原文、日期、数量与评分尺度",
+      "开业与翻新时间",
+      "准确目的地通勤",
+      "完整真实购买授权",
+      "订单、取消与退款接口"
+    ]
+  }
+}

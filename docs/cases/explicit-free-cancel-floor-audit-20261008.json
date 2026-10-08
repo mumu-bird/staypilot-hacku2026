@@ -1,0 +1,231 @@
+{
+  "kind": "local_saved_real_evidence_reevaluation",
+  "sourceRunId": "1022f981-8309-47cf-906c-13e1fad42a8f",
+  "originalObservedAt": "2026-10-08T11:45:59.802Z",
+  "policyUnchanged": true,
+  "results": [
+    {
+      "hotel": "时光漫步酒店(北京雍和宫店)",
+      "room": "时光大床房（怀旧小人书+佰草集洗护）",
+      "priceCents": 36400,
+      "status": "within_bounds",
+      "hardViolations": [],
+      "offer": {
+        "ratePlanName": "QUEEN BED ROOM",
+        "bedType": "1 大床",
+        "mealAmount": 0,
+        "mealType": "不含早餐",
+        "cancelable": true,
+        "cancellationStatus": "free_until",
+        "cancelUntil": "2026-10-08T20:00:00+08:00",
+        "onRequest": true,
+        "maxOccupancy": 2,
+        "windowType": "unspecified"
+      }
+    },
+    {
+      "hotel": "时光漫步酒店(北京雍和宫店)",
+      "room": "梦回童年大床房（怀旧游戏机）",
+      "priceCents": 39500,
+      "status": "within_bounds",
+      "hardViolations": [],
+      "offer": {
+        "ratePlanName": "CHILDHOOD NOSTALGIA DOUBLE BED ROOM (RETRO GAME CONSOLE)",
+        "bedType": "1 大床",
+        "mealAmount": 0,
+        "mealType": "不含早餐",
+        "cancelable": true,
+        "cancellationStatus": "free_until",
+        "cancelUntil": "2026-10-08T20:00:00+08:00",
+        "onRequest": true,
+        "maxOccupancy": 2,
+        "windowType": "unspecified"
+      }
+    },
+    {
+      "hotel": "时光漫步酒店(北京雍和宫店)",
+      "room": "双床房",
+      "priceCents": 43900,
+      "status": "within_bounds",
+      "hardViolations": [],
+      "offer": {
+        "ratePlanName": "Twin Bed Room",
+        "bedType": "1 大床 或 2 单人床",
+        "mealAmount": 0,
+        "mealType": "不含早餐",
+        "cancelable": true,
+        "cancellationStatus": "free_until",
+        "cancelUntil": "2026-10-08T20:00:00+08:00",
+        "onRequest": true,
+        "maxOccupancy": 2,
+        "windowType": "unspecified"
+      }
+    },
+    {
+      "hotel": "时光漫步酒店(北京雍和宫店)",
+      "room": "时光优享大床房（老榆木家具+高品质床品）",
+      "priceCents": 32200,
+      "status": "requires_confirmation",
+      "hardViolations": [],
+      "offer": {
+        "ratePlanName": "时光优享大床房（老榆木家具）",
+        "bedType": "1 大床",
+        "mealAmount": 0,
+        "mealType": "不含早餐",
+        "cancelable": true,
+        "cancellationStatus": "free_until",
+        "cancelUntil": "2026-10-08T20:00:00+08:00",
+        "onRequest": true,
+        "maxOccupancy": 2,
+        "windowType": "none"
+      }
+    }
+  ],
+  "transactionEnabled": false,
+  "explicitNotFree": [
+    {
+      "priceCents": 25700,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 31200,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 31500,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 32000,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 33900,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 34000,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 34400,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 35000,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 35200,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 35500,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 37600,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 38300,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 38300,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 39200,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 40800,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 41500,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 42000,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    },
+    {
+      "priceCents": 46000,
+      "status": "blocked",
+      "violations": [
+        "Free cancellation is explicitly unavailable; refund charges remain unknown."
+      ],
+      "refundStatus": "unknown"
+    }
+  ]
+}

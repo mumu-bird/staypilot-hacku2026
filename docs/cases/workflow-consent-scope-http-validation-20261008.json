@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-08T15:53:42.143Z",
+  "scope": "Local HTTP confirmation and rejection of changed trip/budget; no provider calls or transactions",
+  "checks": [
+    {
+      "status": 400,
+      "error": "行程或偏好不在已确认的只读授权范围内，请重新确认"
+    },
+    {
+      "status": 400,
+      "error": "行程或偏好不在已确认的只读授权范围内，请重新确认"
+    }
+  ]
+}

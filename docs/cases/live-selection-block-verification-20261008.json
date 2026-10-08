@@ -1,0 +1,9 @@
+{
+  "sourceRunId": "cac6df49-2057-4a60-95b4-e5b45564200e",
+  "optionStatus": "requires_confirmation",
+  "status": 400,
+  "response": {
+    "error": "方案尚未满足已知的授权范围，请调整并重新确认偏好或补齐证据"
+  },
+  "transactionEnabled": false
+}

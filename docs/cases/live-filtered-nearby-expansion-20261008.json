@@ -1,0 +1,536 @@
+{
+  "id": "fcbbddf7-c996-4d79-a69b-68f0a6433d37",
+  "mode": "live",
+  "startedAt": "2026-10-08T15:43:01.425Z",
+  "completedAt": "2026-10-08T15:43:10.281Z",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "adultCount": 2,
+    "size": 10,
+    "roomCount": 1,
+    "childCount": 0
+  },
+  "policy": {
+    "budgetCents": 60000,
+    "idealBudgetCents": 50000,
+    "priorities": "Prefer restful sleep and hygiene; do not increase the 600 CNY ceiling.",
+    "walkMinutes": 20,
+    "metroMinutes": 40,
+    "allowMetro": true,
+    "window": "preferred",
+    "requireCancelable": true,
+    "weights": {
+      "noise": 3,
+      "hygiene": 3,
+      "smell": 1,
+      "maintenance": 1,
+      "service": 1,
+      "space": 1,
+      "security": 3
+    },
+    "unacceptable": []
+  },
+  "evidenceAsOf": "2026-10-08T15:43:10.277Z",
+  "candidates": [
+    {
+      "candidate": {
+        "key": "rollinggo:2984419",
+        "hotelId": "2984419",
+        "name": "北京雍和宫孔庙和国子监博物馆映向雍合院子",
+        "address": "北新桥街道北新胡同31号",
+        "source": "RollingGo MCP",
+        "searchObservedAt": "2026-10-08T15:43:06.804Z",
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=2984419&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "displayPrice": null,
+        "rooms": [],
+        "roomQuery": {
+          "status": "empty",
+          "observedAt": "2026-10-08T15:43:06.804Z",
+          "filter": {
+            "cancelPolicy": "CANCELABLE"
+          },
+          "count": 0
+        },
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T15:43:08.682Z",
+          "origin": "116.418195,39.944745",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 7,
+            "meters": 475
+          },
+          "transits": [],
+          "warnings": [
+            "未取得有效公共交通路线，不能推定地铁直达"
+          ]
+        },
+        "reviews": null,
+        "errors": [],
+        "amenities": [
+          "叫醒服务",
+          "洗衣服务",
+          "送餐服务",
+          "专职行李员",
+          "行李寄存",
+          "外币兑换服务",
+          "快速入住退房",
+          "24小时前台",
+          "公共音响系统",
+          "棋牌室",
+          "SPA",
+          "无电梯",
+          "前台贵重物品保险柜",
+          "茶室",
+          "大堂吧",
+          "公共区域监控",
+          "无障碍客房",
+          "咖啡厅",
+          "酒吧",
+          "无烟楼层",
+          "快递服务",
+          "儿童看护",
+          "叫车服务",
+          "前台服务语言",
+          "接站服务",
+          "接机服务",
+          "传真/复印",
+          "翻译服务",
+          "吸烟区",
+          "公共区域禁烟",
+          "餐厅",
+          "儿童牙刷",
+          "儿童浴袍",
+          "公用区wifi",
+          "儿童餐",
+          "干衣机",
+          "急救包",
+          "净水机",
+          "火灾报警器",
+          "门禁系统",
+          "新风系统",
+          "灭火器",
+          "加湿器",
+          "熨斗/挂烫机",
+          "储物柜",
+          "送机服务",
+          "洗衣房",
+          "儿童桌面游戏/拼图",
+          "迷你高尔夫",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "花园",
+          "婴儿推车",
+          "送站服务",
+          "儿童拖鞋",
+          "一氧化碳报警器",
+          "电子身份证入住",
+          "楼梯扶手",
+          "走廊的视觉警报",
+          "共享办公空间",
+          "无停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T15:43:08.590Z",
+          "hotelId": "2984419"
+        },
+        "position": {
+          "observedAt": "2026-10-08T15:43:02.793Z",
+          "straightDistanceMeters": 288,
+          "withinInitialRadius": true
+        }
+      },
+      "status": "needs_evidence",
+      "tier": 0,
+      "minutes": 7,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "步行7分钟",
+        "地图直线距离288米（非通勤时间）"
+      ],
+      "rank": 1,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:592067",
+        "hotelId": "592067",
+        "name": "北京海纳宾馆(雍和宫店)",
+        "address": "北京东城区雍和宫大街北新胡同31号, 100007",
+        "source": "RollingGo MCP",
+        "searchObservedAt": "2026-10-08T15:43:03.995Z",
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=592067&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "displayPrice": null,
+        "rooms": [],
+        "roomQuery": {
+          "status": "empty",
+          "observedAt": "2026-10-08T15:43:03.995Z",
+          "filter": {
+            "cancelPolicy": "CANCELABLE"
+          },
+          "count": 0
+        },
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T15:43:05.332Z",
+          "origin": "116.418185,39.944788",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 7,
+            "meters": 474
+          },
+          "transits": [],
+          "warnings": [
+            "未取得有效公共交通路线，不能推定地铁直达"
+          ]
+        },
+        "reviews": null,
+        "errors": [],
+        "amenities": [
+          "独立淋浴间",
+          "书桌",
+          "国内长途电话",
+          "电视机",
+          "多种规格电源插座",
+          "拖鞋",
+          "电热水壶",
+          "110V电压插座",
+          "空调",
+          "免费洗漱用品(6样以上)",
+          "24小时热水",
+          "手动窗帘",
+          "床具:毯子或被子",
+          "Central air conditioning",
+          "吹风机"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T15:43:05.217Z",
+          "hotelId": "592067"
+        },
+        "position": {
+          "observedAt": "2026-10-08T15:43:02.793Z",
+          "straightDistanceMeters": 283,
+          "withinInitialRadius": true
+        }
+      },
+      "status": "needs_evidence",
+      "tier": 0,
+      "minutes": 7,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "步行7分钟",
+        "地图直线距离283米（非通勤时间）"
+      ],
+      "rank": 2,
+      "bookable": false
+    }
+  ],
+  "crossPlatform": [],
+  "tradeoffs": {
+    "evidenceHash": "d6615ea19618433213996fa8450f6f6061ba385ef606f0f74d61daffc3f6beb6",
+    "policyVersion": "c1de36914b2260503ea911435172a45914ac573f578fd3e8ae935fdf4dca5227",
+    "status": "needs_evidence",
+    "scope": "none",
+    "preferredOptionId": null,
+    "options": [],
+    "model": null,
+    "observedAt": "2026-10-08T15:43:10.281Z",
+    "choice": null,
+    "basis": null,
+    "nextAction": null,
+    "usage": null,
+    "reason": "No observed option has enough evidence for a comparison. Missing evidence is not a reason to increase the budget.",
+    "inspectionLog": []
+  },
+  "alternatives": [],
+  "jev": null,
+  "errors": [
+    "秦府客栈：平台身份或房型查询未完成，未生成报价方案；15分钟后可再次发现核验。"
+  ],
+  "trace": [
+    {
+      "at": "2026-10-08T14:24:15.170Z",
+      "action": "核验要求",
+      "reason": "只读模式；预算600元；不修改购买授权、订单或钱包。",
+      "previousHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "hash": "1e28dab456b862054a29ffd4845e2a2180bd512030f8a1c5dec1c315a92ee0db"
+    },
+    {
+      "at": "2026-10-08T14:24:15.170Z",
+      "action": "跨平台实时检索",
+      "reason": "并行查询飞猪与RollingGo；失败的数据源保留错误，不伪造结果。",
+      "previousHash": "1e28dab456b862054a29ffd4845e2a2180bd512030f8a1c5dec1c315a92ee0db",
+      "hash": "a4ec4bf96d46c030bd600c58f9ad36f1001ed064f865c04a2b73803fb6b428a3"
+    },
+    {
+      "at": "2026-10-08T14:24:20.334Z",
+      "action": "补查飞猪附近候选",
+      "reason": "使用官方distance_asc排序补查；顺序只用于发现候选，位置仍独立核验。",
+      "previousHash": "a4ec4bf96d46c030bd600c58f9ad36f1001ed064f865c04a2b73803fb6b428a3",
+      "hash": "c1d0df40248e968e256d1e741e188055ec6c7bdb8636b3761cb9d2121cb244cb"
+    },
+    {
+      "at": "2026-10-08T14:24:24.690Z",
+      "action": "位置与通勤核验",
+      "reason": "最多核验12家；同名位置不能唯一匹配则保留未知。",
+      "previousHash": "c1d0df40248e968e256d1e741e188055ec6c7bdb8636b3761cb9d2121cb244cb",
+      "hash": "dfe75246302363ca746e762426607eb1aec68527da825c4e0494ae45daa353ec"
+    },
+    {
+      "at": "2026-10-08T14:24:51.979Z",
+      "action": "核验平台距离筛选",
+      "reason": "5家已匹配候选超出初筛半径；不宣称平台距离过滤生效，只按已允许的通勤范围继续评估。",
+      "previousHash": "dfe75246302363ca746e762426607eb1aec68527da825c4e0494ae45daa353ec",
+      "hash": "511a0bc06facc74c91e83892e7348d5173b1a3799b4f1224039ee430fd519a77"
+    },
+    {
+      "at": "2026-10-08T14:24:51.980Z",
+      "action": "核验房型",
+      "reason": "按通勤、评论与个人规则选最多3家RollingGo候选，逐家获取具体房型。",
+      "previousHash": "511a0bc06facc74c91e83892e7348d5173b1a3799b4f1224039ee430fd519a77",
+      "hash": "a04779ac1e1c89f96b3676887a2c6288fbc1e65b7b5e55f4eaeb10c17100d5d4"
+    },
+    {
+      "at": "2026-10-08T14:24:54.013Z",
+      "action": "核验附近酒店跨平台身份",
+      "reason": "时光漫步酒店（北京雍和宫店）：按名称取房型，再核验平台ID和地址。",
+      "previousHash": "a04779ac1e1c89f96b3676887a2c6288fbc1e65b7b5e55f4eaeb10c17100d5d4",
+      "hash": "f1e276816feefc908ce9713747a5849a6b9092754e7107a678f2d49cfce41925"
+    },
+    {
+      "at": "2026-10-08T14:24:58.196Z",
+      "action": "核验附近酒店跨平台身份",
+      "reason": "华侨夜泊君亭酒店(北京雍和宫北新桥地铁站店）：按名称取房型，再核验平台ID和地址。",
+      "previousHash": "f1e276816feefc908ce9713747a5849a6b9092754e7107a678f2d49cfce41925",
+      "hash": "f897715747a5e03782f36df224466f21c9a2b7ab0aafaa41d520b0c73331a51c"
+    },
+    {
+      "at": "2026-10-08T14:25:03.002Z",
+      "action": "刷新公开评论与分析",
+      "reason": "仅查询已登记且身份匹配的评论来源；保留旧观察，新增当前页面语义分析。",
+      "previousHash": "f897715747a5e03782f36df224466f21c9a2b7ab0aafaa41d520b0c73331a51c",
+      "hash": "33e3409fa308d08e358801b54ddd2c8d13bc40a21334787615c4fc861dc59482"
+    },
+    {
+      "at": "2026-10-08T14:25:11.446Z",
+      "action": "评论分析完成",
+      "reason": "jev-1.13.0；15条可见样本；来源时间2026-10-08T14:25:07.438Z；部分页面不代表全量评论。",
+      "previousHash": "33e3409fa308d08e358801b54ddd2c8d13bc40a21334787615c4fc861dc59482",
+      "hash": "332a6349d8b1c5c406daf4257d03bae69d80187bd9054ed6854ebb73a1322736"
+    },
+    {
+      "at": "2026-10-08T14:25:11.448Z",
+      "action": "刷新附加平台评论",
+      "reason": "只查询第二个已验证来源；独立保留评分与时间，不混合原平台评论。",
+      "previousHash": "332a6349d8b1c5c406daf4257d03bae69d80187bd9054ed6854ebb73a1322736",
+      "hash": "c47f21d02899f1904458bd28336ebeed1951a9f89e85b7abed64696bcf276d6b"
+    },
+    {
+      "at": "2026-10-08T14:25:20.950Z",
+      "action": "附加评论分析完成",
+      "reason": "jev-1.13.0；15条可见样本；来源时间2026-10-08T14:25:16.469Z。",
+      "previousHash": "c47f21d02899f1904458bd28336ebeed1951a9f89e85b7abed64696bcf276d6b",
+      "hash": "0a92445d113728ee480f9e76a800fd60051e15074e5078f9f6db7cad61a0cae5"
+    },
+    {
+      "at": "2026-10-08T14:25:20.950Z",
+      "action": "绑定评论来源",
+      "reason": "仅合并酒店身份匹配的既有浏览器评论观察；未知酒店保持无评论证据。历史网页报价没有重用为当前报价。",
+      "previousHash": "0a92445d113728ee480f9e76a800fd60051e15074e5078f9f6db7cad61a0cae5",
+      "hash": "bbab395ce77787fbf9485902e72add873656f0dbcbc83d96ca1e2752e5c596f0"
+    },
+    {
+      "at": "2026-10-08T14:25:20.950Z",
+      "action": "固定规则评估",
+      "reason": "先硬条件与通勤档位，再个人评论样本指标、展示价格与通勤时长；信息缺失不视为满足。",
+      "previousHash": "bbab395ce77787fbf9485902e72add873656f0dbcbc83d96ca1e2752e5c596f0",
+      "hash": "749722414d673cda6424bf0a92ac83f31ee635acce23051b2bb158510a67bb0f"
+    },
+    {
+      "at": "2026-10-08T14:25:20.952Z",
+      "action": "Jev核验建议",
+      "reason": "模型读取本轮合并的房型、路线、评论与缺口摘要；仅安排下一步证据任务。",
+      "previousHash": "749722414d673cda6424bf0a92ac83f31ee635acce23051b2bb158510a67bb0f",
+      "hash": "a5707019012ab0dc3b942f2992df3e76ac82de57acb86f234c6a7286f1d624c1"
+    },
+    {
+      "at": "2026-10-08T14:25:21.333Z",
+      "action": "评估可接受取舍",
+      "reason": "从实际房型生成方案；硬底线不参与交换，多个取舍自动调用Jev，缺口保持可见。",
+      "previousHash": "a5707019012ab0dc3b942f2992df3e76ac82de57acb86f234c6a7286f1d624c1",
+      "hash": "2b515a8b757f619ae2f188ea30531d3b5f4ed69e94859f8ca2e8176fcbd5f0c4"
+    },
+    {
+      "at": "2026-10-08T14:25:21.346Z",
+      "action": "生成条件组合",
+      "reason": "最多3套备选条件，所有剩余证据缺口保留；不修改预算与降级权限。",
+      "previousHash": "2b515a8b757f619ae2f188ea30531d3b5f4ed69e94859f8ca2e8176fcbd5f0c4",
+      "hash": "7c3b8b396f266bf5b2f147245740a770edffabf2c5681fe94e466d2fa2c39b98"
+    },
+    {
+      "at": "2026-10-08T14:25:21.346Z",
+      "action": "交易阻断",
+      "reason": "全部真实候选不可成交：最终含税价、完整真实购买授权与订单/取消/退款能力未核验；订单和钱包不变。",
+      "previousHash": "7c3b8b396f266bf5b2f147245740a770edffabf2c5681fe94e466d2fa2c39b98",
+      "hash": "d0c3f24f59dee5667b09112e35980a9c91ff5027cfd4cae72f6fe1731eaefe3c"
+    },
+    {
+      "at": "2026-10-08T15:28:05.888Z",
+      "action": "附近新酒店发现",
+      "reason": "地图返回10条线索，核验3条，保留2个平台记录；不沿用旧价格或评论，不修改预算或底线。",
+      "previousHash": "d0c3f24f59dee5667b09112e35980a9c91ff5027cfd4cae72f6fe1731eaefe3c",
+      "hash": "81a457b522943340fea25fdd9cda199b9ca9cefc9e6c73987452bf1e35e944ac"
+    },
+    {
+      "at": "2026-10-08T15:43:10.281Z",
+      "action": "附近新酒店发现",
+      "reason": "地图返回10条线索，核验3条，保留2个平台记录；不沿用旧价格或评论，不修改预算或底线。",
+      "previousHash": "81a457b522943340fea25fdd9cda199b9ca9cefc9e6c73987452bf1e35e944ac",
+      "hash": "3dc67d311ad46341dd9684c260a1461cd3003bd8d1e70e74f4b9290617d25a93"
+    }
+  ],
+  "evidenceHash": "a36cb405e52b6ca2d51a8b7a2b3e17a0feacbe8774b082726a3908e97a972043",
+  "transactionEnabled": false,
+  "recommendation": null,
+  "summary": "附近发现仅核验最多3条新线索；原候选保留在原记录，不能认定覆盖全市场。",
+  "kind": "nearby_discovery",
+  "parentRunId": "d3809f68-412f-42d3-a26e-12ecfd7274fe",
+  "nearbyDiscovery": {
+    "observedAt": "2026-10-08T15:43:02.793Z",
+    "leadCount": 10,
+    "attemptedNames": [
+      "北京海纳宾馆(雍和宫店)",
+      "北京雍和宫孔庙和国子监博物馆映向雍合院子",
+      "秦府客栈"
+    ],
+    "acceptedCount": 2,
+    "nextRetryAt": "2026-10-08T15:43:05.888Z"
+  }
+}

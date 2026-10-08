@@ -1,0 +1,40 @@
+{
+  "verifiedAt": "2026-10-08T09:46:06.323Z",
+  "scope": "Isolated local copy, empty data, no keys; reuses installed dependencies and host Node/browser. Not Docker or another machine.",
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "path": "/live/workflow?lang=en",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "mode": "recorded",
+      "status": 200,
+      "reportedMode": "recorded",
+      "candidateCount": 3,
+      "tradeoffStatus": "model_unavailable",
+      "transactionEnabled": false,
+      "errors": []
+    },
+    {
+      "mode": "live",
+      "status": 200,
+      "reportedMode": "live",
+      "candidateCount": 0,
+      "tradeoffStatus": "needs_evidence",
+      "transactionEnabled": false,
+      "errors": [
+        "飞猪查询未完成",
+        "RollingGo查询未完成",
+        "飞猪附近排序补查未完成；仍保留已经取得的候选。",
+        "目的地地图查询未完成",
+        "目的地景点坐标未唯一匹配，未猜测坐标"
+      ]
+    }
+  ]
+}

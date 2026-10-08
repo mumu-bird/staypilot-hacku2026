@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-374787/novotel-beijing-xinqiao/review.html",
+    "observedAt": "2026-10-08T10:37:39.495Z",
+    "rating": 9.1,
+    "ratingMax": 10,
+    "totalCount": 10597,
+    "sampleCount": 15,
+    "coverage": "visible_page_only"
+  },
+  "analysis": {
+    "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-374787/novotel-beijing-xinqiao/review.html",
+    "sourceObservedAt": "2026-10-08T10:37:39.495Z",
+    "analyzedAt": "2026-10-08T10:37:44.571Z",
+    "hotel": {
+      "id": "374787",
+      "name": "北京新僑飯店",
+      "address": "崇文門西大街1號, 東城區, 北京, 100005"
+    },
+    "sourceRating": {
+      "score": 9.1,
+      "scale": 10,
+      "totalCount": 10597
+    },
+    "evidenceHash": "045f0f80ee7115c8f073aeabad9cb3f3c2ac9f84dc3fc71d1f06eb0ea142c97d",
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 16836,
+      "output_tokens": 2019
+    },
+    "thresholds": {
+      "issue": 0.8,
+      "absent": 0.2
+    },
+    "coverage": "visible_page_only",
+    "rows": [
+      {
+        "id": "2126512771",
+        "publishedAt": "2026-10-04",
+        "stayMonth": "2026-10",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "56282ca381d1203a13c62c1e4ed220f4e455467dca12a3d265dbc4eee0cef541",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.04,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.03,
+          "service": 0.03,
+          "space": 0.03,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "2128631267",
+        "publishedAt": "2026-10-06",
+        "stayMonth": "2026-10",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "5876343f00088d80babd55b59748938cd635768bffa30d5cba411893dfd4c38c",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.05,
+          "hygiene": 0.03,
+          "smell": 0.05,
+          "maintenance": 0.04,
+          "service": 0.03,
+          "space": 0.03,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "2132751205",
+        "publishedAt": "2026-10-08",
+        "stayMonth": "2026-10",
+        "rating": 9.7,
+        "ratingMax": 10,
+        "textHash": "4d9fc7373df4df7f1368c1bd6229f6f00e02bde8d4a1efd09fdfc8beaaf05241",
+        "issues": [],
+        "uncertain": [
+          "maintenance"
+        ],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.04,
+          "smell": 0.04,
+          "maintenance": 0.36,
+          "service": 0.07,
+          "space": 0.03,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2123030935",
+        "publishedAt": "2026-10-02",
+        "stayMonth": "2026-10",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "1a38290f35667c8be940e40d6b1fc18bd7fdea15d3bbcb9f4ccbb87a82cb1d5a",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.07,
+          "hygiene": 0.03,
+          "smell": 0.05,
+          "maintenance": 0.05,
+          "service": 0.03,
+          "space": 0.03,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "2127627773",
+        "publishedAt": "2026-10-05",
+        "stayMonth": "2026-09",
+        "rating": 9,
+        "ratingMax": 10,
+        "textHash": "9fb6630cd4c01633933a95349d38f16f96f6cc090d1075ef06c65009dfc8ffc7",
+        "issues": [
+          "noise"
+        ],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.89,
+          "hygiene": 0.04,
+          "smell": 0.06,
+          "maintenance": 0.1,
+          "service": 0.09,
+          "space": 0.04,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2127752025",
+        "publishedAt": "2026-10-05",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "8dbfb9a1c740ac084dcbd7a7b1db60e82e7b62b94247002fcd5e515d45040e8f",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.03,
+          "smell": 0.05,
+          "maintenance": 0.06,
+          "service": 0.04,
+          "space": 0.04,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "2119902803",
+        "publishedAt": "2026-09-29",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "251de2fca4b5088fc3cc2db7e1e491705e2f6dcce9f38ee6bf58b0c16653b944",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.07,
+          "hygiene": 0.04,
+          "smell": 0.04,
+          "maintenance": 0.06,
+          "service": 0.04,
+          "space": 0.04,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2121297631",
+        "publishedAt": "2026-09-30",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "bb3f23d8deb2dc4e4e8c4223d04a4141e10d04f6ce17b93250f5536d49bcb594",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.04,
+          "smell": 0.04,
+          "maintenance": 0.05,
+          "service": 0.04,
+          "space": 0.03,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "2120590521",
+        "publishedAt": "2026-09-30",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "55cb22716edbc0ed9783543f25b9bc25560b23f797a4de6ea4a5377610b26170",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.07,
+          "hygiene": 0.04,
+          "smell": 0.05,
+          "maintenance": 0.08,
+          "service": 0.07,
+          "space": 0.04,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2118798839",
+        "publishedAt": "2026-09-28",
+        "stayMonth": "2026-09",
+        "rating": 3.5,
+        "ratingMax": 10,
+        "textHash": "4fae901fc9d2c12f65392b8d1c1b56aa284a6a3504b100486f98f71a5cf87a52",
+        "issues": [
+          "noise",
+          "maintenance",
+          "service"
+        ],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.94,
+          "hygiene": 0.06,
+          "smell": 0.05,
+          "maintenance": 0.96,
+          "service": 0.93,
+          "space": 0.05,
+          "security": 0.08
+        }
+      },
+      {
+        "id": "2110042891",
+        "publishedAt": "2026-09-20",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "9f84364e822d6ec98c9ddd7f81b432174a03ec3db0885c07fbbd361fa0576b79",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.08,
+          "hygiene": 0.04,
+          "smell": 0.05,
+          "maintenance": 0.07,
+          "service": 0.05,
+          "space": 0.04,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2120604121",
+        "publishedAt": "2026-09-30",
+        "stayMonth": "2026-09",
+        "rating": 9.7,
+        "ratingMax": 10,
+        "textHash": "832858acc39646a7715756802e64755bd4dd02908b79d4eacd8a0c6bd2db0171",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.04,
+          "smell": 0.05,
+          "maintenance": 0.08,
+          "service": 0.05,
+          "space": 0.04,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2107099989",
+        "publishedAt": "2026-09-18",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "ca799ff6bb7557487a61cd4e7c989814e2a479ba3466933c9a0dda131e03c2a5",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.04,
+          "smell": 0.05,
+          "maintenance": 0.1,
+          "service": 0.05,
+          "space": 0.04,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2079043693",
+        "publishedAt": "2026-08-25",
+        "stayMonth": "2026-08",
+        "rating": 7.5,
+        "ratingMax": 10,
+        "textHash": "dc81b5b604a1903760caa217a40ba83058c0dd36d8683b4ecaf6d9cb4bbe0e59",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.09,
+          "hygiene": 0.05,
+          "smell": 0.05,
+          "maintenance": 0.11,
+          "service": 0.09,
+          "space": 0.05,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "2105196607",
+        "publishedAt": "2026-09-16",
+        "stayMonth": "2026-09",
+        "rating": 9.7,
+        "ratingMax": 10,
+        "textHash": "3c3d80bbd09b32301fc609bb252f4c945b60e826a5c57b1785215a3f65487281",
+        "issues": [],
+        "uncertain": [
+          "maintenance"
+        ],
+        "probabilities": {
+          "noise": 0.09,
+          "hygiene": 0.04,
+          "smell": 0.05,
+          "maintenance": 0.32,
+          "service": 0.09,
+          "space": 0.04,
+          "security": 0.04
+        }
+      }
+    ],
+    "limitations": [
+      "Model probabilities describe whether a source text mentions an issue, not hotel issue frequency or severity.",
+      "Thresholds are initial classification settings and need calibration; uncertain labels require verification.",
+      "Visible-page samples do not establish complete negative-review coverage."
+    ],
+    "transactionEnabled": false
+  },
+  "primaryReviewsPreserved": true,
+  "transactionEnabled": false
+}

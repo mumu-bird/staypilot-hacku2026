@@ -1,0 +1,42 @@
+{
+  "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+  "observedAt": "2026-10-08T08:58:08.554Z",
+  "score": "9.4",
+  "scoreMax": 10,
+  "count": 1552,
+  "captureMethod": "web_history",
+  "binding": {
+    "name": "时光漫步酒店(北京雍和宫店)",
+    "address": "安定门内大街方家胡同46号创意园",
+    "platformIds": {
+      "rollinggo": "41962",
+      "trip": "1181544"
+    }
+  },
+  "selection": "网页读取工具访问的平台历史索引页面，非实时评论API；选取可见且相关的样本，未读取全部负评。地址繁简字人工对应核验。",
+  "sampleLimitations": [
+    "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+    "The issue-bearing review is highly rated; issue classification is independent of its star rating."
+  ],
+  "negative": [
+    {
+      "date": "2026-03-14",
+      "summary": "住客提到门墙隔音较弱，但该次睡眠安静，且赞扬服务；为问题提及，不表示总体差评或所有房间存在问题。",
+      "issues": [
+        "noise"
+      ]
+    }
+  ],
+  "positive": [
+    {
+      "date": "2026-04-26",
+      "summary": "住客认可房间清洁、安静和服务。"
+    },
+    {
+      "date": "2026-06-21",
+      "summary": "住客认可整洁、安静和早餐，同时提到房屋并非很新。"
+    }
+  ],
+  "openingYear": null,
+  "renovationYear": null
+}

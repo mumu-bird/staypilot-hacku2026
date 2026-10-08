@@ -1,0 +1,54 @@
+{
+  "executedAt": "2026-10-08T11:15:07.588Z",
+  "scope": "Local production HTTP path protection; no contents read or exposed",
+  "results": [
+    {
+      "path": "/.env",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/.cache/xinqiao-structured-reviews.json",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/data/workflows/example.sqlite",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/server/index.ts",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/%2ecache/xinqiao-structured-reviews.json",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/@fs/Users/pomelo/Desktop/hacku_副本2/hotel-agent/.env",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/api/health",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/live/workflow",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "createsSession": false
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-08T15:50:40.377Z",
+  "scope": "Local HTTP workflow withdrawal; invalid empty payloads deliberately rejected before any provider call; no merchant query or order",
+  "records": [
+    {
+      "path": "revoke",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "expand",
+      "status": 400,
+      "error": "只读查询授权已撤销，请重新确认后再查询"
+    },
+    {
+      "path": "refresh",
+      "status": 400,
+      "error": "只读查询授权已撤销，请重新确认后再查询"
+    },
+    {
+      "path": "recheck",
+      "status": 400,
+      "error": "只读查询授权已撤销，请重新确认后再查询"
+    },
+    {
+      "path": "run",
+      "status": 400,
+      "error": "只读查询授权已撤销，请重新确认后再查询"
+    }
+  ]
+}

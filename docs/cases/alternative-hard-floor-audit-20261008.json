@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-10-08T09:22:11.229Z",
+  "method": "Local rule reevaluation of stored real observations; no new platform query",
+  "sourceRunId": "45b3b291-998c-4b1a-bd57-dd7078cd0b57",
+  "alternatives": [],
+  "excludedHotels": [
+    {
+      "hotel": "时光漫步酒店(北京雍和宫店)",
+      "reasons": [
+        "出现用户明确不可接受的问题：隔音"
+      ]
+    },
+    {
+      "hotel": "北京新侨饭店",
+      "reasons": [
+        "出现用户明确不可接受的问题：隔音"
+      ]
+    }
+  ],
+  "transactionEnabled": false
+}

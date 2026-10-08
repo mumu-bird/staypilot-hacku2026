@@ -9,7 +9,8 @@ export function validateFlyaiQuery(input:Record<string,unknown>):FlyaiQuery{
   const validDate=(d:string)=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&Number.isFinite(Date.parse(d))&&new Date(d).toISOString().slice(0,10)===d;
   const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai'}).format(new Date());
   if(!destination||!validDate(checkIn)||!validDate(checkOut)||checkIn<today||checkOut<=checkIn)throw new Error('请选择有效的未来入住日期，退房应晚于入住');
-  return {destination,poi,checkIn,checkOut};
+  const sorts=['distance_asc','rate_desc','price_asc','price_desc','no_rank'];if(input.sort!==undefined&&(typeof input.sort!=='string'||!sorts.includes(input.sort)))throw new Error('不支持的酒店排序方式');
+  return {destination,poi,checkIn,checkOut,...(input.sort!==undefined?{sort:input.sort as FlyaiQuery['sort']}:{})};
 }
 function safeUrl(value:unknown,image=false):string|null{
   if(typeof value!=='string')return null;
@@ -30,8 +31,9 @@ export async function searchFlyai(input:Record<string,unknown>):Promise<FlyaiRes
   try{
     const env:NodeJS.ProcessEnv={...process.env,FLYAI_API_KEY:key,NODE_USE_ENV_PROXY:'1',FLYAI_DEBUG:'0'};
     if(process.env.FLYAI_HTTPS_PROXY)env.HTTPS_PROXY=process.env.FLYAI_HTTPS_PROXY;
-    const args=[resolve('node_modules/@fly-ai/flyai-cli/dist/flyai-bundle.cjs'),'search-hotel','--dest-name',query.destination,'--check-in-date',query.checkIn,'--check-out-date',query.checkOut,'--sort','rate_desc'];
+    const args=[resolve('node_modules/@fly-ai/flyai-cli/dist/flyai-bundle.cjs'),'search-hotel','--dest-name',query.destination,'--check-in-date',query.checkIn,'--check-out-date',query.checkOut,'--sort',query.sort??'rate_desc','--hotel-types','酒店'];
     if(query.poi)args.push('--poi-name',query.poi);
+    if(query.poi&&query.sort==='distance_asc'){args.push('--key-words',query.poi);query.keywords=query.poi;}
     const stdout=await new Promise<string>((resolve,reject)=>execFile(process.execPath,args,{env,timeout:45000,maxBuffer:1024*1024},(error,out)=>error?reject(new Error('飞猪查询未完成，请检查密钥权限或网络后重试')):resolve(out)));
     return normalizeFlyai(JSON.parse(stdout.split(key).join('[REDACTED]')),query);
   }finally{running=false;}

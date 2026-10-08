@@ -1,0 +1,12 @@
+{
+  "startedAt": "2026-10-08T13:05:11.642Z",
+  "completedAt": "2026-10-08T13:05:12.241Z",
+  "operation": "GET /v1/models",
+  "status": "response_received",
+  "recognizedCatalog": true,
+  "models": [
+    "jev-latest",
+    "jev-preview"
+  ],
+  "transactionEnabled": false
+}

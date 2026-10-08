@@ -1,0 +1,427 @@
+{
+  "review": {
+    "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+    "observedAt": "2026-10-08T08:58:08.554Z",
+    "score": "9.4",
+    "scoreMax": 10,
+    "count": 1552,
+    "captureMethod": "web_history",
+    "binding": {
+      "name": "时光漫步酒店(北京雍和宫店)",
+      "address": "安定门内大街方家胡同46号创意园",
+      "platformIds": {
+        "rollinggo": "41962",
+        "trip": "1181544"
+      }
+    },
+    "selection": "网页读取工具访问的平台历史索引页面，非实时评论API；选取可见且相关的样本，未读取全部负评。地址繁简字人工对应核验。",
+    "sampleLimitations": [
+      "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+      "The issue-bearing review is highly rated; issue classification is independent of its star rating."
+    ],
+    "negative": [
+      {
+        "date": "2026-03-14",
+        "summary": "住客提到门墙隔音较弱，但该次睡眠安静，且赞扬服务；为问题提及，不表示总体差评或所有房间存在问题。",
+        "issues": [
+          "noise"
+        ]
+      }
+    ],
+    "positive": [
+      {
+        "date": "2026-04-26",
+        "summary": "住客认可房间清洁、安静和服务。"
+      },
+      {
+        "date": "2026-06-21",
+        "summary": "住客认可整洁、安静和早餐，同时提到房屋并非很新。"
+      }
+    ],
+    "openingYear": null,
+    "renovationYear": null,
+    "modelAnalysis": {
+      "model": "jev-1.13.0",
+      "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+      "sourceObservedAt": "2026-10-08T10:25:25.366Z",
+      "analyzedAt": "2026-10-08T10:25:27.669Z",
+      "evidenceHash": "721c071e7221023be0f9839e98c0cbcef8fb9fecf923cb21e9f787f64d54860c",
+      "sampleCount": 15,
+      "sourceRating": {
+        "score": 9.5,
+        "scale": 10,
+        "totalCount": 1434
+      },
+      "coverage": "visible_page_only",
+      "mentions": [],
+      "uncertain": [
+        {
+          "id": "2116071377",
+          "date": "2026-09-26",
+          "issues": [
+            "space"
+          ]
+        },
+        {
+          "id": "2098972173",
+          "date": "2026-09-11",
+          "issues": [
+            "maintenance"
+          ]
+        },
+        {
+          "id": "1875711837",
+          "date": "2026-03-14",
+          "issues": [
+            "noise",
+            "maintenance"
+          ]
+        },
+        {
+          "id": "1937862417",
+          "date": "2026-05-06",
+          "issues": [
+            "noise"
+          ]
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+    "observedAt": "2026-10-08T10:25:25.366Z",
+    "rating": 9.5,
+    "ratingMax": 10,
+    "totalCount": 1434,
+    "sampleCount": 15,
+    "coverage": "visible_page_only"
+  },
+  "analysis": {
+    "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+    "sourceObservedAt": "2026-10-08T10:25:25.366Z",
+    "analyzedAt": "2026-10-08T10:25:27.669Z",
+    "hotel": {
+      "id": "1181544",
+      "name": "時光漫步酒店（北京雍和宮店）",
+      "address": "安定門內大街方家衚衕46號創意園, 東城區, 北京, 100007"
+    },
+    "sourceRating": {
+      "score": 9.5,
+      "scale": 10,
+      "totalCount": 1434
+    },
+    "evidenceHash": "721c071e7221023be0f9839e98c0cbcef8fb9fecf923cb21e9f787f64d54860c",
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 16869,
+      "output_tokens": 2019
+    },
+    "thresholds": {
+      "issue": 0.8,
+      "absent": 0.2
+    },
+    "coverage": "visible_page_only",
+    "rows": [
+      {
+        "id": "2126670605",
+        "publishedAt": "2026-10-05",
+        "stayMonth": "2026-10",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "ff09ad0b49d8046789243e5003b549eab245c9da89a29da6762583ec2fc20ff8",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.03,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.03,
+          "service": 0.03,
+          "space": 0.03,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "2116071377",
+        "publishedAt": "2026-09-26",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "4a0dc3054c8b080c2b7a8df33e76c9d6a00ab7675caed15432c8b2b50b47336c",
+        "issues": [],
+        "uncertain": [
+          "space"
+        ],
+        "probabilities": {
+          "noise": 0.04,
+          "hygiene": 0.03,
+          "smell": 0.03,
+          "maintenance": 0.06,
+          "service": 0.04,
+          "space": 0.42,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "2098972173",
+        "publishedAt": "2026-09-11",
+        "stayMonth": "2026-09",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "1824acad95e50087f42ef08adf3e8aaed5b12ec7a163c1674cf5b62d3185dfaf",
+        "issues": [],
+        "uncertain": [
+          "maintenance"
+        ],
+        "probabilities": {
+          "noise": 0.05,
+          "hygiene": 0.04,
+          "smell": 0.04,
+          "maintenance": 0.62,
+          "service": 0.11,
+          "space": 0.04,
+          "security": 0.05
+        }
+      },
+      {
+        "id": "2120497473",
+        "publishedAt": "2026-09-30",
+        "stayMonth": "2026-08",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "5ccbba577e9908ff1af0ff9605f6a17f4edc653478cca90cc66250c2c5131685",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.05,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.04,
+          "service": 0.03,
+          "space": 0.04,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "1956869693",
+        "publishedAt": "2026-05-22",
+        "stayMonth": "2026-05",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "24859b75ef09ff08c86d85133381c5eb2bc7bf39e8508e984609af0c293672df",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.04,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.04,
+          "service": 0.02,
+          "space": 0.03,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "1984183111",
+        "publishedAt": "2026-06-14",
+        "stayMonth": "2026-06",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "148a5cc4de520a1e3af53bcb89a8e75cedac979240ea1c3c11f084c34de77c92",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.05,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.04,
+          "service": 0.03,
+          "space": 0.05,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "1992048231",
+        "publishedAt": "2026-06-21",
+        "stayMonth": "2026-05",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "6c0359b7ed0caf23688061acb54ed94a06b89f76fdef0bd978157213945256cb",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.05,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.08,
+          "service": 0.03,
+          "space": 0.06,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "1924952571",
+        "publishedAt": "2026-04-26",
+        "stayMonth": "2026-04",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "9ca5522aaa750c76d6a4ff366e5473fd86a85d77d268536044e7c993c1354479",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.04,
+          "smell": 0.04,
+          "maintenance": 0.04,
+          "service": 0.03,
+          "space": 0.04,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "1928296221",
+        "publishedAt": "2026-04-29",
+        "stayMonth": "2026-04",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "0156ded0e7f80e43dc947e0e8e2958d3dea876ce0974fbc6c75e3c1f42adc043",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.08,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.04,
+          "service": 0.03,
+          "space": 0.04,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "1923537101",
+        "publishedAt": "2026-04-25",
+        "stayMonth": "2026-04",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "1497b5e163fc8c565c571c67e6c9ef8bcb3991587e090afd07dc853a64364208",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.04,
+          "service": 0.03,
+          "space": 0.04,
+          "security": 0.03
+        }
+      },
+      {
+        "id": "1904395847",
+        "publishedAt": "2026-04-09",
+        "stayMonth": "2026-04",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "be1ab485667be44a3ee49fb2cfd60b69cbe30d02f365ef82a7d4c27aea838844",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.03,
+          "smell": 0.06,
+          "maintenance": 0.05,
+          "service": 0.03,
+          "space": 0.05,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "1902739730",
+        "publishedAt": "2026-04-07",
+        "stayMonth": "2026-03",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "2036fb66bee869eeadbf18b1cd4289a8c81d1b803596cf8b77b0986d92a148ad",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.06,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.04,
+          "service": 0.03,
+          "space": 0.05,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "1945485123",
+        "publishedAt": "2026-05-12",
+        "stayMonth": "2026-05",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "7fb9e7de956083606721c64fed99fef46f7d81ca2e9159d0e3869407593a0bcd",
+        "issues": [],
+        "uncertain": [],
+        "probabilities": {
+          "noise": 0.09,
+          "hygiene": 0.04,
+          "smell": 0.04,
+          "maintenance": 0.05,
+          "service": 0.04,
+          "space": 0.05,
+          "security": 0.05
+        }
+      },
+      {
+        "id": "1875711837",
+        "publishedAt": "2026-03-14",
+        "stayMonth": "2026-03",
+        "rating": 10,
+        "ratingMax": 10,
+        "textHash": "cb648177c7dcd878dfa010a1a3d6070e864b1775299ea398b13e6bd525259e80",
+        "issues": [],
+        "uncertain": [
+          "noise",
+          "maintenance"
+        ],
+        "probabilities": {
+          "noise": 0.72,
+          "hygiene": 0.04,
+          "smell": 0.04,
+          "maintenance": 0.4,
+          "service": 0.05,
+          "space": 0.07,
+          "security": 0.04
+        }
+      },
+      {
+        "id": "1937862417",
+        "publishedAt": "2026-05-06",
+        "stayMonth": "2026-05",
+        "rating": 9.7,
+        "ratingMax": 10,
+        "textHash": "579a1bef15da3af680cdf721a5ef36e3030f09a1818d876b15863585b35ed869",
+        "issues": [],
+        "uncertain": [
+          "noise"
+        ],
+        "probabilities": {
+          "noise": 0.21,
+          "hygiene": 0.03,
+          "smell": 0.04,
+          "maintenance": 0.12,
+          "service": 0.04,
+          "space": 0.05,
+          "security": 0.04
+        }
+      }
+    ],
+    "limitations": [
+      "Model probabilities describe whether a source text mentions an issue, not hotel issue frequency or severity.",
+      "Thresholds are initial classification settings and need calibration; uncertain labels require verification.",
+      "Visible-page samples do not establish complete negative-review coverage."
+    ],
+    "transactionEnabled": false
+  }
+}

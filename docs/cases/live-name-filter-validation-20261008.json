@@ -1,0 +1,69 @@
+{
+  "startedAt": "2026-10-08T15:35:42.383Z",
+  "completedAt": "2026-10-08T15:35:44.010Z",
+  "purpose": "Actual read-only name lookup with cancellation filter; empty results do not prove sold out or market-wide absence",
+  "result": {
+    "source": "RollingGo MCP",
+    "observedAt": "2026-10-08T15:35:42.816Z",
+    "query": {
+      "destination": "北京",
+      "poi": "雍和宫",
+      "checkIn": "2026-10-09",
+      "checkOut": "2026-10-10",
+      "adultCount": 2,
+      "size": 5,
+      "roomCount": 1,
+      "childCount": 0
+    },
+    "filter": {
+      "cancelPolicy": "CANCELABLE"
+    },
+    "hotelId": 293833,
+    "name": "炮局工厂青年旅舍(北京雍和宫地铁站店)",
+    "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=293833&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+    "rooms": [],
+    "transactionEnabled": false,
+    "bookableQuote": false,
+    "missingFields": [
+      "评论原文、日期、数量与评分尺度",
+      "开业与翻新时间",
+      "准确目的地通勤",
+      "完整真实购买授权",
+      "订单、取消与退款接口"
+    ],
+    "identity": {
+      "hotelId": 293833,
+      "name": "炮局工厂青年旅舍(北京雍和宫地铁站店)",
+      "address": "炮局头条29号院",
+      "amenities": [
+        "叫醒服务",
+        "洗衣服务",
+        "行李寄存",
+        "快速入住退房",
+        "24小时前台",
+        "无电梯",
+        "前台贵重物品保险柜",
+        "公共区域监控",
+        "咖啡厅",
+        "叫车服务",
+        "前台服务语言",
+        "接机服务",
+        "旅游票务服务",
+        "传真/复印",
+        "吸烟区",
+        "公共区域禁烟",
+        "公用区wifi",
+        "急救包",
+        "净水机",
+        "灭火器",
+        "储物柜",
+        "送机服务",
+        "洗衣房",
+        "无停车场",
+        "WIFI"
+      ],
+      "observedAt": "2026-10-08T15:35:44.006Z",
+      "verified": true
+    }
+  }
+}

@@ -1,0 +1,20 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import {mkdtempSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {LiveWorkflow} from '../server/live-workflow.ts';
+const unsupported=async():Promise<any>=>{throw new Error('unused');};
+test('inspection selection checks scope, latest versions and freshness, persists and is idempotent',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'selection-'));let flow=new LiveWorkflow('case',{flySearch:unsupported,rollingSearch:unsupported,rollingDetail:unsupported,places:unsupported,routes:unsupported,jev:unsupported},dir);
+ const db=new DatabaseSync(join(dir,'case.sqlite'));
+ const hash='a'.repeat(64),version='b'.repeat(64);
+ const option={id:'one',candidateKey:'rollinggo:one',ratePlanId:'rate',hotelName:'Unit-test hotel',roomName:'Unit-test room',status:'within_bounds',hardViolations:[],minutes:20,priceCents:50000};
+ const room={ratePlanId:'rate',sourceObservedAt:new Date().toISOString(),cancellationStatus:'free_until',cancelUntil:new Date(Date.now()+3600000).toISOString()};
+ const run={id:'run',mode:'live',policy:{budgetCents:60000,requireCancelable:true},candidates:[{candidate:{key:option.candidateKey,rooms:[room],route:{observedAt:new Date().toISOString()}}}],evidenceAsOf:new Date().toISOString(),tradeoffs:{evidenceHash:hash,policyVersion:version,options:[option]}};
+ const save=()=>db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(run));save();
+ const request={runId:'run',optionId:'one',evidenceHash:hash,policyVersion:version};
+ try{const selection=flow.selectInspection(request);const deadline=room.cancelUntil;room.cancelUntil=new Date(Date.now()-1000).toISOString();save();awaitlessReject(()=>flow.selectInspection(request));room.cancelUntil=deadline;room.sourceObservedAt=new Date(Date.now()-16*60000).toISOString();save();awaitlessReject(()=>flow.selectInspection(request));room.sourceObservedAt=new Date().toISOString();run.evidenceAsOf=new Date(Date.now()+60000).toISOString();save();awaitlessReject(()=>flow.selectInspection(request));run.evidenceAsOf=new Date().toISOString();save();assert.equal(selection.purpose,'inspection_only');assert.equal(selection.transactionEnabled,false);assert.equal(flow.selectInspection(request).id,selection.id);assert.equal(flow.state().selection?.id,selection.id);awaitlessReject(()=>flow.selectInspection({...request,evidenceHash:'c'.repeat(64)}));awaitlessReject(()=>flow.selectInspection({...request,optionId:'foreign'}));option.status='requires_confirmation';save();awaitlessReject(()=>flow.selectInspection(request));option.status='blocked';save();awaitlessReject(()=>flow.selectInspection(request));option.status='within_bounds';run.evidenceAsOf=new Date(Date.now()-16*60000).toISOString();save();awaitlessReject(()=>flow.selectInspection(request));run.evidenceAsOf=new Date().toISOString();save();db.prepare('INSERT INTO rechecks(payload) VALUES(?)').run(JSON.stringify({runId:'run',candidateKey:option.candidateKey,ratePlanId:option.ratePlanId,status:'terms_changed'}));awaitlessReject(()=>flow.selectInspection(request));db.prepare('INSERT INTO rechecks(payload) VALUES(?)').run(JSON.stringify({runId:'run',candidateKey:option.candidateKey,ratePlanId:option.ratePlanId,status:'unchanged',after:{...room,cancelPolicy:'New terms repeated unchanged'}}));awaitlessReject(()=>flow.selectInspection(request));assert.equal(flow.state().selectionValid,false);for(let i=0;i<35;i++)db.prepare('INSERT INTO rechecks(payload) VALUES(?)').run(JSON.stringify({runId:'run',candidateKey:'rollinggo:other',ratePlanId:'other-'+i,status:'unchanged'}));assert.equal(flow.state().selectionValid,false);flow.close();flow=new LiveWorkflow('case',{flySearch:unsupported,rollingSearch:unsupported,rollingDetail:unsupported,places:unsupported,routes:unsupported,jev:unsupported},dir);assert.equal(flow.state().selection?.id,selection.id);}finally{db.close();flow.close();rmSync(dir,{recursive:true,force:true});}
+});
+function awaitlessReject(fn:()=>unknown){assert.throws(fn);}

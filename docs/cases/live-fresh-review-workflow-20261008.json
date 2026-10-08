@@ -1,0 +1,2779 @@
+{
+  "id": "84e65759-cef8-4363-9157-5c006f4d907e",
+  "mode": "live",
+  "startedAt": "2026-10-08T10:22:06.845Z",
+  "completedAt": "2026-10-08T10:23:07.769Z",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "adultCount": 2,
+    "size": 10,
+    "roomCount": 1,
+    "childCount": 0
+  },
+  "policy": {
+    "budgetCents": 60000,
+    "idealBudgetCents": 50000,
+    "priorities": "Sleep and hygiene matter; remain within 600 CNY and prefer a direct metro over increasing the budget.",
+    "walkMinutes": 20,
+    "metroMinutes": 40,
+    "allowMetro": true,
+    "window": "preferred",
+    "requireCancelable": true,
+    "weights": {
+      "noise": 3,
+      "hygiene": 3,
+      "smell": 1,
+      "maintenance": 1,
+      "service": 1,
+      "space": 1,
+      "security": 3
+    },
+    "unacceptable": []
+  },
+  "evidenceAsOf": "2026-10-08T10:23:01.928Z",
+  "candidates": [
+    {
+      "candidate": {
+        "key": "rollinggo:41962",
+        "hotelId": "41962",
+        "name": "时光漫步酒店(北京雍和宫店)",
+        "address": "安定门内大街方家胡同46号创意园",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "叫醒服务",
+          "洗衣服务",
+          "行李寄存",
+          "快速入住退房",
+          "24小时前台",
+          "图书馆",
+          "电梯",
+          "茶室",
+          "公共区域监控",
+          "咖啡厅",
+          "无烟楼层",
+          "快递服务",
+          "叫车服务",
+          "儿童书籍/影音",
+          "商务服务",
+          "传真/复印",
+          "翻译服务",
+          "公共区域禁烟",
+          "餐厅",
+          "儿童牙刷",
+          "公用区wifi",
+          "干衣机",
+          "火灾报警器",
+          "门禁系统",
+          "灭火器",
+          "加湿器",
+          "熨斗/挂烫机",
+          "洗衣房",
+          "无障碍通道",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "花园",
+          "婴儿推车",
+          "儿童玩具",
+          "儿童拖鞋",
+          "一氧化碳报警器",
+          "干衣机",
+          "楼梯扶手",
+          "提供轮椅",
+          "停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T10:22:45.594Z",
+          "hotelId": "41962"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T10:22:43.970Z",
+        "displayPrice": null,
+        "rooms": [
+          {
+            "ratePlanId": "t6bVJ59uIo-01S9jMJIEdL",
+            "roomName": "时光优享大床房（老榆木家具+高品质床品）",
+            "bedType": "1 大床",
+            "averagePrice": 322,
+            "estimatedStayPrice": 322,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+            "cancelUntil": "2026-10-08T20:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-08T10:23:01.924Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+            "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+            "bedType": "1 大床",
+            "averagePrice": 364,
+            "estimatedStayPrice": 364,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+            "cancelUntil": "2026-10-08T20:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-08T10:23:01.924Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "2IHNyZkdkFh-4EPqWWr4H2e",
+            "roomName": "梦回童年大床房（怀旧游戏机）",
+            "bedType": "1 大床",
+            "averagePrice": 395,
+            "estimatedStayPrice": 395,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+            "cancelUntil": "2026-10-08T20:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-08T10:23:01.924Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "9e5ez8cTHGg-8pOkgTUGUPC",
+            "roomName": "双床房",
+            "bedType": "1 大床 或 2 单人床",
+            "averagePrice": 439,
+            "estimatedStayPrice": 439,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+            "cancelUntil": "2026-10-08T20:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-08T10:23:01.924Z",
+            "windowType": "unspecified"
+          }
+        ],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:23.694Z",
+          "origin": "116.411954,39.943496",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 12,
+            "meters": 894
+          },
+          "transits": [
+            {
+              "minutes": 24,
+              "meters": 1321,
+              "walkingMeters": 892,
+              "lines": [
+                {
+                  "name": "84路(宋家庄枢纽站--惠新东桥西)",
+                  "type": "普通公交线路",
+                  "departure": "北新桥路口北",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "position": {
+          "observedAt": "2026-10-08T10:22:20.411Z",
+          "straightDistanceMeters": 617,
+          "withinInitialRadius": true
+        },
+        "reviews": {
+          "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+          "observedAt": "2026-10-08T08:58:08.554Z",
+          "score": "9.4",
+          "scoreMax": 10,
+          "count": 1552,
+          "captureMethod": "web_history",
+          "binding": {
+            "name": "时光漫步酒店(北京雍和宫店)",
+            "address": "安定门内大街方家胡同46号创意园",
+            "platformIds": {
+              "rollinggo": "41962",
+              "trip": "1181544"
+            }
+          },
+          "selection": "网页读取工具访问的平台历史索引页面，非实时评论API；选取可见且相关的样本，未读取全部负评。地址繁简字人工对应核验。",
+          "sampleLimitations": [
+            "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+            "The issue-bearing review is highly rated; issue classification is independent of its star rating."
+          ],
+          "negative": [
+            {
+              "date": "2026-03-14",
+              "summary": "住客提到门墙隔音较弱，但该次睡眠安静，且赞扬服务；为问题提及，不表示总体差评或所有房间存在问题。",
+              "issues": [
+                "noise"
+              ]
+            }
+          ],
+          "positive": [
+            {
+              "date": "2026-04-26",
+              "summary": "住客认可房间清洁、安静和服务。"
+            },
+            {
+              "date": "2026-06-21",
+              "summary": "住客认可整洁、安静和早餐，同时提到房屋并非很新。"
+            }
+          ],
+          "openingYear": null,
+          "renovationYear": null,
+          "modelAnalysis": {
+            "model": "jev-1.13.0",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "sourceObservedAt": "2026-10-08T10:22:53.213Z",
+            "analyzedAt": "2026-10-08T10:22:57.133Z",
+            "evidenceHash": "4845d9754c3bc9c023a8e30c2165d0bbc22ca98671ba983b66986b05d17e5377",
+            "sampleCount": 15,
+            "coverage": "visible_page_only",
+            "mentions": [],
+            "uncertain": [
+              {
+                "id": "2116071377",
+                "date": "2026-09-26",
+                "issues": [
+                  "space"
+                ]
+              },
+              {
+                "id": "2098972173",
+                "date": "2026-09-11",
+                "issues": [
+                  "maintenance"
+                ]
+              },
+              {
+                "id": "1875711837",
+                "date": "2026-03-14",
+                "issues": [
+                  "noise",
+                  "maintenance"
+                ]
+              },
+              {
+                "id": "1937862417",
+                "date": "2026-05-06",
+                "issues": [
+                  "noise"
+                ]
+              }
+            ]
+          }
+        },
+        "errors": []
+      },
+      "status": "needs_evidence",
+      "tier": 0,
+      "minutes": 12,
+      "risk": 3,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 1,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 3
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": {
+        "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+        "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+        "bedType": "1 大床",
+        "averagePrice": 364,
+        "estimatedStayPrice": 364,
+        "currency": "CNY",
+        "mealAmount": 0,
+        "mealType": "不含早餐",
+        "onRequest": true,
+        "cancelable": true,
+        "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+        "cancelUntil": "2026-10-08T20:00:00+08:00",
+        "cancellationStatus": "free_until",
+        "hasWindow": true,
+        "maxOccupancy": 2,
+        "size": "18",
+        "missingFields": [
+          "含税总价、税费与到店费用明细",
+          "报价有效期及成交前库存复核",
+          "取消截止后的费用及退款到账规则"
+        ],
+        "sourceObservedAt": "2026-10-08T10:23:01.924Z",
+        "windowType": "unspecified"
+      },
+      "reasons": [],
+      "gaps": [
+        "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+        "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+        "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+        "评论语义待核验：空间（评论2116071377，2026-09-26）；不能视为问题已排除",
+        "评论语义待核验：维护（评论2098972173，2026-09-11）；不能视为问题已排除",
+        "评论语义待核验：隔音（评论1875711837，2026-03-14）；不能视为问题已排除",
+        "评论语义待核验：维护（评论1875711837，2026-03-14）；不能视为问题已排除",
+        "评论语义待核验：隔音（评论1937862417，2026-05-06）；不能视为问题已排除",
+        "库存需要待确认或状态未知",
+        "外窗及采光尚未证实；内窗、暗窗不能等同外窗",
+        "高重要度评论问题需核验具体房型或整改证据",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "步行12分钟",
+        "地图直线距离617米（非通勤时间）",
+        "原平台评分9.4，评论1552条",
+        "房型展示价¥364，最终费用待复核"
+      ],
+      "rank": 1,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "fliggy:12633667",
+        "hotelId": "12633667",
+        "name": "时光漫步酒店（北京雍和宫店）",
+        "address": "安定门内大街方家胡同46号创意园，与雍和宫、南锣古巷相邻",
+        "source": "飞猪 FlyAI",
+        "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F2RxxdZ",
+        "searchObservedAt": "2026-10-08T10:22:16.946Z",
+        "discoveryRank": 2,
+        "searchSort": "distance_asc",
+        "displayPrice": 289,
+        "rooms": [],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:23.694Z",
+          "origin": "116.411954,39.943496",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 12,
+            "meters": 894
+          },
+          "transits": [
+            {
+              "minutes": 24,
+              "meters": 1321,
+              "walkingMeters": 892,
+              "lines": [
+                {
+                  "name": "84路(宋家庄枢纽站--惠新东桥西)",
+                  "type": "普通公交线路",
+                  "departure": "北新桥路口北",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": null,
+        "errors": [],
+        "position": {
+          "observedAt": "2026-10-08T10:22:20.411Z",
+          "straightDistanceMeters": 617,
+          "withinInitialRadius": true
+        }
+      },
+      "status": "needs_evidence",
+      "tier": 0,
+      "minutes": 12,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "步行12分钟",
+        "地图直线距离617米（非通勤时间）"
+      ],
+      "rank": 2,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "fliggy:77243002",
+        "hotelId": "77243002",
+        "name": "华侨夜泊君亭酒店(北京雍和宫北新桥地铁站店）",
+        "address": "北京市东城区北新桥三条5号",
+        "source": "飞猪 FlyAI",
+        "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F1dA5Hh",
+        "searchObservedAt": "2026-10-08T10:22:16.946Z",
+        "discoveryRank": 3,
+        "searchSort": "distance_asc",
+        "displayPrice": 742,
+        "rooms": [],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:24.780Z",
+          "origin": "116.423081,39.943531",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 15,
+            "meters": 1071
+          },
+          "transits": [
+            {
+              "minutes": 27,
+              "meters": 1456,
+              "walkingMeters": 1027,
+              "lines": [
+                {
+                  "name": "84路(宋家庄枢纽站--惠新东桥西)",
+                  "type": "普通公交线路",
+                  "departure": "北新桥路口北",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": null,
+        "errors": [
+          "另一平台酒店名称匹配，但地址尚未一致核验；未关联其报价。"
+        ],
+        "position": {
+          "observedAt": "2026-10-08T10:22:21.503Z",
+          "straightDistanceMeters": 643,
+          "withinInitialRadius": true
+        }
+      },
+      "status": "needs_evidence",
+      "tier": 0,
+      "minutes": 15,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "另一平台酒店名称匹配，但地址尚未一致核验；未关联其报价。"
+      ],
+      "advantages": [
+        "步行15分钟",
+        "地图直线距离643米（非通勤时间）"
+      ],
+      "rank": 3,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:43565",
+        "hotelId": "43565",
+        "name": "北京新侨饭店",
+        "address": "崇文门西大街1号",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "叫醒服务",
+          "洗衣服务",
+          "送餐服务",
+          "租车服务",
+          "专职行李员",
+          "行李寄存",
+          "外币兑换服务",
+          "24小时前台",
+          "公共音响系统",
+          "健身室",
+          "电梯",
+          "前台贵重物品保险柜",
+          "商务中心",
+          "会议厅",
+          "公共区域监控",
+          "无障碍客房",
+          "咖啡厅",
+          "酒吧",
+          "无烟楼层",
+          "快递服务",
+          "叫车服务",
+          "前台服务语言",
+          "婚宴服务",
+          "多功能厅",
+          "多媒体演示系统",
+          "干洗服务",
+          "熨衣服务",
+          "传真/复印",
+          "翻译服务",
+          "吸烟区",
+          "公共区域禁烟",
+          "餐厅",
+          "公用区wifi",
+          "火灾报警器",
+          "灭火器",
+          "熨斗/挂烫机",
+          "机器人服务",
+          "无障碍通道",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "无障碍客房",
+          "楼梯扶手",
+          "小吃吧",
+          "停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T10:22:11.066Z",
+          "hotelId": "43565"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=43565&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T10:22:11.066Z",
+        "displayPrice": 493,
+        "rooms": [],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:30.290Z",
+          "origin": "116.416707,39.901687",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 71,
+            "meters": 5315
+          },
+          "transits": [
+            {
+              "minutes": 34,
+              "meters": 6363,
+              "walkingMeters": 1023,
+              "lines": [
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "崇文门",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": true,
+              "classification": "地铁直达"
+            },
+            {
+              "minutes": 54,
+              "meters": 5533,
+              "walkingMeters": 879,
+              "lines": [
+                {
+                  "name": "84路(宋家庄枢纽站--惠新东桥西)",
+                  "type": "普通公交线路",
+                  "departure": "崇文门内",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": {
+          "sourceUrl": "https://hotel.fliggy.com/hotel_detail2.htm?shid=10004405&checkIn=2026-10-09&checkOut=2026-10-10",
+          "observedAt": "2026-10-04T04:42:55.700Z",
+          "score": "4.8",
+          "count": 6077,
+          "scoreMax": 5,
+          "captureMethod": "web_history",
+          "selection": "浏览器人工采集的定向历史样本，非全量或本轮实时评论API",
+          "negative": [
+            {
+              "date": "2026-10-02",
+              "summary": "住客报告虫咬、设施陈旧及服务响应慢，虫种与原因未核验",
+              "issues": [
+                "hygiene",
+                "maintenance",
+                "service"
+              ]
+            },
+            {
+              "date": "2026-09-04",
+              "summary": "住客报告潮湿、异味和虫子，原因及当前整改状态未核验",
+              "issues": [
+                "hygiene",
+                "smell",
+                "maintenance"
+              ]
+            },
+            {
+              "date": "2026-08-03",
+              "summary": "同日同文出现多条记录，可能重复，不按独立事件累计",
+              "issues": [
+                "noise",
+                "maintenance",
+                "service"
+              ]
+            },
+            {
+              "date": "2026-06-20",
+              "summary": "住客报告窗外餐厅噪声影响休息；商家回应会在房态允许时安排较安静房间，未核验整改结果",
+              "issues": [
+                "noise",
+                "service"
+              ]
+            }
+          ],
+          "positive": [
+            {
+              "date": null,
+              "summary": "全部评论页面可见对位置、出行与清洁的认可；待进一步绑定各条日期和房型"
+            }
+          ],
+          "openingYear": null,
+          "renovationYear": null
+        },
+        "errors": [],
+        "position": {
+          "observedAt": "2026-10-08T10:22:27.032Z",
+          "straightDistanceMeters": 5065,
+          "withinInitialRadius": false
+        }
+      },
+      "status": "needs_evidence",
+      "tier": 1,
+      "minutes": 34,
+      "risk": 4.75,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 2,
+          "sampleSize": 4,
+          "weight": 3,
+          "contribution": 1.5
+        },
+        {
+          "issue": "hygiene",
+          "count": 2,
+          "sampleSize": 4,
+          "weight": 3,
+          "contribution": 1.5
+        },
+        {
+          "issue": "smell",
+          "count": 1,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0.25
+        },
+        {
+          "issue": "maintenance",
+          "count": 3,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0.75
+        },
+        {
+          "issue": "service",
+          "count": 3,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0.75
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 4,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "超出初筛半径；平台距离筛选未获验证，须按明确通勤权限判断",
+        "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "高重要度评论问题需核验具体房型或整改证据",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "授权降级参数内地铁直达34分钟",
+        "地图直线距离5065米（非通勤时间）",
+        "原平台评分4.8，评论6077条"
+      ],
+      "rank": 4,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "fliggy:10108520",
+        "hotelId": "10108520",
+        "name": "北京草园宾馆",
+        "address": "东直门北小街草园胡同29号。",
+        "source": "飞猪 FlyAI",
+        "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F2wh3Pr",
+        "searchObservedAt": "2026-10-08T10:22:16.946Z",
+        "discoveryRank": 4,
+        "searchSort": "distance_asc",
+        "displayPrice": 195,
+        "rooms": [],
+        "route": null,
+        "reviews": null,
+        "errors": [
+          "酒店名称地址未唯一匹配，路线保持未知"
+        ]
+      },
+      "status": "needs_evidence",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "准确位置及通勤证据不足",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "酒店名称地址未唯一匹配，路线保持未知"
+      ],
+      "advantages": [],
+      "rank": 5,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "fliggy:60107002",
+        "hotelId": "60107002",
+        "name": "格林豪泰北京东城区北新桥地铁站簋街智选酒店",
+        "address": "北京市东城区雍和宫大街北新桥头条56号",
+        "source": "飞猪 FlyAI",
+        "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F1Hpj2b",
+        "searchObservedAt": "2026-10-08T10:22:16.946Z",
+        "discoveryRank": 1,
+        "searchSort": "distance_asc",
+        "displayPrice": 274,
+        "rooms": [],
+        "route": null,
+        "reviews": null,
+        "errors": [
+          "酒店名称地址未唯一匹配，路线保持未知"
+        ]
+      },
+      "status": "needs_evidence",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "准确位置及通勤证据不足",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "酒店名称地址未唯一匹配，路线保持未知"
+      ],
+      "advantages": [],
+      "rank": 6,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "fliggy:69415013",
+        "hotelId": "69415013",
+        "name": "如家商旅(金标)-北京东直门雍和宫簋街店",
+        "address": "北京北京东城区东直门内北小街草园胡同10号",
+        "source": "飞猪 FlyAI",
+        "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4NIYiB",
+        "searchObservedAt": "2026-10-08T10:22:16.946Z",
+        "discoveryRank": 5,
+        "searchSort": "distance_asc",
+        "displayPrice": 310,
+        "rooms": [],
+        "route": null,
+        "reviews": null,
+        "errors": [
+          "酒店名称地址未唯一匹配，路线保持未知"
+        ]
+      },
+      "status": "needs_evidence",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "准确位置及通勤证据不足",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "酒店名称地址未唯一匹配，路线保持未知"
+      ],
+      "advantages": [],
+      "rank": 7,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "fliggy:72114299",
+        "hotelId": "72114299",
+        "name": "方家客栈(北京市第六医院北新桥地铁站店)",
+        "address": "交道口北三条45号",
+        "source": "飞猪 FlyAI",
+        "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F2Bc8Oj",
+        "searchObservedAt": "2026-10-08T10:22:16.946Z",
+        "discoveryRank": 0,
+        "searchSort": "distance_asc",
+        "displayPrice": 276,
+        "rooms": [],
+        "route": null,
+        "reviews": null,
+        "errors": [
+          "酒店名称地址未唯一匹配，路线保持未知"
+        ]
+      },
+      "status": "needs_evidence",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "准确位置及通勤证据不足",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "酒店名称地址未唯一匹配，路线保持未知"
+      ],
+      "advantages": [],
+      "rank": 8,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:43586",
+        "hotelId": "43586",
+        "name": "北京明豪华美达酒店(首都机场新国展店)",
+        "address": "天竺镇府前一街13号",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "叫醒服务",
+          "洗衣服务",
+          "送餐服务",
+          "租车服务",
+          "专职行李员",
+          "行李寄存",
+          "快速入住退房",
+          "24小时前台",
+          "公共音响系统",
+          "健身室",
+          "电梯",
+          "前台贵重物品保险柜",
+          "商务中心",
+          "会议厅",
+          "大堂吧",
+          "公共区域监控",
+          "无障碍客房",
+          "咖啡厅",
+          "无烟楼层",
+          "快递服务",
+          "叫车服务",
+          "前台服务语言",
+          "婚宴服务",
+          "接机服务",
+          "穿梭机场班车",
+          "外送洗衣服务",
+          "商务服务",
+          "多功能厅",
+          "多媒体演示系统",
+          "熨衣服务",
+          "传真/复印",
+          "翻译服务",
+          "吸烟区",
+          "公共区域禁烟",
+          "餐厅",
+          "公用区wifi",
+          "急救包",
+          "火灾报警器",
+          "门禁系统",
+          "新风系统",
+          "灭火器",
+          "加湿器",
+          "熨斗/挂烫机",
+          "自动售货机",
+          "送机服务",
+          "洗衣房",
+          "机器人服务",
+          "无障碍通道",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "无障碍客房",
+          "售货亭/便利店",
+          "停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T10:22:11.066Z",
+          "hotelId": "43586"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=43586&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T10:22:11.066Z",
+        "displayPrice": 372,
+        "rooms": [],
+        "route": null,
+        "reviews": null,
+        "errors": [
+          "酒店名称地址未唯一匹配，路线保持未知"
+        ]
+      },
+      "status": "needs_evidence",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [],
+      "gaps": [
+        "准确位置及通勤证据不足",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "酒店名称地址未唯一匹配，路线保持未知"
+      ],
+      "advantages": [],
+      "rank": 9,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:1156548",
+        "hotelId": "1156548",
+        "name": "秋果酒店(北京天安门广场前门大栅栏店)",
+        "address": "天坛街道粉厂胡同17号",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "叫醒服务",
+          "洗衣服务",
+          "送餐服务",
+          "专职行李员",
+          "行李寄存",
+          "快速入住退房",
+          "24小时前台",
+          "公共音响系统",
+          "电梯",
+          "前台贵重物品保险柜",
+          "商务中心",
+          "会议厅",
+          "大堂吧",
+          "公共区域监控",
+          "无障碍客房",
+          "咖啡厅",
+          "无烟楼层",
+          "快递服务",
+          "叫车服务",
+          "前台服务语言",
+          "商务服务",
+          "多功能厅",
+          "多媒体演示系统",
+          "传真/复印",
+          "翻译服务",
+          "吸烟区",
+          "公共区域禁烟",
+          "餐厅",
+          "儿童牙刷",
+          "中文指示",
+          "公用区wifi",
+          "干衣机",
+          "急救包",
+          "净水机",
+          "火灾报警器",
+          "门禁系统",
+          "新风系统",
+          "灭火器",
+          "加湿器",
+          "自动售货机",
+          "储物柜",
+          "洗衣房",
+          "机器人服务",
+          "无障碍通道",
+          "儿童桌面游戏/拼图",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "儿童拖鞋",
+          "一氧化碳报警器",
+          "电子身份证入住",
+          "干衣机",
+          "盲文标牌",
+          "无障碍客房",
+          "楼梯扶手",
+          "走廊的视觉警报",
+          "共享办公空间",
+          "无停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T10:22:11.066Z",
+          "hotelId": "1156548"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=1156548&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T10:22:11.066Z",
+        "displayPrice": 400,
+        "rooms": [],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:37.994Z",
+          "origin": "116.404237,39.889395",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 107,
+            "meters": 7979
+          },
+          "transits": [
+            {
+              "minutes": 52,
+              "meters": 8933,
+              "walkingMeters": 1761,
+              "lines": [
+                {
+                  "name": "地铁7号线(北京西站--环球度假区)",
+                  "type": "地铁线路",
+                  "departure": "桥湾",
+                  "arrival": "磁器口",
+                  "metro": true
+                },
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "磁器口",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 68,
+              "meters": 8261,
+              "walkingMeters": 1268,
+              "lines": [
+                {
+                  "name": "106路(翠林小区--东直门枢纽站)",
+                  "type": "无轨电车",
+                  "departure": "金鱼池",
+                  "arrival": "北新桥路口南",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            },
+            {
+              "minutes": 58,
+              "meters": 8756,
+              "walkingMeters": 2566,
+              "lines": [
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "磁器口",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": true,
+              "classification": "地铁直达"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": null,
+        "errors": [],
+        "position": {
+          "observedAt": "2026-10-08T10:22:35.854Z",
+          "straightDistanceMeters": 6528,
+          "withinInitialRadius": false
+        }
+      },
+      "status": "excluded",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [
+        "已取得路线不满足本轮通勤参数"
+      ],
+      "gaps": [
+        "超出初筛半径；平台距离筛选未获验证，须按明确通勤权限判断",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "地图直线距离6528米（非通勤时间）"
+      ],
+      "rank": 10,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:1430589",
+        "hotelId": "1430589",
+        "name": "骏怡精选酒店(北京西站北广场世纪坛店)",
+        "address": "羊坊店路17-6号",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "叫醒服务",
+          "行李寄存",
+          "24小时前台",
+          "无电梯",
+          "公共区域监控",
+          "公用区wifi",
+          "火灾报警器",
+          "门禁系统",
+          "灭火器",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T10:22:11.066Z",
+          "hotelId": "1430589"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=1430589&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T10:22:11.066Z",
+        "displayPrice": 277,
+        "rooms": [],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:36.922Z",
+          "origin": "116.320820,39.898704",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 172,
+            "meters": 12889
+          },
+          "transits": [
+            {
+              "minutes": 64,
+              "meters": 16456,
+              "walkingMeters": 1420,
+              "lines": [
+                {
+                  "name": "地铁7号线(北京西站--环球度假区)",
+                  "type": "地铁线路",
+                  "departure": "北京西站",
+                  "arrival": "磁器口",
+                  "metro": true
+                },
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "磁器口",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 69,
+              "meters": 14619,
+              "walkingMeters": 2267,
+              "lines": [
+                {
+                  "name": "地铁1号线八通线(苹果园--环球度假区)",
+                  "type": "地铁线路",
+                  "departure": "军事博物馆",
+                  "arrival": "复兴门",
+                  "metro": true
+                },
+                {
+                  "name": "地铁2号线内环(积水潭--积水潭)",
+                  "type": "地铁线路",
+                  "departure": "复兴门",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 89,
+              "meters": 13975,
+              "walkingMeters": 657,
+              "lines": [
+                {
+                  "name": "21路(北京西站--安华桥北)",
+                  "type": "普通公交线路",
+                  "departure": "北京世纪坛医院",
+                  "arrival": "儿童医院路口西",
+                  "metro": false
+                },
+                {
+                  "name": "13路(西城三里河--小营公交场站)",
+                  "type": "普通公交线路",
+                  "departure": "儿童医院路口西",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": null,
+        "errors": [],
+        "position": {
+          "observedAt": "2026-10-08T10:22:33.647Z",
+          "straightDistanceMeters": 9839,
+          "withinInitialRadius": false
+        }
+      },
+      "status": "excluded",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [
+        "已取得路线不满足本轮通勤参数"
+      ],
+      "gaps": [
+        "超出初筛半径；平台距离筛选未获验证，须按明确通勤权限判断",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "地图直线距离9839米（非通勤时间）"
+      ],
+      "rank": 11,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:2363507",
+        "hotelId": "2363507",
+        "name": "骏怡酒店(北京颐和园店)",
+        "address": "马连洼街道龙背村路101号",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "行李寄存",
+          "快速入住退房",
+          "电热水壶",
+          "拖鞋",
+          "书桌",
+          "吹风机",
+          "瓶装水",
+          "雨伞",
+          "针线包",
+          "前台贵重物品保险柜",
+          "淋浴",
+          "雨淋花洒喷头",
+          "空调",
+          "有线频道",
+          "液晶电视机",
+          "独立卫浴",
+          "洗衣机",
+          "自动窗帘",
+          "床具:毯子或被子",
+          "24小时热水",
+          "唤醒服务",
+          "220V电压插座",
+          "公用区wifi",
+          "急救包",
+          "火灾报警器",
+          "灭火器",
+          "加湿器",
+          "洗涤用具",
+          "洗衣房",
+          "牙刷",
+          "洗发水",
+          "香皂",
+          "浴帽",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "梳子",
+          "沐浴露",
+          "牙膏",
+          "挂墙装饰画/字画",
+          "儿童拖鞋",
+          "毛巾",
+          "浴巾",
+          "儿童牙刷",
+          "停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T10:22:11.066Z",
+          "hotelId": "2363507"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=2363507&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T10:22:11.066Z",
+        "displayPrice": 205,
+        "rooms": [],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:32.496Z",
+          "origin": "116.270236,40.014388",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 250,
+            "meters": 18728
+          },
+          "transits": [
+            {
+              "minutes": 71,
+              "meters": 21360,
+              "walkingMeters": 1530,
+              "lines": [
+                {
+                  "name": "地铁4号线大兴线(安河桥北--天宫院)",
+                  "type": "地铁线路",
+                  "departure": "安河桥北",
+                  "arrival": "西直门",
+                  "metro": true
+                },
+                {
+                  "name": "地铁2号线内环(积水潭--积水潭)",
+                  "type": "地铁线路",
+                  "departure": "西直门",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 68,
+              "meters": 20567,
+              "walkingMeters": 1340,
+              "lines": [
+                {
+                  "name": "地铁4号线大兴线(安河桥北--天宫院)",
+                  "type": "地铁线路",
+                  "departure": "安河桥北",
+                  "arrival": "海淀黄庄",
+                  "metro": true
+                },
+                {
+                  "name": "地铁10号线内环(巴沟--巴沟)",
+                  "type": "地铁线路",
+                  "departure": "海淀黄庄",
+                  "arrival": "惠新西街南口",
+                  "metro": true
+                },
+                {
+                  "name": "地铁5号线(天通苑北--宋家庄)",
+                  "type": "地铁线路",
+                  "departure": "惠新西街南口",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 2,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 92,
+              "meters": 24346,
+              "walkingMeters": 1036,
+              "lines": [
+                {
+                  "name": "地铁4号线大兴线(安河桥北--天宫院)",
+                  "type": "地铁线路",
+                  "departure": "安河桥北",
+                  "arrival": "西四",
+                  "metro": true
+                },
+                {
+                  "name": "13路(西城三里河--小营公交场站)",
+                  "type": "普通公交线路",
+                  "departure": "西四路口北",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁与公交组合"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": null,
+        "errors": [],
+        "position": {
+          "observedAt": "2026-10-08T10:22:29.244Z",
+          "straightDistanceMeters": 14586,
+          "withinInitialRadius": false
+        }
+      },
+      "status": "excluded",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [
+        "已取得路线不满足本轮通勤参数"
+      ],
+      "gaps": [
+        "超出初筛半径；平台距离筛选未获验证，须按明确通勤权限判断",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "地图直线距离14586米（非通勤时间）"
+      ],
+      "rank": 12,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:577984",
+        "hotelId": "577984",
+        "name": "布丁酒店(北京西站店)",
+        "address": "太平桥西路华源一里8号北门",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "叫醒服务",
+          "行李寄存",
+          "快速入住退房",
+          "24小时前台",
+          "电梯",
+          "公共区域监控",
+          "公共区域禁烟",
+          "公用区wifi",
+          "火灾报警器",
+          "灭火器",
+          "洗衣房",
+          "烟雾报警器",
+          "安保人员",
+          "电子身份证入住",
+          "停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T10:22:11.066Z",
+          "hotelId": "577984"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=577984&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T10:22:11.066Z",
+        "displayPrice": 121,
+        "rooms": [],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T10:22:31.405Z",
+          "origin": "116.313433,39.881940",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 201,
+            "meters": 15073
+          },
+          "transits": [
+            {
+              "minutes": 74,
+              "meters": 17992,
+              "walkingMeters": 1826,
+              "lines": [
+                {
+                  "name": "地铁9号线(郭公庄--国家图书馆)",
+                  "type": "地铁线路",
+                  "departure": "六里桥东",
+                  "arrival": "北京西站",
+                  "metro": true
+                },
+                {
+                  "name": "地铁7号线(北京西站--环球度假区)",
+                  "type": "地铁线路",
+                  "departure": "北京西站",
+                  "arrival": "磁器口",
+                  "metro": true
+                },
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "磁器口",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 2,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 69,
+              "meters": 18487,
+              "walkingMeters": 1341,
+              "lines": [
+                {
+                  "name": "67路(樊家村公交场站--前门西)",
+                  "type": "普通公交线路",
+                  "departure": "六里桥南",
+                  "arrival": "长椿街路口东",
+                  "metro": false
+                },
+                {
+                  "name": "地铁2号线内环(积水潭--积水潭)",
+                  "type": "地铁线路",
+                  "departure": "长椿街",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁与公交组合"
+            },
+            {
+              "minutes": 93,
+              "meters": 20507,
+              "walkingMeters": 1428,
+              "lines": [
+                {
+                  "name": "142路(丽泽桥北--慧忠里)",
+                  "type": "普通公交线路",
+                  "departure": "六里桥南",
+                  "arrival": "雍和宫桥东",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": null,
+        "errors": [],
+        "position": {
+          "observedAt": "2026-10-08T10:22:28.146Z",
+          "straightDistanceMeters": 11454,
+          "withinInitialRadius": false
+        }
+      },
+      "status": "excluded",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [
+        "已取得路线不满足本轮通勤参数"
+      ],
+      "gaps": [
+        "超出初筛半径；平台距离筛选未获验证，须按明确通勤权限判断",
+        "评论原文、日期、评分与样本不足",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "地图直线距离11454米（非通勤时间）"
+      ],
+      "rank": 13,
+      "bookable": false
+    }
+  ],
+  "crossPlatform": [
+    {
+      "names": [
+        "时光漫步酒店（北京雍和宫店）",
+        "时光漫步酒店(北京雍和宫店)"
+      ],
+      "sources": [
+        "飞猪 FlyAI",
+        "RollingGo MCP"
+      ],
+      "status": "hotel_only",
+      "unmatchedFields": [
+        "Room / bed / occupancy / meals / cancellation / price basis"
+      ],
+      "priceDifferenceCents": null,
+      "warning": "Hotel identity matched; room conditions or final charges are not aligned. No price difference is asserted."
+    }
+  ],
+  "tradeoffs": {
+    "evidenceHash": "4770a23bd1f5f8ad4ba710939ea8ff3c0f458595b34352efc2e63bba8b0e5c47",
+    "policyVersion": "f7d16b628742cd49986fbd154bb3b89cf2b4bb07493887cf2d3f36743502fefe",
+    "status": "needs_evidence",
+    "scope": "authorized",
+    "preferredOptionId": null,
+    "options": [
+      {
+        "id": "option_59648bbe155c73e583a3",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+        "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+        "observedAt": "2026-10-08T10:23:01.924Z",
+        "status": "within_bounds",
+        "idealMatch": false,
+        "priceCents": 36400,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [],
+        "hardViolations": [],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Exterior window not verified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1937862417 dated 2026-05-06. Uncertainty does not establish absence.",
+          "Inventory requires confirmation."
+        ],
+        "evidence": [
+          {
+            "id": "1ec34ac07330ce14889eb4fa3bd6bcac5e9176efeed1960ba24f5175d7e111c2",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:23:01.924Z",
+            "method": "api"
+          },
+          {
+            "id": "81297ba1de49e952d722a2f6fd46fd1733acecd9e682e32c274dd63670fe6f30",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T10:22:23.694Z",
+            "method": "api"
+          },
+          {
+            "id": "62db0ef1ffd57b01f6919121d2aa4cd7286f6b24cb9e48ddd2f60d855e11c102",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "9a786491d0e9fe1a0440e7c324cc17715921d8bbbb657fb5a7bc198ea3e425da",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:22:45.594Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 364.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: unspecified; meal plan: 不含早餐."
+        ]
+      },
+      {
+        "id": "option_2f44259b3c28ae5f87b5",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "梦回童年大床房（怀旧游戏机）",
+        "ratePlanId": "2IHNyZkdkFh-4EPqWWr4H2e",
+        "observedAt": "2026-10-08T10:23:01.924Z",
+        "status": "within_bounds",
+        "idealMatch": false,
+        "priceCents": 39500,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [],
+        "hardViolations": [],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Exterior window not verified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1937862417 dated 2026-05-06. Uncertainty does not establish absence.",
+          "Inventory requires confirmation."
+        ],
+        "evidence": [
+          {
+            "id": "20f8a71369cedd19351dfc26ddc504d97b9aad00e974fd3af01b6eabd9160b71",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:23:01.924Z",
+            "method": "api"
+          },
+          {
+            "id": "81297ba1de49e952d722a2f6fd46fd1733acecd9e682e32c274dd63670fe6f30",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T10:22:23.694Z",
+            "method": "api"
+          },
+          {
+            "id": "62db0ef1ffd57b01f6919121d2aa4cd7286f6b24cb9e48ddd2f60d855e11c102",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "9a786491d0e9fe1a0440e7c324cc17715921d8bbbb657fb5a7bc198ea3e425da",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:22:45.594Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 395.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: unspecified; meal plan: 不含早餐."
+        ]
+      },
+      {
+        "id": "option_e55a5129c7e53bdde3e4",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "双床房",
+        "ratePlanId": "9e5ez8cTHGg-8pOkgTUGUPC",
+        "observedAt": "2026-10-08T10:23:01.924Z",
+        "status": "within_bounds",
+        "idealMatch": false,
+        "priceCents": 43900,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [],
+        "hardViolations": [],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Exterior window not verified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1937862417 dated 2026-05-06. Uncertainty does not establish absence.",
+          "Inventory requires confirmation."
+        ],
+        "evidence": [
+          {
+            "id": "90fa3e27964c5bf3bae37e1c06ba0f13d2200ff19f412ef6ff021f2cbf1014ec",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:23:01.924Z",
+            "method": "api"
+          },
+          {
+            "id": "81297ba1de49e952d722a2f6fd46fd1733acecd9e682e32c274dd63670fe6f30",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T10:22:23.694Z",
+            "method": "api"
+          },
+          {
+            "id": "62db0ef1ffd57b01f6919121d2aa4cd7286f6b24cb9e48ddd2f60d855e11c102",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "9a786491d0e9fe1a0440e7c324cc17715921d8bbbb657fb5a7bc198ea3e425da",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:22:45.594Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 439.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: unspecified; meal plan: 不含早餐."
+        ]
+      },
+      {
+        "id": "option_7d7803990a81f59cac1c",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "时光优享大床房（老榆木家具+高品质床品）",
+        "ratePlanId": "t6bVJ59uIo-01S9jMJIEdL",
+        "observedAt": "2026-10-08T10:23:01.924Z",
+        "status": "requires_confirmation",
+        "idealMatch": false,
+        "priceCents": 32200,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [
+          {
+            "field": "window",
+            "from": "external",
+            "to": "none",
+            "withinAuthorization": false
+          }
+        ],
+        "hardViolations": [],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1937862417 dated 2026-05-06. Uncertainty does not establish absence.",
+          "Inventory requires confirmation."
+        ],
+        "evidence": [
+          {
+            "id": "df712458e857298c5ade6cb781f095b60a05260ce56322fb79de44d04467cfab",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:23:01.924Z",
+            "method": "api"
+          },
+          {
+            "id": "81297ba1de49e952d722a2f6fd46fd1733acecd9e682e32c274dd63670fe6f30",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T10:22:23.694Z",
+            "method": "api"
+          },
+          {
+            "id": "62db0ef1ffd57b01f6919121d2aa4cd7286f6b24cb9e48ddd2f60d855e11c102",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "9a786491d0e9fe1a0440e7c324cc17715921d8bbbb657fb5a7bc198ea3e425da",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T10:22:45.594Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 322.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: none; meal plan: 不含早餐."
+        ]
+      }
+    ],
+    "model": "jev-1.13.0",
+    "observedAt": "2026-10-08T10:23:01.929Z",
+    "choice": {
+      "type": "choice",
+      "choice": "need_evidence",
+      "confidence": 0.66,
+      "probabilities": {
+        "option_59648bbe155c73e583a3": 0.23,
+        "option_2f44259b3c28ae5f87b5": 0,
+        "option_e55a5129c7e53bdde3e4": 0.03,
+        "need_evidence": 0.73,
+        "none": 0.01
+      }
+    },
+    "basis": {
+      "type": "choice",
+      "choice": "budget",
+      "confidence": 0.65,
+      "probabilities": {
+        "budget": 0.72,
+        "commute": 0.02,
+        "reviews": 0.02,
+        "room": 0.03,
+        "insufficient": 0.21
+      }
+    },
+    "nextAction": {
+      "type": "choice",
+      "choice": "rooms",
+      "confidence": 0.36,
+      "probabilities": {
+        "rooms": 0.49,
+        "commute": 0.05,
+        "reviews": 0.4,
+        "quote": 0.05,
+        "none": 0.01
+      }
+    },
+    "usage": {
+      "input_tokens": 11148,
+      "output_tokens": 223
+    },
+    "reason": "Jev requested evidence before recommending a compromise.",
+    "inspectionLog": [
+      {
+        "optionId": "option_d6d04b5cb4d2ba791de2",
+        "action": "rooms",
+        "status": "completed",
+        "at": "2026-10-08T10:23:01.928Z",
+        "detail": "Read-only source query completed; missing evidence remains missing."
+      },
+      {
+        "optionId": "option_59648bbe155c73e583a3",
+        "action": "rooms",
+        "status": "handoff",
+        "at": "2026-10-08T10:23:07.767Z",
+        "detail": "Repeated inspection avoided; remaining gap needs a different source or user review."
+      }
+    ]
+  },
+  "alternatives": [],
+  "jev": null,
+  "errors": [],
+  "trace": [
+    {
+      "at": "2026-10-08T10:22:06.845Z",
+      "action": "核验要求",
+      "reason": "只读模式；预算600元；不修改购买授权、订单或钱包。",
+      "previousHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "hash": "72f3a55a9a3df3b69dfe7175bbebc124aa91f427c157f811d193c2b62ae1d071"
+    },
+    {
+      "at": "2026-10-08T10:22:06.845Z",
+      "action": "跨平台实时检索",
+      "reason": "并行查询飞猪与RollingGo；失败的数据源保留错误，不伪造结果。",
+      "previousHash": "72f3a55a9a3df3b69dfe7175bbebc124aa91f427c157f811d193c2b62ae1d071",
+      "hash": "c68daa676826507f3cc4451f95adfae83c0e6d822d4e230551700533bd59074f"
+    },
+    {
+      "at": "2026-10-08T10:22:12.075Z",
+      "action": "补查飞猪附近候选",
+      "reason": "使用官方distance_asc排序补查；顺序只用于发现候选，位置仍独立核验。",
+      "previousHash": "c68daa676826507f3cc4451f95adfae83c0e6d822d4e230551700533bd59074f",
+      "hash": "761cb78271333f23f7c114f468f91265d4bd9654da3994ddc0fed1de31e4f3ef"
+    },
+    {
+      "at": "2026-10-08T10:22:16.953Z",
+      "action": "位置与通勤核验",
+      "reason": "最多核验12家；同名位置不能唯一匹配则保留未知。",
+      "previousHash": "761cb78271333f23f7c114f468f91265d4bd9654da3994ddc0fed1de31e4f3ef",
+      "hash": "b39c2bdb0c81e08f5cc54b285f43a6f327175813eee156b45a54a211c16b3ca3"
+    },
+    {
+      "at": "2026-10-08T10:22:38.668Z",
+      "action": "核验平台距离筛选",
+      "reason": "5家已匹配候选超出初筛半径；不宣称平台距离过滤生效，只按已允许的通勤范围继续评估。",
+      "previousHash": "b39c2bdb0c81e08f5cc54b285f43a6f327175813eee156b45a54a211c16b3ca3",
+      "hash": "53c1a1b4594695e18c5607eafb4f7cc7dd13cc65f32e72229814b8261b20ef2f"
+    },
+    {
+      "at": "2026-10-08T10:22:38.668Z",
+      "action": "核验房型",
+      "reason": "按通勤、评论与个人规则选最多3家RollingGo候选，逐家获取具体房型。",
+      "previousHash": "53c1a1b4594695e18c5607eafb4f7cc7dd13cc65f32e72229814b8261b20ef2f",
+      "hash": "85a92a1d0182acd845eed9444ae7fcd31a426e8fed114419136fb39272009c7b"
+    },
+    {
+      "at": "2026-10-08T10:22:41.487Z",
+      "action": "核验附近酒店跨平台身份",
+      "reason": "时光漫步酒店（北京雍和宫店）：按名称取房型，再核验平台ID和地址。",
+      "previousHash": "85a92a1d0182acd845eed9444ae7fcd31a426e8fed114419136fb39272009c7b",
+      "hash": "0ffe247c0f109db1f384eff09f64a05d033403cd64288d96a556c259dbad72ab"
+    },
+    {
+      "at": "2026-10-08T10:22:45.600Z",
+      "action": "核验附近酒店跨平台身份",
+      "reason": "华侨夜泊君亭酒店(北京雍和宫北新桥地铁站店）：按名称取房型，再核验平台ID和地址。",
+      "previousHash": "0ffe247c0f109db1f384eff09f64a05d033403cd64288d96a556c259dbad72ab",
+      "hash": "ddde02336853aa39e53becaf788c057459f1d6d55ed3b666e4b38413479f8817"
+    },
+    {
+      "at": "2026-10-08T10:22:50.419Z",
+      "action": "刷新公开评论与分析",
+      "reason": "仅查询已登记且身份匹配的评论来源；保留旧观察，新增当前页面语义分析。",
+      "previousHash": "ddde02336853aa39e53becaf788c057459f1d6d55ed3b666e4b38413479f8817",
+      "hash": "81a3cbd0af6981b5f1e3d5c4017f21abbd5b42d5ed08607d60652e129f8b516d"
+    },
+    {
+      "at": "2026-10-08T10:22:57.135Z",
+      "action": "评论分析完成",
+      "reason": "jev-1.13.0；15条可见样本；来源时间2026-10-08T10:22:53.213Z；部分页面不代表全量评论。",
+      "previousHash": "81a3cbd0af6981b5f1e3d5c4017f21abbd5b42d5ed08607d60652e129f8b516d",
+      "hash": "2d99b81128ca02f7d75588cc03f61bc9e8d27d8aaaf15a9043e853368599985a"
+    },
+    {
+      "at": "2026-10-08T10:22:57.135Z",
+      "action": "绑定评论来源",
+      "reason": "仅合并酒店身份匹配的既有浏览器评论观察；未知酒店保持无评论证据。历史网页报价没有重用为当前报价。",
+      "previousHash": "2d99b81128ca02f7d75588cc03f61bc9e8d27d8aaaf15a9043e853368599985a",
+      "hash": "854c3b815e86bb3417160afbff221b22b8ca1ce63654a91e586b2d96624ccc11"
+    },
+    {
+      "at": "2026-10-08T10:22:57.135Z",
+      "action": "固定规则评估",
+      "reason": "先硬条件与通勤档位，再个人评论样本指标、展示价格与通勤时长；信息缺失不视为满足。",
+      "previousHash": "854c3b815e86bb3417160afbff221b22b8ca1ce63654a91e586b2d96624ccc11",
+      "hash": "e359283e59d8694eaf773aadcddbdcfb28edd852e9da5ce7a6933856d2326f8b"
+    },
+    {
+      "at": "2026-10-08T10:22:57.137Z",
+      "action": "Jev核验建议",
+      "reason": "模型读取本轮合并的房型、路线、评论与缺口摘要；仅安排下一步证据任务。",
+      "previousHash": "e359283e59d8694eaf773aadcddbdcfb28edd852e9da5ce7a6933856d2326f8b",
+      "hash": "eabc748a94beda300bfb1335729e98c87fb5dea18788c88d5b579b5c2fd035b3"
+    },
+    {
+      "at": "2026-10-08T10:22:59.182Z",
+      "action": "评估可接受取舍",
+      "reason": "从实际房型生成方案；硬底线不参与交换，多个取舍自动调用Jev，缺口保持可见。",
+      "previousHash": "eabc748a94beda300bfb1335729e98c87fb5dea18788c88d5b579b5c2fd035b3",
+      "hash": "f83c833ba16daa9ba61c24e3427d1cc2fda80651110ee2b3ed1c19135cf81b69"
+    },
+    {
+      "at": "2026-10-08T10:23:01.210Z",
+      "action": "执行Jev补查",
+      "reason": "时光漫步酒店(北京雍和宫店)：rooms；仅查询，不扩大授权。",
+      "previousHash": "f83c833ba16daa9ba61c24e3427d1cc2fda80651110ee2b3ed1c19135cf81b69",
+      "hash": "1227d52bef7da3956436399b6bbe05db2a4cc9a5ceaf5aef17d474c86b537344"
+    },
+    {
+      "at": "2026-10-08T10:23:07.769Z",
+      "action": "生成条件组合",
+      "reason": "最多3套备选条件，所有剩余证据缺口保留；不修改预算与降级权限。",
+      "previousHash": "1227d52bef7da3956436399b6bbe05db2a4cc9a5ceaf5aef17d474c86b537344",
+      "hash": "3f2189363da5483e6bf3cb224b405bc99d9e86286d615cff88ff9c87d3f4301e"
+    },
+    {
+      "at": "2026-10-08T10:23:07.769Z",
+      "action": "交易阻断",
+      "reason": "全部真实候选不可成交：最终含税价、完整真实购买授权与订单/取消/退款能力未核验；订单和钱包不变。",
+      "previousHash": "3f2189363da5483e6bf3cb224b405bc99d9e86286d615cff88ff9c87d3f4301e",
+      "hash": "b96db5c394c11b9e74343dab8a6e3d8c43ec9953993ef033f0e499b74a0ec324"
+    }
+  ],
+  "evidenceHash": "de18f5bf766babb38b3bd0bc86f7e4e1102127fa7ee2ffbe66b78bd9fe44d97e",
+  "transactionEnabled": false,
+  "recommendation": null,
+  "summary": "已完成证据汇总与规则评估；没有证据完整且可自动购买的候选。检索有数量上限，不能断言全市场无解。"
+}

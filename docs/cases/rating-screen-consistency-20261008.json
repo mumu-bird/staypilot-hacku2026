@@ -1,0 +1,66 @@
+{
+  "verifiedAt": "2026-10-08T09:33:08.482Z",
+  "method": "Local deterministic evaluation of saved real evidence, not a new platform observation",
+  "sourceRunId": "215409f1-571a-4e01-b405-cc4f7fef801d",
+  "evidenceAsOf": "2026-10-08T09:03:40.632Z",
+  "policy": {
+    "budgetCents": 60000,
+    "idealBudgetCents": 50000,
+    "priorities": "卫生和睡眠重要，可以综合比较隔音相关评论；不接受自动增加预算。",
+    "requiredAmenities": [
+      "电梯"
+    ],
+    "walkMinutes": 20,
+    "metroMinutes": 40,
+    "allowMetro": true,
+    "window": "preferred",
+    "requireCancelable": true,
+    "weights": {
+      "noise": 3,
+      "hygiene": 3,
+      "smell": 1,
+      "maintenance": 1,
+      "service": 1,
+      "space": 1,
+      "security": 3
+    },
+    "unacceptable": [],
+    "minimumRating": 4.8
+  },
+  "hotel": [
+    {
+      "hotel": "时光漫步酒店(北京雍和宫店)",
+      "status": "excluded",
+      "reasons": [
+        "评分低于用户明确设置的硬底线"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "status": "blocked",
+      "violations": [
+        "Rating is below the hard minimum."
+      ]
+    },
+    {
+      "status": "blocked",
+      "violations": [
+        "Rating is below the hard minimum."
+      ]
+    },
+    {
+      "status": "blocked",
+      "violations": [
+        "Rating is below the hard minimum."
+      ]
+    },
+    {
+      "status": "blocked",
+      "violations": [
+        "Rating is below the hard minimum."
+      ]
+    }
+  ],
+  "transactionEnabled": false
+}

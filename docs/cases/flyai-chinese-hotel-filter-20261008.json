@@ -1,0 +1,124 @@
+{
+  "source": "飞猪 FlyAI",
+  "observedAt": "2026-10-08T08:16:57.579Z",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "sort": "distance_asc",
+    "keywords": "雍和宫"
+  },
+  "transactionEnabled": false,
+  "missingFields": [
+    "对应日期可订房型及库存",
+    "入住人数与餐食",
+    "住宿含税总价与税费明细",
+    "取消政策与退款截止时间",
+    "评论原文、日期与样本量",
+    "评分尺度与零分含义",
+    "开业时间"
+  ],
+  "systemMessage": null,
+  "hotels": [
+    {
+      "id": "72077563",
+      "name": "有戏·静默酒店(北京雍和宫店)",
+      "address": "北新三巷11号",
+      "price": "¥233",
+      "score": "4.00",
+      "decorationTime": "2020-01-01",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i2/6000000001328/O1CN01TeWCnP1LgH87V6kfS_!!6000000001328-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F06zF87"
+    },
+    {
+      "id": "72114299",
+      "name": "方家客栈(北京市第六医院北新桥地铁站店)",
+      "address": "交道口北三条45号",
+      "price": "¥276",
+      "score": "0",
+      "decorationTime": "2021-01-01",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i1/6000000006247/O1CN01pmEnHV1w1B0Bnxro2_!!6000000006247-0-fliggyimage.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F3wOW7S"
+    },
+    {
+      "id": "60107002",
+      "name": "格林豪泰北京东城区北新桥地铁站簋街智选酒店",
+      "address": "北京市东城区雍和宫大街北新桥头条56号",
+      "price": "¥274",
+      "score": "0",
+      "decorationTime": "2019",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i4/O1CN01HAS94x1jJsWkQQJbY_!!4611686018427384240-0-fliggy_content_upload_image.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4N8WW8"
+    },
+    {
+      "id": "12633667",
+      "name": "时光漫步酒店（北京雍和宫店）",
+      "address": "安定门内大街方家胡同46号创意园，与雍和宫、南锣古巷相邻",
+      "price": "¥289",
+      "score": "4.00",
+      "decorationTime": "2019",
+      "nearby": "近南锣鼓巷",
+      "image": "https://img.alicdn.com/imgextra/i2/6000000000323/O1CN01cOZgm21EFz0a84HUr_!!6000000000323-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F3BMQRv"
+    },
+    {
+      "id": "77243002",
+      "name": "华侨夜泊君亭酒店(北京雍和宫北新桥地铁站店）",
+      "address": "北京市东城区北新桥三条5号",
+      "price": "¥749",
+      "score": "4.00",
+      "decorationTime": "2024-01-20",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i1/6000000002694/O1CN01VYTJf41VltvPx49ed_!!6000000002694-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F3QDkKw"
+    },
+    {
+      "id": "10108520",
+      "name": "北京草园宾馆",
+      "address": "东直门北小街草园胡同29号。",
+      "price": "¥195",
+      "score": "4.00",
+      "decorationTime": "2017",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i4/6000000005992/O1CN01lWJSOC1u8OKR3mbKf_!!6000000005992-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F072JI6"
+    },
+    {
+      "id": "69415013",
+      "name": "如家商旅(金标)-北京东直门雍和宫簋街店",
+      "address": "北京北京东城区东直门内北小街草园胡同10号",
+      "price": "¥315",
+      "score": "0",
+      "decorationTime": "2021-12-01",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i2/6000000007016/O1CN01Pt5Ru421hNwEjqiLL_!!6000000007016-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F0hjzik"
+    },
+    {
+      "id": "67766026",
+      "name": "云郦酒店(北京南锣鼓巷簋街店)",
+      "address": "北新桥街道东直门内大街216号院簋街中街1号楼",
+      "price": "¥458",
+      "score": "4.00",
+      "decorationTime": "2021",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i2/6000000005100/O1CN01ACOJpX1nXr34EtfFN_!!6000000005100-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4a9jci"
+    },
+    {
+      "id": "78776186",
+      "name": "秋果酒店·方泽(北京雍和宫和平里北街地铁站店)",
+      "address": "北京东城区地坛东门和平里五区9号楼, 中国",
+      "price": "¥350",
+      "score": "0",
+      "decorationTime": "2021-01-01",
+      "nearby": "近雍和宫",
+      "image": "https://img.alicdn.com/imgextra/i4/O1CN011hrjdj23Rvo0bwBGu_!!4611686018427386965-0-fliggy_content_upload_image.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4cLvCg"
+    }
+  ]
+}

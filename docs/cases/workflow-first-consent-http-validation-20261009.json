@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-08T16:09:45.117Z",
+  "scope": "Local HTTP production workflow; deliberate unconfirmed requests rejected before provider calls",
+  "checks": [
+    {
+      "path": "run",
+      "status": 400,
+      "error": "尚未确认只读查询授权，请先确认行程与偏好"
+    },
+    {
+      "path": "expand",
+      "status": 400,
+      "error": "尚未确认只读查询授权，请先确认行程与偏好"
+    },
+    {
+      "path": "refresh",
+      "status": 400,
+      "error": "尚未确认只读查询授权，请先确认行程与偏好"
+    },
+    {
+      "path": "recheck",
+      "status": 400,
+      "error": "尚未确认只读查询授权，请先确认行程与偏好"
+    }
+  ]
+}

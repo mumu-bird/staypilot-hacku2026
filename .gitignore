@@ -11,3 +11,6 @@ docs/pitch-output/
 docs/pitch-preview/
 docs/recordings/
 docs/demo-3min.webm
+
+.env*
+!.env.example

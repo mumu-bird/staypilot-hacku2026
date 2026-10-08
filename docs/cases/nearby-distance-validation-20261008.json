@@ -1,0 +1,26 @@
+{
+  "destinationObservedAt": "2026-10-08T07:26:18.946Z",
+  "checked": [
+    {
+      "hotelId": 43565,
+      "name": "北京新侨饭店",
+      "requestedRadiusMeters": 2000,
+      "observedAt": "2026-10-08T07:26:19.976Z",
+      "straightDistanceMeters": 5065
+    },
+    {
+      "hotelId": 1430589,
+      "name": "骏怡精选酒店(北京西站北广场世纪坛店)",
+      "requestedRadiusMeters": 2000,
+      "observedAt": "2026-10-08T07:26:21.091Z",
+      "straightDistanceMeters": 9839
+    },
+    {
+      "hotelId": 1156548,
+      "name": "秋果酒店(北京天安门广场前门大栅栏店)",
+      "requestedRadiusMeters": 2000,
+      "observedAt": "2026-10-08T07:26:22.238Z",
+      "straightDistanceMeters": 6528
+    }
+  ]
+}

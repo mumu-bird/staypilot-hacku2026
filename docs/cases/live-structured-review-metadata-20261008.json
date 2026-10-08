@@ -1,0 +1,123 @@
+{
+  "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+  "observedAt": "2026-10-08T09:51:39.892Z",
+  "hotel": {
+    "id": "1181544",
+    "name": "時光漫步酒店（北京雍和宮店）",
+    "address": "安定門內大街方家衚衕46號創意園, 東城區, 北京, 100007"
+  },
+  "rating": 9.5,
+  "ratingMax": 10,
+  "totalCount": 1434,
+  "openingYear": null,
+  "renovationYear": null,
+  "coverage": "visible_page_only",
+  "samples": [
+    {
+      "id": "2126670605",
+      "publishedAt": "2026-10-05",
+      "stayMonth": "2026-10",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "2116071377",
+      "publishedAt": "2026-09-26",
+      "stayMonth": "2026-09",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "2098972173",
+      "publishedAt": "2026-09-11",
+      "stayMonth": "2026-09",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "2120497473",
+      "publishedAt": "2026-09-30",
+      "stayMonth": "2026-08",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1956869693",
+      "publishedAt": "2026-05-22",
+      "stayMonth": "2026-05",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1984183111",
+      "publishedAt": "2026-06-14",
+      "stayMonth": "2026-06",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1992048231",
+      "publishedAt": "2026-06-21",
+      "stayMonth": "2026-05",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1924952571",
+      "publishedAt": "2026-04-26",
+      "stayMonth": "2026-04",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1928296221",
+      "publishedAt": "2026-04-29",
+      "stayMonth": "2026-04",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1923537101",
+      "publishedAt": "2026-04-25",
+      "stayMonth": "2026-04",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1904395847",
+      "publishedAt": "2026-04-09",
+      "stayMonth": "2026-04",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1902739730",
+      "publishedAt": "2026-04-07",
+      "stayMonth": "2026-03",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1945485123",
+      "publishedAt": "2026-05-12",
+      "stayMonth": "2026-05",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1875711837",
+      "publishedAt": "2026-03-14",
+      "stayMonth": "2026-03",
+      "rating": 10,
+      "ratingMax": 10
+    },
+    {
+      "id": "1937862417",
+      "publishedAt": "2026-05-06",
+      "stayMonth": "2026-05",
+      "rating": 9.7,
+      "ratingMax": 10
+    }
+  ],
+  "note": "Live public-page extraction; text remains private for subsequent bounded analysis. Not all reviews or all negative reviews were fetched."
+}

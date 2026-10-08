@@ -1,0 +1,134 @@
+{
+  "source": "飞猪 FlyAI",
+  "observedAt": "2026-10-08T07:32:41.858Z",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "sort": "distance_asc"
+  },
+  "transactionEnabled": false,
+  "missingFields": [
+    "对应日期可订房型及库存",
+    "入住人数与餐食",
+    "住宿含税总价与税费明细",
+    "取消政策与退款截止时间",
+    "评论原文、日期与样本量",
+    "评分尺度与零分含义",
+    "开业时间"
+  ],
+  "systemMessage": null,
+  "hotels": [
+    {
+      "id": "89529288",
+      "name": "柏林野兔",
+      "address": "建华南路11号商通大厦1栋619室",
+      "price": "¥468",
+      "score": "4.00",
+      "decorationTime": "2024-03-07",
+      "nearby": "近北京站",
+      "image": "https://img.alicdn.com/imgextra/i4/6000000004098/O1CN01EHB1ar1g8wCdrwlHi_!!6000000004098-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F0dBfCV"
+    },
+    {
+      "id": "88228584",
+      "name": "景风雨燕家",
+      "address": "北京丰台区右安门外大街6号右外大厦四层",
+      "price": "¥102",
+      "score": "4.00",
+      "decorationTime": "2025-03-01",
+      "nearby": "近北京南站(地铁站)",
+      "image": "https://img.alicdn.com/imgextra/i1/6000000007599/O1CN01IqEEtR260OnpVkYjs_!!6000000007599-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F1X6flt"
+    },
+    {
+      "id": "72842334",
+      "name": "北京蜡笔小新青年公寓",
+      "address": "双井百环家园12号楼",
+      "price": "¥37",
+      "score": "4.00",
+      "decorationTime": "2019-02-05",
+      "nearby": "近劲松(地铁站)",
+      "image": "https://img.alicdn.com/imgextra/i4/6000000001953/O1CN01drvpN01QIWccfD53v_!!6000000001953-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4dlqYM"
+    },
+    {
+      "id": "84157109",
+      "name": "北京西大望路民宿3号店",
+      "address": "北京朝阳广渠路36院11号楼二单元1804",
+      "price": "¥138",
+      "score": "4.00",
+      "decorationTime": null,
+      "nearby": "近双井(地铁站)",
+      "image": "https://img.alicdn.com/imgextra/i3/6000000002057/O1CN01KiluTL1R49hyBOwYf_!!6000000002057-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F3Uym6N"
+    },
+    {
+      "id": "89492120",
+      "name": "城市特色自助酒店式公寓(北京健翔桥店)",
+      "address": "祁家豁子8号健翔国际公寓9层912",
+      "price": "¥316",
+      "score": "0",
+      "decorationTime": null,
+      "nearby": "近鸟巢(国家体育场)",
+      "image": "https://img.alicdn.com/imgextra/i1/6000000006107/O1CN01MR4ctr1uz3uJg9b6v_!!6000000006107-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F2VLJ2i"
+    },
+    {
+      "id": "89348493",
+      "name": "北京好画民宿(国贸店)",
+      "address": "北京朝阳东四环中路80号大成国际公寓B座22层2227室",
+      "price": "¥284",
+      "score": "0",
+      "decorationTime": null,
+      "nearby": "近四惠(地铁站)",
+      "image": "https://img.alicdn.com/imgextra/i3/6000000000915/O1CN01GuqrzB1Id7FS3zYbr_!!6000000000915-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F44LEsS"
+    },
+    {
+      "id": "82087020",
+      "name": "如家精选-北京朝阳大悦城十里堡地铁站店",
+      "address": "北京市朝阳区十里堡北里甲34号",
+      "price": "¥255",
+      "score": "4.00",
+      "decorationTime": "2024-08-01",
+      "nearby": "近朝阳大悦城",
+      "image": "https://img.alicdn.com/imgextra/i2/6000000001450/O1CN01uPGrGDKJ30H5WOzA_!!6000000001450-2-hotel.png",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F4EUCKc"
+    },
+    {
+      "id": "78318080",
+      "name": "蓝熙商务酒店（望京SOHO望京地铁站店）",
+      "address": "北京市朝阳区望京西园422号楼1至2层商业内1层110、2层201室",
+      "price": "¥55",
+      "score": "4.00",
+      "decorationTime": "2024-04-25",
+      "nearby": "近望京(地铁站)",
+      "image": "https://img.alicdn.com/imgextra/i2/6000000001515/O1CN011056B81N3v0Uvcn5f_!!6000000001515-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F0del1I"
+    },
+    {
+      "id": "76233004",
+      "name": "桔子北京望京798艺术区酒店",
+      "address": "酒仙桥北路5号1幢",
+      "price": "¥419",
+      "score": "0",
+      "decorationTime": "2023-01-01",
+      "nearby": "近798艺术区",
+      "image": "https://img.alicdn.com/imgextra/i4/6000000003996/O1CN01tBIpl91fODZHIhhFQ_!!6000000003996-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F0rkHPe"
+    },
+    {
+      "id": "82290013",
+      "name": "全季北京望京科技园酒店",
+      "address": "北京市朝阳区利泽东园308号",
+      "price": "¥488",
+      "score": "0",
+      "decorationTime": "2024-11-19",
+      "nearby": "近望京SOHO",
+      "image": "https://img.alicdn.com/imgextra/i3/6000000003148/O1CN01s900tK1Z7ppgFuzW7_!!6000000003148-0-hotel.jpg",
+      "detailUrl": "https://router.feizhu.com/multi/webview?url=https%3A%2F%2Frouter.feizhu.com%2Fws%2F2S15do"
+    }
+  ]
+}

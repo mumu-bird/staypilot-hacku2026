@@ -1,0 +1,258 @@
+{
+  "startedAt": "2026-10-08T14:38:36.336Z",
+  "completedAt": "2026-10-08T14:38:38.294Z",
+  "sourceMode": "saved_actual_observations",
+  "baselineRunId": "76bb20c4-e946-4966-8738-c6273c9b137d",
+  "state": {
+    "purpose": "Evidence advice only on SAVED actual source observations. Never change budget, free cancellation requirements, or purchase permission.",
+    "policy": {
+      "budgetCents": 60000,
+      "idealBudgetCents": 50000,
+      "priorities": "Prefer restful sleep and hygiene; do not increase the 600 CNY ceiling.",
+      "walkMinutes": 20,
+      "metroMinutes": 40,
+      "allowMetro": true,
+      "window": "preferred",
+      "requireCancelable": true,
+      "weights": {
+        "noise": 3,
+        "hygiene": 3,
+        "smell": 1,
+        "maintenance": 1,
+        "service": 1,
+        "space": 1,
+        "security": 3
+      },
+      "unacceptable": []
+    },
+    "candidate": {
+      "key": "rollinggo:43565",
+      "name": "北京新侨饭店",
+      "address": "崇文门西大街1号",
+      "source": "RollingGo MCP",
+      "searchObservedAt": "2026-10-08T14:24:19.689Z",
+      "room": null,
+      "roomQuery": {
+        "status": "empty",
+        "observedAt": "2026-10-08T14:26:45.918Z",
+        "filter": {
+          "cancelPolicy": "CANCELABLE"
+        },
+        "count": 0,
+        "interpretation": "This query status and filter do not establish stock availability or free cancellation. Empty filtered results differ from an unqueried hotel. Retrying identical recent successful filters needs a specific reason."
+      },
+      "commute": {
+        "tier": 1,
+        "minutes": 37,
+        "source": "高德地图 Web 服务",
+        "observedAt": "2026-10-08T14:24:42.496Z",
+        "walking": {
+          "minutes": 71,
+          "meters": 5315
+        },
+        "directMetro": [
+          {
+            "minutes": 37,
+            "lines": [
+              "地铁5号线(宋家庄--天通苑北)"
+            ]
+          }
+        ],
+        "warnings": []
+      },
+      "reviews": {
+        "sourceUrl": "https://hotel.fliggy.com/hotel_detail2.htm?shid=10004405&checkIn=2026-10-09&checkOut=2026-10-10",
+        "observedAt": "2026-10-04T04:42:55.700Z",
+        "rating": {
+          "score": 4.8,
+          "scale": 5,
+          "observedAt": "2026-10-04T04:42:55.700Z",
+          "source": "curated_record"
+        },
+        "openingYear": null,
+        "renovationYear": null,
+        "negativeSample": [
+          {
+            "date": "2026-10-02",
+            "issues": [
+              "hygiene",
+              "maintenance",
+              "service"
+            ]
+          },
+          {
+            "date": "2026-09-04",
+            "issues": [
+              "hygiene",
+              "smell",
+              "maintenance"
+            ]
+          },
+          {
+            "date": "2026-08-03",
+            "issues": [
+              "noise",
+              "maintenance",
+              "service"
+            ]
+          },
+          {
+            "date": "2026-06-20",
+            "issues": [
+              "noise",
+              "service"
+            ]
+          }
+        ],
+        "positiveSampleCount": 1,
+        "sampleLimitations": []
+      },
+      "semanticReviewSources": [
+        {
+          "model": "jev-1.13.0",
+          "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-374787/novotel-beijing-xinqiao/review.html",
+          "sourceObservedAt": "2026-10-08T14:25:16.469Z",
+          "analyzedAt": "2026-10-08T14:25:20.949Z",
+          "evidenceHash": "8658299dab6e997a6a02bb4cc1a0e0532fe4deaec48d2c404860d996edd22354",
+          "sampleCount": 15,
+          "sourceRating": {
+            "score": 9.1,
+            "scale": 10,
+            "totalCount": 10598
+          },
+          "coverage": "visible_page_only",
+          "mentions": [
+            {
+              "id": "2132755943",
+              "date": "2026-10-08",
+              "issues": [
+                "maintenance"
+              ]
+            },
+            {
+              "id": "2127627773",
+              "date": "2026-10-05",
+              "issues": [
+                "noise"
+              ]
+            },
+            {
+              "id": "2118798839",
+              "date": "2026-09-28",
+              "issues": [
+                "noise",
+                "maintenance",
+                "service"
+              ]
+            }
+          ],
+          "uncertain": [
+            {
+              "id": "2132755943",
+              "date": "2026-10-08",
+              "issues": [
+                "space"
+              ]
+            },
+            {
+              "id": "2132751205",
+              "date": "2026-10-08",
+              "issues": [
+                "maintenance"
+              ]
+            }
+          ]
+        }
+      ],
+      "targetedReviewMetric": {
+        "value": 4.75,
+        "rows": [
+          {
+            "issue": "noise",
+            "count": 2,
+            "sampleSize": 4,
+            "weight": 3,
+            "contribution": 1.5
+          },
+          {
+            "issue": "hygiene",
+            "count": 2,
+            "sampleSize": 4,
+            "weight": 3,
+            "contribution": 1.5
+          },
+          {
+            "issue": "smell",
+            "count": 1,
+            "sampleSize": 4,
+            "weight": 1,
+            "contribution": 0.25
+          },
+          {
+            "issue": "maintenance",
+            "count": 3,
+            "sampleSize": 4,
+            "weight": 1,
+            "contribution": 0.75
+          },
+          {
+            "issue": "service",
+            "count": 3,
+            "sampleSize": 4,
+            "weight": 1,
+            "contribution": 0.75
+          },
+          {
+            "issue": "space",
+            "count": 0,
+            "sampleSize": 4,
+            "weight": 1,
+            "contribution": 0
+          },
+          {
+            "issue": "security",
+            "count": 0,
+            "sampleSize": 4,
+            "weight": 3,
+            "contribution": 0
+          }
+        ],
+        "interpretation": "Personal weighted targeted sample only; not population prevalence. Semantic sources stay separate."
+      },
+      "gaps": [
+        "超出初筛半径；平台距离筛选未获验证，须按明确通勤权限判断",
+        "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+        "模型识别评论问题提及：维护（评论2132755943，2026-10-08）；需核验原文与房型影响",
+        "模型识别评论问题提及：隔音（评论2127627773，2026-10-05）；需核验原文与房型影响",
+        "模型识别评论问题提及：隔音（评论2118798839，2026-09-28）；需核验原文与房型影响",
+        "模型识别评论问题提及：维护（评论2118798839，2026-09-28）；需核验原文与房型影响",
+        "模型识别评论问题提及：服务（评论2118798839，2026-09-28）；需核验原文与房型影响",
+        "评论语义待核验：空间（评论2132755943，2026-10-08）；不能视为问题已排除",
+        "评论语义待核验：维护（评论2132751205，2026-10-08）；不能视为问题已排除",
+        "未取得绑定人数、日期、餐食、取消条款的房型",
+        "高重要度评论问题需核验具体房型或整改证据",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "reasons": [],
+      "errors": [],
+      "bookable": false
+    }
+  },
+  "model": "jev-1.13.0",
+  "choice": {
+    "type": "choice",
+    "choice": "merchant",
+    "confidence": 0.51,
+    "probabilities": {
+      "rooms": 0.3,
+      "merchant": 0.67,
+      "none": 0.03
+    }
+  },
+  "usage": {
+    "input_tokens": 2742,
+    "output_tokens": 39
+  },
+  "transactionEnabled": false
+}

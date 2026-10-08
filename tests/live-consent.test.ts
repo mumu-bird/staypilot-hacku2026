@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {liveConditionsKey} from '../shared/live-consent.ts';
+test('reordered API properties do not invalidate the same read-only conditions',()=>{assert.equal(liveConditionsKey({city:'北京',adults:2},{weights:{hygiene:3,noise:1},budget:600}),liveConditionsKey({adults:2,city:'北京'},{budget:600,weights:{noise:1,hygiene:3}}));});
+test('budget, destination and hard exclusions each invalidate prior consent',()=>{const q={city:'北京'},p={budget:600,unacceptable:['noise']};const key=liveConditionsKey(q,p);assert.notEqual(key,liveConditionsKey({...q,city:'杭州'},p));assert.notEqual(key,liveConditionsKey(q,{...p,budget:700}));assert.notEqual(key,liveConditionsKey(q,{...p,unacceptable:[]}));});

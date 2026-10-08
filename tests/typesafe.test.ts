@@ -28,3 +28,21 @@ test('TypeSafe errors do not expose credentials or private error bodies and over
   let calls=0;const r=await typeSafeHttp('/v1/models',undefined,async()=>{calls++;return calls===1?new Response('busy',{status:429}):new Response('{"models":[]}');});assert.equal(calls,2);assert.deepEqual(r,{models:[]});
  }finally{if(old===undefined)delete process.env.TYPESAFE_API_KEY;else process.env.TYPESAFE_API_KEY=old;}
 });
+
+test('model transport diagnostics distinguish timeout, network and HTTP without exposing error bodies',async()=>{
+ const {TypeSafeServiceError,typeSafeFailureGuidance}=await import('../server/typesafe.ts');const previous=process.env.TYPESAFE_API_KEY;process.env.TYPESAFE_API_KEY='private-diagnostic-key';
+ try{
+ for(const [name,code] of [['TimeoutError','timeout'],['TypeError','network']] as const){await assert.rejects(typeSafeHttp('/v1/models',undefined,async()=>{const error=new Error('private-diagnostic-key');error.name=name;throw error;}),error=>error instanceof TypeSafeServiceError&&error.code===code&&!String(error).includes('private-diagnostic-key')&&!!typeSafeFailureGuidance(error));}
+ await assert.rejects(typeSafeHttp('/v1/models',undefined,async()=>new Response('private-diagnostic-key',{status:403})),error=>error instanceof TypeSafeServiceError&&error.status===403&&!String(error).includes('private-diagnostic-key'));
+ assert.equal(typeSafeFailureGuidance(new Error('secret')),null);
+ }finally{if(previous===undefined)delete process.env.TYPESAFE_API_KEY;else process.env.TYPESAFE_API_KEY=previous;}
+});
+
+test('interrupted model response body is a transport failure rather than a fabricated format diagnosis',async()=>{
+ const {TypeSafeServiceError}=await import('../server/typesafe.ts');const previous=process.env.TYPESAFE_API_KEY;process.env.TYPESAFE_API_KEY='private-body-key';
+ try{
+ const response=new Response(new ReadableStream({start(controller){controller.error(new DOMException('private-body-key','AbortError'));}}));
+ await assert.rejects(typeSafeHttp('/v1/models',undefined,async()=>response),error=>error instanceof TypeSafeServiceError&&error.code==='timeout'&&!String(error).includes('private-body-key'));
+ await assert.rejects(typeSafeHttp('/v1/models',undefined,async()=>new Response('{bad')),error=>error instanceof TypeSafeServiceError&&error.code==='invalid_json');
+ }finally{if(previous===undefined)delete process.env.TYPESAFE_API_KEY;else process.env.TYPESAFE_API_KEY=previous;}
+});

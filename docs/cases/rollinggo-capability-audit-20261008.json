@@ -1,0 +1,23 @@
+{
+  "source": "RollingGo MCP",
+  "verifiedAt": "2026-10-08T08:15:28.197Z",
+  "server": {
+    "name": "MCP Hotel Server",
+    "version": "1.0.0"
+  },
+  "tools": [
+    {
+      "name": "getHotelDetail",
+      "readOnlyEnabled": true
+    },
+    {
+      "name": "getHotelSearchTags",
+      "readOnlyEnabled": true
+    },
+    {
+      "name": "searchHotels",
+      "readOnlyEnabled": true
+    }
+  ],
+  "transactionEnabled": false
+}

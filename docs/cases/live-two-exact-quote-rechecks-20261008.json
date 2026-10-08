@@ -1,0 +1,159 @@
+{
+  "scope": "Two new real read-only requests, identical hotel/rate ID and stay; no booking",
+  "originalRunId": "08640d0d-024c-4f30-ab3b-8aedc6a39428",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "adultCount": 2,
+    "size": 10,
+    "roomCount": 1,
+    "childCount": 0
+  },
+  "candidateKey": "rollinggo:41962",
+  "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+  "checks": [
+    {
+      "round": 1,
+      "startedAt": "2026-10-08T11:10:01.519Z",
+      "httpStatus": 200,
+      "result": {
+        "id": "305a841c-ee0c-43e2-88d5-4f8f5c58e03d",
+        "runId": "08640d0d-024c-4f30-ab3b-8aedc6a39428",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+        "queryKey": "d56acc2440079414985b7a4e6489911bfc603d8614aba27b97616a55dba98023",
+        "checkedAt": "2026-10-08T11:10:01.545Z",
+        "beforeObservedAt": "2026-10-08T10:40:45.027Z",
+        "afterObservedAt": "2026-10-08T11:10:03.001Z",
+        "status": "unchanged",
+        "before": {
+          "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "bedType": "1 大床",
+          "averagePrice": 364,
+          "estimatedStayPrice": 364,
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "onRequest": true,
+          "cancelable": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelUntil": "2026-10-08T20:00:00+08:00",
+          "cancellationStatus": "free_until",
+          "hasWindow": true,
+          "maxOccupancy": 2,
+          "size": "18",
+          "missingFields": [
+            "含税总价、税费与到店费用明细",
+            "报价有效期及成交前库存复核",
+            "取消截止后的费用及退款到账规则"
+          ],
+          "sourceObservedAt": "2026-10-08T10:40:45.027Z",
+          "windowType": "unspecified"
+        },
+        "after": {
+          "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "bedType": "1 大床",
+          "averagePrice": 364,
+          "estimatedStayPrice": 364,
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "onRequest": true,
+          "cancelable": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelUntil": "2026-10-08T20:00:00+08:00",
+          "cancellationStatus": "free_until",
+          "hasWindow": true,
+          "maxOccupancy": 2,
+          "size": "18",
+          "missingFields": [
+            "含税总价、税费与到店费用明细",
+            "报价有效期及成交前库存复核",
+            "取消截止后的费用及退款到账规则"
+          ],
+          "sourceObservedAt": "2026-10-08T11:10:03.001Z",
+          "windowType": "unspecified"
+        },
+        "deltaCents": 0,
+        "reason": "同一报价ID及房型条款复核；只比较展示估价，最终税费与库存仍需核验。",
+        "transactionEnabled": false
+      }
+    },
+    {
+      "round": 2,
+      "startedAt": "2026-10-08T11:10:03.017Z",
+      "httpStatus": 200,
+      "result": {
+        "id": "af93b1dd-4784-4efd-821b-8497b9e6c8a4",
+        "runId": "08640d0d-024c-4f30-ab3b-8aedc6a39428",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+        "queryKey": "d56acc2440079414985b7a4e6489911bfc603d8614aba27b97616a55dba98023",
+        "checkedAt": "2026-10-08T11:10:03.023Z",
+        "beforeObservedAt": "2026-10-08T11:10:03.001Z",
+        "afterObservedAt": "2026-10-08T11:10:03.519Z",
+        "status": "unchanged",
+        "before": {
+          "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "bedType": "1 大床",
+          "averagePrice": 364,
+          "estimatedStayPrice": 364,
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "onRequest": true,
+          "cancelable": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelUntil": "2026-10-08T20:00:00+08:00",
+          "cancellationStatus": "free_until",
+          "hasWindow": true,
+          "maxOccupancy": 2,
+          "size": "18",
+          "missingFields": [
+            "含税总价、税费与到店费用明细",
+            "报价有效期及成交前库存复核",
+            "取消截止后的费用及退款到账规则"
+          ],
+          "sourceObservedAt": "2026-10-08T11:10:03.001Z",
+          "windowType": "unspecified"
+        },
+        "after": {
+          "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "bedType": "1 大床",
+          "averagePrice": 364,
+          "estimatedStayPrice": 364,
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "onRequest": true,
+          "cancelable": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelUntil": "2026-10-08T20:00:00+08:00",
+          "cancellationStatus": "free_until",
+          "hasWindow": true,
+          "maxOccupancy": 2,
+          "size": "18",
+          "missingFields": [
+            "含税总价、税费与到店费用明细",
+            "报价有效期及成交前库存复核",
+            "取消截止后的费用及退款到账规则"
+          ],
+          "sourceObservedAt": "2026-10-08T11:10:03.519Z",
+          "windowType": "unspecified"
+        },
+        "deltaCents": 0,
+        "reason": "同一报价ID及房型条款复核；只比较展示估价，最终税费与库存仍需核验。",
+        "transactionEnabled": false
+      }
+    }
+  ],
+  "transactionEnabled": false
+}

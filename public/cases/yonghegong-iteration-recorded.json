@@ -1,0 +1,1341 @@
+{
+  "id": "4c8c343e-5341-4096-8903-f629765e2d5f",
+  "mode": "recorded",
+  "startedAt": "2026-10-04T05:02:42.774Z",
+  "completedAt": "2026-10-04T05:02:43.544Z",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "adultCount": 2,
+    "size": 10,
+    "roomCount": 1,
+    "childCount": 0
+  },
+  "policy": {
+    "budgetCents": 60000,
+    "walkMinutes": 20,
+    "metroMinutes": 40,
+    "allowMetro": true,
+    "window": "preferred",
+    "requireCancelable": true,
+    "weights": {
+      "noise": 3,
+      "hygiene": 3,
+      "smell": 1,
+      "maintenance": 1,
+      "service": 1,
+      "space": 1,
+      "security": 3
+    },
+    "unacceptable": []
+  },
+  "evidenceAsOf": "2026-10-04T04:42:55.705Z",
+  "candidates": [
+    {
+      "candidate": {
+        "key": "rollinggo:43565",
+        "hotelId": "43565",
+        "name": "北京新侨饭店",
+        "address": "崇文门西大街1号",
+        "source": "RollingGo MCP",
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=43565&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-04T04:29:32.766Z",
+        "displayPrice": 493,
+        "rooms": [
+          {
+            "ratePlanId": "2d9tjsaJOoe-2ZdAEzmRd0w",
+            "roomName": "标准双床房 - 无景观",
+            "bedType": "2 单人床",
+            "averagePrice": 493,
+            "estimatedStayPrice": 493,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 00:00:00",
+            "cancelUntil": "2026-10-06T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": null,
+            "maxOccupancy": 2,
+            "size": null,
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "unknown"
+          },
+          {
+            "ratePlanId": "cK9CnqehrvN-lMKVobEf9Bn",
+            "roomName": "标准大床间",
+            "bedType": "1 大床",
+            "averagePrice": 493,
+            "estimatedStayPrice": 493,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 00:00:00",
+            "cancelUntil": "2026-10-06T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "25",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "af5kcDUTj24-5f7LGiqpSIE",
+            "roomName": "标准双床间",
+            "bedType": "2 单人床",
+            "averagePrice": 502,
+            "estimatedStayPrice": 502,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 18:00:00",
+            "cancelUntil": "2026-10-06T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "25",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "8EOMNL1ALZW-j53HAazxcOk",
+            "roomName": "标准双床间·内窗",
+            "bedType": "2 单人床",
+            "averagePrice": 529,
+            "estimatedStayPrice": 529,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 17:30:00",
+            "cancelUntil": "2026-10-06T17:30:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "25",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "internal"
+          },
+          {
+            "ratePlanId": "eIIPqgXJ9iN-eMgwalYIWgN",
+            "roomName": "旅行经济双床间·无窗",
+            "bedType": "2 单人床",
+            "averagePrice": 532,
+            "estimatedStayPrice": 532,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 00:00:00",
+            "cancelUntil": "2026-10-06T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "25",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "ctO5YqfDNNl-9EwAxLffCB7",
+            "roomName": "旅行经济双床间·无窗",
+            "bedType": "2 单人床",
+            "averagePrice": 543,
+            "estimatedStayPrice": 543,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 18:00:00",
+            "cancelUntil": "2026-10-06T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "25",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "beaqebv1dsj-2xTIxzDbQGJ",
+            "roomName": "高级双床间",
+            "bedType": "2 单人床",
+            "averagePrice": 558,
+            "estimatedStayPrice": 558,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 00:00:00",
+            "cancelUntil": "2026-10-06T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "27",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "2klj7PW7Wzg-hblw1ii4QvV",
+            "roomName": "高级大床间",
+            "bedType": "1 特大床",
+            "averagePrice": 558,
+            "estimatedStayPrice": 558,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 00:00:00",
+            "cancelUntil": "2026-10-06T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "27",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "2zwbwkgcXZi-lOXkeGllAeX",
+            "roomName": "高级大床间",
+            "bedType": "1 大床",
+            "averagePrice": 568,
+            "estimatedStayPrice": 568,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 18:00:00",
+            "cancelUntil": "2026-10-06T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "27",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "fS7KPcqjpeN-gsOxa7FJ4Va",
+            "roomName": "高级双床间",
+            "bedType": "2 单人床",
+            "averagePrice": 568,
+            "estimatedStayPrice": 568,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 18:00:00",
+            "cancelUntil": "2026-10-06T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "27",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+            "windowType": "unspecified"
+          }
+        ],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-04T04:32:52.968Z",
+          "origin": "116.416707,39.901687",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 71,
+            "meters": 5315
+          },
+          "transits": [
+            {
+              "minutes": 37,
+              "meters": 5696,
+              "walkingMeters": 1226,
+              "lines": [
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "崇文门",
+                  "arrival": "北新桥",
+                  "metro": true
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": true,
+              "classification": "地铁直达"
+            },
+            {
+              "minutes": 53,
+              "meters": 5354,
+              "walkingMeters": 1129,
+              "lines": [
+                {
+                  "name": "84路(宋家庄枢纽站--惠新东桥西)",
+                  "type": "普通公交线路",
+                  "departure": "崇文门内",
+                  "arrival": "北新桥路口北",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            },
+            {
+              "minutes": 69,
+              "meters": 10435,
+              "walkingMeters": 856,
+              "lines": [
+                {
+                  "name": "111路(白石桥东--崇文门东)",
+                  "type": "无轨电车",
+                  "departure": "崇文门内",
+                  "arrival": "崇文门东",
+                  "metro": false
+                },
+                {
+                  "name": "44路外环(广安胡同北口--广安胡同北口)",
+                  "type": "普通公交线路",
+                  "departure": "崇文门东",
+                  "arrival": "雍和宫桥东",
+                  "metro": false
+                },
+                {
+                  "name": "84路(惠新东桥南--宋家庄枢纽站)",
+                  "type": "普通公交线路",
+                  "departure": "雍和宫桥东",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 2,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": {
+          "sourceUrl": "https://hotel.fliggy.com/hotel_detail2.htm?shid=10004405&checkIn=2026-10-09&checkOut=2026-10-10",
+          "observedAt": "2026-10-04T04:42:55.700Z",
+          "score": "4.8",
+          "count": 6077,
+          "selection": "浏览器人工采集的定向历史样本，非全量或本轮实时评论API",
+          "negative": [
+            {
+              "date": "2026-10-02",
+              "summary": "住客报告虫咬、设施陈旧及服务响应慢，虫种与原因未核验",
+              "issues": [
+                "hygiene",
+                "maintenance",
+                "service"
+              ]
+            },
+            {
+              "date": "2026-09-04",
+              "summary": "住客报告潮湿、异味和虫子，原因及当前整改状态未核验",
+              "issues": [
+                "hygiene",
+                "smell",
+                "maintenance"
+              ]
+            },
+            {
+              "date": "2026-08-03",
+              "summary": "同日同文出现多条记录，可能重复，不按独立事件累计",
+              "issues": [
+                "noise",
+                "maintenance",
+                "service"
+              ]
+            },
+            {
+              "date": "2026-06-20",
+              "summary": "住客报告窗外餐厅噪声影响休息；商家回应会在房态允许时安排较安静房间，未核验整改结果",
+              "issues": [
+                "noise",
+                "service"
+              ]
+            }
+          ],
+          "positive": [
+            {
+              "date": null,
+              "summary": "全部评论页面可见对位置、出行与清洁的认可；待进一步绑定各条日期和房型"
+            }
+          ],
+          "openingYear": null,
+          "renovationYear": null
+        },
+        "errors": []
+      },
+      "status": "needs_evidence",
+      "tier": 1,
+      "minutes": 37,
+      "risk": 4.75,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 2,
+          "sampleSize": 4,
+          "weight": 3,
+          "contribution": 1.5
+        },
+        {
+          "issue": "hygiene",
+          "count": 2,
+          "sampleSize": 4,
+          "weight": 3,
+          "contribution": 1.5
+        },
+        {
+          "issue": "smell",
+          "count": 1,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0.25
+        },
+        {
+          "issue": "maintenance",
+          "count": 3,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0.75
+        },
+        {
+          "issue": "service",
+          "count": 3,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0.75
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 4,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 4,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": {
+        "ratePlanId": "beaqebv1dsj-2xTIxzDbQGJ",
+        "roomName": "高级双床间",
+        "bedType": "2 单人床",
+        "averagePrice": 558,
+        "estimatedStayPrice": 558,
+        "currency": "CNY",
+        "mealAmount": 0,
+        "mealType": "不含早餐",
+        "onRequest": false,
+        "cancelable": true,
+        "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-06 00:00:00",
+        "cancelUntil": "2026-10-06T00:00:00+08:00",
+        "cancellationStatus": "free_until",
+        "hasWindow": true,
+        "maxOccupancy": 2,
+        "size": "27",
+        "missingFields": [
+          "含税总价、税费与到店费用明细",
+          "报价有效期及成交前库存复核",
+          "取消截止后的费用及退款到账规则"
+        ],
+        "sourceObservedAt": "2026-10-04T04:36:46.431Z",
+        "windowType": "unspecified"
+      },
+      "reasons": [],
+      "gaps": [
+        "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+        "外窗及采光尚未证实；内窗、暗窗不能等同外窗",
+        "高重要度评论问题需核验具体房型或整改证据",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "授权降级参数内地铁直达37分钟",
+        "原平台评分4.8，评论6077条",
+        "房型展示价¥558，最终费用待复核"
+      ],
+      "rank": 1,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "fliggy:50064951",
+        "hotelId": "50064951",
+        "name": "北京世茂国际公寓(工体世茂国际中心店)",
+        "address": "工体北路13号院世茂国际中心2号楼",
+        "source": "飞猪网页（历史观察）",
+        "detailUrl": "https://hotel.fliggy.com/hotel_detail2.htm?shid=50064951&checkIn=2026-10-09&checkOut=2026-10-10",
+        "searchObservedAt": "2026-10-04T04:42:55.700Z",
+        "displayPrice": 467,
+        "rooms": [
+          {
+            "ratePlanId": "recorded-531",
+            "roomName": "高空景观电影房",
+            "bedType": "1.8米大床",
+            "averagePrice": 531,
+            "estimatedStayPrice": 531,
+            "currency": "CNY",
+            "mealAmount": null,
+            "mealType": null,
+            "onRequest": null,
+            "cancelable": false,
+            "cancelPolicy": "不可取消",
+            "cancelUntil": null,
+            "cancellationStatus": "nonrefundable",
+            "hasWindow": true,
+            "maxOccupancy": null,
+            "size": null,
+            "missingFields": [
+              "房型最大入住人数",
+              "餐食",
+              "最终含税总价",
+              "退款到账时间"
+            ],
+            "sourceObservedAt": "2026-10-04T04:42:55.700Z",
+            "windowType": "external"
+          },
+          {
+            "ratePlanId": "recorded-585",
+            "roomName": "高空景观电影房",
+            "bedType": "1.8米大床",
+            "averagePrice": 585,
+            "estimatedStayPrice": 585,
+            "currency": "CNY",
+            "mealAmount": null,
+            "mealType": null,
+            "onRequest": null,
+            "cancelable": true,
+            "cancelPolicy": "截止之前免费取消，达到截止不可取消，未入住全额费用",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": null,
+            "size": null,
+            "missingFields": [
+              "房型最大入住人数",
+              "餐食",
+              "最终含税总价",
+              "退款到账时间"
+            ],
+            "sourceObservedAt": "2026-10-04T04:42:55.700Z",
+            "windowType": "external"
+          }
+        ],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-04T04:32:58.805Z",
+          "origin": "116.448979,39.934770",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 56,
+            "meters": 4169
+          },
+          "transits": [
+            {
+              "minutes": 43,
+              "meters": 5666,
+              "walkingMeters": 1332,
+              "lines": [
+                {
+                  "name": "地铁3号线(东坝北--东四十条)",
+                  "type": "地铁线路",
+                  "departure": "工人体育场",
+                  "arrival": "东四十条",
+                  "metro": true
+                },
+                {
+                  "name": "地铁2号线外环(西直门--西直门)",
+                  "type": "地铁线路",
+                  "departure": "东四十条",
+                  "arrival": "雍和宫",
+                  "metro": true
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 38,
+              "meters": 4531,
+              "walkingMeters": 808,
+              "lines": [
+                {
+                  "name": "115路(康家沟南--地铁柳芳站)",
+                  "type": "无轨电车",
+                  "departure": "工人体育场",
+                  "arrival": "北新桥路口北",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            },
+            {
+              "minutes": 41,
+              "meters": 4746,
+              "walkingMeters": 1071,
+              "lines": [
+                {
+                  "name": "117路(红庙路口东--五路居)",
+                  "type": "普通公交线路",
+                  "departure": "工人体育场",
+                  "arrival": "北新桥路口北",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": {
+          "sourceUrl": "https://hotel.fliggy.com/hotel_detail2.htm?shid=50064951&checkIn=2026-10-09&checkOut=2026-10-10",
+          "observedAt": "2026-10-04T04:42:55.700Z",
+          "score": "5.0",
+          "count": 17,
+          "selection": "浏览器人工采集的定向历史样本，非全量或本轮实时评论API",
+          "negative": [
+            {
+              "date": "2022-03-14",
+              "summary": "投影是坏的，位置不好找",
+              "issues": [
+                "maintenance",
+                "location"
+              ]
+            }
+          ],
+          "positive": [
+            {
+              "date": "2026-08-27",
+              "summary": "隔音好，晚上安静不吵"
+            },
+            {
+              "date": "2026-09-05",
+              "summary": "认可房间清洁及交通"
+            }
+          ],
+          "openingYear": 2020,
+          "renovationYear": 2025
+        },
+        "errors": [
+          "网页会员优惠适用性未验证"
+        ]
+      },
+      "status": "excluded",
+      "tier": null,
+      "minutes": null,
+      "risk": 1,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 1,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 1
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": {
+        "ratePlanId": "recorded-585",
+        "roomName": "高空景观电影房",
+        "bedType": "1.8米大床",
+        "averagePrice": 585,
+        "estimatedStayPrice": 585,
+        "currency": "CNY",
+        "mealAmount": null,
+        "mealType": null,
+        "onRequest": null,
+        "cancelable": true,
+        "cancelPolicy": "截止之前免费取消，达到截止不可取消，未入住全额费用",
+        "cancelUntil": "2026-10-08T18:00:00+08:00",
+        "cancellationStatus": "free_until",
+        "hasWindow": true,
+        "maxOccupancy": null,
+        "size": null,
+        "missingFields": [
+          "房型最大入住人数",
+          "餐食",
+          "最终含税总价",
+          "退款到账时间"
+        ],
+        "sourceObservedAt": "2026-10-04T04:42:55.700Z",
+        "windowType": "external"
+      },
+      "reasons": [
+        "已取得路线不满足本轮通勤参数"
+      ],
+      "gaps": [
+        "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+        "最大入住人数未知",
+        "库存需要待确认或状态未知",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "网页会员优惠适用性未验证"
+      ],
+      "advantages": [
+        "原平台评分5.0，评论17条",
+        "房型展示价¥585，最终费用待复核"
+      ],
+      "rank": 2,
+      "bookable": false
+    },
+    {
+      "candidate": {
+        "key": "rollinggo:1156548",
+        "hotelId": "1156548",
+        "name": "秋果酒店(北京天安门广场前门大栅栏店)",
+        "address": "天坛街道粉厂胡同17号",
+        "source": "RollingGo MCP",
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=1156548&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-04T04:29:32.766Z",
+        "displayPrice": 370,
+        "rooms": [
+          {
+            "ratePlanId": "k9utUlKtUlB-43pdYDZsK2c",
+            "roomName": "影音大床房（激光投影+新风除霾）",
+            "bedType": "1 大床",
+            "averagePrice": 364,
+            "estimatedStayPrice": 364,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 18:00:00",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "6KuXh4530HN-LfYgRGx4nu",
+            "roomName": "影音大床房（激光投影+新风除霾）",
+            "bedType": "1 大床",
+            "averagePrice": 370,
+            "estimatedStayPrice": 370,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 00:00:00",
+            "cancelUntil": "2026-10-08T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "a1hZdCbslxz-3if2A3IUB1N",
+            "roomName": "影音大床房（激光投影+新风除霾）",
+            "bedType": "1 大床",
+            "averagePrice": 374,
+            "estimatedStayPrice": 374,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 18:00:00",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "none"
+          },
+          {
+            "ratePlanId": "lErYHIyGzRA-fA76FKYJVLy",
+            "roomName": "精致大床房（智能客控+金可儿床垫）",
+            "bedType": "1 大床",
+            "averagePrice": 410,
+            "estimatedStayPrice": 410,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 18:00:00",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "22",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "WTD3ffE8sJ-9E8rgYRI2ZT",
+            "roomName": "精致大床房（智能客控+金可儿床垫）",
+            "bedType": "1 大床",
+            "averagePrice": 417,
+            "estimatedStayPrice": 417,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 00:00:00",
+            "cancelUntil": "2026-10-08T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "22",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "4dZWWO9RbFN-lJGiC4ZsF5d",
+            "roomName": "精致大床房（智能客控+金可儿床垫）",
+            "bedType": "1 大床",
+            "averagePrice": 422,
+            "estimatedStayPrice": 422,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 18:00:00",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "22",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "4PnuLurniQm-917rTKdtlG7",
+            "roomName": "精致大床房",
+            "bedType": "1 大床",
+            "averagePrice": 449,
+            "estimatedStayPrice": 449,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 18:00:00",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": null,
+            "maxOccupancy": 2,
+            "size": null,
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "unknown"
+          },
+          {
+            "ratePlanId": "cVlNkBHyiHk-bf3HZYVzB00",
+            "roomName": "精致双床房（智能客控+新风除霾）",
+            "bedType": "2 单人床",
+            "averagePrice": 457,
+            "estimatedStayPrice": 457,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 18:00:00",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "22",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "eOWIQOuKGSA-9EvXNH8kYFq",
+            "roomName": "精致双床房（智能客控+新风除霾）",
+            "bedType": "2 单人床",
+            "averagePrice": 465,
+            "estimatedStayPrice": 465,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 00:00:00",
+            "cancelUntil": "2026-10-08T00:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "22",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "kfP1oxvYwrN-1wM5RhNGA2t",
+            "roomName": "精致双床房（智能客控+新风除霾）",
+            "bedType": "双床",
+            "averagePrice": 470,
+            "estimatedStayPrice": 470,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": true,
+            "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 18:00:00",
+            "cancelUntil": "2026-10-08T18:00:00+08:00",
+            "cancellationStatus": "free_until",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "22",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则"
+            ],
+            "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+            "windowType": "unspecified"
+          }
+        ],
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-04T04:32:56.114Z",
+          "origin": "116.404237,39.889395",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 107,
+            "meters": 7979
+          },
+          "transits": [
+            {
+              "minutes": 57,
+              "meters": 8266,
+              "walkingMeters": 1964,
+              "lines": [
+                {
+                  "name": "地铁7号线(北京西站--环球度假区)",
+                  "type": "地铁线路",
+                  "departure": "桥湾",
+                  "arrival": "磁器口",
+                  "metro": true
+                },
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "磁器口",
+                  "arrival": "北新桥",
+                  "metro": true
+                }
+              ],
+              "transfers": 1,
+              "metroDirect": false,
+              "classification": "地铁需换乘"
+            },
+            {
+              "minutes": 69,
+              "meters": 8261,
+              "walkingMeters": 1268,
+              "lines": [
+                {
+                  "name": "106路(翠林小区--东直门枢纽站)",
+                  "type": "无轨电车",
+                  "departure": "金鱼池",
+                  "arrival": "北新桥路口南",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            },
+            {
+              "minutes": 62,
+              "meters": 8089,
+              "walkingMeters": 2769,
+              "lines": [
+                {
+                  "name": "地铁5号线(宋家庄--天通苑北)",
+                  "type": "地铁线路",
+                  "departure": "磁器口",
+                  "arrival": "北新桥",
+                  "metro": true
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": true,
+              "classification": "地铁直达"
+            }
+          ],
+          "warnings": []
+        },
+        "reviews": null,
+        "errors": []
+      },
+      "status": "excluded",
+      "tier": null,
+      "minutes": null,
+      "risk": null,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 0,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": {
+        "ratePlanId": "WTD3ffE8sJ-9E8rgYRI2ZT",
+        "roomName": "精致大床房（智能客控+金可儿床垫）",
+        "bedType": "1 大床",
+        "averagePrice": 417,
+        "estimatedStayPrice": 417,
+        "currency": "CNY",
+        "mealAmount": 0,
+        "mealType": "不含早餐",
+        "onRequest": false,
+        "cancelable": true,
+        "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 00:00:00",
+        "cancelUntil": "2026-10-08T00:00:00+08:00",
+        "cancellationStatus": "free_until",
+        "hasWindow": true,
+        "maxOccupancy": 2,
+        "size": "22",
+        "missingFields": [
+          "含税总价、税费与到店费用明细",
+          "报价有效期及成交前库存复核",
+          "取消截止后的费用及退款到账规则"
+        ],
+        "sourceObservedAt": "2026-10-04T04:36:48.097Z",
+        "windowType": "unspecified"
+      },
+      "reasons": [
+        "已取得路线不满足本轮通勤参数"
+      ],
+      "gaps": [
+        "评论原文、日期、评分与样本不足",
+        "外窗及采光尚未证实；内窗、暗窗不能等同外窗",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "房型展示价¥417，最终费用待复核"
+      ],
+      "rank": 3,
+      "bookable": false
+    }
+  ],
+  "crossPlatform": [],
+  "alternatives": [
+    {
+      "hotel": "北京世茂国际公寓(工体世茂国际中心店)",
+      "change": "保持预算，增加公交直达38分钟的授权范围",
+      "remaining": [
+        "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+        "最大入住人数未知",
+        "库存需要待确认或状态未知",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证",
+        "网页会员优惠适用性未验证"
+      ]
+    },
+    {
+      "hotel": "秋果酒店(北京天安门广场前门大栅栏店)",
+      "change": "保持预算，地铁直达上限改为至少62分钟",
+      "remaining": [
+        "评论原文、日期、评分与样本不足",
+        "外窗及采光尚未证实；内窗、暗窗不能等同外窗",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ]
+    },
+    {
+      "hotel": "尚无新的已核验候选",
+      "change": "保持预算与底线，重新搜索目的地附近酒店；不推定全市场无解",
+      "remaining": [
+        "新候选、评论、最终含税价与具体通勤待核验"
+      ]
+    }
+  ],
+  "jev": {
+    "model": "jev-1.13.0",
+    "observedAt": "2026-10-04T05:02:43.543Z",
+    "answers": {
+      "candidate": {
+        "type": "choice",
+        "choice": "rollinggo:43565",
+        "confidence": 0.33,
+        "probabilities": {
+          "none": 0.34,
+          "rollinggo:43565": 0.66
+        }
+      },
+      "next_action": {
+        "type": "choice",
+        "choice": "quote",
+        "confidence": 0.65,
+        "probabilities": {
+          "reviews": 0.23,
+          "commute": 0.04,
+          "quote": 0.72,
+          "none": 0,
+          "window": 0.01
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 2513,
+      "output_tokens": 98
+    },
+    "evidenceHash": "30f879138d0b67f82f1dd3248370dce2fb6e0a9fbad7b86aa76d629569009d80"
+  },
+  "errors": [],
+  "trace": [
+    {
+      "at": "2026-10-04T05:02:42.774Z",
+      "action": "核验要求",
+      "reason": "只读模式；预算600元；不修改购买授权、订单或钱包。",
+      "previousHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "hash": "24b643fd1cd021ccde60c1844b43191ec7c165f53a69462b6a7ee53c7903d839"
+    },
+    {
+      "at": "2026-10-04T05:02:42.775Z",
+      "action": "读取带时间戳的历史证据",
+      "reason": "雍和宫原案例的报价、路线、评论记录回放；未请求当前库存。",
+      "previousHash": "24b643fd1cd021ccde60c1844b43191ec7c165f53a69462b6a7ee53c7903d839",
+      "hash": "93251511253ff7a72c3c49a6b325532d6599eab33decc9ed5d92193f34d790f0"
+    },
+    {
+      "at": "2026-10-04T05:02:42.775Z",
+      "action": "固定规则评估",
+      "reason": "先硬条件与通勤档位，再个人评论样本指标、展示价格与通勤时长；信息缺失不视为满足。",
+      "previousHash": "93251511253ff7a72c3c49a6b325532d6599eab33decc9ed5d92193f34d790f0",
+      "hash": "d2d48409b2532251f97a00cd182006a57b8cb0201a1e5f7ca3be542b89760625"
+    },
+    {
+      "at": "2026-10-04T05:02:42.776Z",
+      "action": "Jev核验建议",
+      "reason": "模型读取本轮合并的房型、路线、评论与缺口摘要；仅安排下一步证据任务。",
+      "previousHash": "d2d48409b2532251f97a00cd182006a57b8cb0201a1e5f7ca3be542b89760625",
+      "hash": "8e17ec0a8082bca22f12e25d397e81d82325c2716a5b725aec972b5aae3c24b0"
+    },
+    {
+      "at": "2026-10-04T05:02:43.544Z",
+      "action": "生成条件组合",
+      "reason": "最多3套备选条件，所有剩余证据缺口保留；不修改预算与降级权限。",
+      "previousHash": "8e17ec0a8082bca22f12e25d397e81d82325c2716a5b725aec972b5aae3c24b0",
+      "hash": "0c29be8ce32b5e4e7b45178ed9abbf70a0d0819153718d9ebbda1c4fb4a45752"
+    },
+    {
+      "at": "2026-10-04T05:02:43.544Z",
+      "action": "交易阻断",
+      "reason": "全部真实候选不可成交：最终含税价、完整真实购买授权与订单/取消/退款能力未核验；订单和钱包不变。",
+      "previousHash": "0c29be8ce32b5e4e7b45178ed9abbf70a0d0819153718d9ebbda1c4fb4a45752",
+      "hash": "65718eb1408d292d0dc360ba7403c723efcf208710b5650f8d2856d52c366253"
+    }
+  ],
+  "evidenceHash": "30f879138d0b67f82f1dd3248370dce2fb6e0a9fbad7b86aa76d629569009d80",
+  "transactionEnabled": false,
+  "recommendation": null,
+  "summary": "已完成证据汇总与规则评估；没有证据完整且可自动购买的候选。检索有数量上限，不能断言全市场无解。"
+}

@@ -32,13 +32,28 @@ export function validateJevChoice(value:unknown,options:string[]):JevChoice{
  if(Math.abs(sum-1)>0.002||answer.probabilities[answer.choice]+0.000001<max)throw new Error('Jev概率分布或所选选项无法核验');
  return answer;
 }
+export class TypeSafeServiceError extends Error{
+ code:'missing_key'|'timeout'|'network'|'http'|'invalid_json';status?:number;
+ constructor(code:TypeSafeServiceError['code'],message:string,status?:number){super(message);this.name='TypeSafeServiceError';this.code=code;this.status=status;}
+}
+export function typeSafeFailureGuidance(error:unknown):string|null{
+ if(!(error instanceof TypeSafeServiceError))return null;
+ if(error.code==='timeout')return '模型请求超时，请稍后重新核验；已取得的证据和权限不变。';
+ if(error.code==='network')return '模型服务连接失败，请检查网络后重新核验。';
+ if(error.code==='missing_key'||error.status===401||error.status===403)return '模型服务鉴权失败，请检查服务端凭证和权限。';
+ if(error.status===429||error.status===529)return '模型服务繁忙或限流，有限重试结束后请稍后手动核验。';
+ if(error.code==='invalid_json')return '模型返回格式无效，未采用新判断。';
+ return '模型服务请求失败，未采用新判断。';
+}
+function typeSafeTransportFailure(error:unknown,message:string){return new TypeSafeServiceError(error instanceof Error&&['TimeoutError','AbortError'].includes(error.name)?'timeout':'network',message);}
 export async function typeSafeHttp(path:'/v1/models'|'/v1/systemone',body?:unknown,fetcher:typeof fetch=fetch){
- const key=process.env.TYPESAFE_API_KEY;if(!key)throw new Error('服务端尚未配置TypeSafe API Key');
+ const key=process.env.TYPESAFE_API_KEY;if(!key)throw new TypeSafeServiceError('missing_key','服务端尚未配置TypeSafe API Key');
  for(let attempt=0;attempt<2;attempt++){
-  let r:Response;try{r=await fetcher('https://api.typesafe.ai'+path,{method:body===undefined?'GET':'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},...(body===undefined?{}:{body:JSON.stringify(body)}),signal:AbortSignal.timeout(20000)});}catch{throw new Error('TypeSafe未响应，没有取得新判断；保留固定规则和真实交易阻断。');}
+  let r:Response;try{r=await fetcher('https://api.typesafe.ai'+path,{method:body===undefined?'GET':'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},...(body===undefined?{}:{body:JSON.stringify(body)}),signal:AbortSignal.timeout(20000)});}catch(error){throw typeSafeTransportFailure(error,'TypeSafe未响应，没有取得新判断；保留固定规则和真实交易阻断。');}
   if([429,529].includes(r.status)&&attempt===0){await r.body?.cancel();await new Promise(resolve=>setTimeout(resolve,1000));continue;}
-  if(!r.ok)throw new Error(`TypeSafe HTTP ${r.status}，没有采用新判断；密钥及错误正文未公开。`);
-  try{return JSON.parse((await r.text()).split(key).join('[REDACTED]'));}catch{throw new Error('TypeSafe返回不是有效JSON，没有采用判断');}
+  if(!r.ok)throw new TypeSafeServiceError('http',`TypeSafe HTTP ${r.status}，没有采用新判断；密钥及错误正文未公开。`,r.status);
+  let responseText:string;try{responseText=await r.text();}catch(error){throw typeSafeTransportFailure(error,'TypeSafe response body was interrupted; no judgment adopted.');}
+  try{return JSON.parse(responseText.split(key).join('[REDACTED]'));}catch{throw new TypeSafeServiceError('invalid_json','TypeSafe返回不是有效JSON，没有采用判断');}
  }
  throw new Error('TypeSafe暂不可用');
 }

@@ -10,6 +10,16 @@
 
 ![六步流程与实际跨平台比较](docs/screenshots/journey-comparison.jpg)
 
+## 当前真实流程与启动检查
+
+真实六步流程入口：http://localhost:4173/live/workflow?lang=en 。支持真实查询、路线与房型核验、基于偏好的Jev比较、只读报价监控及记录查看；真实下单、支付、取消和退款尚未接通。原主页的交易使用测试资金，不可作为真实成交。
+
+在新机器安装依赖后，先运行 `npm run doctor`。检查会报告必要文件、Node/SQLite、构建和浏览器状态，以及服务端凭证是否存在，不显示密钥，也不代表平台权限或网络已验证。缺少构建时运行 `npm run build`；缺少必要案例文件时保留仓库的 `docs/cases/`，不要只复制前端产物。
+
+新安装可参考 `.env.example` 配置FlyAI、RollingGo、高德和TypeSafe；已有 `.env` 不要覆盖。运行 `npm start` 后，`GET /api/health` 可检查服务是否响应，不创建用户会话或调用平台。返回ok仅表示服务响应，不能证明查询或交易可用。健康检查不返回凭证信息。
+
+当前真实验证与缺口见 [真实案例报告](docs/real-case-acceptance-20261008.md)；平台交易权限申请见 [申请材料](docs/platform-transaction-access-request-20261008.md)。
+
 ## 本地运行
 
 需要 Node.js 24 或更新版本，以及 Google Chrome。其他 Chromium 浏览器通过 `CHROME_PATH` 配置。
@@ -21,6 +31,8 @@ npm run dev
 
 打开 http://localhost:4173。控制台侧栏可打开三个平台。每个浏览会话拥有独立的测试钱包与 SQLite 数据，不需要真实账号或银行卡。
 
+界面默认从行程填写开始，随后确认入住偏好、条件放宽顺序与交易授权。点击「按授权查找并预订」后，助手会浏览三平台，并在满足条件时使用测试资金自动预订。酒店结果优先展示含税总价、取消政策和推荐理由；报价比较、评论原文和计算依据可展开查看。资金上限、预订截止与监控门槛位于相关设置的折叠区域。侧栏可以展开真实酒店只读查询，页面底部「演示时间工具」可推进仿真时间。界面变更说明见 [UI 优化说明](docs/ui-improvements.md)。
+
 生产模式：
 
 ```bash
@@ -31,7 +43,7 @@ npm start
 ## 两分钟体验
 
 1. 默认「选酒店流程」先保存行程草稿，再进入取舍与授权。也可通过「偏好与授权」一次编辑完整授权单。默认预算与测试余额均为 ¥1,000，不允许不可取消房，卫生／隔音／气味与有窗为底线。勾选授权确认，再点击「确认授权并保存」。
-2. 在第三步点击「开始自动选酒店」，或回到「任务总览」点击「启动一次决策」。查看浏览截图与评论依据：平台 C 的低价不可取消房被排除，平台 A 湖畔时光酒店 ¥455 被预订。
+2. 在第三步或「任务总览」点击「按授权查找并预订」。查看浏览截图与评论依据：平台 C 的低价不可取消房被排除，平台 A 湖畔时光酒店 ¥455 被预订。
 3. 点击「+30 分钟」，再次执行决策。平台 B 云栖湖滨酒店降为 ¥315，满足净省 ¥50 且 5% 的门槛，先确认新单再取消旧单。
 4. 此时占款为 ¥770，可用余额 ¥230，原单退款尚未到账。再推进至少15分钟，¥455退款到账后，可用余额变为 ¥685。
 5. 查看「订单与决策」，打开截图、评论和结构化依据，导出可验证哈希链的完整日志。
@@ -113,3 +125,11 @@ Docker 部署模板未在当前机器运行验证。公开服务器应保留持�
 ## 第三方来源
 
 React、Vite、TypeScript、Playwright、Node.js SQLite 和 Artifact Tool 用于实现或制作演示资料，见 `docs/credits.md`。所有应用代码在本次实现中编写，原始比赛材料保持不变。
+
+## October 9 live-workflow update
+
+The bilingual six-step workflow at `/live/workflow` integrates FlyAI, RollingGo, Amap and Jev. It includes explicit query consent, hard policy limits, review evidence, bounded tradeoffs, nearby discovery, exact-quote checks, session-scoped history and evidence export. Cross-platform cards distinguish identity matching, terms mismatch, stale evidence and comparable display estimates. Expired evidence removes the preferred-option badge.
+
+Real-platform mode remains read-only: booking, payment, cancellation and refunds are not enabled. Final charges and inventory need merchant verification. Simulation orders are not real transactions. Saved cases are historical observations. Transaction access requirements: `docs/platform-transaction-access-request-20261008.md`.
+
+Verification: 193 unit tests and production build passed; 34 browser checks passed with local saved sessions and Chrome. Full browser reproduction requires those private local session databases, which are not published. An independent archive of the staged source also passed all 193 tests and build using reused local dependencies; fresh dependency installation was not tested.

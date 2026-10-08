@@ -1,0 +1,627 @@
+[
+  {
+    "requestedName": "有戏·静默酒店(北京雍和宫店)",
+    "response": {
+      "success": true,
+      "hotelId": 1357097,
+      "bookingUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=1357097&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+      "name": "有戏·静默酒店(北京雍和宫店)",
+      "starRating": 2,
+      "checkIn": "2026-10-09",
+      "checkOut": "2026-10-10",
+      "roomRatePlans": [
+        {
+          "roomName": "悦享电影大床房",
+          "ratePlanId": "6dYkHFozbE3-lsWTa5emhXC",
+          "ratePlanName": "ENJOY MOVIE-THEMED KING ROOM",
+          "averagePrice": 236,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 3,
+            "size": "15",
+            "smoking": "不可吸烟",
+            "images": "https://image2-cdn.rollinggo.cn/1/RoomImage/v2/1357097/67305957/288430989/0200112000830avq847BC.jpg-rlg"
+          }
+        },
+        {
+          "roomName": "悦享电影大床房",
+          "ratePlanId": "lLQmLvBSNoq-jzDMNlXGT3T",
+          "ratePlanName": "悦享电影大床房",
+          "averagePrice": 261,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 3,
+            "size": "15",
+            "smoking": "不可吸烟",
+            "images": "https://image2-cdn.rollinggo.cn/1/RoomImage/v2/1357097/67305957/288430989/0200112000830avq847BC.jpg-rlg"
+          }
+        },
+        {
+          "roomName": "景遇电影双床房",
+          "ratePlanId": "cYJbJ0z9Wmq-gukknGuC1jC",
+          "ratePlanName": "JING YU MOVIE TWIN ROOM",
+          "averagePrice": 315,
+          "bedTypeDescription": "2 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 3,
+            "size": "20",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/1357097/room-type/default/8/67305957/288431073/image/1mc3412000t7dvyc64BE1.jpg-t"
+          }
+        }
+      ],
+      "code": 2000,
+      "message": "搜索成功",
+      "nameEn": "Youxi · silent Hotel (Yonghegong store)"
+    }
+  },
+  {
+    "requestedName": "时光漫步酒店（北京雍和宫店）",
+    "response": {
+      "success": true,
+      "hotelId": 41962,
+      "bookingUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+      "name": "时光漫步酒店(北京雍和宫店)",
+      "starRating": 3,
+      "checkIn": "2026-10-09",
+      "checkOut": "2026-10-10",
+      "roomRatePlans": [
+        {
+          "roomName": "基础双人房",
+          "ratePlanId": "l2stFfrjOSh-a6KYbtrL8Q0",
+          "ratePlanName": "基础双人房(Basic Double Room)",
+          "averagePrice": 252,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "maxOccupancy": 2,
+            "smoking": "不可吸烟"
+          }
+        },
+        {
+          "roomName": "经典双人房",
+          "ratePlanId": "34OmeIrMqWC-b69y1tmX0zw",
+          "ratePlanName": "经典双人房(Classic Double Room)",
+          "averagePrice": 284,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "maxOccupancy": 2,
+            "size": "16.0",
+            "smoking": "不可吸烟"
+          }
+        },
+        {
+          "roomName": "高级双人房",
+          "ratePlanId": "7tDWQL9zpIv-fMWqeE3UqJN",
+          "ratePlanName": "高级双人房(Superior Double Room)",
+          "averagePrice": 309,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "maxOccupancy": 2,
+            "smoking": "不可吸烟"
+          }
+        },
+        {
+          "roomName": "时光优享大床房（老榆木家具+高品质床品）",
+          "ratePlanId": "2gVnHpvoj0Z-8P2ALYSdjS4",
+          "ratePlanName": "SHIGUANG PRIVILEGE DOUBLE BED ROOM (OLD ELM FURNITURE + HIGH-QUALITY BEDDING)",
+          "averagePrice": 317,
+          "bedTypeDescription": "1 大床 或 2 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0008/image/nw_16cYGjTFje8.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光优享大床房（老榆木家具+高品质床品）",
+          "ratePlanId": "t6bVJ59uIo-01S9jMJIEdL",
+          "ratePlanName": "时光优享大床房（老榆木家具）",
+          "averagePrice": 322,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0008/image/nw_16cYGjTFje8.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光优享大床房（老榆木家具+高品质床品）",
+          "ratePlanId": "aFNoLprQfFu-6WbQeq4lnE6",
+          "ratePlanName": "SHIGUANG PRIVILEGE DOUBLE BED ROOM (OLD ELM FURNITURE + HIGH-QUALITY BEDDING)",
+          "averagePrice": 330,
+          "bedTypeDescription": "1 大床 或 2 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 17:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0008/image/nw_16cYGjTFje8.jpg-t"
+          }
+        },
+        {
+          "roomName": "双床房",
+          "ratePlanId": "6iA7y07qn4C-5RgAwy0QKSD",
+          "ratePlanName": "双床房(Twin Room)",
+          "averagePrice": 333,
+          "bedTypeDescription": "2 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "smoking": "不可吸烟"
+          }
+        },
+        {
+          "roomName": "时光优享大床房（老榆木家具+高品质床品）",
+          "ratePlanId": "i4zbsVQ4Hcx-guvZqe9s4ie",
+          "ratePlanName": ",,双人床|1|1.5米",
+          "averagePrice": 336,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": false,
+            "maxOccupancy": 2,
+            "size": "16",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0008/image/nw_16cYGjTFje8.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "ratePlanId": "f1YJ8C9cbg0-1ACnbW4euAD",
+          "ratePlanName": "QUEEN BED ROOM",
+          "averagePrice": 346,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0001/image/nw_1wKyjo2lbDG.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "ratePlanId": "hh9K9zSV0qp-1neHt4IOH1d",
+          "ratePlanName": "QUEEN BED ROOM",
+          "averagePrice": 352,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 17:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0001/image/nw_1wKyjo2lbDG.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光大床房(时光百宝箱)",
+          "ratePlanId": "8F3uu1ZYjhA-fzYVOlwC5Ep",
+          "ratePlanName": "Queen Bed Room",
+          "averagePrice": 352,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0001/image/nw_10LQ7Ps5Vtu.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光大床房(时光百宝箱)",
+          "ratePlanId": "fuQGXHQIg9n-29bY6GJw4av",
+          "ratePlanName": "Queen Bed Room",
+          "averagePrice": 357,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0001/image/nw_10LQ7Ps5Vtu.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "ratePlanId": "cOqNKJRsJ8S-alCeGiuS7RB",
+          "ratePlanName": ",,大床|1|1.51米",
+          "averagePrice": 358,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0001/image/nw_1wKyjo2lbDG.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+          "ratePlanId": "i9cpUfM3rwY-ht6XFGe2kDw",
+          "ratePlanName": "QUEEN BED ROOM",
+          "averagePrice": 364,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0001/image/nw_1wKyjo2lbDG.jpg-t"
+          }
+        },
+        {
+          "roomName": "家庭三人房",
+          "ratePlanId": "4ktNWBWIklF-imAjhdBYvEx",
+          "ratePlanName": "家庭三人房(Family Triple Room)",
+          "averagePrice": 375,
+          "bedTypeDescription": "1 大床 1 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "maxOccupancy": 3,
+            "size": "18.0",
+            "smoking": "不可吸烟"
+          }
+        },
+        {
+          "roomName": "梦回童年大床房（小霸王游戏机）",
+          "ratePlanId": "94GUpMoJOkO-lJUIkduQgNO",
+          "ratePlanName": "MENG HUI CHILDHOOD DOUBLE BED ROOM (RETRO GAME CONSOLE)",
+          "averagePrice": 377,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0010/image/nw_11iHQqdmMk8.jpg-t"
+          }
+        },
+        {
+          "roomName": "梦回童年大床房（小霸王游戏机）",
+          "ratePlanId": "1l0Nr5jjSgr-jrsqil48Yow",
+          "ratePlanName": "MENG HUI CHILDHOOD DOUBLE BED ROOM (RETRO GAME CONSOLE)",
+          "averagePrice": 387,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 17:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0010/image/nw_11iHQqdmMk8.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光大床房(时光百宝箱)",
+          "ratePlanId": "f2c2LnOqwdb-cYp498a7x4K",
+          "ratePlanName": "Queen Bed Room",
+          "averagePrice": 392,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 2,
+          "mealTypeStr": "含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0001/image/nw_10LQ7Ps5Vtu.jpg-t"
+          }
+        },
+        {
+          "roomName": "梦回童年大床房（小霸王游戏机）",
+          "ratePlanId": "7b4JelT9BTe-l6bYtMGaM8W",
+          "ratePlanName": ",,大床|1|1.51米",
+          "averagePrice": 393,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0010/image/nw_11iHQqdmMk8.jpg-t"
+          }
+        },
+        {
+          "roomName": "梦回童年大床房（怀旧游戏机）",
+          "ratePlanId": "2IHNyZkdkFh-4EPqWWr4H2e",
+          "ratePlanName": "CHILDHOOD NOSTALGIA DOUBLE BED ROOM (RETRO GAME CONSOLE)",
+          "averagePrice": 395,
+          "bedTypeDescription": "1 大床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "4",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0010/image/nw_10LQ7sOJFyE.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光双床房（拨盘电话+复古台灯）",
+          "ratePlanId": "lXzSCrAv1aB-lrrUSUg8kUI",
+          "ratePlanName": "TWIN BED ROOM",
+          "averagePrice": 408,
+          "bedTypeDescription": "2 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 17:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-3",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0015/image/nw_1vkNgtA6ueQ.jpg-t"
+          }
+        },
+        {
+          "roomName": "时光双床房（拨盘电话+复古台灯）",
+          "ratePlanId": "e3XBrhipCem-4pwPs4cZhdH",
+          "ratePlanName": ",,单人床|2|1.1米",
+          "averagePrice": 415,
+          "bedTypeDescription": "2 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "floor": "2-3",
+            "smoking": "不可吸烟",
+            "images": "https://image-cdn.rollinggo.cn/v2/41962/room-type/default/12/60101283/0015/image/nw_1vkNgtA6ueQ.jpg-t"
+          }
+        },
+        {
+          "roomName": "双床房",
+          "ratePlanId": "gGGx8il6BDR-k4GvAuujBnp",
+          "ratePlanName": "Twin Bed Room",
+          "averagePrice": 420,
+          "bedTypeDescription": "双床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 17:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "smoking": "不可吸烟"
+          }
+        },
+        {
+          "roomName": "双床房",
+          "ratePlanId": "9e5ez8cTHGg-8pOkgTUGUPC",
+          "ratePlanName": "Twin Bed Room",
+          "averagePrice": 439,
+          "bedTypeDescription": "1 大床 或 2 单人床",
+          "currency": "CNY",
+          "mealAmount": 0,
+          "mealTypeStr": "不含早餐",
+          "isOnRequest": true,
+          "cancelPolicy": "免费取消截止至酒店当地时间 2026-10-08 20:00:00",
+          "cancelable": true,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "smoking": "不可吸烟"
+          }
+        },
+        {
+          "roomName": "双床房",
+          "ratePlanId": "bdpEUPwdejr-4xdNyDMV5w6",
+          "ratePlanName": "Twin Bed Room",
+          "averagePrice": 460,
+          "bedTypeDescription": "2 单人床",
+          "currency": "CNY",
+          "mealAmount": 2,
+          "mealTypeStr": "含早餐",
+          "isOnRequest": false,
+          "cancelPolicy": "不可免费取消",
+          "cancelable": false,
+          "roomInfo": {
+            "hasWifi": true,
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "smoking": "不可吸烟"
+          }
+        }
+      ],
+      "code": 2000,
+      "message": "搜索成功",
+      "nameEn": "Nostalgia Hotel（Beijing YongheLama )"
+    }
+  }
+]

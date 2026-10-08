@@ -1,0 +1,60 @@
+{
+  "executedAt": "2026-10-08T11:18:44.889Z",
+  "scope": "Actual local development server; contents discarded; no source/model calls",
+  "results": [
+    {
+      "path": "/.env",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/.cache/xinqiao-structured-reviews.json",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/data/workflows/example.sqlite",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/SERVER/index.ts",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/@fs/Users/pomelo/Desktop/hacku_副本2/hotel-agent/.cache/xinqiao-structured-reviews.json",
+      "status": 404,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    },
+    {
+      "path": "/live/workflow",
+      "status": 200,
+      "contentType": "text/html",
+      "createsSession": false
+    },
+    {
+      "path": "/src/main.tsx",
+      "status": 200,
+      "contentType": "text/javascript",
+      "createsSession": false
+    },
+    {
+      "path": "/@vite/client",
+      "status": 200,
+      "contentType": "text/javascript",
+      "createsSession": false
+    },
+    {
+      "path": "/api/health",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "createsSession": false
+    }
+  ]
+}

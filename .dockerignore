@@ -8,3 +8,6 @@ public/evidence
 docs/pitch-build
 docs/pitch-preview
 docs/pitch-output
+
+.env*
+!.env.example

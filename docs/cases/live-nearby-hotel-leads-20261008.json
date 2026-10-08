@@ -1,0 +1,120 @@
+{
+  "startedAt": "2026-10-08T15:15:28.554Z",
+  "completedAt": "2026-10-08T15:15:29.834Z",
+  "destination": {
+    "id": "poi-B000A7BGMG",
+    "name": "雍和宫",
+    "address": "雍和宫大街28号(雍和宫地铁站F东南口步行250米)",
+    "location": "116.417296,39.947239",
+    "city": "北京市",
+    "source": "poi"
+  },
+  "result": {
+    "source": "高德地图 Web 服务",
+    "observedAt": "2026-10-08T15:15:29.832Z",
+    "query": {
+      "location": "116.417296,39.947239",
+      "city": "北京",
+      "radius": 2000
+    },
+    "keyword": "酒店",
+    "places": [
+      {
+        "id": "poi-B000A7F2CA",
+        "name": "北京启名院",
+        "address": "戏楼胡同14号(雍和宫地铁站F东南口步行360米)",
+        "location": "116.417744,39.944991",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 253
+      },
+      {
+        "id": "poi-B0FFJ8L771",
+        "name": "炮局工厂青年旅舍(北京雍和宫地铁站店)",
+        "address": "炮局头条29号(雍和宫地铁站B东南口步行400米)",
+        "location": "116.420411,39.947530",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 268
+      },
+      {
+        "id": "poi-B0MDKHDPUB",
+        "name": "雍和院儿庭院酒店(国子监店)",
+        "address": "炮局头条29号(雍和宫地铁站B东南口步行460米)",
+        "location": "116.420605,39.946998",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 283
+      },
+      {
+        "id": "poi-B0FFHCD0EZ",
+        "name": "北京海纳宾馆(雍和宫店)",
+        "address": "雍和宫大街北新胡同31号(雍和宫地铁站F东南口步行440米)",
+        "location": "116.418185,39.944788",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 283
+      },
+      {
+        "id": "poi-B0K1NHQLLB",
+        "name": "北京雍和宫孔庙和国子监博物馆映向雍合院子",
+        "address": "北新胡同31号(雍和宫地铁站F东南口步行440米)",
+        "location": "116.418195,39.944745",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 288
+      },
+      {
+        "id": "poi-B0MUS7D65L",
+        "name": "秦府客栈",
+        "address": "五道营胡同38号(雍和宫地铁站E西北口步行220米)",
+        "location": "116.413859,39.948301",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 316
+      },
+      {
+        "id": "poi-B0MRG9O39P",
+        "name": "秦府小院·法式轻奢酒店(北京雍和宫南锣鼓巷店)",
+        "address": "安定门东大街与北二环出口交叉口东南60米",
+        "location": "116.413875,39.948475",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 322
+      },
+      {
+        "id": "poi-B0FFFZC7YO",
+        "name": "斯维登度假酒店(红云阁店)",
+        "address": "安定门东大街57号(雍和宫地铁站E西北口步行170米)",
+        "location": "116.413540,39.948597",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 354
+      },
+      {
+        "id": "poi-B0G24HGCDD",
+        "name": "有戏·静默酒店(北京雍和宫店)",
+        "address": "北新三巷11号",
+        "location": "116.418964,39.944217",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 365
+      },
+      {
+        "id": "poi-B0H2DCEWVH",
+        "name": "方家客栈(北京市第六医院雍和宫店)",
+        "address": "交道口北三条45号",
+        "location": "116.414118,39.943746",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 474
+      }
+    ],
+    "discoveryOnly": true,
+    "limitations": [
+      "Map keyword leads are not verified merchant hotels or bookable offers.",
+      "Straight-line proximity does not establish walking or metro time.",
+      "Bounded keyword results do not cover every nearby hotel."
+    ]
+  }
+}

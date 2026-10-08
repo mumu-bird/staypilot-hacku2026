@@ -1,0 +1,22 @@
+{
+  "verifiedAt": "2026-10-08T09:27:36.938Z",
+  "method": "Local HTTP request boundary test; no platform query or real transaction",
+  "checks": [
+    {
+      "name": "oversized_utf8",
+      "inputBytes": 69017,
+      "status": 413,
+      "result": {
+        "error": "请求内容过大，请缩短输入后重试。"
+      }
+    },
+    {
+      "name": "malformed_json",
+      "inputBytes": 9,
+      "status": 400,
+      "result": {
+        "error": "请求格式不正确，请刷新页面后重试。"
+      }
+    }
+  ]
+}

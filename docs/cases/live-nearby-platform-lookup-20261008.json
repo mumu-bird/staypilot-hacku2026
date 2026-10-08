@@ -1,0 +1,194 @@
+{
+  "startedAt": "2026-10-08T15:17:27.397Z",
+  "completedAt": "2026-10-08T15:17:34.302Z",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "adultCount": 2,
+    "size": 10,
+    "roomCount": 1,
+    "childCount": 0
+  },
+  "observations": [
+    {
+      "lead": {
+        "id": "poi-B0MDKHDPUB",
+        "name": "雍和院儿庭院酒店(国子监店)",
+        "address": "炮局头条29号(雍和宫地铁站B东南口步行460米)",
+        "location": "116.420605,39.946998",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 283
+      },
+      "status": "platform_identity_observed",
+      "detail": {
+        "source": "RollingGo MCP",
+        "observedAt": "2026-10-08T15:17:28.222Z",
+        "query": {
+          "destination": "北京",
+          "poi": "雍和宫",
+          "checkIn": "2026-10-09",
+          "checkOut": "2026-10-10",
+          "adultCount": 2,
+          "size": 10,
+          "roomCount": 1,
+          "childCount": 0
+        },
+        "filter": {},
+        "hotelId": 2960987,
+        "name": "雍和院儿庭院酒店(国子监店)",
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=2960987&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "rooms": [],
+        "transactionEnabled": false,
+        "bookableQuote": false,
+        "missingFields": [
+          "评论原文、日期、数量与评分尺度",
+          "开业与翻新时间",
+          "准确目的地通勤",
+          "完整真实购买授权",
+          "订单、取消与退款接口"
+        ],
+        "identity": {
+          "hotelId": 2960987,
+          "name": "雍和院儿庭院酒店(国子监店)",
+          "address": null,
+          "amenities": [],
+          "observedAt": "2026-10-08T15:17:29.828Z",
+          "verified": false
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "poi-B0FFHCD0EZ",
+        "name": "北京海纳宾馆(雍和宫店)",
+        "address": "雍和宫大街北新胡同31号(雍和宫地铁站F东南口步行440米)",
+        "location": "116.418185,39.944788",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 283
+      },
+      "status": "platform_identity_observed",
+      "detail": {
+        "source": "RollingGo MCP",
+        "observedAt": "2026-10-08T15:17:30.727Z",
+        "query": {
+          "destination": "北京",
+          "poi": "雍和宫",
+          "checkIn": "2026-10-09",
+          "checkOut": "2026-10-10",
+          "adultCount": 2,
+          "size": 10,
+          "roomCount": 1,
+          "childCount": 0
+        },
+        "filter": {},
+        "hotelId": 592067,
+        "name": "北京海纳宾馆(雍和宫店)",
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=592067&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "rooms": [],
+        "transactionEnabled": false,
+        "bookableQuote": false,
+        "missingFields": [
+          "评论原文、日期、数量与评分尺度",
+          "开业与翻新时间",
+          "准确目的地通勤",
+          "完整真实购买授权",
+          "订单、取消与退款接口"
+        ],
+        "identity": {
+          "hotelId": 592067,
+          "name": "北京海纳宾馆(雍和宫店)",
+          "address": "北京东城区雍和宫大街北新胡同31号, 100007",
+          "amenities": [
+            "独立淋浴间",
+            "书桌",
+            "国内长途电话",
+            "电视机",
+            "多种规格电源插座",
+            "拖鞋",
+            "电热水壶",
+            "110V电压插座",
+            "空调",
+            "免费洗漱用品(6样以上)",
+            "24小时热水",
+            "手动窗帘",
+            "床具:毯子或被子",
+            "Central air conditioning",
+            "吹风机"
+          ],
+          "observedAt": "2026-10-08T15:17:32.647Z",
+          "verified": true
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "poi-B0G24HGCDD",
+        "name": "有戏·静默酒店(北京雍和宫店)",
+        "address": "北新三巷11号",
+        "location": "116.418964,39.944217",
+        "city": "北京市",
+        "source": "poi",
+        "straightDistanceMeters": 365
+      },
+      "status": "platform_identity_observed",
+      "detail": {
+        "source": "RollingGo MCP",
+        "observedAt": "2026-10-08T15:17:33.639Z",
+        "query": {
+          "destination": "北京",
+          "poi": "雍和宫",
+          "checkIn": "2026-10-09",
+          "checkOut": "2026-10-10",
+          "adultCount": 2,
+          "size": 10,
+          "roomCount": 1,
+          "childCount": 0
+        },
+        "filter": {},
+        "hotelId": 1357097,
+        "name": "有戏·静默酒店(北京雍和宫店)",
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=1357097&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "rooms": [],
+        "transactionEnabled": false,
+        "bookableQuote": false,
+        "missingFields": [
+          "评论原文、日期、数量与评分尺度",
+          "开业与翻新时间",
+          "准确目的地通勤",
+          "完整真实购买授权",
+          "订单、取消与退款接口"
+        ],
+        "identity": {
+          "hotelId": 1357097,
+          "name": "有戏·静默酒店(北京雍和宫店)",
+          "address": "北新三巷11号",
+          "amenities": [
+            "叫醒服务",
+            "行李寄存",
+            "快速入住退房",
+            "24小时前台",
+            "无电梯",
+            "无烟楼层",
+            "叫车服务",
+            "吸烟区",
+            "餐厅",
+            "公用区wifi",
+            "门禁系统",
+            "灭火器",
+            "洗涤用具",
+            "烟雾报警器",
+            "无停车场",
+            "WIFI"
+          ],
+          "observedAt": "2026-10-08T15:17:34.300Z",
+          "verified": true
+        }
+      }
+    }
+  ],
+  "transactionEnabled": false
+}

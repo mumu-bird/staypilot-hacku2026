@@ -1,0 +1,10 @@
+import {zonedTimestamp} from '../shared/zoned-time';
+import type {TradeoffOption} from '../shared/tradeoffs';
+import {pick} from './i18n';
+export function OfferTerms({offer}:{offer:TradeoffOption['offer']}){
+ if(!offer)return <p className="lw-hint">{pick('旧记录未保存完整方案摘要，请核验对应房型。','This older record has no complete offer summary; verify its source room.')}</p>;
+ const cancellationInstant=zonedTimestamp(offer.cancelUntil);
+ const cancellation={free_until:pick('有指定免费取消截止','Specified free-cancellation deadline'),nonrefundable:pick('不可退款','Nonrefundable'),unknown:pick('取消政策未确认','Cancellation policy unverified')};
+ const window={none:pick('无窗','No window'),internal:pick('内窗／暗窗','Internal window'),external:pick('明确外窗','Explicit exterior window'),unspecified:pick('有窗，类型未确认','Window reported; type unverified'),unknown:pick('窗型未确认','Window unverified')};
+ return <div className="lw-hint"><p>{pick('床型','Bed')}: {offer.bedType??pick('未确认','Unverified')} · {pick('餐食','Meals')}: {offer.mealAmount===0?pick('不含餐食','No meals'):offer.mealType??pick('未确认','Unverified')}{offer.mealAmount!=null&&offer.mealAmount>0?` (${offer.mealAmount})`:''}</p><p>{pick('窗型','Window')}: {window[offer.windowType]}</p><p>{offer.cancelable===false?pick('未提供免费取消；退款费用仍待核验','Free cancellation unavailable; refund charges unverified'):offer.cancellationStatus==='free_until'&&cancellationInstant===null?pick('取消截止时间未确认','Cancellation deadline unverified'):cancellation[offer.cancellationStatus]}{cancellationInstant!==null?` · ${new Date(cancellationInstant).toLocaleString(undefined,{timeZone:'Asia/Shanghai'})} (${pick('上海时间','Shanghai time')})`:''}</p><p>{pick('入住上限','Maximum guests')}: {offer.maxOccupancy??pick('未确认','Unverified')} · {offer.onRequest===true?pick('库存待平台确认','Availability requires confirmation'):offer.onRequest===false?pick('平台未标待确认，仍需成交复核','Not marked on-request; checkout verification still required'):pick('库存状态未知','Availability status unknown')}</p>{offer.ratePlanName&&<p>{pick('报价方案名称（来源原文）','Rate plan name (source wording)')}: {offer.ratePlanName}</p>}</div>;
+}

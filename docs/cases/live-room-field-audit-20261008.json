@@ -1,0 +1,47 @@
+{
+  "observedAt": "2026-10-08T11:31:52.578Z",
+  "scope": "Actual read-only response field audit; no raw payload or private values persisted",
+  "hotelId": 41962,
+  "rootFields": [
+    "success",
+    "hotelId",
+    "bookingUrl",
+    "name",
+    "starRating",
+    "checkIn",
+    "checkOut",
+    "roomRatePlans",
+    "code",
+    "message",
+    "nameEn"
+  ],
+  "ratePlanFields": [
+    "roomName",
+    "ratePlanId",
+    "ratePlanName",
+    "averagePrice",
+    "bedTypeDescription",
+    "currency",
+    "mealAmount",
+    "mealTypeStr",
+    "isOnRequest",
+    "cancelPolicy",
+    "cancelable",
+    "roomInfo"
+  ],
+  "roomInfoFields": [
+    "hasWifi",
+    "maxOccupancy",
+    "smoking",
+    "size",
+    "hasWindow",
+    "floor",
+    "images"
+  ],
+  "planCount": 22,
+  "onRequestValues": [
+    false,
+    true
+  ],
+  "transactionEnabled": false
+}
