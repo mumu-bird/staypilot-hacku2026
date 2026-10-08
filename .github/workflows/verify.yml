@@ -22,6 +22,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Verify Booking MCP boundary without credentials
+        run: node --experimental-strip-types tests/booking-mcp.e2e.ts
       - run: npm run build
       - name: Install browser
         run: |

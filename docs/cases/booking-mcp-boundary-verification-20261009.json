@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-10-08T18:42:14.515Z",
+  "tools": [
+    "search_booking_hotels",
+    "search_hotels",
+    "get_hotel_details",
+    "get_live_price",
+    "book_hotel"
+  ],
+  "credentials": "intentionally absent in controlled protocol check",
+  "missingCredentialsBlocked": true,
+  "unknownOrderArgumentRejected": true,
+  "realProviderQuery": false,
+  "orderCreated": false
+}

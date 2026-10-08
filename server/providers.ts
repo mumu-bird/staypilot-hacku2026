@@ -4,7 +4,7 @@ import {rollinggoConfigured} from './rollinggo.ts';
 export function providerStatus(){return [
  {id:'fliggy',name:'飞猪 FlyAI',configured:Boolean(process.env.FLYAI_API_KEY),status:'真实搜索已验证；浏览器已读到一个酒店的详情及差评',transactions:false},
  {id:'rollinggo',name:'RollingGo 酒店 MCP',configured:rollinggoConfigured(),status:'已实现只读搜索、房型报价与取消条款；鉴权结果见 RollingGo 核验页',transactions:false},
- {id:'booking',name:'Booking.com Demand / MCP',configured:Boolean(process.env.BOOKING_AFFILIATE_ID&&process.env.BOOKING_DEMAND_API_KEY),status:'官方MCP连接器已编写；待合作凭证联调',transactions:false},
+ {id:'booking',name:'Booking.com Demand / MCP',configured:Boolean(process.env.BOOKING_AFFILIATE_ID&&process.env.BOOKING_DEMAND_API_KEY),status:'官方MCP发现与Demand 3.2只读搜索已实现；待合作凭证联调，尚未接入六步比价',transactions:false},
  {id:'expedia',name:'Expedia Rapid',configured:Boolean(process.env.EXPEDIA_API_KEY&&process.env.EXPEDIA_SHARED_SECRET),status:'需合作审批及沙箱凭证；尚未实现业务适配器',transactions:false},
  {id:'agoda',name:'Agoda Demand',configured:false,status:'需平台颁发合作伙伴凭证；尚未实现业务适配器',transactions:false},
  {id:'amadeus',name:'Amadeus Enterprise',configured:false,status:'官方自助门户已停用；仅企业合作，不采用旧自助API',transactions:false},

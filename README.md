@@ -145,3 +145,9 @@ GitHub verifies each main push and pull request with a fresh `npm ci`, unit test
 Deployment probes: `GET /api/health` reports process liveness; `GET /api/ready` returns 503 when the production frontend is absent or shutdown has started. Docker and CI use readiness. These probes do not verify provider permissions, current inventory or transaction capabilities.
 
 For an HTTPS deployment, set `PUBLIC_ORIGIN` to its HTTP(S) origin (for example `https://staypilot.example`, without credentials, paths, query or fragment). HTTPS configuration marks session cookies `Secure`; local HTTP remains usable. Forwarded headers alone never enable that setting. Malformed and duplicate session cookies create a new isolated session rather than selecting a partial token. This improves session handling but does not replace user accounts or production payment authentication.
+
+### Booking.com read-only MCP search
+
+`search_booking_hotels` calls the official Demand 3.2 search endpoint with explicit `bookerCountry`, latitude/longitude, stay dates and adults. It requires `BOOKING_AFFILIATE_ID` and `BOOKING_DEMAND_API_KEY`; the endpoint is fixed to production read-only search, with no order calls. Raw provider observations are returned with original product/charge fields and are **not yet normalized or integrated into the six-step comparison**. Missing credentials block before network access. Provider integration remains unverified without partner credentials. Controlled protocol checks: `node --experimental-strip-types tests/booking-mcp.e2e.ts` (intentionally no Booking credentials).
+
+Contract: [official Demand 3.2 search reference](https://developers.booking.com/demand/docs/open-api/3.2/demand-api/accommodations/accommodations/search). Do not mix the older 3.1 reference with 3.2 response fields. The booker's country must be supplied explicitly; it is not inferred from destination.

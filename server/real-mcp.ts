@@ -1,3 +1,4 @@
+import {searchBookingHotels} from './booking-search.ts';
 import {Server} from '@modelcontextprotocol/sdk/server/index.js';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {CallToolRequestSchema,ListToolsRequestSchema} from '@modelcontextprotocol/sdk/types.js';
@@ -12,6 +13,7 @@ const queryProperties={provider:providerProperty,destination:{type:'string'},poi
 const hotelIdProperty={type:['string','integer'],description:'飞猪为字符串；RollingGo为search_hotels返回的整数ID，不可跨平台混用'};
 const filterProperty={type:'object',properties:{cancelPolicy:{type:'string',enum:['CANCELABLE','NON_CANCELABLE']},mealType:{type:'string',enum:['WITH_BREAKFAST','SINGLE_BREAKFAST','DOUBLE_BREAKFAST','NO_MEAL']}},additionalProperties:false};
 server.setRequestHandler(ListToolsRequestSchema,async()=>({tools:[
+ {name:'search_booking_hotels',description:'Official Booking.com Demand 3.2 read-only search. Requires partner credentials, explicit booker country and coordinates. Raw observations only; not integrated comparable quotes or booking.',inputSchema:{type:'object',properties:{destination:{type:'string'},poi:{type:'string'},checkIn:{type:'string'},checkOut:{type:'string'},adultCount:{type:'integer',minimum:1,maximum:4},bookerCountry:{type:'string',pattern:'^[a-z]{2}$'},latitude:{type:'number',minimum:-90,maximum:90},longitude:{type:'number',minimum:-180,maximum:180},radiusKm:{type:'number',minimum:1,maximum:10}},required:['destination','poi','checkIn','checkOut','bookerCountry','latitude','longitude'],additionalProperties:false},annotations:{readOnlyHint:true}},
  {name:'search_hotels',description:'查询飞猪或RollingGo真实酒店。搜索价格不等于已核验含税成交价；不预订。',inputSchema:{type:'object',properties:queryProperties,required:['destination','poi','checkIn','checkOut'],additionalProperties:false},annotations:{readOnlyHint:true}},
  {name:'get_hotel_details',description:'飞猪返回已浏览的历史证据；RollingGo调用实时房型详情，须额外提供destination、poi、checkIn、checkOut，可筛选取消政策与餐食。缺失评论不生成。',inputSchema:{type:'object',properties:{...queryProperties,hotelId:hotelIdProperty,filter:filterProperty,profile:{type:'string',enum:['sensitive','flexible']}},required:['hotelId'],additionalProperties:false},annotations:{readOnlyHint:true}},
  {name:'get_live_price',description:'飞猪重查搜索价；RollingGo重查具体酒店房型均价及取消条款。均未确认最终含税价，不能自动成交。',inputSchema:{type:'object',properties:{...queryProperties,hotelId:hotelIdProperty,filter:filterProperty},required:['destination','poi','checkIn','checkOut','hotelId'],additionalProperties:false},annotations:{readOnlyHint:true}},
@@ -21,6 +23,7 @@ server.setRequestHandler(CallToolRequestSchema,async request=>{
  const {name,arguments:args={}}=request.params;
  try{
   let result:unknown;
+  if(name==='search_booking_hotels')return {content:[{type:'text',text:JSON.stringify(await searchBookingHotels(args))}]};
   if(args.provider!==undefined&&args.provider!=='fliggy'&&args.provider!=='rollinggo')throw new Error('未知数据源');
   if(args.provider==='rollinggo'){
    if(name==='search_hotels')result=await rollinggo.search(args);

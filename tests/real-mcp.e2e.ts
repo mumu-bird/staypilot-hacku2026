@@ -7,7 +7,7 @@ const transport=new StdioClientTransport({command:process.execPath,args:['--env-
 const decode=(r:unknown)=>JSON.parse((r as {content:{type:string;text:string}[]}).content.find(c=>c.type==='text')!.text);
 try{
  await client.connect(transport);
- const {tools}=await client.listTools();assert.equal(tools.length,4);
+ const {tools}=await client.listTools();assert.equal(tools.length,5);assert(tools.some(tool=>tool.name==='search_booking_hotels'));
  const details=await client.callTool({name:'get_hotel_details',arguments:{hotelId:'72547102',profile:'flexible'}});
  assert.equal(decode(details).freshQuote,false);assert.equal(decode(details).evidence.selectedReviews.length,10);
  const blocked=await client.callTool({name:'book_hotel',arguments:{hotelId:'72547102'}});
