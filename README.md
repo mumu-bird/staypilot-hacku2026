@@ -137,3 +137,7 @@ Verification: 193 unit tests and production build passed; 34 browser checks pass
 ### Browser checks without private saved sessions
 
 After starting the local production service, run `npm run test:e2e:fixtures`. This explicitly hydrates published historical observations into random test sessions in `data/workflows`; it does not renew source timestamps, grant query consent or call external providers. Simulation transactions still use fictional hotels and test funds. Chrome is required. Use a separate checkout and port for isolated acceptance, e.g. `PORT=4174 npm start` and `TEST_ORIGIN=http://127.0.0.1:4174 npm run test:e2e:fixtures`. Original observation IDs and parent links are retained for evidence checks; cookies and databases remain local. Repeated fixture runs create new test sessions. This test-only utility is not exposed by an HTTP endpoint.
+
+### Automated release checks
+
+GitHub verifies each main push and pull request with a fresh `npm ci`, unit tests, production build and Chromium browser checks. Browser checks seed explicitly saved observations and controlled fixtures without private API keys or databases. They verify the simulation and query/handoff interface, not new live prices or real purchases. A failing check requires investigation before treating that revision as verified.
