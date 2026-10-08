@@ -133,3 +133,7 @@ The bilingual six-step workflow at `/live/workflow` integrates FlyAI, RollingGo,
 Real-platform mode remains read-only: booking, payment, cancellation and refunds are not enabled. Final charges and inventory need merchant verification. Simulation orders are not real transactions. Saved cases are historical observations. Transaction access requirements: `docs/platform-transaction-access-request-20261008.md`.
 
 Verification: 193 unit tests and production build passed; 34 browser checks passed with local saved sessions and Chrome. Full browser reproduction requires those private local session databases, which are not published. An independent archive of the staged source also passed all 193 tests and build using reused local dependencies; fresh dependency installation was not tested.
+
+### Browser checks without private saved sessions
+
+After starting the local production service, run `npm run test:e2e:fixtures`. This explicitly hydrates published historical observations into random test sessions in `data/workflows`; it does not renew source timestamps, grant query consent or call external providers. Simulation transactions still use fictional hotels and test funds. Chrome is required. Use a separate checkout and port for isolated acceptance, e.g. `PORT=4174 npm start` and `TEST_ORIGIN=http://127.0.0.1:4174 npm run test:e2e:fixtures`. Original observation IDs and parent links are retained for evidence checks; cookies and databases remain local. Repeated fixture runs create new test sessions. This test-only utility is not exposed by an HTTP endpoint.

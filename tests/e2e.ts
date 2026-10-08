@@ -1,3 +1,4 @@
+import {seedSavedWorkflowFixtures} from './seed-workflow-fixtures.ts';
 import {attachXinqiaoAdditionalAnalysis} from '../server/additional-review-source.ts';
 import {attachReviewAnalysis} from '../server/review-analysis-binding.ts';
 import { chromium } from 'playwright';
@@ -18,6 +19,7 @@ const state=()=>api<State>('/api/state');
 const pass=(name:string,detail?:unknown)=>{checks.push({name,result:'passed',detail});console.log(`PASS ${name}`);};
 async function agentRun(){await api('/api/agent/run',{});const started=Date.now();while(Date.now()-started<180000){const s=await state();if(!s.agent.running){assert.equal(s.agent.error,null,s.agent.error||'');return s;}await new Promise(r=>setTimeout(r,500));}throw new Error('Browser agent timeout');}
 mkdirSync('docs/screenshots',{recursive:true});
+if(process.env.TEST_SEED_SAVED_CASES==='1')console.log('Test-only saved observation sessions seeded: '+seedSavedWorkflowFixtures());
 await state();await api('/api/reset',{scenario:'baseline'});await api('/api/mandate',{patch:{},confirm:true});
 const first=await agentRun();assert.equal(first.orders.length,1);assert.equal(first.orders[0].hotelId,'h01');assert.equal(first.orders[0].platform,'a');assert.equal(first.wallet.availableCents,54500);
 assert(first.events.filter(e=>e.type==='browse').length===3);assert(first.events.filter(e=>e.type==='review').length>=15);assert(first.events.some(e=>e.screenshot));pass('实际浏览三平台、读取评论并自动订到可取消房',{hotel:first.orders[0].hotelName,totalCents:first.orders[0].paidCents,browsePages:3});

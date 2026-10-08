@@ -18,7 +18,8 @@
     "mcp": "node --env-file-if-exists=.env --experimental-strip-types server/real-mcp.ts",
     "test:mcp": "node --experimental-strip-types tests/real-mcp.e2e.ts",
     "test:rollinggo": "node --experimental-strip-types tests/rollinggo-mcp.e2e.ts",
-    "doctor": "node --env-file-if-exists=.env --experimental-strip-types scripts/doctor.ts"
+    "doctor": "node --env-file-if-exists=.env --experimental-strip-types scripts/doctor.ts",
+    "test:e2e:fixtures": "TEST_SEED_SAVED_CASES=1 node --experimental-strip-types tests/e2e.ts"
   },
   "dependencies": {
     "@fly-ai/flyai-cli": "1.0.16",
