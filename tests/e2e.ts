@@ -356,6 +356,14 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  await comparison.locator('summary').first().click();await comparison.getByText('Final charges unverified',{exact:true}).first().waitFor();await page.unroute('**/api/live/workflow/state');
  pass('跨平台比较区分身份、条款、过期证据和可比较展示记录；不在不合格组合展示差额。合成界面测试，无外部调用');
 }
+{
+ const result=JSON.parse(readFileSync('docs/cases/live-integrated-product-validation-20261009.json','utf8'));result.errors=['飞猪查询未完成','目的地地图查询未完成'];result.candidates[0].candidate.roomQuery={status:'failed',observedAt:new Date().toISOString(),filter:{},count:null};result.tradeoffs.status='model_unavailable';
+ await page.route('**/api/live/workflow/state',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({running:false,stage:'Controlled partial failures',latest:result,monitor:{enabled:false,checks:0}})}));
+ let writes=0;const track=(request:any)=>{if(request.method()==='POST'&&request.url().includes('/api/live/workflow/'))writes++;};page.on('request',track);
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();const failures=page.getByRole('region',{name:'Incomplete operations',exact:true});
+ await failures.getByText(/Fliggy search incomplete/).waitFor();await failures.getByText(/Room requests failed/).waitFor();await failures.getByText(/Complete Jev advice unavailable/).waitFor();await failures.getByRole('button',{name:'Open hotel refresh actions',exact:true}).click();await page.getByRole('heading',{name:'Recheck an exact quote',exact:true}).waitFor();assert.equal(writes,0);page.off('request',track);await page.unroute('**/api/live/workflow/state');
+ pass('部分失败按操作范围提示并提供补查导航；点击不自动重试或写授权。合成错误状态，无商户请求');
+}
 assert.deepEqual(errors,[]);await context.close();await browser.close();
 writeFileSync(resolve('docs/browser-verification.json'),JSON.stringify({executedAt:new Date().toISOString(),environment:'真实Chrome网页操作；虚构酒店与测试资金',checks},null,2));
 console.log(`${checks.length} browser integration checks passed.`);

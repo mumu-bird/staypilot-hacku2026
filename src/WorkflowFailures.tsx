@@ -1,0 +1,9 @@
+import type {WorkflowResult} from '../shared/live-workflow';
+import {workflowFailures} from '../shared/workflow-failures';
+import {pick} from './i18n';
+export function WorkflowFailures({result,onNavigate}:{result:WorkflowResult;onNavigate:(step:number)=>void}){
+ const failures=workflowFailures(result);if(!failures.length)return null;
+ const labels={fliggy:pick('飞猪检索未完成','Fliggy search incomplete'),rollinggo:pick('RollingGo检索未完成','RollingGo search incomplete'),rooms:pick('房型请求失败','Room requests failed'),route:pick('地图或路线核验未完成','Map or route checks incomplete'),reviews:pick('评论刷新或分析未完成','Review refresh or analysis incomplete'),model:pick('未取得完整Jev建议','Complete Jev advice unavailable')};
+ const actions={fliggy:pick('检查查询条件与连接','Review search conditions and connection'),rollinggo:pick('检查查询条件与连接','Review search conditions and connection'),rooms:pick('查看酒店补查入口','Open hotel refresh actions'),route:pick('查看路线与身份缺口','Review route and identity gaps'),reviews:pick('查看评论来源与局限','Review sources and sample limits'),model:pick('查看保留的规则结果','Review retained rule results')};
+ return <div role="region" aria-label="Incomplete operations"><h3>{pick('本轮未完成的操作','Incomplete operations this run')}</h3><p className="lw-hint">{pick('已有观察仍保留，但不是当前成交依据。以下只列出明确报告失败的操作；空结果或缺少信息不等于服务故障。','Existing observations remain available, but do not establish current bookability. Only reported operation failures appear here; empty results or missing information do not establish a service outage.')}</p>{failures.map(f=><div key={f.kind}><p>{labels[f.kind]} · {f.count}</p><button className="secondary" onClick={()=>onNavigate(f.step)}>{actions[f.kind]}</button></div>)}<p className="lw-hint">{pick('这些按钮只打开核验位置，不自动重试，也不改变授权。','These buttons only navigate to inspection actions. They do not retry requests or change authorization.')}</p></div>;
+}
