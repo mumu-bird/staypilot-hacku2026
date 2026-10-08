@@ -1,0 +1,28 @@
+{
+  "startedAt": "2026-10-08T17:33:26.868Z",
+  "completedAt": "2026-10-08T17:33:27.410Z",
+  "result": {
+    "source": "RollingGo MCP",
+    "verifiedAt": "2026-10-08T17:33:27.404Z",
+    "server": {
+      "name": "MCP Hotel Server",
+      "version": "1.0.0"
+    },
+    "tools": [
+      {
+        "name": "getHotelDetail",
+        "readOnlyEnabled": true
+      },
+      {
+        "name": "getHotelSearchTags",
+        "readOnlyEnabled": true
+      },
+      {
+        "name": "searchHotels",
+        "readOnlyEnabled": true
+      }
+    ],
+    "transactionEnabled": false
+  },
+  "scope": "Current credential tool discovery only; no booking or merchant quote call."
+}

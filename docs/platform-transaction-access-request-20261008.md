@@ -54,3 +54,11 @@ Booking.com Demand API官方要求Managed Affiliate Partner，使用API Token及
 ## 接入后必须通过的验收
 
 按真实平台沙箱验证：最终费用与预算边界、过期/改变报价、重复下单保护、订单状态不确定后的查询、取消窗口、取消失败时的保留与补偿、退款延迟期间的占款、退款实际到账后释放，以及撤销授权后的禁止新购买。沙箱成功后仍需生产权限和独立生产验收，不能把沙箱订单当成真实成交。
+
+## 2026-10-09 01:33 上海时间再次核验
+
+当前凭证实际发现的 RollingGo 工具仍为 getHotelDetail、getHotelSearchTags、searchHotels，服务标识 MCP Hotel Server 1.0.0；没有发现订单、取消或退款工具。仅描述本次凭证可见范围，不推断平台没有其他合作接口。新证据：`cases/live-rollinggo-capability-recheck-20261009.json`。本次只有工具清单请求，没有酒店报价、订单或付款请求。
+
+再次读取飞猪官方公开技能文档与开放平台首页，公开命令仍列出搜索能力及商户链接，未取得可供本项目执行的订单/取消/退款接口合同。需要的平台材料仍是最终含税报价与库存、预订/取消/退款沙箱、接口文档和明确交易授权。普通用户登录与现有查询密钥不能证明这些权限已开通。
+
+官方来源：https://raw.githubusercontent.com/alibaba-flyai/flyai-skill/main/skills/flyai/SKILL.md 、https://open.fly.ai/ 。
