@@ -43,6 +43,7 @@ export function displayEnglish(text:string):string|undefined {
  [/^房型展示价¥([\d.]+)，最终费用待复核$/,(price)=>`Displayed room price: ¥${price}; final charges require verification`],
  [/^保持预算，增加公交直达([\d.]+)分钟的授权范围$/,(n)=>`Keep the budget; request consent for a ${n}-minute direct bus route`],
  [/^保持预算，地铁直达上限改为至少([\d.]+)分钟$/,(n)=>`Keep the budget; request a direct metro limit of at least ${n} minutes`],
+ [/^预算建议（待重新确认）：(.+)展示估价¥([\d.]+)，比授权上限高¥([\d.]+)；最终含税费用仍待核验，原预算不变$/,(room,price,extra)=>`Budget proposal requiring confirmation: ${room}, display estimate ¥${price}, ¥${extra} above the authorized ceiling. Final tax-inclusive charges remain unverified; the original budget is unchanged.`],
  [/^只读模式；预算([\d.]+)元；不修改购买授权、订单或钱包。$/,(n)=>`Read-only mode; budget ¥${n}. Purchase authority, orders and wallet are unchanged.`],
  [/^最多核验(\d+)家；同名位置不能唯一匹配则保留未知。$/,(n)=>`Verify up to ${n} hotels. Ambiguous same-name locations remain unknown.`]
  ];

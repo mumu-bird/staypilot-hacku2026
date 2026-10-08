@@ -20,7 +20,7 @@ import {createHash,randomUUID} from 'node:crypto';
 import {DatabaseSync} from 'node:sqlite';
 import {readFileSync,mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
-import {evaluateTradeoffs,compareRoomTerms,comparePlatforms} from './tradeoffs.ts';
+import {evaluateTradeoffs,buildTradeoffOptions,compareRoomTerms,comparePlatforms} from './tradeoffs.ts';
 import type {QuoteRecheck,InspectionSelection} from '../shared/tradeoffs.ts';
 import {z} from 'zod';
 import {validateRollinggoQuery} from './rollinggo.ts';
@@ -102,7 +102,7 @@ export function assessCandidate(candidate:WorkflowCandidate,policy:WorkflowPolic
  for(const analysis of [reviews?.modelAnalysis,...candidate.additionalReviewAnalyses??[]].filter(Boolean))for(const row of analysis?.uncertain??[])for(const issue of row.issues)gaps.push(`评论语义待核验：${labels[issue]}（评论${row.id}，${row.date}）；不能视为问题已排除`);
  const finiteRooms=candidate.rooms.filter(r=>r.currency==='CNY'&&displayPriceCents(r.estimatedStayPrice)!==null);
  const suitable=finiteRooms.filter(r=>(r.maxOccupancy===null||r.maxOccupancy>=adultCount)&&(!policy.requireCancelable||(r.cancellationStatus==='free_until'&&zonedTimestamp(r.cancelUntil)!==null&&zonedTimestamp(r.cancelUntil)!>Date.parse(asOf)))&&(policy.window!=='required'||r.windowType==='external'));
- const budgetRooms=suitable.filter(r=>Math.round(r.estimatedStayPrice!*100)<=policy.budgetCents);
+ const budgetRooms=suitable.filter(r=>displayPriceCents(r.estimatedStayPrice)!<=policy.budgetCents);
  const room=(budgetRooms.length?budgetRooms:suitable).sort((a,b)=>{
   const windowRank=(r:WorkflowRoom)=>policy.window==='any'?0:r.windowType==='external'?0:r.windowType==='unspecified'?1:r.windowType==='internal'?2:r.windowType==='none'?3:4;
   return windowRank(a)-windowRank(b)||Number(b.onRequest===false)-Number(a.onRequest===false)||(a.estimatedStayPrice!-b.estimatedStayPrice!);
@@ -110,7 +110,7 @@ export function assessCandidate(candidate:WorkflowCandidate,policy:WorkflowPolic
  if(policy.requireCancelable&&candidate.rooms.length&&candidate.rooms.every(r=>r.cancellationStatus==='nonrefundable'||(r.cancelable===false&&/不可免费取消/.test(r.cancelPolicy??''))))reasons.push('已观察报价均不提供所要求的免费取消；退款费用不据此推断');
  if(!candidate.rooms.length)gaps.push('未取得绑定人数、日期、餐食、取消条款的房型');
  else if(!suitable.length){const unknown=candidate.rooms.some(r=>r.cancellationStatus==='unknown'||r.maxOccupancy===null||(policy.window==='required'&&['unknown','unspecified'].includes(r.windowType)));if(unknown)gaps.push('房型关键条件未知，尚不能确认取消、人数或外窗要求');else reasons.push('已核验房型没有满足取消、人数或外窗硬条件的方案');}
- if(room){if(Math.round(room.estimatedStayPrice!*100)>policy.budgetCents)reasons.push('房型展示价已超预算');if(room.maxOccupancy===null)gaps.push('最大入住人数未知');if(room.onRequest!==false)gaps.push('库存需要待确认或状态未知');if(room.windowType!=='external'&&policy.window!=='any')gaps.push('外窗及采光尚未证实；内窗、暗窗不能等同外窗');advantages.push(`房型展示价¥${room.estimatedStayPrice}，最终费用待复核`);}
+ if(room){if(displayPriceCents(room.estimatedStayPrice)!>policy.budgetCents)reasons.push('房型展示价已超预算');if(room.maxOccupancy===null)gaps.push('最大入住人数未知');if(room.onRequest!==false)gaps.push('库存需要待确认或状态未知');if(room.windowType!=='external'&&policy.window!=='any')gaps.push('外窗及采光尚未证实；内窗、暗窗不能等同外窗');advantages.push(`房型展示价¥${room.estimatedStayPrice}，最终费用待复核`);}
  if(reviews?.negative.some(r=>r.issues.some(i=>policy.weights[i]>=3)))gaps.push('高重要度评论问题需核验具体房型或整改证据');
  gaps.push('最终含税总价、到店费用、报价有效期及库存复核未完成','真实订单、取消、退款接口与购买授权未验证');
  for(const e of candidate.errors)gaps.push(e);
@@ -136,15 +136,24 @@ export function recordedCandidates():{query:RollinggoQuery;asOf:string;candidate
  candidates.push({key:'fliggy:'+h.id,hotelId:h.id,name:h.name,address:'工体北路13号院世茂国际中心2号楼',source:'飞猪网页（历史观察）',detailUrl:h.sourceUrl,searchObservedAt:r.webEvidence.observedAt,displayPrice:467,rooms:quoteRooms,route:r.routes[2],reviews:recordedReviews(h,r.webEvidence.observedAt),errors:['网页会员优惠适用性未验证']});
  return {query:q,asOf:r.recordedAt,candidates};
 }
-export function conditionAlternatives(rows:CandidateDecision[],policy:WorkflowPolicy):WorkflowResult['alternatives']{
+export function conditionAlternatives(rows:CandidateDecision[],policy:WorkflowPolicy,asOf:string=new Date().toISOString(),adults:number=2):WorkflowResult['alternatives']{
  const out:WorkflowResult['alternatives']=[];
- for(const d of rows){if(d.reasons.some(reason=>!reason.includes('通勤')))continue;const routes=d.candidate.route;if(!routes)continue;const price=d.representativeRoom?.estimatedStayPrice;if(price!==undefined&&price!==null&&price*100<=policy.budgetCents){
+ for(const d of rows){if(d.reasons.some(reason=>!reason.includes('通勤')))continue;const routes=d.candidate.route;if(!routes)continue;const price=displayPriceCents(d.representativeRoom?.estimatedStayPrice);if(price!==null&&price<=policy.budgetCents){
  const bus=routes.transits.find(t=>t.lines.length===1&&!t.lines[0].metro&&t.classification==='公交路线'&&t.minutes<=policy.metroMinutes);
  const metro=routes.transits.filter(t=>t.metroDirect).sort((a,b)=>a.minutes-b.minutes)[0];
  if(d.reasons.some(x=>x.includes('通勤'))&&bus)out.push({hotel:d.candidate.name,change:`保持预算，增加公交直达${bus.minutes}分钟的授权范围`,remaining:d.gaps});
  else if(d.reasons.some(x=>x.includes('通勤'))&&metro)out.push({hotel:d.candidate.name,change:`保持预算，地铁直达上限改为至少${metro.minutes}分钟`,remaining:d.gaps});
  }}
 
+ const estimates=buildTradeoffOptions(rows.map(d=>d.candidate),policy,asOf,adults);
+ for(const option of estimates){
+ if(out.length>=3)break;
+ if(option.status!=='requires_confirmation'||option.hardViolations.length||option.priceCents===null||option.priceCents<=policy.budgetCents||option.changes.some(c=>!c.withinAuthorization&&c.field!=='budget'))continue;
+ const candidate=rows.find(d=>d.candidate.key===option.candidateKey)?.candidate;
+ if(!inspectionObservationCurrent(option.observedAt,Date.parse(asOf))||!inspectionObservationCurrent(candidate?.route?.observedAt,Date.parse(asOf)))continue;
+ if(out.some(o=>o.hotel===option.hotelName))continue;
+ out.push({hotel:option.hotelName,change:`预算建议（待重新确认）：${option.roomName}展示估价¥${(option.priceCents/100).toFixed(2)}，比授权上限高¥${((option.priceCents-policy.budgetCents)/100).toFixed(2)}；最终含税费用仍待核验，原预算不变`,remaining:option.gaps});
+ }
  return out.slice(0,3);
 }
 export function roomInspectionCandidates(candidates:WorkflowCandidate[],policy:WorkflowPolicy,asOf:string,adults:number){
@@ -222,7 +231,7 @@ export class LiveWorkflow{
  try{const [hotels,destinations]=await Promise.all([findIdentityBoundHotelPlace(parsed.query.destination,candidate.name,candidate.address,this.deps.places,Date.now),this.deps.places({city:parsed.query.destination,query:parsed.query.poi})]);const hotel=hotels.selected,destination=selectExactPlace(destinations.places,parsed.query.poi);candidate.mapIdentityEvidence=hotel?undefined:{status:'unverified',observations:hotels.observations};if(!hotel||!destination||!inspectionObservationCurrent(destinations.observedAt,Date.now())||!inspectionObservationCurrent(hotels.observedAt,Date.now()))throw new Error('地址未唯一匹配');const distance=straightDistanceMeters(hotel.location,destination.location);if(distance!==null)candidate.position={observedAt:hotels.observedAt,straightDistanceMeters:distance,withinInitialRadius:distance<=(parsed.query.searchRadiusMeters??2000)};candidate.route=await this.deps.routes({origin:hotel.location,destination:destination.location,city:parsed.query.destination,confirmed:true});}catch{candidate.errors.push('本轮路线核验未完成，未沿用旧路线判断');}
  const asOf=new Date().toISOString(),candidates=[candidate],tradeoffs=await evaluateTradeoffs(candidates,parsed.policy,asOf,parsed.query.adultCount,this.deps.jev,parsed.mode==='live'?Date.now:undefined),decisions=rankCandidates(candidates,parsed.policy,asOf,parsed.query.adultCount);
  const trace=structuredClone(original.trace),record={at:new Date().toISOString(),action:'定向刷新酒店',reason:`仅刷新${candidate.name}房型与路线；旧报价留在原记录，评论保留原观察时间；不计算不同报价的节省。`,previousHash:trace.at(-1)?.hash??'0'.repeat(64)};trace.push({...record,hash:createHash('sha256').update(JSON.stringify(record)).digest('hex')});
- const result:WorkflowResult={...original,id:randomUUID(),kind:'candidate_refresh',parentRunId:original.id,startedAt,completedAt:new Date().toISOString(),evidenceAsOf:asOf,candidates:decisions,crossPlatform:[],alternatives:conditionAlternatives(decisions,parsed.policy),tradeoffs,jev:null,errors:[],trace,evidenceHash:createHash('sha256').update(JSON.stringify({query:parsed.query,policy:parsed.policy,asOf,candidates})).digest('hex'),transactionEnabled:false,recommendation:null,summary:'本轮只刷新一家的房型与路线；评论仍为原观察，报价仍需最终核验。'};
+ const result:WorkflowResult={...original,id:randomUUID(),kind:'candidate_refresh',parentRunId:original.id,startedAt,completedAt:new Date().toISOString(),evidenceAsOf:asOf,candidates:decisions,crossPlatform:[],alternatives:conditionAlternatives(decisions,parsed.policy,asOf,parsed.query.adultCount),tradeoffs,jev:null,errors:[],trace,evidenceHash:createHash('sha256').update(JSON.stringify({query:parsed.query,policy:parsed.policy,asOf,candidates})).digest('hex'),transactionEnabled:false,recommendation:null,summary:'本轮只刷新一家的房型与路线；评论仍为原观察，报价仍需最终核验。'};
  if(this.closed)throw new Error('会话已关闭');this.db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(result));return result;
  }finally{this.running=false;this.stage='定向刷新结束';}
  }
@@ -258,7 +267,7 @@ export class LiveWorkflow{
  const trace=structuredClone(original.trace),entry={at:new Date().toISOString(),action:'附近新酒店发现',reason:`地图返回${leads.places.length}条线索，核验${selected.length}条，保留${candidates.length}个平台记录；不沿用旧价格或评论，不修改预算或底线。`,previousHash:trace.at(-1)?.hash??'0'.repeat(64)};trace.push({...entry,hash:createHash('sha256').update(JSON.stringify(entry)).digest('hex')});
  const completedAt=new Date().toISOString(),discovery={observedAt:leads.observedAt!,leadCount:leads.places.length,attemptedNames:selected.map((p:MapPlace)=>p.name),acceptedCount:candidates.length};
  const nextRetryAt=nearbyRetryAt([{...original,completedAt,candidates:decisions,nearbyDiscovery:discovery},...history],leads.places.map((p:MapPlace)=>p.name),Date.parse(completedAt));
- const result:WorkflowResult={...original,id:randomUUID(),kind:'nearby_discovery',parentRunId:original.id,nearbyDiscovery:{...discovery,nextRetryAt},startedAt,completedAt,evidenceAsOf:asOf,candidates:decisions,tradeoffs,alternatives:conditionAlternatives(decisions,parsed.policy),crossPlatform:[],jev:null,errors,trace,evidenceHash:createHash('sha256').update(JSON.stringify({query:parsed.query,policy:parsed.policy,asOf,candidates})).digest('hex'),transactionEnabled:false,recommendation:null,summary:selected.length?'附近发现仅核验最多3条新线索；原候选保留在原记录，不能认定覆盖全市场。':nextRetryAt?'本轮没有新线索可核验，部分失败查询仍在重试等待期；不代表附近没有合适酒店。':'本轮返回的附近线索已观察过；请刷新已有酒店或调整搜索范围，不能认定全市场无解。'};
+ const result:WorkflowResult={...original,id:randomUUID(),kind:'nearby_discovery',parentRunId:original.id,nearbyDiscovery:{...discovery,nextRetryAt},startedAt,completedAt,evidenceAsOf:asOf,candidates:decisions,tradeoffs,alternatives:conditionAlternatives(decisions,parsed.policy,asOf,parsed.query.adultCount),crossPlatform:[],jev:null,errors,trace,evidenceHash:createHash('sha256').update(JSON.stringify({query:parsed.query,policy:parsed.policy,asOf,candidates})).digest('hex'),transactionEnabled:false,recommendation:null,summary:selected.length?'附近发现仅核验最多3条新线索；原候选保留在原记录，不能认定覆盖全市场。':nextRetryAt?'本轮没有新线索可核验，部分失败查询仍在重试等待期；不代表附近没有合适酒店。':'本轮返回的附近线索已观察过；请刷新已有酒店或调整搜索范围，不能认定全市场无解。'};
  if(this.closed)throw new Error('会话已关闭');this.db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(result));return result;
  }finally{this.running=false;this.stage='附近发现完成';}
  }
@@ -278,7 +287,7 @@ export class LiveWorkflow{
  const tradeoffs=await evaluateTradeoffs(candidates,parsed.policy,evaluatedAt,parsed.query.adultCount,this.deps.jev,parsed.mode==='live'?Date.now:undefined);
  if(original.mode==='live'){const finishedAt=Date.now();if(finishedAt-Date.parse(original.evidenceAsOf)>15*60000)throw new Error('评估期间实时证据超过15分钟，请重新查询');if(parsed.policy.requireCancelable&&candidates.some(c=>c.rooms.some(r=>r.cancelUntil&&Date.parse(r.cancelUntil)>Date.parse(evaluatedAt)&&Date.parse(r.cancelUntil)<=finishedAt)))throw new Error('评估期间取消窗口已结束，请重新评估');}
  const trace=structuredClone(original.trace),record={at:new Date().toISOString(),action:'同一证据偏好重评',reason:'仅重新执行规则与模型评估；实时取消窗口按本轮时间检查，报价、路线、评论的原观察时间不变。',previousHash:trace.at(-1)?.hash??'0'.repeat(64)};trace.push({...record,hash:createHash('sha256').update(JSON.stringify(record)).digest('hex')});
- const result:WorkflowResult={...original,id:randomUUID(),kind:'reevaluation',parentRunId:original.id,startedAt,completedAt:new Date().toISOString(),policy:parsed.policy,candidates:rankCandidates(candidates,parsed.policy,evaluatedAt,parsed.query.adultCount),alternatives:conditionAlternatives(rankCandidates(candidates,parsed.policy,evaluatedAt,parsed.query.adultCount),parsed.policy),tradeoffs,jev:null,trace,evidenceHash:createHash('sha256').update(JSON.stringify({query:parsed.query,policy:parsed.policy,asOf:original.evidenceAsOf,evaluatedAt,candidates})).digest('hex')};
+ const result:WorkflowResult={...original,id:randomUUID(),kind:'reevaluation',parentRunId:original.id,startedAt,completedAt:new Date().toISOString(),policy:parsed.policy,candidates:rankCandidates(candidates,parsed.policy,evaluatedAt,parsed.query.adultCount),alternatives:conditionAlternatives(rankCandidates(candidates,parsed.policy,evaluatedAt,parsed.query.adultCount),parsed.policy,evaluatedAt,parsed.query.adultCount),tradeoffs,jev:null,trace,evidenceHash:createHash('sha256').update(JSON.stringify({query:parsed.query,policy:parsed.policy,asOf:original.evidenceAsOf,evaluatedAt,candidates})).digest('hex')};
  if(this.closed)throw new Error('会话已关闭');this.db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(result));return result;
  }finally{this.running=false;this.stage='偏好重评完成';}
  }
@@ -446,7 +455,7 @@ export class LiveWorkflow{
  const crossPlatform=comparePlatforms(candidates,parsed.mode==='live'?new Date().toISOString():asOf);
  log('生成条件组合', '最多3套备选条件，所有剩余证据缺口保留；不修改预算与降级权限。');
  log('交易阻断','全部真实候选不可成交：最终含税价、完整真实购买授权与订单/取消/退款能力未核验；订单和钱包不变。');
- const result:WorkflowResult={id:randomUUID(),mode:parsed.mode,startedAt,completedAt:new Date().toISOString(),query:parsed.query,policy:parsed.policy,evidenceAsOf:asOf,candidates:decisions,crossPlatform,tradeoffs,alternatives:conditionAlternatives(decisions,parsed.policy),jev,errors,trace,evidenceHash,transactionEnabled:false,recommendation:null,summary:decisions.length?'已完成证据汇总与规则评估；没有证据完整且可自动购买的候选。检索有数量上限，不能断言全市场无解。':'未取得候选；查询失败或无结果不等于整个市场无解。'};
+ const result:WorkflowResult={id:randomUUID(),mode:parsed.mode,startedAt,completedAt:new Date().toISOString(),query:parsed.query,policy:parsed.policy,evidenceAsOf:asOf,candidates:decisions,crossPlatform,tradeoffs,alternatives:conditionAlternatives(decisions,parsed.policy,asOf,parsed.query.adultCount),jev,errors,trace,evidenceHash,transactionEnabled:false,recommendation:null,summary:decisions.length?'已完成证据汇总与规则评估；没有证据完整且可自动购买的候选。检索有数量上限，不能断言全市场无解。':'未取得候选；查询失败或无结果不等于整个市场无解。'};
  if(this.closed)throw new Error('会话已关闭，结果未保存');this.db.prepare('INSERT INTO runs(payload) VALUES(?)').run(JSON.stringify(result));this.stage='完成';return result;
  }finally{this.running=false;}
  }
