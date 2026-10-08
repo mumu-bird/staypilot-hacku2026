@@ -108,7 +108,7 @@ const server=http.createServer(async(req,res)=>{
         if(path==='/api/cancel'){json(res,engine.cancel(payload));return;}
         json(res,{error:'接口不存在'},404);return;
       }
-      if(path==='/api/live/integrations'){json(res,{model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},rollinggo:{configured:rollinggoConfigured()},jev:{configured:typesafeConfigured(),model:process.env.TYPESAFE_MODEL||'jev-latest'},realBooking:false});return;}
+      if(path==='/api/live/integrations'){json(res,{fliggy:{configured:Boolean(process.env.FLYAI_API_KEY?.trim())},model:{configured:modelConfigured(),name:modelConfigured()?process.env.LLM_MODEL:null},amap:{configured:amapConfigured()},rollinggo:{configured:rollinggoConfigured()},jev:{configured:typesafeConfigured(),model:process.env.TYPESAFE_MODEL||'jev-latest'},realBooking:false});return;}
       if(path==='/api/live/workflow/runs'){const runId=url.searchParams.get('runId');const flow=workflowSession(sid);const run=runId?flow.savedRun(runId):null;json(res,runId?(run?[run]:[]):flow.history());return;}
       if(path==='/api/live/workflow/rechecks'){const runId=url.searchParams.get('runId');json(res,workflowSession(sid).recheckHistory({runId,...(url.searchParams.has('candidateKey')?{candidateKey:url.searchParams.get('candidateKey')}:{}),...(url.searchParams.has('ratePlanId')?{ratePlanId:url.searchParams.get('ratePlanId')}:{} )}));return;}
       if(path==='/api/live/workflow/state'){json(res,workflowSession(sid).state());return;}

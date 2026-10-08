@@ -364,6 +364,13 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  await failures.getByText(/Fliggy search incomplete/).waitFor();await failures.getByText(/Room requests failed/).waitFor();await failures.getByText(/Complete Jev advice unavailable/).waitFor();await failures.getByRole('button',{name:'Open hotel refresh actions',exact:true}).click();await page.getByRole('heading',{name:'Recheck an exact quote',exact:true}).waitFor();assert.equal(writes,0);page.off('request',track);await page.unroute('**/api/live/workflow/state');
  pass('部分失败按操作范围提示并提供补查导航；点击不自动重试或写授权。合成错误状态，无商户请求');
 }
+{
+ await page.route('**/api/live/integrations',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({fliggy:{configured:false},rollinggo:{configured:false},amap:{configured:false},jev:{configured:false},realBooking:false})}));
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(2).click();const setup=page.getByRole('region',{name:'Live service configuration',exact:true});await setup.getByText(/Neither hotel provider is configured/).waitFor();assert((await setup.innerText()).includes('does not establish successful login'));assert((await setup.innerText()).includes('Real booking, payment, cancellation and refunds are not enabled'));
+ await page.unroute('**/api/live/integrations');await page.route('**/api/live/integrations',route=>route.fulfill({status:503,contentType:'application/json',body:'{}'}));await setup.getByRole('button',{name:'Recheck configuration',exact:true}).click();await setup.getByRole('alert').waitFor();assert.equal(await setup.getByText(/Credentials not configured/).count(),0);
+ await page.unroute('**/api/live/integrations');await setup.getByRole('button',{name:'Recheck configuration',exact:true}).click();await setup.getByRole('alert').waitFor({state:'hidden'});const actualSetup=await (await context.request.get(origin+'/api/live/integrations')).json();assert.equal(typeof actualSetup.fliggy.configured,'boolean');
+ pass('查询前说明凭证配置和交易限制；配置请求失败不沿用旧状态，手动重试恢复。缺配置为合成响应，无商户查询');
+}
 assert.deepEqual(errors,[]);await context.close();await browser.close();
 writeFileSync(resolve('docs/browser-verification.json'),JSON.stringify({executedAt:new Date().toISOString(),environment:'真实Chrome网页操作；虚构酒店与测试资金',checks},null,2));
 console.log(`${checks.length} browser integration checks passed.`);
