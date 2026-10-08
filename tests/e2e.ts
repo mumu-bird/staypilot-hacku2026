@@ -371,6 +371,14 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  await page.unroute('**/api/live/integrations');await setup.getByRole('button',{name:'Recheck configuration',exact:true}).click();await setup.getByRole('alert').waitFor({state:'hidden'});const actualSetup=await (await context.request.get(origin+'/api/live/integrations')).json();assert.equal(typeof actualSetup.fliggy.configured,'boolean');
  pass('查询前说明凭证配置和交易限制；配置请求失败不沿用旧状态，手动重试恢复。缺配置为合成响应，无商户查询');
 }
+{
+ const result=JSON.parse(readFileSync('docs/cases/live-integrated-product-validation-20261009.json','utf8'));result.alternatives=[{hotel:result.candidates[0].candidate.name,change:'Controlled confirmation-only alternative',remaining:['Final charges unverified']}];
+ await page.route('**/api/live/workflow/state',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({running:false,stage:'Controlled proposal navigation',latest:result,monitor:{enabled:false,checks:0}})}));
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(1).click();const originalBudget=await page.getByLabel('Total budget including tax (CNY)',{exact:true}).inputValue();await page.locator('.journey-steps button').nth(3).click();
+ let writes=0;const track=(request:any)=>{if(request.method()==='POST'&&request.url().includes('/api/live/workflow/'))writes++;};page.on('request',track);
+ await page.getByRole('button',{name:'Review limits before confirming changes',exact:true}).click();assert.equal(await page.getByLabel('Total budget including tax (CNY)',{exact:true}).inputValue(),originalBudget);assert.equal(writes,0);page.off('request',track);await page.unroute('**/api/live/workflow/state');
+ pass('条件组合可直接返回偏好确认，预算不自动改变且不发送授权请求；合成导航案例，无商户调用');
+}
 assert.deepEqual(errors,[]);await context.close();await browser.close();
 writeFileSync(resolve('docs/browser-verification.json'),JSON.stringify({executedAt:new Date().toISOString(),environment:'真实Chrome网页操作；虚构酒店与测试资金',checks},null,2));
 console.log(`${checks.length} browser integration checks passed.`);

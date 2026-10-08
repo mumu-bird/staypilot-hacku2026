@@ -221,3 +221,9 @@ Evidence: cases/live-product-regression-20261009.json; report: real-product-regr
 Commute proposals now independently require current room and route observations, then rerun the representative room against the same tradeoff hard-floor rules with actual adult count. Stale observations, expired/nonrefundable cancellation or insufficient occupancy cannot become longer-commute suggestions. Both screening and tradeoff gaps are retained in the proposal. Valid proposals remain confirmation-only; authorization is unchanged. Recorded-case tests now explicitly pass their recorded assessment time instead of silently using wall time.
 
 202 unit tests and production build passed. Controlled regression verifies a supported commute alternative and five exclusion variants. No new merchant query or real order. Prior browser checkpoint remains 36; no new browser run claimed for this backend change. Local service restarted, preparing authorized GitHub update. Full product objective remains active.
+
+## Condition-proposal preference navigation
+
+Each condition-combination card now opens preferences directly with a bilingual explanation that navigation does not alter budget or authorization. Users can inspect and manually edit acceptable limits, then explicitly confirm and query again; an observed condition proposal is not a bookable offer. No proposal text is parsed into automatic policy changes.
+
+Production build and 37 browser checks passed. Controlled proposal navigation verifies the original budget input remains unchanged and zero workflow POSTs are sent. Existing saved-case, history export, setup and failure-recovery checks passed in the same run. Unit checkpoint remains 202 passed; no new unit run claimed for this navigation-only change. Service updated; no new merchant query or real order. Functional update prepared for authorized GitHub push; full product goal remains active.
