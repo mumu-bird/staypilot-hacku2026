@@ -1,3 +1,4 @@
+import {readiness} from './readiness.ts';
 import {isPrivatePagePath} from './private-path.ts';
 import {readJsonBody,RequestInputError,maxJsonBodyBytes} from './http-input.ts';
 import http from 'node:http';
@@ -50,10 +51,12 @@ function session(req:http.IncomingMessage,res:http.ServerResponse){
   return {sid,...current};
 }
 const mime:Record<string,string>={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.jpg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.webm':'video/webm','.json':'application/json'};
+let shuttingDown=false;
 const server=http.createServer(async(req,res)=>{
   try{
     const url=new URL(req.url||'/',origin),path=url.pathname;
     if(isPrivatePagePath(path)){json(res,{error:'Not found'},404);return;}
+    if(path==='/api/ready'&&req.method==='GET'){const result=readiness({production:process.env.NODE_ENV==='production',frontendExists:existsSync(resolve('dist/index.html')),shuttingDown});json(res,{...result,checkedAt:new Date().toISOString()},result.status==='ready'?200:503);return;}
     if(path==='/api/health'&&req.method==='GET'){json(res,{status:'ok',checkedAt:new Date().toISOString(),realTransactionEnabled:false});return;}
     if(path.startsWith('/api/')||path.startsWith('/evidence/')){
       const {sid,engine,agent}=session(req,res);
@@ -145,5 +148,5 @@ setInterval(()=>{
   }
 },1000).unref();
 server.listen(port,host,()=>console.log(`StayPilot ready: http://${host}:${port}`));
-async function shutdown(){for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();for(const agent of rollinggoSessions.values())agent.close();for(const flow of workflowSessions.values())flow.close();await vite?.close();server.close();server.closeAllConnections();}
+async function shutdown(){if(shuttingDown)return;shuttingDown=true;for(const {agent} of sessions.values())await agent.stop();for(const agent of realSessions.values())agent.close();for(const agent of rollinggoSessions.values())agent.close();for(const flow of workflowSessions.values())flow.close();await vite?.close();server.close();server.closeAllConnections();}
 process.on('SIGTERM',()=>void shutdown());process.on('SIGINT',()=>void shutdown());

@@ -141,3 +141,5 @@ After starting the local production service, run `npm run test:e2e:fixtures`. Th
 ### Automated release checks
 
 GitHub verifies each main push and pull request with a fresh `npm ci`, unit tests, production build and Chromium browser checks. Browser checks seed explicitly saved observations and controlled fixtures without private API keys or databases. They verify the simulation and query/handoff interface, not new live prices or real purchases. A failing check requires investigation before treating that revision as verified.
+
+Deployment probes: `GET /api/health` reports process liveness; `GET /api/ready` returns 503 when the production frontend is absent or shutdown has started. Docker and CI use readiness. These probes do not verify provider permissions, current inventory or transaction capabilities.

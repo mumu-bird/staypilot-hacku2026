@@ -247,3 +247,9 @@ Added a least-privilege GitHub workflow for main pushes and pull requests: Node 
 ## First clean Linux release verification passed
 
 GitHub run 37821818492 verified commit 9bcdef72cb61f996357bf127180a86dcd3697f31 on an Ubuntu runner with freshly installed locked dependencies, Node 24, no private API credentials and no private databases. All 204 unit tests, production build and 38 browser integration checks passed. The browser suite seeded saved observations, exercised controlled interface states and executed simulated transactions; it did not query current merchant prices or create real orders. Run completed 2026-10-08T18:09:18Z (2026-10-09 02:09:18 Shanghai). This closes the previously unverified fresh-install/Linux acceptance gap, not real transaction readiness. Evidence: https://github.com/mumu-bird/staypilot-hacku2026/actions/runs/37821818492. Product objective remains active.
+
+## Deployment readiness distinct from process liveness
+
+Added unauthenticated, non-session-creating GET /api/ready. Production requires dist/index.html; development uses Vite middleware; shutdown withdraws readiness before cleanup and repeated signals cannot start duplicate cleanup. Missing production frontend returns 503 while /api/health continues reporting process liveness. This does not prove provider connectivity, complete frontend assets or real transaction capability. Docker health checks and CI startup now use readiness instead of liveness.
+
+206 unit tests and production build passed. An isolated actual HTTP service with no frontend returned readiness 503 and liveness 200; adding the built frontend restored readiness 200. No provider call or transaction. Primary local service restarted and readiness verified. Container health-check command configured but Docker execution remains unverified because no Docker runtime is installed. Functional update prepared for authorized GitHub push; product goal remains active.

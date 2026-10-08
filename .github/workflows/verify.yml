@@ -39,7 +39,7 @@ jobs:
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           ready=false
           for attempt in $(seq 1 60); do
-            if curl --fail --silent "$TEST_ORIGIN/api/health" > /dev/null; then
+            if curl --fail --silent "$TEST_ORIGIN/api/ready" > /dev/null; then
               ready=true
               break
             fi
