@@ -56,8 +56,8 @@ export function windowType(name:string,flag:boolean|null):WorkflowRoom['windowTy
 }
 const norm=(s:string)=>s.replace(/[\s（）()·,，]/g,'').toLowerCase();
 export function selectExactPlace(places:MapPlace[],name:string,address?:string):MapPlace|null{
- const house=address?.match(/([^\d\s]{2,}[路街巷])\s*(\d+)号/);
- const matches=places.filter(p=>p.source==='poi'&&norm(p.name)===norm(name)&&(!house||(norm(p.address).includes(norm(house[1]))&&p.address.includes(house[2]+'号'))));
+ const house=address?.match(/([^\d\s]{2,}(?:路|街|巷|胡同|大道))\s*(\d+)号/);
+ const matches=places.filter(p=>p.source==='poi'&&norm(p.name)===norm(name)&&(!house||(norm(p.address).includes(norm(house[1]))&&new RegExp('(?:^|\\D)'+house[2]+'号').test(p.address))));
  const coordinates=new Set(matches.map(p=>p.location));if(coordinates.size===1)return matches[0];
  // A street-number POI is more specific than a same-name district centroid. Conflicting precise POIs remain unknown.
  if(!address){const precise=matches.filter(p=>/\d+号/.test(p.address));if(precise.length&&new Set(precise.map(p=>p.location)).size===1)return precise[0];}

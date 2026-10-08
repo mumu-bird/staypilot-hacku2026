@@ -294,3 +294,13 @@ test('quote monitor stops when cancellation window expires during the recheck',a
   assert.equal(flow.state().monitor.stopReason,'cancel_expired');assert.equal(flow.state().monitor.enabled,false);assert.equal(flow.state().monitor.nextCheckAt,null);await internals.pollMonitor();assert.equal(rechecks,1);
  }finally{flow.close();rmSync(dir,{recursive:true,force:true});}
 });
+
+test('hotel map identity distinguishes complete house numbers on streets, hutongs and avenues',()=>{
+ const place={id:'hotel',name:'核验酒店',address:'方家胡同46号',city:'北京市',source:'poi' as const,location:'116.417296,39.947239'};
+ assert.equal(selectExactPlace([place],place.name,'方家胡同46号')?.id,'hotel');
+ assert.equal(selectExactPlace([{...place,address:'方家胡同146号'}],place.name,'方家胡同46号'),null);
+ assert.equal(selectExactPlace([{...place,address:'五道营胡同46号'}],place.name,'方家胡同46号'),null);
+ assert.equal(selectExactPlace([{...place,address:'测试路146号'}],place.name,'测试路46号'),null);
+ assert.equal(selectExactPlace([{...place,address:'测试大道113号'}],place.name,'测试大道13号'),null);
+ assert.equal(selectExactPlace([{...place,address:'测试大道13号'}],place.name,'测试大道13号')?.id,'hotel');
+});

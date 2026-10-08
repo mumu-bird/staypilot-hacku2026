@@ -1,0 +1,1164 @@
+{
+  "id": "ee8558d3-bb24-4951-9961-376fbbeb0ff0",
+  "mode": "live",
+  "startedAt": "2026-10-08T18:36:41.405Z",
+  "completedAt": "2026-10-08T18:36:45.794Z",
+  "query": {
+    "destination": "北京",
+    "poi": "雍和宫",
+    "checkIn": "2026-10-09",
+    "checkOut": "2026-10-10",
+    "adultCount": 2,
+    "size": 10,
+    "roomCount": 1,
+    "childCount": 0
+  },
+  "policy": {
+    "budgetCents": 60000,
+    "idealBudgetCents": 50000,
+    "priorities": "Prefer restful sleep and hygiene; do not increase the 600 CNY ceiling.",
+    "walkMinutes": 20,
+    "metroMinutes": 40,
+    "allowMetro": true,
+    "window": "preferred",
+    "requireCancelable": true,
+    "weights": {
+      "noise": 3,
+      "hygiene": 3,
+      "smell": 1,
+      "maintenance": 1,
+      "service": 1,
+      "space": 1,
+      "security": 3
+    },
+    "unacceptable": []
+  },
+  "evidenceAsOf": "2026-10-08T18:36:45.791Z",
+  "candidates": [
+    {
+      "candidate": {
+        "key": "rollinggo:41962",
+        "hotelId": "41962",
+        "name": "时光漫步酒店(北京雍和宫店)",
+        "address": "安定门内大街方家胡同46号创意园",
+        "source": "RollingGo MCP",
+        "amenities": [
+          "叫醒服务",
+          "洗衣服务",
+          "行李寄存",
+          "快速入住退房",
+          "24小时前台",
+          "图书馆",
+          "电梯",
+          "茶室",
+          "公共区域监控",
+          "咖啡厅",
+          "无烟楼层",
+          "快递服务",
+          "叫车服务",
+          "儿童书籍/影音",
+          "商务服务",
+          "传真/复印",
+          "翻译服务",
+          "公共区域禁烟",
+          "餐厅",
+          "儿童牙刷",
+          "公用区wifi",
+          "干衣机",
+          "火灾报警器",
+          "门禁系统",
+          "灭火器",
+          "加湿器",
+          "熨斗/挂烫机",
+          "洗衣房",
+          "无障碍通道",
+          "烟雾报警器",
+          "安全报警器",
+          "安保人员",
+          "花园",
+          "婴儿推车",
+          "儿童玩具",
+          "儿童拖鞋",
+          "一氧化碳报警器",
+          "干衣机",
+          "楼梯扶手",
+          "提供轮椅",
+          "停车场",
+          "WIFI"
+        ],
+        "amenityEvidence": {
+          "source": "RollingGo MCP",
+          "observedAt": "2026-10-08T18:25:18.578Z",
+          "hotelId": "41962"
+        },
+        "detailUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+        "searchObservedAt": "2026-10-08T18:25:17.037Z",
+        "displayPrice": null,
+        "rooms": [
+          {
+            "ratePlanId": "l2stFfrjOSh-iS84cr3ATjP",
+            "ratePlanName": "Basic Double Room",
+            "roomName": "基础双人房",
+            "bedType": "1 大床",
+            "averagePrice": 303,
+            "estimatedStayPrice": 303,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": null,
+            "maxOccupancy": 2,
+            "size": null,
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unknown"
+          },
+          {
+            "ratePlanId": "8F3uu1ZYjhA-fzYVOlwC5Ep",
+            "ratePlanName": "Queen Bed Room",
+            "roomName": "时光大床房(时光百宝箱)",
+            "bedType": "1 大床",
+            "averagePrice": 350,
+            "estimatedStayPrice": 350,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "34OmeIrMqWC-b69y1tmX0zw",
+            "ratePlanName": "经典双人房(Classic Double Room)",
+            "roomName": "经典双人房",
+            "bedType": "1 大床",
+            "averagePrice": 367,
+            "estimatedStayPrice": 367,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": null,
+            "maxOccupancy": 2,
+            "size": "16.0",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unknown"
+          },
+          {
+            "ratePlanId": "cOqNKJRsJ8S-alCeGiuS7RB",
+            "ratePlanName": ",,大床|1|1.51米",
+            "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+            "bedType": "1 大床",
+            "averagePrice": 380,
+            "estimatedStayPrice": 380,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "fuQGXHQIg9n-29bY6GJw4av",
+            "ratePlanName": "Queen Bed Room",
+            "roomName": "时光大床房(时光百宝箱)",
+            "bedType": "1 大床",
+            "averagePrice": 383,
+            "estimatedStayPrice": 383,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "f2c2LnOqwdb-cYp498a7x4K",
+            "ratePlanName": "Queen Bed Room",
+            "roomName": "时光大床房(时光百宝箱)",
+            "bedType": "1 大床",
+            "averagePrice": 391,
+            "estimatedStayPrice": 391,
+            "currency": "CNY",
+            "mealAmount": 2,
+            "mealType": "含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "7tDWQL9zpIv-fMWqeE3UqJN",
+            "ratePlanName": "高级双人房(Superior Double Room)",
+            "roomName": "高级双人房",
+            "bedType": "1 大床",
+            "averagePrice": 399,
+            "estimatedStayPrice": 399,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": null,
+            "maxOccupancy": 2,
+            "size": null,
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unknown"
+          },
+          {
+            "ratePlanId": "6iA7y07qn4C-6ce1ItGx9EO",
+            "ratePlanName": "Twin Room",
+            "roomName": "双床房",
+            "bedType": "2 单人床",
+            "averagePrice": 401,
+            "estimatedStayPrice": 401,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "4ktNWBWIklF-6WtetOWwiTE",
+            "ratePlanName": "Family Triple Room",
+            "roomName": "家庭三人房",
+            "bedType": "1 大床 1 单人床",
+            "averagePrice": 450,
+            "estimatedStayPrice": 450,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": null,
+            "maxOccupancy": 3,
+            "size": "18.0",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unknown"
+          },
+          {
+            "ratePlanId": "18XJGVvmsBb-8pOkgTUGUPC",
+            "ratePlanName": "Twin Bed Room",
+            "roomName": "双床房",
+            "bedType": "1 大床 或 2 单人床",
+            "averagePrice": 451,
+            "estimatedStayPrice": 451,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "e6y6DSweqQG-9PnWNQrushf",
+            "ratePlanName": "Twin Bed Room",
+            "roomName": "双床房",
+            "bedType": "双床",
+            "averagePrice": 453,
+            "estimatedStayPrice": 453,
+            "currency": "CNY",
+            "mealAmount": 0,
+            "mealType": "不含早餐",
+            "onRequest": true,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          },
+          {
+            "ratePlanId": "bdpEUPwdejr-4xdNyDMV5w6",
+            "ratePlanName": "Twin Bed Room",
+            "roomName": "双床房",
+            "bedType": "2 单人床",
+            "averagePrice": 459,
+            "estimatedStayPrice": 459,
+            "currency": "CNY",
+            "mealAmount": 2,
+            "mealType": "含早餐",
+            "onRequest": false,
+            "cancelable": false,
+            "cancelPolicy": "不可免费取消",
+            "cancelUntil": null,
+            "cancellationStatus": "unknown",
+            "hasWindow": true,
+            "maxOccupancy": 2,
+            "size": "18",
+            "missingFields": [
+              "含税总价、税费与到店费用明细",
+              "报价有效期及成交前库存复核",
+              "取消截止后的费用及退款到账规则",
+              "可核验的取消条款与时区"
+            ],
+            "sourceObservedAt": "2026-10-08T18:36:42.862Z",
+            "windowType": "unspecified"
+          }
+        ],
+        "roomQuery": {
+          "status": "returned",
+          "observedAt": "2026-10-08T18:36:42.862Z",
+          "filter": {},
+          "count": 12,
+          "filterDiagnostics": {
+            "received": 12,
+            "excluded": 0,
+            "unknownCancellationExcluded": 0
+          }
+        },
+        "route": {
+          "source": "高德地图 Web 服务",
+          "observedAt": "2026-10-08T18:36:45.176Z",
+          "origin": "116.411954,39.943496",
+          "destination": "116.417296,39.947239",
+          "city": "北京",
+          "walking": {
+            "minutes": 12,
+            "meters": 894
+          },
+          "transits": [
+            {
+              "minutes": 23,
+              "meters": 1321,
+              "walkingMeters": 892,
+              "lines": [
+                {
+                  "name": "84路(宋家庄枢纽站--惠新东桥西)",
+                  "type": "普通公交线路",
+                  "departure": "北新桥路口北",
+                  "arrival": "国子监",
+                  "metro": false
+                }
+              ],
+              "transfers": 0,
+              "metroDirect": false,
+              "classification": "公交路线"
+            }
+          ],
+          "warnings": []
+        },
+        "position": {
+          "observedAt": "2026-10-08T18:36:43.007Z",
+          "straightDistanceMeters": 617,
+          "withinInitialRadius": true
+        },
+        "reviews": {
+          "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+          "observedAt": "2026-10-08T08:58:08.554Z",
+          "score": "9.4",
+          "scoreMax": 10,
+          "count": 1552,
+          "captureMethod": "web_history",
+          "binding": {
+            "name": "时光漫步酒店(北京雍和宫店)",
+            "address": "安定门内大街方家胡同46号创意园",
+            "platformIds": {
+              "rollinggo": "41962",
+              "trip": "1181544"
+            }
+          },
+          "selection": "网页读取工具访问的平台历史索引页面，非实时评论API；选取可见且相关的样本，未读取全部负评。地址繁简字人工对应核验。",
+          "sampleLimitations": [
+            "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+            "The issue-bearing review is highly rated; issue classification is independent of its star rating."
+          ],
+          "negative": [
+            {
+              "date": "2026-03-14",
+              "summary": "住客提到门墙隔音较弱，但该次睡眠安静，且赞扬服务；为问题提及，不表示总体差评或所有房间存在问题。",
+              "issues": [
+                "noise"
+              ]
+            }
+          ],
+          "positive": [
+            {
+              "date": "2026-04-26",
+              "summary": "住客认可房间清洁、安静和服务。"
+            },
+            {
+              "date": "2026-06-21",
+              "summary": "住客认可整洁、安静和早餐，同时提到房屋并非很新。"
+            }
+          ],
+          "openingYear": null,
+          "renovationYear": null,
+          "modelAnalysis": {
+            "model": "jev-1.13.0",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "sourceObservedAt": "2026-10-08T18:25:24.176Z",
+            "analyzedAt": "2026-10-08T18:25:25.474Z",
+            "evidenceHash": "3f9b047cee9084c8038f249730ef5fd365e304804277a3c418c78236ba1b6c15",
+            "sampleCount": 15,
+            "sourceRating": {
+              "score": 9.5,
+              "scale": 10,
+              "totalCount": 1434
+            },
+            "coverage": "visible_page_only",
+            "mentions": [],
+            "uncertain": [
+              {
+                "id": "2116071377",
+                "date": "2026-09-26",
+                "issues": [
+                  "space"
+                ]
+              },
+              {
+                "id": "2098972173",
+                "date": "2026-09-11",
+                "issues": [
+                  "maintenance"
+                ]
+              },
+              {
+                "id": "1875711837",
+                "date": "2026-03-14",
+                "issues": [
+                  "noise",
+                  "maintenance"
+                ]
+              }
+            ]
+          }
+        },
+        "errors": []
+      },
+      "status": "excluded",
+      "tier": 0,
+      "minutes": 12,
+      "risk": 3,
+      "reviewRows": [
+        {
+          "issue": "noise",
+          "count": 1,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 3
+        },
+        {
+          "issue": "hygiene",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 0
+        },
+        {
+          "issue": "smell",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "maintenance",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "service",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "space",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 1,
+          "contribution": 0
+        },
+        {
+          "issue": "security",
+          "count": 0,
+          "sampleSize": 1,
+          "weight": 3,
+          "contribution": 0
+        }
+      ],
+      "representativeRoom": null,
+      "reasons": [
+        "已观察报价均不提供所要求的免费取消；退款费用不据此推断"
+      ],
+      "gaps": [
+        "评论来自定向样本，个人加权样本指标不代表总体问题发生率",
+        "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+        "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+        "评论语义待核验：空间（评论2116071377，2026-09-26）；不能视为问题已排除",
+        "评论语义待核验：维护（评论2098972173，2026-09-11）；不能视为问题已排除",
+        "评论语义待核验：隔音（评论1875711837，2026-03-14）；不能视为问题已排除",
+        "评论语义待核验：维护（评论1875711837，2026-03-14）；不能视为问题已排除",
+        "房型关键条件未知，尚不能确认取消、人数或外窗要求",
+        "高重要度评论问题需核验具体房型或整改证据",
+        "最终含税总价、到店费用、报价有效期及库存复核未完成",
+        "真实订单、取消、退款接口与购买授权未验证"
+      ],
+      "advantages": [
+        "步行12分钟",
+        "地图直线距离617米（非通勤时间）",
+        "原平台评分9.4，评论1552条",
+        "评分判断采用较新的页面观察：9.5/10（2026-10-08T18:25:24.176Z）"
+      ],
+      "rank": 1,
+      "bookable": false
+    }
+  ],
+  "crossPlatform": [],
+  "tradeoffs": {
+    "evidenceHash": "d440bba2c2b13c71d24ffa3fa3297af9da0b1d71b0bef0aebf18856a2dca0ee8",
+    "policyVersion": "c1de36914b2260503ea911435172a45914ac573f578fd3e8ae935fdf4dca5227",
+    "status": "needs_evidence",
+    "scope": "none",
+    "preferredOptionId": null,
+    "options": [
+      {
+        "offer": {
+          "ratePlanName": "Basic Double Room",
+          "bedType": "1 大床",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "cancelable": false,
+          "cancellationStatus": "unknown",
+          "cancelUntil": null,
+          "onRequest": false,
+          "maxOccupancy": 2,
+          "windowType": "unknown"
+        },
+        "id": "option_d61f9ea9a4ed810f7948",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "基础双人房",
+        "ratePlanId": "l2stFfrjOSh-iS84cr3ATjP",
+        "observedAt": "2026-10-08T18:36:42.862Z",
+        "status": "blocked",
+        "idealMatch": false,
+        "priceCents": 30300,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [],
+        "hardViolations": [
+          "Free cancellation is explicitly unavailable; refund charges remain unknown."
+        ],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Exterior window not verified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence."
+        ],
+        "evidence": [
+          {
+            "id": "ce626ab38c2263b02b843ab4ccba6257e80299319448836697a92fc7ac0a14f6",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:36:42.862Z",
+            "method": "api"
+          },
+          {
+            "id": "1ed0bf052aa291ed8b08506ebe2ccb37e6e44ead7da70b0d1090aba15e8f4f41",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T18:36:45.176Z",
+            "method": "api"
+          },
+          {
+            "id": "3fd9017934fb99e538451b0413b5958e13f16c25eb83a8198acc13014eeeff3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "3f9b047cee9084c8038f249730ef5fd365e304804277a3c418c78236ba1b6c15",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T18:25:24.176Z",
+            "method": "web_capture"
+          },
+          {
+            "id": "1a54d5df65d92af120a89c696f5592e22dc260a4a30241ebf20e9ce837138c3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:25:18.578Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 303.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: unknown; meal plan: 不含早餐.",
+          "Rating used for screening: 9.5/10; observed 2026-10-08T18:25:24.176Z; page_observation."
+        ]
+      },
+      {
+        "offer": {
+          "ratePlanName": "Queen Bed Room",
+          "bedType": "1 大床",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "cancelable": false,
+          "cancellationStatus": "unknown",
+          "cancelUntil": null,
+          "onRequest": false,
+          "maxOccupancy": 2,
+          "windowType": "unspecified"
+        },
+        "id": "option_a53e798088025bbb1b3e",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "时光大床房(时光百宝箱)",
+        "ratePlanId": "8F3uu1ZYjhA-fzYVOlwC5Ep",
+        "observedAt": "2026-10-08T18:36:42.862Z",
+        "status": "blocked",
+        "idealMatch": false,
+        "priceCents": 35000,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [],
+        "hardViolations": [
+          "Free cancellation is explicitly unavailable; refund charges remain unknown."
+        ],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Exterior window not verified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence."
+        ],
+        "evidence": [
+          {
+            "id": "2e28bde8d229aa7a617885802e410eeecb72fb2e7d2dfb1c3a6e46c320d49444",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:36:42.862Z",
+            "method": "api"
+          },
+          {
+            "id": "1ed0bf052aa291ed8b08506ebe2ccb37e6e44ead7da70b0d1090aba15e8f4f41",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T18:36:45.176Z",
+            "method": "api"
+          },
+          {
+            "id": "3fd9017934fb99e538451b0413b5958e13f16c25eb83a8198acc13014eeeff3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "3f9b047cee9084c8038f249730ef5fd365e304804277a3c418c78236ba1b6c15",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T18:25:24.176Z",
+            "method": "web_capture"
+          },
+          {
+            "id": "1a54d5df65d92af120a89c696f5592e22dc260a4a30241ebf20e9ce837138c3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:25:18.578Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 350.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: unspecified; meal plan: 不含早餐.",
+          "Rating used for screening: 9.5/10; observed 2026-10-08T18:25:24.176Z; page_observation."
+        ]
+      },
+      {
+        "offer": {
+          "ratePlanName": "经典双人房(Classic Double Room)",
+          "bedType": "1 大床",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "cancelable": false,
+          "cancellationStatus": "unknown",
+          "cancelUntil": null,
+          "onRequest": false,
+          "maxOccupancy": 2,
+          "windowType": "unknown"
+        },
+        "id": "option_9c2d6e197294f6748347",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "经典双人房",
+        "ratePlanId": "34OmeIrMqWC-b69y1tmX0zw",
+        "observedAt": "2026-10-08T18:36:42.862Z",
+        "status": "blocked",
+        "idealMatch": false,
+        "priceCents": 36700,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [],
+        "hardViolations": [
+          "Free cancellation is explicitly unavailable; refund charges remain unknown."
+        ],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Exterior window not verified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence."
+        ],
+        "evidence": [
+          {
+            "id": "82cc32923771b202466e72d3de984efda35d4c1d22816770181b40e110481585",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:36:42.862Z",
+            "method": "api"
+          },
+          {
+            "id": "1ed0bf052aa291ed8b08506ebe2ccb37e6e44ead7da70b0d1090aba15e8f4f41",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T18:36:45.176Z",
+            "method": "api"
+          },
+          {
+            "id": "3fd9017934fb99e538451b0413b5958e13f16c25eb83a8198acc13014eeeff3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "3f9b047cee9084c8038f249730ef5fd365e304804277a3c418c78236ba1b6c15",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T18:25:24.176Z",
+            "method": "web_capture"
+          },
+          {
+            "id": "1a54d5df65d92af120a89c696f5592e22dc260a4a30241ebf20e9ce837138c3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:25:18.578Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 367.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: unknown; meal plan: 不含早餐.",
+          "Rating used for screening: 9.5/10; observed 2026-10-08T18:25:24.176Z; page_observation."
+        ]
+      },
+      {
+        "offer": {
+          "ratePlanName": ",,大床|1|1.51米",
+          "bedType": "1 大床",
+          "mealAmount": 0,
+          "mealType": "不含早餐",
+          "cancelable": false,
+          "cancellationStatus": "unknown",
+          "cancelUntil": null,
+          "onRequest": false,
+          "maxOccupancy": 2,
+          "windowType": "unspecified"
+        },
+        "id": "option_fe8976680145bb0fadc1",
+        "candidateKey": "rollinggo:41962",
+        "hotelName": "时光漫步酒店(北京雍和宫店)",
+        "roomName": "时光大床房（怀旧小人书+佰草集洗护）",
+        "ratePlanId": "cOqNKJRsJ8S-alCeGiuS7RB",
+        "observedAt": "2026-10-08T18:36:42.862Z",
+        "status": "blocked",
+        "idealMatch": false,
+        "priceCents": 38000,
+        "priceBasis": "display_estimate",
+        "routeMode": "walk",
+        "minutes": 12,
+        "risk": 3,
+        "changes": [],
+        "hardViolations": [
+          "Free cancellation is explicitly unavailable; refund charges remain unknown."
+        ],
+        "gaps": [
+          "Final taxes, mandatory charges and quote validity remain unverified.",
+          "Exterior window not verified.",
+          "Only a partial visible page was inspected; the full negative-review set and recent-stay coverage remain unverified.",
+          "The issue-bearing review is highly rated; issue classification is independent of its star rating.",
+          "Review mention needs verification: space; review 2116071377 dated 2026-09-26. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 2098972173 dated 2026-09-11. Uncertainty does not establish absence.",
+          "Review mention needs verification: noise; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence.",
+          "Review mention needs verification: maintenance; review 1875711837 dated 2026-03-14. Uncertainty does not establish absence."
+        ],
+        "evidence": [
+          {
+            "id": "f18ba0c12238b05b3e88c9935a724d8280084ff25f8cd8e7a8396f0a7a54b243",
+            "hotelKey": "rollinggo:41962",
+            "kind": "room",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:36:42.862Z",
+            "method": "api"
+          },
+          {
+            "id": "1ed0bf052aa291ed8b08506ebe2ccb37e6e44ead7da70b0d1090aba15e8f4f41",
+            "hotelKey": "rollinggo:41962",
+            "kind": "route",
+            "sourceUrl": null,
+            "observedAt": "2026-10-08T18:36:45.176Z",
+            "method": "api"
+          },
+          {
+            "id": "3fd9017934fb99e538451b0413b5958e13f16c25eb83a8198acc13014eeeff3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T08:58:08.554Z",
+            "method": "web_history"
+          },
+          {
+            "id": "3f9b047cee9084c8038f249730ef5fd365e304804277a3c418c78236ba1b6c15",
+            "hotelKey": "rollinggo:41962",
+            "kind": "reviews",
+            "sourceUrl": "https://hk.trip.com/hotels/beijing-hotel-detail-1181544/nostalgia-hotelbeijing-yonghelama/review.html",
+            "observedAt": "2026-10-08T18:25:24.176Z",
+            "method": "web_capture"
+          },
+          {
+            "id": "1a54d5df65d92af120a89c696f5592e22dc260a4a30241ebf20e9ce837138c3f",
+            "hotelKey": "rollinggo:41962",
+            "kind": "facilities",
+            "sourceUrl": "https://rollinggo.cn/pages/hotel/detail/index?id=41962&checkInDate=2026-10-09&checkOutDate=2026-10-10&roomCount=1&adultCount=2&childCount=0&childAgeDetails=&utm_source=0A0OHE",
+            "observedAt": "2026-10-08T18:25:18.578Z",
+            "method": "api"
+          }
+        ],
+        "facts": [
+          "Displayed stay estimate CNY 380.00; ideal 500.00, ceiling 600.00.",
+          "walk commute: 12 minutes.",
+          "Weighted targeted-review sample metric: 3.00; not population prevalence.",
+          "Window: unspecified; meal plan: 不含早餐.",
+          "Rating used for screening: 9.5/10; observed 2026-10-08T18:25:24.176Z; page_observation."
+        ]
+      }
+    ],
+    "model": null,
+    "observedAt": "2026-10-08T18:36:45.794Z",
+    "choice": null,
+    "basis": null,
+    "nextAction": null,
+    "usage": null,
+    "reason": "No observed option has enough evidence for a comparison. Missing evidence is not a reason to increase the budget.",
+    "inspectionLog": []
+  },
+  "alternatives": [],
+  "jev": null,
+  "errors": [],
+  "trace": [
+    {
+      "at": "2026-10-08T18:24:34.037Z",
+      "action": "核验要求",
+      "reason": "只读模式；预算600元；不修改购买授权、订单或钱包。",
+      "previousHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "hash": "cfd06dcc66f3a5e383244d59bca000e5bd0d91a11b8b5b7fbd1ab6eaff380777"
+    },
+    {
+      "at": "2026-10-08T18:24:34.039Z",
+      "action": "跨平台实时检索",
+      "reason": "并行查询飞猪与RollingGo；失败的数据源保留错误，不伪造结果。",
+      "previousHash": "cfd06dcc66f3a5e383244d59bca000e5bd0d91a11b8b5b7fbd1ab6eaff380777",
+      "hash": "dd8cb2a98955eb67dd800b93f8294d61b1cb31299a9ebb59e8524f961dfbc872"
+    },
+    {
+      "at": "2026-10-08T18:24:39.686Z",
+      "action": "补查飞猪附近候选",
+      "reason": "使用官方distance_asc排序补查；顺序只用于发现候选，位置仍独立核验。",
+      "previousHash": "dd8cb2a98955eb67dd800b93f8294d61b1cb31299a9ebb59e8524f961dfbc872",
+      "hash": "e3546e1fca9c28baac885d823cf6bbe261d970858848035e2662cea606d5f742"
+    },
+    {
+      "at": "2026-10-08T18:24:44.574Z",
+      "action": "位置与通勤核验",
+      "reason": "最多核验12家；同名位置不能唯一匹配则保留未知。",
+      "previousHash": "e3546e1fca9c28baac885d823cf6bbe261d970858848035e2662cea606d5f742",
+      "hash": "9c4854c378201001bc92327726d95a36ca3d6292f72b7a9c586c659845cb714a"
+    },
+    {
+      "at": "2026-10-08T18:25:11.896Z",
+      "action": "核验平台距离筛选",
+      "reason": "5家已匹配候选超出初筛半径；不宣称平台距离过滤生效，只按已允许的通勤范围继续评估。",
+      "previousHash": "9c4854c378201001bc92327726d95a36ca3d6292f72b7a9c586c659845cb714a",
+      "hash": "b670583bbecec122a23c4bd52e4c32ab28695780b305f60b10eb77d169b9a2b2"
+    },
+    {
+      "at": "2026-10-08T18:25:11.896Z",
+      "action": "核验房型",
+      "reason": "按通勤、评论与个人规则选最多3家RollingGo候选，逐家获取具体房型。",
+      "previousHash": "b670583bbecec122a23c4bd52e4c32ab28695780b305f60b10eb77d169b9a2b2",
+      "hash": "cee0f1a5a9260b7217f131f82b25ea83851c4bd09d6be6624bce7ad29cc06b06"
+    },
+    {
+      "at": "2026-10-08T18:25:14.116Z",
+      "action": "核验附近酒店跨平台身份",
+      "reason": "玩居酒店(北京雍和宫四合院店)：按名称取房型，再核验平台ID和地址。",
+      "previousHash": "cee0f1a5a9260b7217f131f82b25ea83851c4bd09d6be6624bce7ad29cc06b06",
+      "hash": "8f4b3bf53af1be1ba1ed845e4156c064a435a89d25d8bb6c411ed9e1bd4a6bb4"
+    },
+    {
+      "at": "2026-10-08T18:25:15.947Z",
+      "action": "核验附近酒店跨平台身份",
+      "reason": "时光漫步酒店（北京雍和宫店）：按名称取房型，再核验平台ID和地址。",
+      "previousHash": "8f4b3bf53af1be1ba1ed845e4156c064a435a89d25d8bb6c411ed9e1bd4a6bb4",
+      "hash": "e099abdd0759aaba7b15b978af40140192f3cdd8e25ba3f1e0af028fa936e1ad"
+    },
+    {
+      "at": "2026-10-08T18:25:18.579Z",
+      "action": "核验附近酒店跨平台身份",
+      "reason": "华侨夜泊君亭酒店(北京雍和宫北新桥地铁站店）：按名称取房型，再核验平台ID和地址。",
+      "previousHash": "e099abdd0759aaba7b15b978af40140192f3cdd8e25ba3f1e0af028fa936e1ad",
+      "hash": "f8446bb881b0d98739a72460bbc8b11289aedec8175f2dd4c1071c429a90b810"
+    },
+    {
+      "at": "2026-10-08T18:25:23.503Z",
+      "action": "刷新公开评论与分析",
+      "reason": "仅查询已登记且身份匹配的评论来源；保留旧观察，新增当前页面语义分析。",
+      "previousHash": "f8446bb881b0d98739a72460bbc8b11289aedec8175f2dd4c1071c429a90b810",
+      "hash": "b3339d43d17d94b2effb236020cb5fccea78c4e28c97e025f24f94d7b8d60afd"
+    },
+    {
+      "at": "2026-10-08T18:25:25.474Z",
+      "action": "评论分析完成",
+      "reason": "jev-1.13.0；15条可见样本；来源时间2026-10-08T18:25:24.176Z；部分页面不代表全量评论。",
+      "previousHash": "b3339d43d17d94b2effb236020cb5fccea78c4e28c97e025f24f94d7b8d60afd",
+      "hash": "968d9958ac650ffb1186e04d88ca5c283800517ded232bc7905bc0cc8d13b0cc"
+    },
+    {
+      "at": "2026-10-08T18:25:25.476Z",
+      "action": "刷新附加平台评论",
+      "reason": "只查询第二个已验证来源；独立保留评分与时间，不混合原平台评论。",
+      "previousHash": "968d9958ac650ffb1186e04d88ca5c283800517ded232bc7905bc0cc8d13b0cc",
+      "hash": "62393507f71d53504d3e5eac2a4462189c4f2a1e8798c2d0809db8a9113adbaf"
+    },
+    {
+      "at": "2026-10-08T18:25:27.157Z",
+      "action": "附加评论分析完成",
+      "reason": "jev-1.13.0；15条可见样本；来源时间2026-10-08T18:25:26.019Z。",
+      "previousHash": "62393507f71d53504d3e5eac2a4462189c4f2a1e8798c2d0809db8a9113adbaf",
+      "hash": "83931f9f8412c85c5f4116256f4d6d2ab60bdc21d1b840390034bcc9fde56935"
+    },
+    {
+      "at": "2026-10-08T18:25:27.157Z",
+      "action": "绑定评论来源",
+      "reason": "仅合并酒店身份匹配的既有浏览器评论观察；未知酒店保持无评论证据。历史网页报价没有重用为当前报价。",
+      "previousHash": "83931f9f8412c85c5f4116256f4d6d2ab60bdc21d1b840390034bcc9fde56935",
+      "hash": "a6f95431e46878771f3516b01aeb1987aad6141670061c6812726ea0688cecb4"
+    },
+    {
+      "at": "2026-10-08T18:25:27.157Z",
+      "action": "固定规则评估",
+      "reason": "先硬条件与通勤档位，再个人评论样本指标、展示价格与通勤时长；信息缺失不视为满足。",
+      "previousHash": "a6f95431e46878771f3516b01aeb1987aad6141670061c6812726ea0688cecb4",
+      "hash": "f8174bbaad72d0866c05e246a8b569310e7f2d5ca4c6a05e6bd7a8fdd4128c0c"
+    },
+    {
+      "at": "2026-10-08T18:25:27.158Z",
+      "action": "Jev核验建议",
+      "reason": "模型读取本轮合并的房型、路线、评论与缺口摘要；仅安排下一步证据任务。",
+      "previousHash": "f8174bbaad72d0866c05e246a8b569310e7f2d5ca4c6a05e6bd7a8fdd4128c0c",
+      "hash": "fea2bf6b335f7cbf4be9b0cb67e4b29c73025e1f70f2cc1704d0236fce673f92"
+    },
+    {
+      "at": "2026-10-08T18:25:27.469Z",
+      "action": "评估可接受取舍",
+      "reason": "从实际房型生成方案；硬底线不参与交换，多个取舍自动调用Jev，缺口保持可见。",
+      "previousHash": "fea2bf6b335f7cbf4be9b0cb67e4b29c73025e1f70f2cc1704d0236fce673f92",
+      "hash": "fc1cc23d0c73ce594eafd7744c8b9cb5c2872e9a1cc86e844da61ac93a5641d3"
+    },
+    {
+      "at": "2026-10-08T18:25:27.474Z",
+      "action": "生成条件组合",
+      "reason": "最多3套备选条件，所有剩余证据缺口保留；不修改预算与降级权限。",
+      "previousHash": "fc1cc23d0c73ce594eafd7744c8b9cb5c2872e9a1cc86e844da61ac93a5641d3",
+      "hash": "db28021538d81a25940a8919a56d4ab0cec3ba322856ceec92fc61e72909a1a6"
+    },
+    {
+      "at": "2026-10-08T18:25:27.474Z",
+      "action": "交易阻断",
+      "reason": "全部真实候选不可成交：最终含税价、完整真实购买授权与订单/取消/退款能力未核验；订单和钱包不变。",
+      "previousHash": "db28021538d81a25940a8919a56d4ab0cec3ba322856ceec92fc61e72909a1a6",
+      "hash": "958ce7523e8b73d9cb2938ffbd6866e91c9759435c96319683fd0cf0cc9b7c65"
+    },
+    {
+      "at": "2026-10-08T18:36:45.794Z",
+      "action": "定向刷新酒店",
+      "reason": "仅刷新时光漫步酒店(北京雍和宫店)房型与路线；旧报价留在原记录，评论保留原观察时间；不计算不同报价的节省。",
+      "previousHash": "958ce7523e8b73d9cb2938ffbd6866e91c9759435c96319683fd0cf0cc9b7c65",
+      "hash": "6df686fd2a32a406027d64e31e9d3a0f479fe2103706caa962372ddbcb1d55f9"
+    }
+  ],
+  "evidenceHash": "7f1f0b8128bad1760ab706a970f0f4e6dbb6047afb617967ee752046463f2b26",
+  "transactionEnabled": false,
+  "recommendation": null,
+  "summary": "本轮只刷新一家的房型与路线；评论仍为原观察，报价仍需最终核验。",
+  "kind": "candidate_refresh",
+  "parentRunId": "63c4f56d-67d6-4820-a1cc-8da31ab5f424"
+}
