@@ -13,3 +13,13 @@ test('existing stale quotes and routes are inspection gaps rather than current e
  const target=workflowRecovery(result,now).targets[0];assert.equal(target.staleRooms,true);assert.equal(target.staleRoute,true);assert.equal(target.missingRooms,false);assert.equal(target.missingRoute,false);
  original.candidate.route.observedAt=new Date(now+60_000).toISOString();original.candidate.rooms[0].sourceObservedAt='2026-10-09T00:00:00';assert.equal(workflowRecovery(result,now).targets[0].staleRoute,true);assert.equal(workflowRecovery(result,now).targets[0].staleRooms,true);
 });
+
+test('all unknown cancellation terms remain a targeted evidence gap without changing policy or inventing free cancellation',()=>{
+ const result=actual(),now=Date.parse(result.completedAt);
+ const original=result.candidates.find((d:any)=>d.candidate.rooms.length>0);original.reasons=[];result.candidates=[original];
+ for(const room of original.candidate.rooms){room.cancellationStatus='unknown';room.sourceObservedAt=result.completedAt;}
+ original.candidate.route.observedAt=result.completedAt;original.candidate.reviews={reviews:[]};
+ const before=JSON.stringify(result),target=workflowRecovery(result,now).targets[0];
+ assert(target);assert.equal(target.cancellationUnverified,true);assert.equal(target.staleRooms,false);assert.equal(target.missingRooms,false);assert.equal(JSON.stringify(result),before);
+ result.policy.requireCancelable=false;assert.equal(workflowRecovery(result,now).targets.length,0);
+});

@@ -400,6 +400,19 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  await page.unroute('**/api/live/workflow/state');await page.unroute('**/api/live/workflow/authorize');
  pass('选中方案核验清单实际下载包含房型、原观察和预算限制，过期后入口撤下；控制页面和模拟授权，无真实成交');
 }
+{
+ const fixture=JSON.parse(readFileSync('docs/cases/live-product-regression-20261009.json','utf8'));
+ const decision=fixture.candidates.find((d:any)=>d.candidate.key.startsWith('rollinggo:')&&d.candidate.rooms.length>0);assert(decision);
+ fixture.candidates=[decision];decision.reasons=[];decision.candidate.route=null;
+ for(const room of decision.candidate.rooms){room.cancellationStatus='unknown';room.sourceObservedAt=new Date().toISOString();}
+ await page.route('**/api/live/workflow/state',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({running:false,stage:'Controlled evidence gaps',latest:fixture,monitor:{enabled:false,deadline:null,nextCheckAt:null,lastError:null,checks:0}})}));
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();
+ const outcome=page.getByRole('region',{name:'Assessment outcome'});await outcome.locator('summary').filter({hasText:'Priority hotels to inspect'}).click();
+ await outcome.getByText(/Cancellation terms unverified/).waitFor();await outcome.getByText(/Route unverified/).waitFor();
+ assert(await outcome.getByRole('button',{name:'Refresh rooms and route',exact:true}).isDisabled());
+ await page.unroute('**/api/live/workflow/state');
+ pass('未知取消条款与缺失路线进入补查入口，未确认授权时刷新禁用；控制证据状态，无商户调用');
+}
 assert.deepEqual(errors,[]);await context.close();await browser.close();
 writeFileSync(resolve('docs/browser-verification.json'),JSON.stringify({executedAt:new Date().toISOString(),environment:'真实Chrome网页操作；虚构酒店与测试资金',checks},null,2));
 console.log(`${checks.length} browser integration checks passed.`);
