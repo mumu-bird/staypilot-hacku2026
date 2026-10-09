@@ -64,3 +64,16 @@ test('standalone monitor stops after three consecutive failures and resets on su
   await agent.startMonitor({...query,deadline:new Date(Date.now()+3600000).toISOString()});assert.equal(agent.state().monitor.enabled,true);assert.equal(agent.state().monitor.consecutiveFailures,0);
  }finally{agent.close();rmSync(directory,{recursive:true,force:true});}
 });
+
+test('standalone monitor rejects normalized invalid deadlines and stops immediately after a query crosses deadline',async(t)=>{
+ t.mock.timers.enable({apis:['Date'],now:Date.parse('2026-02-28T12:00:00+08:00')});
+ const directory=mkdtempSync(join(tmpdir(),'staypilot-monitor-deadline-'));let calls=0,finish!:()=>void;
+ const pending=new Promise<void>(resolve=>{finish=resolve;});
+ const agent=new RealAgent('deadline',{directory,search:async()=>{calls++;await pending;return normalizeFlyai({status:0,data:{itemList:[]}},query);}});
+ try{
+  for(const deadline of ['2026-02-29T12:00:00+08:00','2026-02-28T24:00:00+08:00','2026-02-28T13:00:00'])await assert.rejects(agent.startMonitor({...query,deadline}));assert.equal(calls,0);
+  const run=agent.startMonitor({...query,deadline:'2026-02-28T13:00:00+08:00'});assert.equal(calls,1);
+  t.mock.timers.setTime(Date.parse('2026-02-28T13:00:00+08:00'));finish();await run;
+  const state=agent.state();assert.equal(state.monitor.enabled,false);assert.equal(state.monitor.nextCheckAt,null);assert.equal(state.snapshots.length,1);assert(state.events.some(e=>e.action==='监控截止'));
+ }finally{finish?.();agent.close();rmSync(directory,{recursive:true,force:true});t.mock.timers.reset();}
+});
