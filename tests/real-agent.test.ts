@@ -37,3 +37,16 @@ test('stopping during an in-flight query prevents another scheduled check',async
   finish();await run;assert.equal(a.state().monitor.enabled,false);assert.equal(a.state().monitor.nextCheckAt,null);
  }finally{a.close();rmSync(directory,{recursive:true,force:true});}
 });
+
+test('expired trip stops standalone FlyAI monitoring before another provider request',async(t)=>{
+ t.mock.timers.enable({apis:['Date'],now:Date.parse('2026-10-09T12:00:00+08:00')});
+ const directory=mkdtempSync(join(tmpdir(),'staypilot-expired-trip-'));let calls=0;
+ const trip={...query,checkIn:'2026-10-09',checkOut:'2026-10-10'};
+ const agent=new RealAgent('expired',{directory,search:async()=>{calls++;return normalizeFlyai({status:0,data:{itemList:[]}},trip);}});
+ try{
+  await agent.startMonitor({...trip,deadline:'2026-10-10T11:00:00+08:00'});assert.equal(calls,1);
+  t.mock.timers.setTime(Date.parse('2026-10-10T00:01:00+08:00'));
+  await (agent as unknown as {poll():Promise<void>}).poll();
+  const state=agent.state();assert.equal(calls,1);assert.equal(state.monitor.enabled,false);assert.equal(state.monitor.nextCheckAt,null);assert.match(state.monitor.lastError??'',/入住日期/);assert(state.events.some(e=>e.action==='行程失效'));assert.equal(state.snapshots.length,1);
+ }finally{agent.close();rmSync(directory,{recursive:true,force:true});t.mock.timers.reset();}
+});

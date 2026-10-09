@@ -32,6 +32,7 @@ export class RealAgent{
   const deadline=this.monitor.deadline,generation=this.generation;
   if(!this.monitor.enabled||!deadline||!this.monitor.query)return;
   if(Date.now()>=Date.parse(deadline)){this.stopMonitor();this.log('截止仍未完成成交核验','未创建订单。条件组合：保留预算并核验具体房型与税费；确认可接受的通勤和历史评论问题；取得可取消报价及退款规则。预算差额未知，不能建议具体涨价金额。');return;}
+  try{validateFlyaiQuery(this.monitor.query);}catch{this.stopMonitor();this.monitor.lastError='入住日期或查询条件已失效，监控已停止；请更新行程后重新启动。';this.log('行程失效',this.monitor.lastError);return;}
   try{await this.search(this.monitor.query);if(generation===this.generation)this.monitor.lastError=null;}catch{if(generation===this.generation)this.monitor.lastError='查询未完成，等待下一轮；不据历史价格进行交易。';}
   if(!this.closed&&generation===this.generation&&this.monitor.enabled)this.monitor.nextCheckAt=new Date(Math.min(Date.now()+30*60000,Date.parse(deadline))).toISOString();
  }
