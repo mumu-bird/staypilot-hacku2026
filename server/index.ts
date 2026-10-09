@@ -1,3 +1,5 @@
+import {searchFlyai} from './flyai.ts';
+import {AccessGuard,accessTokenFromCookie,accessLifetimeMs} from './access-guard.ts';
 import {sessionCookie,sessionIdFromCookie} from './session-cookie.ts';
 import {readiness} from './readiness.ts';
 import {isPrivatePagePath} from './private-path.ts';
@@ -23,14 +25,16 @@ const port=Number(process.env.PORT||4173),host=process.env.HOST||'127.0.0.1';
 const origin=`http://127.0.0.1:${port}`;
 // Validate configured deployment origin before accepting requests.
 sessionCookie('0'.repeat(32),process.env.PUBLIC_ORIGIN);
+const access=new AccessGuard(process.env.STAYPILOT_ACCESS_PASSWORD);
 mkdirSync('data',{recursive:true});
 const sessions=new Map<string,{engine:Engine;agent:BrowserAgent}>();
 const realSessions=new Map<string,RealAgent>();
 const rollinggoSessions=new Map<string,RollinggoAgent>();
 const workflowSessions=new Map<string,LiveWorkflow>();
-function workflowSession(sid:string){let flow=workflowSessions.get(sid);if(!flow){flow=new LiveWorkflow(sid,{requireQueryConsent:true,nearbyHotels:findNearbyHotelLeads,flySearch:input=>realSession(sid).search(input),rollingSearch:input=>rollinggoSession(sid).search(input),rollingDetail:input=>rollinggoSession(sid).detail(input),rollingLookup:input=>rollinggoSession(sid).detailByName(input),places:findMapPlaces,routes:mapRoutes,jev:typeSafeHttp});workflowSessions.set(sid,flow);}return flow;}
+function accessBound<T extends (...args:any[])=>any>(sid:string,fn:T):T{return ((...args:Parameters<T>)=>{if(!access.sessionAuthenticated(sid))throw Error('Access login required');return fn(...args);}) as T;}
+function workflowSession(sid:string){let flow=workflowSessions.get(sid);if(!flow){flow=new LiveWorkflow(sid,{requireQueryConsent:true,nearbyHotels:accessBound(sid,findNearbyHotelLeads),flySearch:accessBound(sid,(input:Record<string,unknown>)=>realSession(sid).search(input)),rollingSearch:accessBound(sid,(input:Record<string,unknown>)=>rollinggoSession(sid).search(input)),rollingDetail:accessBound(sid,(input:Record<string,unknown>)=>rollinggoSession(sid).detail(input)),rollingLookup:accessBound(sid,(input:Record<string,unknown>)=>rollinggoSession(sid).detailByName(input)),places:accessBound(sid,findMapPlaces),routes:accessBound(sid,mapRoutes),jev:accessBound(sid,typeSafeHttp)});workflowSessions.set(sid,flow);}return flow;}
 function rollinggoSession(sid:string){let agent=rollinggoSessions.get(sid);if(!agent){agent=new RollinggoAgent(sid);rollinggoSessions.set(sid,agent);}return agent;}
-function realSession(sid:string){let agent=realSessions.get(sid);if(!agent){agent=new RealAgent(sid);realSessions.set(sid,agent);}return agent;}
+function realSession(sid:string){let agent=realSessions.get(sid);if(!agent){agent=new RealAgent(sid,{search:accessBound(sid,searchFlyai)});realSessions.set(sid,agent);}return agent;}
 const scenarios=[
   {id:'baseline',label:'比价与换订',description:'三个平台不同取消条款，30分钟后竞品降价。'},
   {id:'tax_spike',label:'结算税费超额',description:'展示价格在预算内，结算复核税费后阻断。'},
@@ -50,7 +54,7 @@ function session(req:http.IncomingMessage,res:http.ServerResponse){
   let sid=sessionIdFromCookie(req.headers.cookie);
   if(!sid){sid=randomBytes(16).toString('hex');res.setHeader('Set-Cookie',sessionCookie(sid,process.env.PUBLIC_ORIGIN));}
   let current=sessions.get(sid);
-  if(!current){const engine=new Engine(resolve('data',`${sid}.sqlite`));engine.setAgent({running:false});current={engine,agent:new BrowserAgent(engine,origin,sid)};sessions.set(sid,current);}
+  if(!current){const engine=new Engine(resolve('data',`${sid}.sqlite`));engine.setAgent({running:false});current={engine,agent:new BrowserAgent(engine,origin,sid,()=>({required:access.required,token:access.tokenForSession(sid!)}))};sessions.set(sid,current);}
   return {sid,...current};
 }
 const mime:Record<string,string>={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.jpg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.webm':'video/webm','.json':'application/json'};
@@ -61,7 +65,22 @@ const server=http.createServer(async(req,res)=>{
     if(isPrivatePagePath(path)){json(res,{error:'Not found'},404);return;}
     if(path==='/api/ready'&&req.method==='GET'){const result=readiness({production:process.env.NODE_ENV==='production',frontendExists:existsSync(resolve('dist/index.html')),shuttingDown});json(res,{...result,checkedAt:new Date().toISOString()},result.status==='ready'?200:503);return;}
     if(path==='/api/health'&&req.method==='GET'){json(res,{status:'ok',checkedAt:new Date().toISOString(),realTransactionEnabled:false});return;}
+    const accessSid=sessionIdFromCookie(req.headers.cookie),accessToken=accessTokenFromCookie(req.headers.cookie);
+    if(path==='/api/access/state'&&req.method==='GET'){json(res,{required:access.required,authenticated:access.authenticated(accessToken,accessSid)});return;}
+    if(path==='/api/access/login'&&req.method==='POST'){
+      if(req.headers.origin&&new URL(req.headers.origin).host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'Cross-site login refused'},403);return;}
+      const input=await body(req),sid=accessSid??randomBytes(16).toString('hex');const result=access.login(input?.password,sid,req.socket.remoteAddress??'unknown');
+      if(result.status!=='ok'){json(res,{error:result.status==='limited'?'Too many attempts. Wait five minutes.':'Access password was not accepted'},result.status==='limited'?429:401);return;}
+      const authCookie=sessionCookie(result.token.slice(0,32),process.env.PUBLIC_ORIGIN).replace('staypilot_session='+result.token.slice(0,32),'staypilot_access='+result.token)+`; Max-Age=${accessLifetimeMs/1000}`;
+      res.setHeader('Set-Cookie',[sessionCookie(sid,process.env.PUBLIC_ORIGIN),authCookie]);json(res,{required:true,authenticated:true});return;
+    }
+    if(path==='/api/access/logout'&&req.method==='POST'){
+      if(req.headers.origin&&new URL(req.headers.origin).host!==req.headers.host&&req.headers.origin!==process.env.PUBLIC_ORIGIN){json(res,{error:'Cross-site logout refused'},403);return;}
+      if(access.authenticated(accessToken,accessSid)&&accessSid){workflowSessions.get(accessSid)?.stopMonitor('consent_revoked');realSessions.get(accessSid)?.stopMonitor();const current=sessions.get(accessSid);if(current){current.engine.revoke();await current.agent.stop();}}
+      access.logout(accessToken);res.setHeader('Set-Cookie',sessionCookie('0'.repeat(32),process.env.PUBLIC_ORIGIN).replace('staypilot_session='+ '0'.repeat(32),'staypilot_access=')+'; Max-Age=0');json(res,{required:access.required,authenticated:!access.required});return;
+    }
     if(path.startsWith('/api/')||path.startsWith('/evidence/')){
+      if(!access.authenticated(accessToken,accessSid)){json(res,{error:'Access login required'},401);return;}
       const {sid,engine,agent}=session(req,res);
       if(path.startsWith('/evidence/')){
         if(!path.startsWith(`/evidence/${sid}/`)){json(res,{error:'页面证据属于其他演示会话。'},403);return;}
@@ -147,6 +166,7 @@ server.requestTimeout=30000;server.headersTimeout=15000;server.maxHeadersCount=1
 let lastTick=Date.now();
 setInterval(()=>{
   const elapsed=Date.now()-lastTick;lastTick=Date.now();
+  for(const sid of access.expireGrants()){workflowSessions.get(sid)?.stopMonitor('consent_revoked');realSessions.get(sid)?.stopMonitor();const current=sessions.get(sid);if(current){current.engine.revoke();void current.agent.stop();}}
   for(const {engine,agent} of sessions.values()){
     const state=engine.getState();if(state.clock.running&&!agent.busy)advance(engine,elapsed*state.clock.speed/60000);
     const fresh=engine.getState();

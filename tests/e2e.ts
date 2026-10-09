@@ -50,6 +50,16 @@ await page.getByRole('button',{name:'确认支付并预订',exact:true}).click()
 await api('/api/reset',{scenario:'baseline'});await api('/api/mandate',{patch:{},confirm:true});await api('/api/revoke',{});await page.goto(`${origin}/platform/a/checkout/h01`,{waitUntil:'networkidle'});await page.getByRole('button',{name:'确认支付并预订',exact:true}).click();await page.locator('[data-trade-result]').waitFor();result=JSON.parse((await page.locator('[data-trade-result]').getAttribute('data-trade-result'))!);assert.equal(result.ok,false);pass('撤销授权后网页下单被阻止');
 await api('/api/reset',{scenario:'baseline'});await api('/api/mandate',{patch:{allowNonrefundable:true},confirm:true});await page.goto(`${origin}/platform/c/checkout/h01`,{waitUntil:'networkidle'});await page.getByRole('button',{name:'确认支付并预订',exact:true}).click();await page.locator('[data-trade-result]').waitFor();result=JSON.parse((await page.locator('[data-trade-result]').getAttribute('data-trade-result'))!);assert.equal(result.ok,true);assert.equal(result.order?.quote.cancellation,'nonrefundable');assert.equal((await state()).agent.monitoring,false);pass('单独授权不可取消房后可支付，随后停止换订');
 await page.setViewportSize({width:390,height:844});await page.goto(origin,{waitUntil:'networkidle'});const dimensions=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert(dimensions.scroll<=dimensions.width+1,JSON.stringify(dimensions));await page.screenshot({path:'docs/screenshots/mobile.png',fullPage:false});pass('手机视口无横向溢出');
+{
+ let authenticated=false;
+ await page.route('**/api/access/state',route=>route.fulfill({json:{required:true,authenticated}}));
+ await page.route('**/api/access/login',route=>{authenticated=true;return route.fulfill({json:{required:true,authenticated:true}});});
+ await page.route('**/api/access/logout',route=>{authenticated=false;return route.fulfill({json:{required:true,authenticated:false}});});
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.getByLabel('Access password',{exact:true}).waitFor();assert.equal(await page.locator('.journey-steps').count(),0);
+ await page.getByLabel('Access password',{exact:true}).fill('controlled-browser-password');await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.locator('.journey-steps').waitFor();await page.getByRole('button',{name:'Sign out',exact:true}).click();await page.getByLabel('Access password',{exact:true}).waitFor();assert.equal(await page.locator('.journey-steps').count(),0);
+ await page.unroute('**/api/access/state');await page.unroute('**/api/access/login');await page.unroute('**/api/access/logout');
+ pass('受保护页面登录前不展示流程，受控登录后进入，退出撤下页面；接口为合成响应，无真实购买授权');
+}
 // Live workflow usability checks use the running page and local draft only; no external booking/query is submitted.
 await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});
 await page.getByLabel('City',{exact:true}).fill('杭州');
@@ -316,7 +326,7 @@ if(existsSync('docs/cases/live-filtered-nearby-expansion-20261008.json')){
  const actual=JSON.parse(readFileSync(existsSync('docs/cases/live-fresh-map-expansion-20261009.json')?'docs/cases/live-fresh-map-expansion-20261009.json':'docs/cases/live-filtered-nearby-expansion-20261008.json','utf8'));let sid:string|undefined;
  for(const filename of readdirSync('data/workflows').filter(n=>n.endsWith('.sqlite'))){const db=new DatabaseSync(resolve('data/workflows',filename),{readOnly:true});try{if(db.prepare("SELECT 1 FROM runs WHERE json_extract(payload,'$.id')=?").get(actual.id)){sid=filename.replace('.sqlite','');break;}}finally{db.close();}}
  assert(sid);await context.addCookies([{name:'staypilot_session',value:sid,domain:new URL(origin).hostname,path:'/',httpOnly:true,sameSite:'Lax'}]);
- await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps').waitFor().catch(async error=>{console.log('Workflow render diagnosis',JSON.stringify({errors,body:await page.locator('body').innerText()}));throw error;});await page.locator('.journey-steps button').nth(3).click();
  const outcome=page.getByRole('region',{name:'Assessment outcome'});await outcome.getByText(/Nearby leads checked this run: 3/).waitFor();await outcome.locator('summary').filter({hasText:'Hotels without room quotes'}).click();
  for(const d of actual.candidates){assert.equal(d.candidate.roomQuery.filter.cancelPolicy,'CANCELABLE');await outcome.getByRole('heading',{name:d.candidate.name,exact:true}).waitFor();}
  assert((await outcome.getByText(/No rooms returned for this filter/).count())>=actual.candidates.length);assert((await outcome.innerText()).includes('Filter: cancelable'));
@@ -329,7 +339,7 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  for(const filename of readdirSync('data/workflows').filter(n=>n.endsWith('.sqlite'))){const db=new DatabaseSync(resolve('data/workflows',filename),{readOnly:true});try{if(db.prepare("SELECT 1 FROM runs WHERE json_extract(payload,'$.id')=?").get(actual.id)){sid=filename.replace('.sqlite','');break;}}finally{db.close();}}
  assert(sid);await context.addCookies([{name:'staypilot_session',value:sid,domain:new URL(origin).hostname,path:'/',httpOnly:true,sameSite:'Lax'}]);
  const serverState=await context.request.get(origin+'/api/live/workflow/state');assert.equal((await serverState.json()).latest.id,actual.id);
- await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps').waitFor().catch(async error=>{console.log('Workflow render diagnosis',JSON.stringify({errors,body:await page.locator('body').innerText()}));throw error;});await page.locator('.journey-steps button').nth(3).click();
  const outcome=page.getByRole('region',{name:'Assessment outcome'});assert((await outcome.innerText()).includes('Observed hotels: '+actual.candidates.length));
  await outcome.getByText(/The displayed options share a free-cancellation conflict/).waitFor();await outcome.locator('summary').filter({hasText:'Priority hotels to inspect'}).click();await outcome.getByRole('heading',{name:'北京新侨饭店',exact:true}).waitFor();assert((await outcome.innerText()).includes('Room quotes missing'));assert(await outcome.getByRole('button',{name:/Fetch rooms for this hotel|Refresh rooms and route/}).first().isDisabled());
  assert(await outcome.getByRole('button',{name:'Search more nearby hotels',exact:true}).isDisabled());assert.equal(actual.transactionEnabled,false);assert.equal(actual.policy.budgetCents,60000);
@@ -415,7 +425,7 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  fixture.candidates=[decision];decision.reasons=[];decision.candidate.route=null;
  for(const room of decision.candidate.rooms){room.cancellationStatus='unknown';room.sourceObservedAt=new Date().toISOString();}
  await page.route('**/api/live/workflow/state',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({running:false,stage:'Controlled evidence gaps',latest:fixture,monitor:{enabled:false,deadline:null,nextCheckAt:null,lastError:null,checks:0}})}));
- await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps').waitFor().catch(async error=>{console.log('Workflow render diagnosis',JSON.stringify({errors,body:await page.locator('body').innerText()}));throw error;});await page.locator('.journey-steps button').nth(3).click();
  const outcome=page.getByRole('region',{name:'Assessment outcome'});await outcome.locator('summary').filter({hasText:'Priority hotels to inspect'}).click();
  await outcome.getByText(/Cancellation terms unverified/).waitFor();await outcome.getByText(/Route unverified/).waitFor();
  assert(await outcome.getByRole('button',{name:'Refresh rooms and route',exact:true}).isDisabled());

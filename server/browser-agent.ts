@@ -13,8 +13,8 @@ export class BrowserAgent {
   private context:BrowserContext|null=null;
   private stopped=false;
   public busy=false;
-  private engine:Engine; private origin:string; private session:string;
-  constructor(engine:Engine,origin:string,session:string){this.engine=engine;this.origin=origin;this.session=session;}
+  private engine:Engine; private origin:string; private session:string; private getAccess?:()=>{required:boolean;token?:string};
+  constructor(engine:Engine,origin:string,session:string,getAccess?:()=>{required:boolean;token?:string}){this.engine=engine;this.origin=origin;this.session=session;this.getAccess=getAccess;}
   async stop(){this.stopped=true; this.engine.setAgent({monitoring:false});}
   private async snapshot(page:Page,type:string,title:string,detail:string,data?:unknown){
     const dir=resolve('public/evidence',this.session); mkdirSync(dir,{recursive:true});
@@ -81,6 +81,7 @@ export class BrowserAgent {
       const video=process.env.RECORD_VIDEO==='1';
       this.context=await this.browser.newContext({viewport:{width:1440,height:960},...(video?{recordVideo:{dir:resolve('docs/recordings'),size:{width:1440,height:960}}}:{})});
       await this.context.addCookies([{name:'staypilot_session',value:this.session,url:this.origin,httpOnly:true,sameSite:'Lax'}]);
+      const grant=this.getAccess?.();if(grant?.required&&!grant.token)throw Error('Access login required');if(grant?.token)await this.context.addCookies([{name:'staypilot_access',value:grant.token,url:this.origin,httpOnly:true,sameSite:'Lax'}]);
       page=await this.context.newPage();
       const candidates:Evaluation[]=[];
       for(const platform of ['a','b','c'] as Platform[]){
