@@ -1,4 +1,5 @@
-import {t as uiText} from './i18n';
+import {workflowErrorMessage} from '../shared/workflow-error';
+import {t as uiText,pick} from './i18n';
 import {useEffect,useState,useRef} from 'react';
 import type {FlyaiQuery,FlyaiResult} from '../shared/flyai';
 import type {RealState} from '../shared/real-agent';
@@ -28,7 +29,7 @@ export default function RealTools({query,onResult}:{query:FlyaiQuery;onResult:(r
    <p className="hint">{uiText("后台服务与电脑需保持运行；重启后需要重新开启。仅查询，不会自动预订。")}</p>
    <div className="live-form"><label>{uiText("截止时间（上海时间）")}<input type="datetime-local" value={deadline} onChange={e=>setDeadline(e.target.value)} disabled={state?.monitor.enabled}/></label><button className="btn primary" disabled={busy} onClick={()=>void monitor(!state?.monitor.enabled)}>{busy?uiText("正在更新…"):state?.monitor.enabled?uiText("停止监控"):uiText("开启价格监控")}</button></div>
    <p className="hint" role="status">{state?.monitor.enabled?uiText("正在监控当前行程"):uiText("开启后，会立即查询当前表单中的行程")}{state?.monitor.nextCheckAt&&uiText(" · 下次检查 ")+new Date(state.monitor.nextCheckAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})}</p>
-   {state?.monitor.lastError&&<p role="alert" className="conflict-text">{state.monitor.lastError}</p>}
+   {state?.monitor.lastError&&<p role="alert" className="conflict-text">{pick(workflowErrorMessage(state.monitor.lastError).zh,workflowErrorMessage(state.monitor.lastError).en)}</p>}
    {latest&&<p className="hint">{uiText("已有")}{state?.snapshots.length}{uiText("次价格记录 · 最近查询")}{new Date(latest.observedAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})}</p>}
    {error&&<p role="alert" className="conflict-text">{error}</p>}
    {state&&state.snapshots.length>0&&<details className="live-disclosure"><summary>{uiText("查看价格记录")}</summary><div className="live-history">{state.snapshots.slice(0,8).map((s,i)=><p key={i}>{new Date(s.observedAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})} · {s.query.destination} · {s.query.checkIn}{uiText("至")}{s.query.checkOut}<br/>{s.hotels.slice(0,3).map(h=>h.name+' '+h.price).join('；')||uiText("本轮未返回酒店")}</p>)}</div></details>}

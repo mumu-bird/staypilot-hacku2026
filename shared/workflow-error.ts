@@ -1,6 +1,7 @@
 /** User-facing guidance only; never changes server state or retries a transaction. */
 export function workflowErrorMessage(message:unknown):{zh:string;en:string} {
  const text=typeof message==='string'?message:'';
+ if(/连续三轮查询失败/.test(text))return {zh:'连续三轮查询失败，监控已停止。请检查服务连接后手动重新开启。',en:'Monitoring stopped after three consecutive failed checks. Check the service connection and restart manually.'};
  if(/服务中断，监控未自动恢复/.test(text))return {zh:'服务中断后监控已停止。请核验当前行程、重新确认查询授权，再手动开启监控。',en:'Monitoring stopped after a service interruption. Check the current trip, confirm query consent again and restart monitoring manually.'};
  if(/免费取消窗口/.test(text))return {zh:'免费取消窗口已结束或无法确认，报价监控已停止。请刷新酒店并重新核验取消条款。',en:'The free cancellation window ended or could not be verified. Quote monitoring stopped; refresh the hotel and verify its cancellation terms.'};
  if(/入住日期或查询条件已失效/.test(text))return {zh:'行程条件已失效，监控已停止。请更新入住日期与偏好，重新确认后开启监控。',en:'Trip conditions are no longer valid and monitoring stopped. Update the stay dates and preferences, confirm again and restart monitoring.'};

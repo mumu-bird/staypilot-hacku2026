@@ -50,3 +50,17 @@ test('expired trip stops standalone FlyAI monitoring before another provider req
   const state=agent.state();assert.equal(calls,1);assert.equal(state.monitor.enabled,false);assert.equal(state.monitor.nextCheckAt,null);assert.match(state.monitor.lastError??'',/入住日期/);assert(state.events.some(e=>e.action==='行程失效'));assert.equal(state.snapshots.length,1);
  }finally{agent.close();rmSync(directory,{recursive:true,force:true});t.mock.timers.reset();}
 });
+
+test('standalone monitor stops after three consecutive failures and resets on successful recovery',async()=>{
+ const directory=mkdtempSync(join(tmpdir(),'staypilot-monitor-failure-'));let failing=true,calls=0;
+ const agent=new RealAgent('failures',{directory,search:async()=>{calls++;if(failing)throw Error('private-upstream-marker');return normalizeFlyai({status:0,data:{itemList:[]}},query);}});
+ const poll=()=> (agent as unknown as {poll():Promise<void>}).poll();
+ try{
+  await agent.startMonitor({...query,deadline:new Date(Date.now()+3600000).toISOString()});assert.equal(agent.state().monitor.consecutiveFailures,1);
+  failing=false;await poll();assert.equal(agent.state().monitor.consecutiveFailures,0);
+  failing=true;await poll();await poll();assert.equal(agent.state().monitor.enabled,true);await poll();
+  const stopped=agent.state();assert.equal(stopped.monitor.enabled,false);assert.equal(stopped.monitor.nextCheckAt,null);assert.equal(stopped.monitor.consecutiveFailures,3);assert(!JSON.stringify(stopped).includes('private-upstream-marker'));
+  const before=calls;await poll();assert.equal(calls,before);failing=false;
+  await agent.startMonitor({...query,deadline:new Date(Date.now()+3600000).toISOString()});assert.equal(agent.state().monitor.enabled,true);assert.equal(agent.state().monitor.consecutiveFailures,0);
+ }finally{agent.close();rmSync(directory,{recursive:true,force:true});}
+});
