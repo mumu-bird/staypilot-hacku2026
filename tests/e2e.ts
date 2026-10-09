@@ -432,6 +432,19 @@ if(existsSync('docs/cases/live-integrated-product-validation-20261009.json')){
  await page.unroute('**/api/live/workflow/state');
  pass('未知取消条款与缺失路线进入补查入口，未确认授权时刷新禁用；控制证据状态，无商户调用');
 }
+{
+ const fixture=JSON.parse(readFileSync('docs/cases/live-post-recovery-regression-20261009.json','utf8'));
+ const parent='controlled-history-parent';fixture.parentRunId=parent;
+ let failed=true,reads=0;
+ await page.route('**/api/live/workflow/state',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({running:false,stage:'Controlled history scope',latest:fixture,monitor:{enabled:false,checks:0}})}));
+ await page.route('**/api/live/workflow/runs?runId=*',route=>{reads++;assert.equal(new URL(route.request().url()).searchParams.get('runId'),parent);return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{...fixture,id:failed?'foreign-history-marker':parent}])});});
+ await page.goto(`${origin}/live/workflow?lang=en`,{waitUntil:'networkidle'});await page.locator('.journey-steps button').nth(3).click();
+ const history=page.locator('section').filter({has:page.getByRole('heading',{name:'Previous assessments',exact:true})});
+ await history.getByRole('alert').waitFor();assert.equal(await history.locator('details').count(),0);assert(!(await history.innerText()).includes('foreign-history-marker'));
+ failed=false;await history.getByRole('button',{name:'Retry previous assessment',exact:true}).click();await history.locator(`details[data-parent-run="${parent}"]`).waitFor();assert.equal(await history.getByRole('alert').count(),0);assert((await history.innerText()).includes('UTC+8'));assert(reads>=2);
+ await page.unroute('**/api/live/workflow/state');await page.unroute('**/api/live/workflow/runs?runId=*');
+ pass('原方案历史响应编号不符时拒绝展示，重试仍读取原编号并显示明确时区；控制响应，无平台查询');
+}
 assert.deepEqual(errors,[]);await context.close();await browser.close();
 writeFileSync(resolve('docs/browser-verification.json'),JSON.stringify({executedAt:new Date().toISOString(),environment:'真实Chrome网页操作；虚构酒店与测试资金',checks},null,2));
 console.log(`${checks.length} browser integration checks passed.`);
